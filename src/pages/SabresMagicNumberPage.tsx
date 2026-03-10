@@ -57,8 +57,8 @@ export default function SabresMagicNumberPage() {
                 setLoading(true);
                 setError("");
 
-                const nhlUrl = `/nhl-api/v1/standings/${getLocalDateString()}`;
-                const response = await fetch("https://fupd61gnf3.execute-api.us-east-1.amazonaws.com/standings");
+                const nhlUrl = "https://fupd61gnf3.execute-api.us-east-1.amazonaws.com/standings";
+                const response = await fetch(nhlUrl);
 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);

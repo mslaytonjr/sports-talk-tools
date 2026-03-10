@@ -58,7 +58,7 @@ export default function SabresMagicNumberPage() {
                 setError("");
 
                 const nhlUrl = `/nhl-api/v1/standings/${getLocalDateString()}`;
-                const response = await fetch("https://api.wnysportsnet.com/sabres/magic");
+                const response = await fetch("https://fupd61gnf3.execute-api.us-east-1.amazonaws.com/standings");
 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}`);

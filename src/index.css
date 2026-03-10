@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chalk-text {
+  font-family: "Patrick Hand", cursive;
+  letter-spacing: 0.04em;
+  text-shadow:
+          0 0 0px rgba(255,255,255,0.15),
+          0 0 0px rgba(255,255,255,0.05);
+}
+
+.chalk-text-strong {
+  font-family: "Permanent Marker", cursive;
+  letter-spacing: 0.05em;
+  text-shadow:
+          0 0 2px rgba(255,255,255,0.45),
+          0 0 6px rgba(255,255,255,0.25);
+}
+
+.zubaz-bg {
+  background-color: #0b1220;
+
+  background-image:
+    /* blue waves */
+          repeating-linear-gradient(
+                  115deg,
+                  rgba(29, 78, 216, 0.35) 0px,
+                  rgba(29, 78, 216, 0.35) 14px,
+                  transparent 14px,
+                  transparent 40px
+          ),
+
+            /* red waves */
+          repeating-linear-gradient(
+                  -115deg,
+                  rgba(220, 38, 38, 0.28) 0px,
+                  rgba(220, 38, 38, 0.28) 16px,
+                  transparent 16px,
+                  transparent 42px
+          ),
+
+            /* subtle white chalk streak */
+          repeating-linear-gradient(
+                  0deg,
+                  rgba(255,255,255,0.04) 0px,
+                  rgba(255,255,255,0.04) 2px,
+                  transparent 2px,
+                  transparent 8px
+          );
+}
+.chalk-surface {
+    background-image: url("./assets/black-rustic-blank-chalkboard-background.jpg"); /* if using /public */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

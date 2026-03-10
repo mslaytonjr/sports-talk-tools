@@ -316,7 +316,7 @@ function PositionStatusCounts({ rows }: { rows: PlayerRow[] }) {
 // ------------------------------------------------------------
 
 export default function NFLDepthChartSheetApp() {
-    const [sheetUrl, setSheetUrl] = useState("");
+    const [sheetUrl, setSheetUrl] = useState("https://docs.google.com/spreadsheets/d/e/2PACX-1vRB-h8eZQSvrhI9eQ3qVQlzlhkA6a2bk-KUd1_HCoxdHesaGIxJju33s4Qm3BGa0_niOKeWO1cimbi3/pub?gid=0&single=true&output=csv");
     const [rows, setRows] = useState<PlayerRow[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

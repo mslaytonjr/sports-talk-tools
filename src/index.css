@@ -55,3 +55,20 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.depth-chart-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.depth-chart-board {
+    width: max(100%, 760px);
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .depth-chart-board {
+        width: 100%;
+        min-width: 640px;
+    }
+}

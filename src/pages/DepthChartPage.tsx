@@ -399,8 +399,8 @@ function DepthChartField({
 
   return (
       <div className="w-full">
-        <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/10 pb-3">
-          <div className="mx-auto w-full min-w-[760px] max-w-6xl px-2 sm:px-4">
+        <div className="depth-chart-scroll rounded-2xl border border-white/10 bg-black/10 pb-3">
+          <div className="depth-chart-board mx-auto max-w-6xl px-2 sm:px-4">
             <div className="relative w-full aspect-[16/9] chalk-surface overflow-hidden rounded-2xl">
               {side === "DEFENSE" ? (
                   <>

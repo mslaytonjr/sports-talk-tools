@@ -77,7 +77,7 @@ type SabresSummary = {
 type SabresApiResponse = {
     asOf: string;
     defaultObjective?: ObjectiveKey;
-    objectives: Record<
+    objectives?: Record<
         ObjectiveKey,
         {
             key: ObjectiveKey;
@@ -88,7 +88,54 @@ type SabresApiResponse = {
             nightlyRootingGuide?: RootingGuideDay[];
         }
     >;
+    sabres?: SabresSummary;
+    competitors?: Competitor[];
+    nightlyRootingGuide?: RootingGuideDay[];
 };
+
+function normalizeObjectives(data: SabresApiResponse): NonNullable<SabresApiResponse["objectives"]> {
+    if (data.objectives) {
+        return data.objectives;
+    }
+
+    const fallbackSabres = data.sabres ?? {
+        currentPoints: 0,
+        gamesPlayed: 0,
+        gamesRemaining: 0,
+        maxPossiblePoints: 0,
+        clinchTarget: 0,
+        magicPointsNeeded: 0,
+    };
+    const fallbackCompetitors = data.competitors ?? [];
+    const fallbackGuide = data.nightlyRootingGuide ?? [];
+
+    return {
+        makePlayoffs: {
+            key: "makePlayoffs",
+            title: "Make Playoffs",
+            description: "Finish in the top eight in the Eastern Conference.",
+            sabres: fallbackSabres,
+            competitors: fallbackCompetitors,
+            nightlyRootingGuide: fallbackGuide,
+        },
+        winDivision: {
+            key: "winDivision",
+            title: "Win Division",
+            description: "Finish first in the Sabres' division.",
+            sabres: fallbackSabres,
+            competitors: [],
+            nightlyRootingGuide: [],
+        },
+        winConference: {
+            key: "winConference",
+            title: "Win Conference",
+            description: "Finish first in the Eastern Conference.",
+            sabres: fallbackSabres,
+            competitors: [],
+            nightlyRootingGuide: [],
+        },
+    };
+}
 
 function summaryCard(label: string, value: string | number) {
     return (
@@ -150,7 +197,8 @@ export default function SabresMagicNumberPage() {
         return <div className="px-4 py-6 text-white">No data available.</div>;
     }
 
-    const objective = data.objectives[selectedObjective];
+    const objectives = normalizeObjectives(data);
+    const objective = objectives[selectedObjective] ?? objectives.makePlayoffs;
 
     return (
         <div className="min-h-screen bg-slate-950 px-3 py-4 text-white sm:px-4 md:px-6">
@@ -164,7 +212,7 @@ export default function SabresMagicNumberPage() {
 
                 <div className="flex flex-wrap gap-3">
                     {OBJECTIVE_ORDER.map((key) => {
-                        const item = data.objectives[key];
+                        const item = objectives[key];
                         const isActive = key === selectedObjective;
 
                         return (

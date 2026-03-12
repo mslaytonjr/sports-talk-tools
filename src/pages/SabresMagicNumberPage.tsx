@@ -211,13 +211,14 @@ export default function SabresMagicNumberPage() {
                                                                     : game.reasoning}
                                                             </div>
                                                         </div>
-
-                                                        <Badge
-                                                            variant="outline"
-                                                            className="border-emerald-700 text-emerald-300"
-                                                        >
-                                                            {game.impact}
-                                                        </Badge>
+                                                        {game.impact === "0 clinch target" ? (
+                                                            <Badge
+                                                                variant="outline"
+                                                                className="border-slate-700 text-slate-200"
+                                                            >
+                                                                No impact
+                                                            </Badge>
+                                                        ) : null}
                                                     </div>
 
                                                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -226,11 +227,11 @@ export default function SabresMagicNumberPage() {
                                                                 <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
                                                                     Best Case For Buffalo
                                                                 </div>
-                                                                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-300">
-                                                                    {game.impact === "0 clinch target"
-                                                                        ? "No impact"
-                                                                        : game.impact}
-                                                                </div>
+                                                                {game.impact !== "0 clinch target" ? (
+                                                                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-300">
+                                                                        {game.impact}
+                                                                    </div>
+                                                                ) : null}
                                                             </div>
                                                             <div className="mt-2 text-sm font-medium text-white">
                                                                 {game.recommendedOutcome}
@@ -239,9 +240,7 @@ export default function SabresMagicNumberPage() {
                                                                 Magic number after game: {game.bestCase.magicPointsNeeded}
                                                             </div>
                                                             <div className="text-xs text-slate-400">
-                                                                Clinch target: {game.impact === "0 clinch target"
-                                                                    ? "No impact"
-                                                                    : game.bestCase.clinchTarget}
+                                                                Clinch target: {game.bestCase.clinchTarget}
                                                             </div>
                                                         </div>
 

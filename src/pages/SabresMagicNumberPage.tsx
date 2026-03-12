@@ -141,8 +141,8 @@ function difficultyLabel(score: number | null) {
     if (score === null) return "Unknown";
     if (score <= 45) return "Soft";
     if (score <= 52) return "Favorable";
-    if (score <= 59) return "Neutral";
-    if (score <= 66) return "Hard";
+    if (score <= 60) return "Neutral";
+    if (score <= 70) return "Hard";
     return "Brutal";
 }
 

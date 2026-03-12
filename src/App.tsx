@@ -12,28 +12,11 @@ function HomePage() {
                         <div className="space-y-3">
                             <div className="landing-kicker">Western New York Sports Network</div>
                             <h1 className="landing-title">
-                                Built for Buffalo fans who want the scoreboard behind the scoreboard.
+                                Stats, Standings, and Takes for Western New York.
                             </h1>
                             <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-300 lg:mx-0 sm:text-base">
-                                WNYSportsNet brings live race tracking, roster context, and nightly
-                                playoff pressure into one home base. It should feel closer to a
-                                regional sports network control room than a utility menu.
+                                WNYSportsNet brings tools for the Smart Buffalo Sports Fan.
                             </p>
-                        </div>
-
-                        <div className="landing-strip">
-                            <div className="landing-strip-item">
-                                <span className="landing-strip-label">Coverage</span>
-                                <span className="landing-strip-value">Bills + Sabres</span>
-                            </div>
-                            <div className="landing-strip-item">
-                                <span className="landing-strip-label">Focus</span>
-                                <span className="landing-strip-value">Playoff race and roster intel</span>
-                            </div>
-                            <div className="landing-strip-item">
-                                <span className="landing-strip-label">Updated</span>
-                                <span className="landing-strip-value">Game day ready</span>
-                            </div>
                         </div>
 
                         <div className="grid gap-4 md:grid-cols-2">

@@ -221,7 +221,7 @@ export default function SabresMagicNumberPage() {
                                                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
                                                         <div className="rounded-lg bg-slate-900/80 p-3">
                                                             <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                                                                Best For Buffalo
+                                                                Best Case For Buffalo
                                                             </div>
                                                             <div className="mt-2 text-sm font-medium text-white">
                                                                 {game.recommendedOutcome}
@@ -236,7 +236,7 @@ export default function SabresMagicNumberPage() {
 
                                                         <div className="rounded-lg bg-slate-900/80 p-3">
                                                             <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                                                                Worst Case
+                                                                Worst Case For Buffalo
                                                             </div>
                                                             <div className="mt-2 text-sm font-medium text-white">
                                                                 {game.worstCase.label}

@@ -521,7 +521,7 @@ export default function NFLDepthChartSheetApp() {
                 Loading Bills depth chart...
               </div>
             ) : (
-              <div className="space-y-8">
+              <div className="space-y-8 overflow-y-auto">
                 {bySide.map(([side, sideRows]) => {
                   if (side !== "DEFENSE") return null;
                   return <DepthChartField key={side} side="DEFENSE" sideRows={sideRows} />;

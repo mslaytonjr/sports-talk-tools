@@ -1,6 +1,32 @@
 const TOTAL_GAMES = 82;
 const TARGET_TEAM = "Buffalo Sabres";
 const NHL_API_BASE = "https://api-web.nhle.com";
+const OBJECTIVES = {
+  makePlayoffs: {
+    key: "makePlayoffs",
+    title: "Make Playoffs",
+    description: "Finish in the top eight in the Eastern Conference.",
+    cutoffIndex: 7,
+    isCompetitor: (team, sabres) =>
+      team.team !== TARGET_TEAM && team.conference === sabres.conference,
+  },
+  winDivision: {
+    key: "winDivision",
+    title: "Win Division",
+    description: "Finish first in the Sabres' division.",
+    cutoffIndex: 0,
+    isCompetitor: (team, sabres) =>
+      team.team !== TARGET_TEAM && team.division === sabres.division,
+  },
+  winConference: {
+    key: "winConference",
+    title: "Win Conference",
+    description: "Finish first in the Eastern Conference.",
+    cutoffIndex: 0,
+    isCompetitor: (team, sabres) =>
+      team.team !== TARGET_TEAM && team.conference === sabres.conference,
+  },
+};
 
 const text = (value) => {
   if (!value) return "";
@@ -200,8 +226,8 @@ function cloneTeam(team) {
   };
 }
 
-function recomputeSabresRace(eastTeams) {
-  const east = eastTeams
+function computeObjectiveRace(allTeams, objective) {
+  const teams = allTeams
     .map(cloneTeam)
     .sort((a, b) => {
       if (b.maxPossiblePoints !== a.maxPossiblePoints) {
@@ -213,13 +239,14 @@ function recomputeSabresRace(eastTeams) {
       return a.team.localeCompare(b.team);
     });
 
-  const sabres = east.find((team) => team.team === TARGET_TEAM);
+  const sabres = teams.find((team) => team.team === TARGET_TEAM);
   if (!sabres) {
-    throw new Error("Buffalo Sabres not found in simulated standings");
+    throw new Error(`Buffalo Sabres not found in ${objective.key} simulation`);
   }
 
-  const challengers = east
-    .filter((team) => team.team !== TARGET_TEAM && team.maxPossiblePoints >= sabres.currentPoints)
+  const challengers = teams
+    .filter((team) => objective.isCompetitor(team, sabres))
+    .filter((team) => team.maxPossiblePoints >= sabres.currentPoints)
     .sort((a, b) => {
       if (b.maxPossiblePoints !== a.maxPossiblePoints) {
         return b.maxPossiblePoints - a.maxPossiblePoints;
@@ -227,21 +254,26 @@ function recomputeSabresRace(eastTeams) {
       return b.currentPoints - a.currentPoints;
     });
 
-  const eighthChallengerMax = challengers.length >= 8 ? challengers[7].maxPossiblePoints : 0;
-  const clinchTarget = eighthChallengerMax + 1;
+  const thresholdMax =
+    challengers.length > objective.cutoffIndex
+      ? challengers[objective.cutoffIndex].maxPossiblePoints
+      : 0;
+  const clinchTarget = thresholdMax + 1;
   const magicPointsNeeded = Math.max(0, clinchTarget - sabres.currentPoints);
   const threatTotal = challengers.reduce((sum, team) => sum + team.maxPossiblePoints, 0);
 
   return {
+    objective: objective.key,
     sabres,
     clinchTarget,
     magicPointsNeeded,
     threatCount: challengers.length,
     threatTotal,
+    challengers,
   };
 }
 
-function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome) {
+function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome, objective) {
   const teamsMap = new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)]));
   const homeTeam = teamsMap.get(homeAbbrev);
   const awayTeam = teamsMap.get(awayAbbrev);
@@ -270,8 +302,7 @@ function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome) {
   homeTeam.maxPossiblePoints = homeTeam.currentPoints + homeTeam.gamesRemaining * 2;
   awayTeam.maxPossiblePoints = awayTeam.currentPoints + awayTeam.gamesRemaining * 2;
 
-  const east = Array.from(teamsMap.values()).filter((team) => team.conference === "E");
-  return recomputeSabresRace(east);
+  return computeObjectiveRace(Array.from(teamsMap.values()), objective);
 }
 
 function outcomeLabel(outcome, homeName, awayName) {
@@ -303,7 +334,7 @@ function compareOutcomeResults(a, b) {
   return 0;
 }
 
-async function getNightlyRootingGuide(todayDate, allTeams, baselineRace) {
+async function getNightlyRootingGuide(todayDate, allTeams, baselineRace, objective) {
   const targetDates = [todayDate, addDays(todayDate, 1)].map(formatApiDate);
 
   const guides = await Promise.all(
@@ -331,7 +362,7 @@ async function getNightlyRootingGuide(todayDate, allTeams, baselineRace) {
           "away-ot",
           "away-reg",
         ].map((outcome) => {
-          const result = simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome);
+          const result = simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome, objective);
           return {
             outcome,
             label: outcomeLabel(outcome, homeName, awayName),
@@ -382,14 +413,6 @@ async function getNightlyRootingGuide(todayDate, allTeams, baselineRace) {
             magicPointsNeeded: worst.magicPointsNeeded,
             clinchTarget: worst.clinchTarget,
           },
-          relevantToSabres:
-            homeAbbrev === "BUF" ||
-            awayAbbrev === "BUF" ||
-            baselineRace.sabres.teamAbbrev === "BUF" ||
-            allTeams.some(
-              (team) =>
-                team.teamAbbrev === homeAbbrev || team.teamAbbrev === awayAbbrev
-            ),
         };
       });
 
@@ -439,6 +462,7 @@ export const handler = async () => {
         team: text(team.teamName),
         teamAbbrev: text(team.teamAbbrev).toUpperCase(),
         conference: team.conferenceAbbrev ?? "",
+        division: team.divisionAbbrev ?? "",
         currentPoints: pts,
         gamesPlayed: gp,
         gamesRemaining,
@@ -452,19 +476,7 @@ export const handler = async () => {
       };
     });
 
-    const east = teams
-      .filter((team) => team.conference === "E")
-      .sort((a, b) => {
-        if (b.maxPossiblePoints !== a.maxPossiblePoints) {
-          return b.maxPossiblePoints - a.maxPossiblePoints;
-        }
-        if (b.currentPoints !== a.currentPoints) {
-          return b.currentPoints - a.currentPoints;
-        }
-        return a.team.localeCompare(b.team);
-      });
-
-    const sabres = east.find((team) => team.team === TARGET_TEAM);
+    const sabres = teams.find((team) => team.team === TARGET_TEAM);
     if (!sabres) {
       throw new Error("Buffalo Sabres not found in standings");
     }
@@ -485,12 +497,15 @@ export const handler = async () => {
       ])
     );
 
-    const competitorsBase = east.filter(
-      (team) => team.team !== TARGET_TEAM && team.maxPossiblePoints >= sabres.currentPoints
+    const eastCompetitorsBase = teams.filter(
+      (team) =>
+        team.team !== TARGET_TEAM &&
+        team.conference === sabres.conference &&
+        team.maxPossiblePoints >= sabres.currentPoints
     );
 
     const competitors = await Promise.all(
-      competitorsBase.map(async (team) => {
+      eastCompetitorsBase.map(async (team) => {
         let next3Opponents = [];
 
         try {
@@ -515,8 +530,11 @@ export const handler = async () => {
           : null;
 
         return {
+          teamKey: team.teamAbbrev,
           team: team.team,
           teamAbbrev: team.teamAbbrev,
+          conference: team.conference,
+          division: team.division,
           currentPoints: team.currentPoints,
           gamesRemaining: team.gamesRemaining,
           maxPossiblePoints: team.maxPossiblePoints,
@@ -527,9 +545,44 @@ export const handler = async () => {
         };
       })
     );
+    const competitorMap = new Map(
+      competitors.map((team) => [team.teamAbbrev, team])
+    );
 
-    const baselineRace = recomputeSabresRace(east);
-    const nightlyRootingGuide = await getNightlyRootingGuide(now, teams, baselineRace);
+    const objectiveEntries = await Promise.all(
+      Object.values(OBJECTIVES).map(async (objective) => {
+        const baselineRace = computeObjectiveRace(teams, objective);
+        const objectiveCompetitors = baselineRace.challengers
+          .map((team) => competitorMap.get(team.teamAbbrev))
+          .filter(Boolean);
+        const nightlyRootingGuide = await getNightlyRootingGuide(
+          now,
+          teams,
+          baselineRace,
+          objective
+        );
+
+        return [
+          objective.key,
+          {
+            key: objective.key,
+            title: objective.title,
+            description: objective.description,
+            sabres: {
+              currentPoints: sabres.currentPoints,
+              gamesPlayed: sabres.gamesPlayed,
+              gamesRemaining: sabres.gamesRemaining,
+              maxPossiblePoints: sabres.maxPossiblePoints,
+              clinchTarget: baselineRace.clinchTarget,
+              magicPointsNeeded: baselineRace.magicPointsNeeded,
+            },
+            competitors: objectiveCompetitors,
+            nightlyRootingGuide,
+          },
+        ];
+      })
+    );
+    const objectives = Object.fromEntries(objectiveEntries);
 
     return {
       statusCode: 200,
@@ -540,16 +593,8 @@ export const handler = async () => {
       },
       body: JSON.stringify({
         asOf: date,
-        sabres: {
-          currentPoints: sabres.currentPoints,
-          gamesPlayed: sabres.gamesPlayed,
-          gamesRemaining: sabres.gamesRemaining,
-          maxPossiblePoints: sabres.maxPossiblePoints,
-          clinchTarget: baselineRace.clinchTarget,
-          magicPointsNeeded: baselineRace.magicPointsNeeded,
-        },
-        competitors,
-        nightlyRootingGuide,
+        defaultObjective: "makePlayoffs",
+        objectives,
       }),
     };
   } catch (err) {

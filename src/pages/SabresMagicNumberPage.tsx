@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 
 const SABRES_API_URL =
     import.meta.env.VITE_SABRES_LAMBDA_URL ?? "https://api.wnysportsnet.com/standings";
+const OBJECTIVE_ORDER = ["makePlayoffs", "winDivision", "winConference"] as const;
+type ObjectiveKey = (typeof OBJECTIVE_ORDER)[number];
 
 type RegulationOvertimeSplit = {
     regulationWins: number | null;
@@ -49,8 +51,11 @@ type RootingGuideDay = {
 };
 
 type Competitor = {
+    teamKey?: string;
     team: string;
     teamAbbrev: string;
+    conference?: string;
+    division?: string;
     currentPoints: number;
     gamesRemaining: number;
     maxPossiblePoints: number;
@@ -71,9 +76,18 @@ type SabresSummary = {
 
 type SabresApiResponse = {
     asOf: string;
-    sabres: SabresSummary;
-    competitors: Competitor[];
-    nightlyRootingGuide?: RootingGuideDay[];
+    defaultObjective?: ObjectiveKey;
+    objectives: Record<
+        ObjectiveKey,
+        {
+            key: ObjectiveKey;
+            title: string;
+            description: string;
+            sabres: SabresSummary;
+            competitors: Competitor[];
+            nightlyRootingGuide?: RootingGuideDay[];
+        }
+    >;
 };
 
 function summaryCard(label: string, value: string | number) {
@@ -91,6 +105,7 @@ export default function SabresMagicNumberPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [data, setData] = useState<SabresApiResponse | null>(null);
+    const [selectedObjective, setSelectedObjective] = useState<ObjectiveKey>("makePlayoffs");
 
     useEffect(() => {
         async function loadSabresData() {
@@ -109,6 +124,7 @@ export default function SabresMagicNumberPage() {
 
                 const json = (await response.json()) as SabresApiResponse;
                 setData(json);
+                setSelectedObjective(json.defaultObjective ?? "makePlayoffs");
             } catch (loadError) {
                 console.error("Failed to load Sabres data:", loadError);
                 setError(
@@ -134,45 +150,79 @@ export default function SabresMagicNumberPage() {
         return <div className="px-4 py-6 text-white">No data available.</div>;
     }
 
+    const objective = data.objectives[selectedObjective];
+
     return (
         <div className="min-h-screen bg-slate-950 px-3 py-4 text-white sm:px-4 md:px-6">
             <div className="mx-auto max-w-7xl space-y-6">
                 <div className="space-y-2">
                     <h1 className="text-2xl font-bold sm:text-3xl">Sabres Magic Number</h1>
-                    <p className="max-w-3xl text-sm text-slate-300 sm:text-base">
-                        Competing teams show current points, remaining games, maximum possible
-                        points, next three opponents, regulation/overtime split when available,
-                        last-10 trend, and a 0-100 difficulty score for the next three games.
-                    </p>
                     <p className="text-xs text-slate-400">
                         As of {data.asOf}. Data is loaded through the WNYSportsNet Lambda endpoint.
                     </p>
                 </div>
 
+                <div className="flex flex-wrap gap-3">
+                    {OBJECTIVE_ORDER.map((key) => {
+                        const item = data.objectives[key];
+                        const isActive = key === selectedObjective;
+
+                        return (
+                            <button
+                                key={key}
+                                type="button"
+                                onClick={() => setSelectedObjective(key)}
+                                className={[
+                                    "rounded-full border px-4 py-2 text-sm font-medium transition",
+                                    isActive
+                                        ? "border-emerald-500 bg-emerald-500/15 text-emerald-200"
+                                        : "border-slate-700 bg-slate-900/70 text-slate-200 hover:bg-slate-800",
+                                ].join(" ")}
+                            >
+                                {item.title}
+                            </button>
+                        );
+                    })}
+                </div>
+
+                <Card className="border-slate-800 bg-slate-900/70">
+                    <CardHeader>
+                        <CardTitle className="text-lg text-white">{objective.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0 text-slate-200">
+                        <p className="text-sm text-slate-300">{objective.description}</p>
+                        <p className="mt-3 text-sm text-slate-300">
+                            Competing teams show current points, remaining games, maximum possible
+                            points, next three opponents, regulation/overtime split when available,
+                            last-10 trend, and a 0-100 difficulty score for the next three games.
+                        </p>
+                    </CardContent>
+                </Card>
+
                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-                    {summaryCard("Current Points", data.sabres.currentPoints)}
-                    {summaryCard("Games Played", data.sabres.gamesPlayed)}
-                    {summaryCard("Games Left", data.sabres.gamesRemaining)}
-                    {summaryCard("Max Possible", data.sabres.maxPossiblePoints)}
-                    {summaryCard("Magic Points Needed", data.sabres.magicPointsNeeded)}
+                    {summaryCard("Current Points", objective.sabres.currentPoints)}
+                    {summaryCard("Games Played", objective.sabres.gamesPlayed)}
+                    {summaryCard("Games Left", objective.sabres.gamesRemaining)}
+                    {summaryCard("Max Possible", objective.sabres.maxPossiblePoints)}
+                    {summaryCard("Magic Points Needed", objective.sabres.magicPointsNeeded)}
                 </div>
 
                 <Card className="border-slate-800 bg-slate-900/70">
                     <CardHeader>
                         <CardTitle className="text-lg text-white">
-                            Points Needed To Stay Above 9th
+                            Target To Clinch This View
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-0 text-slate-200">
-                        Buffalo guarantees a finish above ninth place by reaching{" "}
+                        Buffalo locks in this outcome by reaching{" "}
                         <span className="font-semibold text-white">
-                            {data.sabres.clinchTarget}
+                            {objective.sabres.clinchTarget}
                         </span>{" "}
                         points.
                     </CardContent>
                 </Card>
 
-                {data.nightlyRootingGuide && data.nightlyRootingGuide.length > 0 ? (
+                {objective.nightlyRootingGuide && objective.nightlyRootingGuide.length > 0 ? (
                     <div className="space-y-4">
                         <div className="space-y-1">
                             <h2 className="text-xl font-semibold text-white">Nightly Rooting Guide</h2>
@@ -183,7 +233,7 @@ export default function SabresMagicNumberPage() {
                         </div>
 
                         <div className="grid gap-4 xl:grid-cols-2">
-                            {data.nightlyRootingGuide.map((day) => (
+                            {objective.nightlyRootingGuide.map((day) => (
                                 <Card key={day.date} className="border-slate-800 bg-slate-900/80">
                                     <CardHeader>
                                         <CardTitle className="text-lg text-white">{day.label}</CardTitle>
@@ -270,7 +320,7 @@ export default function SabresMagicNumberPage() {
                 ) : null}
 
                 <div className="grid gap-4 lg:grid-cols-2">
-                    {data.competitors.map((row) => (
+                    {objective.competitors.map((row) => (
                         <Card key={row.teamAbbrev} className="border-slate-800 bg-slate-900/80">
                             <CardHeader className="space-y-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">

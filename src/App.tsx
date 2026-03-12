@@ -86,8 +86,12 @@ export default function App() {
                         to="/"
                         className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-100"
                     >
-                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5">
-                            W
+                        <span className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5">
+                            <img
+                                src={logo}
+                                alt="WNYSportsNet logo"
+                                className="h-full w-full object-cover"
+                            />
                         </span>
                         WNYSportsNet
                     </Link>

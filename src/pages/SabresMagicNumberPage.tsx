@@ -137,6 +137,15 @@ function normalizeObjectives(data: SabresApiResponse): NonNullable<SabresApiResp
     };
 }
 
+function difficultyLabel(score: number | null) {
+    if (score === null) return "Unknown";
+    if (score <= 45) return "Soft";
+    if (score <= 52) return "Favorable";
+    if (score <= 59) return "Neutral";
+    if (score <= 66) return "Hard";
+    return "Brutal";
+}
+
 function summaryCard(label: string, value: string | number) {
     return (
         <Card className="border-slate-800 bg-slate-900/80">
@@ -438,9 +447,9 @@ export default function SabresMagicNumberPage() {
                                             Next 3 Opponents
                                         </div>
                                         <div className="text-sm text-slate-200">
-                                            Difficulty Score:{" "}
+                                            Difficulty:{" "}
                                             <span className="font-semibold text-white">
-                                                {row.difficultyScore ?? "—"}
+                                                {difficultyLabel(row.difficultyScore)}
                                             </span>
                                         </div>
                                     </div>
@@ -468,7 +477,7 @@ export default function SabresMagicNumberPage() {
                                                         variant="outline"
                                                         className="border-slate-700 text-slate-200"
                                                     >
-                                                        {opponent.difficulty ?? "—"}
+                                                        {difficultyLabel(opponent.difficulty)}
                                                     </Badge>
                                                 </div>
                                             ))

@@ -239,11 +239,6 @@ export default function SabresMagicNumberPage() {
                     </CardHeader>
                     <CardContent className="pt-0 text-slate-200">
                         <p className="text-sm text-slate-300">{objective.description}</p>
-                        <p className="mt-3 text-sm text-slate-300">
-                            Competing teams show current points, remaining games, maximum possible
-                            points, next three opponents, regulation/overtime split when available,
-                            last-10 trend, and a 0-100 difficulty score for the next three games.
-                        </p>
                     </CardContent>
                 </Card>
 
@@ -258,7 +253,7 @@ export default function SabresMagicNumberPage() {
                 <Card className="border-slate-800 bg-slate-900/70">
                     <CardHeader>
                         <CardTitle className="text-lg text-white">
-                            Target To Clinch This View
+                            Target To {objective.title}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-0 text-slate-200">
@@ -367,7 +362,17 @@ export default function SabresMagicNumberPage() {
                     </div>
                 ) : null}
 
-                <div className="grid gap-4 lg:grid-cols-2">
+                <div className="space-y-3">
+                    <div className="space-y-1">
+                        <h2 className="text-xl font-semibold text-white">Competing Teams</h2>
+                        <p className="text-sm text-slate-300">
+                            Competing teams show current points, remaining games, maximum possible
+                            points, next three opponents, regulation/overtime split when available,
+                            last-10 trend, and a 0-100 difficulty score for the next three games.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-4 lg:grid-cols-2">
                     {objective.competitors.map((row) => (
                         <Card key={row.teamAbbrev} className="border-slate-800 bg-slate-900/80">
                             <CardHeader className="space-y-3">
@@ -473,6 +478,7 @@ export default function SabresMagicNumberPage() {
                             </CardContent>
                         </Card>
                     ))}
+                    </div>
                 </div>
             </div>
         </div>

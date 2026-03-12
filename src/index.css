@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --landing-navy: #07111f;
+  --landing-blue: #1e3a8a;
+  --landing-red: #dc2626;
+  --landing-ice: #e6eefc;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(30, 58, 138, 0.28), transparent 34%),
+    radial-gradient(circle at 80% 18%, rgba(220, 38, 38, 0.18), transparent 22%),
+    linear-gradient(180deg, #050b15 0%, #091321 100%);
+  color: var(--landing-ice);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
 .chalk-text {
   font-family: "Patrick Hand", cursive;
   letter-spacing: 0.04em;
@@ -66,9 +82,189 @@
     width: max(100%, 760px);
 }
 
+.landing-shell {
+    position: relative;
+    overflow: hidden;
+}
+
+.landing-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(125deg, rgba(30, 58, 138, 0.12), transparent 32%),
+      linear-gradient(-125deg, rgba(220, 38, 38, 0.14), transparent 28%);
+    pointer-events: none;
+}
+
+.landing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+}
+
+.landing-kicker {
+    color: #bfdbfe;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.landing-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.6rem, 5vw, 5.8rem);
+    line-height: 0.95;
+    color: #f8fafc;
+    text-wrap: balance;
+}
+
+.landing-card {
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+      rgba(10, 18, 32, 0.82);
+    padding: 1.25rem;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.landing-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+}
+
+.landing-card-label {
+    color: #93c5fd;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.landing-card-title {
+    margin-top: 0.55rem;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.landing-card-copy {
+    margin-top: 0.75rem;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.landing-card-action {
+    margin-top: 1rem;
+    color: #f8fafc;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.landing-strip {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.landing-strip-item {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.04);
+    padding: 0.9rem 1rem;
+}
+
+.landing-strip-label {
+    display: block;
+    color: #93c5fd;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.landing-strip-value {
+    display: block;
+    margin-top: 0.45rem;
+    color: #f8fafc;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.logo-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 34rem);
+    aspect-ratio: 1 / 1;
+}
+
+.logo-stage::before {
+    content: "";
+    position: absolute;
+    inset: 18%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(255,255,255,0.16), rgba(255,255,255,0) 68%);
+    filter: blur(10px);
+}
+
+.logo-burst {
+    position: absolute;
+    inset: 6%;
+    border-radius: 999px;
+    background:
+      conic-gradient(
+        from 0deg,
+        rgba(255,255,255,0.15) 0deg 10deg,
+        transparent 10deg 28deg,
+        rgba(220, 38, 38, 0.16) 28deg 40deg,
+        transparent 40deg 58deg,
+        rgba(30, 58, 138, 0.18) 58deg 70deg,
+        transparent 70deg 88deg
+      );
+    filter: blur(1px);
+    animation: slow-spin 22s linear infinite;
+}
+
+.logo-mark {
+    width: min(100%, 28rem);
+    object-fit: contain;
+    filter:
+      drop-shadow(0 18px 35px rgba(0,0,0,0.55))
+      drop-shadow(0 0 28px rgba(255,255,255,0.16));
+}
+
+@keyframes slow-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (orientation: landscape) and (max-height: 500px) {
     .depth-chart-board {
         width: 100%;
         min-width: 640px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .landing-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-strip {
+        grid-template-columns: 1fr;
     }
 }

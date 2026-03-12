@@ -52,8 +52,8 @@ function ChalkName({ name, status }: { name: string; status?: string }) {
             "chalk-text",
             "text-center font-semibold tracking-wide leading-tight",
             "whitespace-normal break-words",
-            "max-w-[130px]",
-            "text-sm sm:text-base md:text-lg xl:text-xl",
+            "max-w-[84px] sm:max-w-[110px] md:max-w-[130px]",
+            "text-[11px] sm:text-sm md:text-lg xl:text-xl",
             colorClass,
           ].join(" ")}
       >
@@ -398,23 +398,27 @@ function DepthChartField({
   const byPosition = Array.from(posMap.entries());
 
   return (
-      <div className="w-full max-w-6xl mx-auto">
-        <div className="relative w-full aspect-[16/9] chalk-surface overflow-hidden rounded-2xl">
-          {side === "DEFENSE" ? (
-              <>
-                <div className="absolute left-0 right-0 top-[95%] border-t border-white/40 z-0" />
-                {byPosition.map(([pos, players]) => (
-                    <FieldPositionGroupD key={pos} position={pos} players={players} reverseDepth />
-                ))}
-              </>
-          ) : (
-              <>
-                <div className="absolute left-0 right-0 top-[5%] border-t border-white/40 z-0" />
-                {byPosition.map(([pos, players]) => (
-                    <FieldPositionGroupO key={pos} position={pos} players={players} />
-                ))}
-              </>
-          )}
+      <div className="w-full">
+        <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/10 pb-3">
+          <div className="mx-auto w-full min-w-[760px] max-w-6xl px-2 sm:px-4">
+            <div className="relative w-full aspect-[16/9] chalk-surface overflow-hidden rounded-2xl">
+              {side === "DEFENSE" ? (
+                  <>
+                    <div className="absolute left-0 right-0 top-[95%] border-t border-white/40 z-0" />
+                    {byPosition.map(([pos, players]) => (
+                        <FieldPositionGroupD key={pos} position={pos} players={players} reverseDepth />
+                    ))}
+                  </>
+              ) : (
+                  <>
+                    <div className="absolute left-0 right-0 top-[5%] border-t border-white/40 z-0" />
+                    {byPosition.map(([pos, players]) => (
+                        <FieldPositionGroupO key={pos} position={pos} players={players} />
+                    ))}
+                  </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
   );
@@ -491,12 +495,12 @@ export default function NFLDepthChartSheetApp() {
 
   return (
       <div ref={captureRef} className="space-y-10">
-        <div className="min-h-screen zubaz-bg text-white p-4 md:p-6">
+        <div className="min-h-screen zubaz-bg text-white px-3 py-4 sm:px-4 md:p-6">
           <div className="max-w-7xl mx-auto">
             <motion.div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="mb-4 flex flex-wrap items-center gap-3">
                 <Users className="h-5 w-5" />
-                <h1 className="text-2xl md:text-3xl font-bold">Bills Depth Chart</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Bills Depth Chart</h1>
               </div>
 
               <Card className="chalk-surface rounded-2xl bg-neutral-900 border-neutral-800">
@@ -515,8 +519,8 @@ export default function NFLDepthChartSheetApp() {
                       className="rounded-xl"
                   />
 
-                  <div className="flex flex-wrap gap-3">
-                    <Button onClick={() => loadSheet()} disabled={loading} className="rounded-xl">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <Button onClick={() => loadSheet()} disabled={loading} className="w-full rounded-xl sm:w-auto">
                       {loading ? "Loading…" : "Reload Depth Chart"}
                     </Button>
 
@@ -524,7 +528,7 @@ export default function NFLDepthChartSheetApp() {
                         variant="secondary"
                         onClick={saveSnapshot}
                         disabled={rows.length === 0}
-                        className="rounded-xl"
+                        className="w-full rounded-xl sm:w-auto"
                     >
                       <Camera className="h-4 w-4 mr-2" />
                       Save Snapshot
@@ -556,7 +560,7 @@ export default function NFLDepthChartSheetApp() {
               )}
 
               <div className="mt-6 text-xs text-gray-400 text-center">
-                Tip: Publish your Google Sheet as CSV for best results.
+                Tip: On phones, swipe sideways on the field if you need the full formation.
               </div>
             </motion.div>
           </div>

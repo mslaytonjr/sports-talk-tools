@@ -32,8 +32,10 @@ function parseCSV(text: string): PlayerRow[] {
 
   return lines.slice(1).map((line) => {
     const cols = line.split(",");
-    const obj: any = {};
-    headers.forEach((h, i) => (obj[h] = cols[i]?.trim()));
+    const obj: Record<string, string> = {};
+    headers.forEach((h, i) => {
+      obj[h] = cols[i]?.trim() ?? "";
+    });
     return obj as PlayerRow;
   });
 }
@@ -45,27 +47,29 @@ function ChalkName({ name, status }: { name: string; status?: string }) {
   const colorClass = isNeed ? "text-blue-300" : statusClass;
 
   return (
-    <div
-      className={[
-        "chalk-text",
-        "text-center font-semibold tracking-wide leading-tight",
-        "whitespace-normal break-words",
-        "max-w-[130px]",
-        "text-sm sm:text-base md:text-lg xl:text-xl",
-        colorClass,
-      ].join(" ")}
-    >
-      {name}
-    </div>
+      <div
+          className={[
+            "chalk-text",
+            "text-center font-semibold tracking-wide leading-tight",
+            "whitespace-normal break-words",
+            "max-w-[130px]",
+            "text-sm sm:text-base md:text-lg xl:text-xl",
+            colorClass,
+          ].join(" ")}
+      >
+        {name}
+      </div>
   );
 }
 
 function normalizeSide(s?: string) {
   return (s ?? "").trim().toUpperCase();
 }
+
 function normalizePos(s?: string) {
   return (s ?? "").trim().toUpperCase();
 }
+
 function depthNum(d?: string) {
   const n = Number((d ?? "").trim());
   return Number.isFinite(n) ? n : 999;
@@ -95,52 +99,69 @@ function FullDepthChartWindow({ rows }: { rows: PlayerRow[] }) {
 
     return sides.map(([side, posMap]) => {
       const positions = Array.from(posMap.entries())
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([pos, players]) => ({
-          pos,
-          players: [...players].sort((a, b) => depthNum(a.depth) - depthNum(b.depth)),
-        }));
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([pos, players]) => ({
+            pos,
+            players: [...players].sort((a, b) => depthNum(a.depth) - depthNum(b.depth)),
+          }));
 
       return { side, positions };
     });
   }, [rows]);
 
   return (
-    <Card className="rounded-2xl bg-neutral-900 border-neutral-800">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Table2 className="h-4 w-4" />
-          Full Depth Chart
-        </CardTitle>
-      </CardHeader>
+      <Card className="rounded-2xl bg-neutral-900 border-neutral-800">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Table2 className="h-4 w-4" />
+            Full Depth Chart
+          </CardTitle>
+        </CardHeader>
 
-<CardContent className="space-y-3">
-  <Input
-    placeholder="Paste published Google Sheet CSV URL..."
-    value={sheetUrl}
-    onChange={(e) => setSheetUrl(e.target.value)}
-    className="rounded-xl"
-  />
+        <CardContent>
+          {rows.length === 0 ? (
+              <div className="text-sm text-gray-400">Load a sheet to view the full chart.</div>
+          ) : (
+              <div className="space-y-6">
+                {grouped.map(({ side, positions }) => (
+                    <div key={side}>
+                      <div className="text-sm font-bold text-gray-200 mb-2">{side}</div>
 
-  <div className="flex flex-wrap gap-3">
-    <Button onClick={loadSheet} disabled={loading} className="rounded-xl">
-      {loading ? "Loading…" : "Reload Depth Chart"}
-    </Button>
+                      <div className="overflow-x-auto rounded-xl border border-neutral-800">
+                        <div className="min-w-[720px]">
+                          <div className="grid grid-cols-12 bg-neutral-950/50 text-xs text-gray-300 font-mono">
+                            <div className="col-span-2 p-2 border-b border-neutral-800">POS</div>
+                            <div className="col-span-10 p-2 border-b border-neutral-800">DEPTH</div>
+                          </div>
 
-    <Button
-      variant="secondary"
-      onClick={saveSnapshot}
-      disabled={rows.length === 0}
-      className="rounded-xl"
-    >
-      <Camera className="h-4 w-4 mr-2" />
-      Save Snapshot
-    </Button>
-  </div>
+                          {positions.map(({ pos, players }) => (
+                              <div key={pos} className="grid grid-cols-12 text-sm">
+                                <div className="col-span-2 p-2 border-b border-neutral-800 text-gray-200 font-mono">
+                                  {pos}
+                                </div>
 
-  {error && <div className="text-red-400 text-sm">{error}</div>}
-</CardContent>
-    </Card>
+                                <div className="col-span-10 p-2 border-b border-neutral-800">
+                                  <div className="flex flex-wrap gap-x-6 gap-y-1">
+                                    {players.map((p, i) => (
+                                        <div key={i} className="flex items-baseline gap-2">
+                                          <div className="text-[10px] text-gray-500 font-mono w-4 text-right">
+                                            {depthNum(p.depth) === 999 ? "" : p.depth}
+                                          </div>
+                                          <ChalkName name={p.player} status={p.status} />
+                                        </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                ))}
+              </div>
+          )}
+        </CardContent>
+      </Card>
   );
 }
 
@@ -175,12 +196,12 @@ function PositionStatusCounts({ rows }: { rows: PlayerRow[] }) {
     ];
 
     const data = Array.from(posMap.entries())
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([pos, counts]) => ({
-        pos,
-        counts,
-        total: Object.values(counts).reduce((a, b) => a + b, 0),
-      }));
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([pos, counts]) => ({
+          pos,
+          counts,
+          total: Object.values(counts).reduce((a, b) => a + b, 0),
+        }));
 
     return { statuses, data };
   }, [rows]);
@@ -188,55 +209,55 @@ function PositionStatusCounts({ rows }: { rows: PlayerRow[] }) {
   if (rows.length === 0) return null;
 
   return (
-    <Card className="rounded-2xl bg-neutral-900/80 border-neutral-800 backdrop-blur">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Table2 className="h-4 w-4" />
-          Position Counts by Status
-        </CardTitle>
-      </CardHeader>
+      <Card className="rounded-2xl bg-neutral-900/80 border-neutral-800 backdrop-blur">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Table2 className="h-4 w-4" />
+            Position Counts by Status
+          </CardTitle>
+        </CardHeader>
 
-      <CardContent>
-        <div className="overflow-x-auto rounded-xl border border-neutral-800">
-          <div className="min-w-[760px]">
-            <div
-              className="grid bg-neutral-950/50 text-xs text-gray-300 font-mono border-b border-neutral-800"
-              style={{ gridTemplateColumns: `140px repeat(${statuses.length}, 1fr) 70px` }}
-            >
-              <div className="p-2">POS</div>
-              {statuses.map((s) => (
-                <div key={s} className="p-2 text-center">
-                  {s.toUpperCase()}
-                </div>
-              ))}
-              <div className="p-2 text-center">TOTAL</div>
-            </div>
-
-            {data.map((row) => (
+        <CardContent>
+          <div className="overflow-x-auto rounded-xl border border-neutral-800">
+            <div className="min-w-[760px]">
               <div
-                key={row.pos}
-                className="grid text-sm border-b border-neutral-800"
-                style={{ gridTemplateColumns: `140px repeat(${statuses.length}, 1fr) 70px` }}
+                  className="grid bg-neutral-950/50 text-xs text-gray-300 font-mono border-b border-neutral-800"
+                  style={{ gridTemplateColumns: `140px repeat(${statuses.length}, 1fr) 70px` }}
               >
-                <div className="p-2 font-mono text-gray-200">{row.pos}</div>
-
-                {statuses.map((s) => {
-                  const n = row.counts[s] ?? 0;
-                  const color = statusColor[s] ?? "text-gray-200";
-                  return (
-                    <div key={s} className={`p-2 text-center ${n ? color : "text-gray-600"}`}>
-                      {n || "—"}
+                <div className="p-2">POS</div>
+                {statuses.map((s) => (
+                    <div key={s} className="p-2 text-center">
+                      {s.toUpperCase()}
                     </div>
-                  );
-                })}
-
-                <div className="p-2 text-center text-gray-200 font-mono">{row.total}</div>
+                ))}
+                <div className="p-2 text-center">TOTAL</div>
               </div>
-            ))}
+
+              {data.map((row) => (
+                  <div
+                      key={row.pos}
+                      className="grid text-sm border-b border-neutral-800"
+                      style={{ gridTemplateColumns: `140px repeat(${statuses.length}, 1fr) 70px` }}
+                  >
+                    <div className="p-2 font-mono text-gray-200">{row.pos}</div>
+
+                    {statuses.map((s) => {
+                      const n = row.counts[s] ?? 0;
+                      const color = statusColor[s] ?? "text-gray-200";
+                      return (
+                          <div key={s} className={`p-2 text-center ${n ? color : "text-gray-600"}`}>
+                            {n || "—"}
+                          </div>
+                      );
+                    })}
+
+                    <div className="p-2 text-center text-gray-200 font-mono">{row.total}</div>
+                  </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
   );
 }
 
@@ -269,10 +290,10 @@ const OFFENSE_COORDS: Record<string, { x: number; y: number }> = {
 };
 
 function FieldPositionGroupD({
-  position,
-  players,
-  reverseDepth = false,
-}: {
+                               position,
+                               players,
+                               reverseDepth = false,
+                             }: {
   position: string;
   players: PlayerRow[];
   reverseDepth?: boolean;
@@ -281,88 +302,88 @@ function FieldPositionGroupD({
   if (!coord) return null;
 
   const sorted = [...players].sort((a, b) =>
-    reverseDepth ? Number(b.depth ?? 999) - Number(a.depth ?? 999) : Number(a.depth ?? 999) - Number(b.depth ?? 999)
+      reverseDepth
+          ? Number(b.depth ?? 999) - Number(a.depth ?? 999)
+          : Number(a.depth ?? 999) - Number(b.depth ?? 999)
   );
 
   return (
-    <div
-      className="absolute z-10 flex flex-col items-center"
-      style={{
-        left: `${coord.x}%`,
-        bottom: `${coord.y}%`,
-        transform: "translateX(-50%)",
-      }}
-    >
-      <div className="flex flex-col items-center space-y-1">
-        {sorted.map((p, i) => (
-          <div key={i} className="min-h-[18px] flex items-end justify-center">
-            <ChalkName name={p.player} status={p.status} />
-          </div>
-        ))}
-      </div>
+      <div
+          className="absolute z-10 flex flex-col items-center"
+          style={{
+            left: `${coord.x}%`,
+            bottom: `${coord.y}%`,
+            transform: "translateX(-50%)",
+          }}
+      >
+        <div className="flex flex-col items-center space-y-1">
+          {sorted.map((p, i) => (
+              <div key={i} className="min-h-[18px] flex items-end justify-center">
+                <ChalkName name={p.player} status={p.status} />
+              </div>
+          ))}
+        </div>
 
-      <div className="chalk-text-strong text-gray-400 text-lg sm:text-xl md:text-2xl xl:text-3xl">
-        {position}
+        <div className="chalk-text-strong text-gray-400 text-lg sm:text-xl md:text-2xl xl:text-3xl">
+          {position}
+        </div>
       </div>
-    </div>
   );
 }
 
 function FieldPositionGroupO({
-  position,
-  players,
-  reverseDepth = false,
-}: {
+                               position,
+                               players,
+                             }: {
   position: string;
   players: PlayerRow[];
-  reverseDepth?: boolean;
 }) {
   const coord = OFFENSE_COORDS[position.toUpperCase()];
   if (!coord) return null;
 
-  const sorted = [...players].sort((a, b) =>
-    reverseDepth ? Number(b.depth ?? 999) - Number(a.depth ?? 999) : Number(a.depth ?? 999) - Number(b.depth ?? 999)
+  const sorted = [...players].sort(
+      (a, b) => Number(a.depth ?? 999) - Number(b.depth ?? 999)
   );
 
   const LABEL_OFFSET_PX = 28;
 
   return (
-    <>
-      <div
-        className="absolute z-20 chalk-text-strong text-gray-400 text-lg sm:text-xl md:text-2xl xl:text-3xl"
-        style={{
-          left: `${coord.x}%`,
-          top: `calc(${coord.y}% - ${LABEL_OFFSET_PX}px)`,
-          transform: "translateX(-50%)",
-        }}
-      >
-        {position}
-      </div>
-
-      <div
-        className="absolute z-10"
-        style={{
-          left: `${coord.x}%`,
-          top: `${coord.y}%`,
-          transform: "translateX(-50%)",
-        }}
-      >
-        <div className="flex flex-col items-center space-y-1">
-          {sorted.map((p, i) => (
-            <div key={i} className="min-h-[18px] flex items-start justify-center">
-              <ChalkName name={p.player} status={p.status} />
-            </div>
-          ))}
+      <>
+        <div
+            className="absolute z-20 chalk-text-strong text-gray-400 text-lg sm:text-xl md:text-2xl xl:text-3xl"
+            style={{
+              left: `${coord.x}%`,
+              top: `calc(${coord.y}% - ${LABEL_OFFSET_PX}px)`,
+              transform: "translateX(-50%)",
+            }}
+        >
+          {position}
         </div>
-      </div>
-    </>
+
+        <div
+            className="absolute z-10"
+            style={{
+              left: `${coord.x}%`,
+              top: `${coord.y}%`,
+              transform: "translateX(-50%)",
+            }}
+        >
+          <div className="flex flex-col items-center space-y-1">
+            {sorted.map((p, i) => (
+                <div key={i} className="min-h-[18px] flex items-start justify-center">
+                  <ChalkName name={p.player} status={p.status} />
+                </div>
+            ))}
+          </div>
+        </div>
+      </>
   );
 }
 
 function DepthChartField({
-  side,
-  sideRows,
-}: {
+                           side,
+                           sideRows,
+                         }: {
   side: "OFFENSE" | "DEFENSE";
   sideRows: PlayerRow[];
 }) {
@@ -377,36 +398,31 @@ function DepthChartField({
   const byPosition = Array.from(posMap.entries());
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="relative w-full aspect-[16/9] chalk-surface overflow-hidden rounded-2xl">
-        {side === "DEFENSE" ? (
-          <>
-            <div className="absolute left-0 right-0 top-[95%] border-t border-white/40 z-0" />
-            {byPosition.map(([pos, players]) => (
-              <FieldPositionGroupD
-                key={pos}
-                position={pos}
-                players={players}
-                reverseDepth
-              />
-            ))}
-          </>
-        ) : (
-          <>
-            <div className="absolute left-0 right-0 top-[5%] border-t border-white/40 z-0" />
-            {byPosition.map(([pos, players]) => (
-              <FieldPositionGroupO key={pos} position={pos} players={players} />
-            ))}
-          </>
-        )}
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="relative w-full aspect-[16/9] chalk-surface overflow-hidden rounded-2xl">
+          {side === "DEFENSE" ? (
+              <>
+                <div className="absolute left-0 right-0 top-[95%] border-t border-white/40 z-0" />
+                {byPosition.map(([pos, players]) => (
+                    <FieldPositionGroupD key={pos} position={pos} players={players} reverseDepth />
+                ))}
+              </>
+          ) : (
+              <>
+                <div className="absolute left-0 right-0 top-[5%] border-t border-white/40 z-0" />
+                {byPosition.map(([pos, players]) => (
+                    <FieldPositionGroupO key={pos} position={pos} players={players} />
+                ))}
+              </>
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 
 export default function NFLDepthChartSheetApp() {
   const [sheetUrl, setSheetUrl] = useState(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRB-h8eZQSvrhI9eQ3qVQlzlhkA6a2bk-KUd1_HCoxdHesaGIxJju33s4Qm3BGa0_niOKeWO1cimbi3/pub?gid=0&single=true&output=csv"
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRB-h8eZQSvrhI9eQ3qVQlzlhkA6a2bk-KUd1_HCoxdHesaGIxJju33s4Qm3BGa0_niOKeWO1cimbi3/pub?gid=0&single=true&output=csv"
   );
   const [rows, setRows] = useState<PlayerRow[]>([]);
   const [loading, setLoading] = useState(false);
@@ -429,7 +445,7 @@ export default function NFLDepthChartSheetApp() {
     if (!captureRef.current) return;
 
     try {
-      await (document as any).fonts?.ready;
+      await document.fonts.ready;
 
       const dataUrl = await toPng(captureRef.current, {
         cacheBust: true,
@@ -455,10 +471,14 @@ export default function NFLDepthChartSheetApp() {
 
     try {
       const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const text = await res.text();
       const parsed = parseCSV(text);
       setRows(parsed);
     } catch (e) {
+      console.error(e);
       setError("Failed to load sheet. Make sure it is published as CSV.");
     } finally {
       setLoading(false);
@@ -466,88 +486,89 @@ export default function NFLDepthChartSheetApp() {
   }
 
   useEffect(() => {
-    loadSheet(sheetUrl);
+    loadSheet();
   }, []);
 
   return (
-    <div ref={captureRef} className="space-y-10">
-      <div className="min-h-screen zubaz-bg text-white p-4 md:p-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div>
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="h-5 w-5" />
-              <h1 className="text-2xl md:text-3xl font-bold">Bills Depth Chart</h1>
-            </div>
-
-            <Card className="chalk-surface rounded-2xl bg-neutral-900 border-neutral-800">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Upload className="h-4 w-4" />
-                  Google Sheet Input
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Input
-                  placeholder="Paste published Google Sheet CSV URL..."
-                  value={sheetUrl}
-                  onChange={(e) => setSheetUrl(e.target.value)}
-                  className="rounded-xl"
-                />
-
-                <div className="flex flex-wrap gap-3">
-                  <Button onClick={() => loadSheet()} disabled={loading} className="rounded-xl">
-                    {loading ? "Loading…" : "Reload Depth Chart"}
-                  </Button>
-
-                  <Button
-                    variant="secondary"
-                    onClick={saveSnapshot}
-                    disabled={rows.length === 0}
-                    className="rounded-xl"
-                  >
-                    <Camera className="h-4 w-4 mr-2" />
-                    Save Snapshot
-                  </Button>
-                </div>
-
-                {error && <div className="text-red-400 text-sm">{error}</div>}
-              </CardContent>
-            </Card>
-
-            <Separator className="my-6 bg-neutral-800" />
-
-            {rows.length === 0 ? (
-              <div className="chalk-surface text-center text-gray-400 py-16">
-                Loading Bills depth chart...
+      <div ref={captureRef} className="space-y-10">
+        <div className="min-h-screen zubaz-bg text-white p-4 md:p-6">
+          <div className="max-w-7xl mx-auto">
+            <motion.div>
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="h-5 w-5" />
+                <h1 className="text-2xl md:text-3xl font-bold">Bills Depth Chart</h1>
               </div>
-            ) : (
-              <div className="space-y-8 overflow-y-auto">
-                {bySide.map(([side, sideRows]) => {
-                  if (side !== "DEFENSE") return null;
-                  return <DepthChartField key={side} side="DEFENSE" sideRows={sideRows} />;
-                })}
 
-                {bySide.map(([side, sideRows]) => {
-                  if (side !== "OFFENSE") return null;
-                  return <DepthChartField key={side} side="OFFENSE" sideRows={sideRows} />;
-                })}
+              <Card className="chalk-surface rounded-2xl bg-neutral-900 border-neutral-800">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Upload className="h-4 w-4" />
+                    Google Sheet Input
+                  </CardTitle>
+                </CardHeader>
+
+                <CardContent className="space-y-3">
+                  <Input
+                      placeholder="Paste published Google Sheet CSV URL..."
+                      value={sheetUrl}
+                      onChange={(e) => setSheetUrl(e.target.value)}
+                      className="rounded-xl"
+                  />
+
+                  <div className="flex flex-wrap gap-3">
+                    <Button onClick={() => loadSheet()} disabled={loading} className="rounded-xl">
+                      {loading ? "Loading…" : "Reload Depth Chart"}
+                    </Button>
+
+                    <Button
+                        variant="secondary"
+                        onClick={saveSnapshot}
+                        disabled={rows.length === 0}
+                        className="rounded-xl"
+                    >
+                      <Camera className="h-4 w-4 mr-2" />
+                      Save Snapshot
+                    </Button>
+                  </div>
+
+                  {error && <div className="text-red-400 text-sm">{error}</div>}
+                </CardContent>
+              </Card>
+
+              <Separator className="my-6 bg-neutral-800" />
+
+              {rows.length === 0 ? (
+                  <div className="chalk-surface text-center text-gray-400 py-16">
+                    {loading ? "Loading Bills depth chart..." : "No depth chart loaded."}
+                  </div>
+              ) : (
+                  <div className="space-y-8 overflow-y-auto">
+                    {bySide.map(([side, sideRows]) => {
+                      if (side !== "DEFENSE") return null;
+                      return <DepthChartField key={side} side="DEFENSE" sideRows={sideRows} />;
+                    })}
+
+                    {bySide.map(([side, sideRows]) => {
+                      if (side !== "OFFENSE") return null;
+                      return <DepthChartField key={side} side="OFFENSE" sideRows={sideRows} />;
+                    })}
+                  </div>
+              )}
+
+              <div className="mt-6 text-xs text-gray-400 text-center">
+                Tip: Publish your Google Sheet as CSV for best results.
               </div>
-            )}
+            </motion.div>
+          </div>
 
-            <div className="mt-6 text-xs text-gray-400 text-center">
-              Tip: Publish your Google Sheet as CSV for best results.
-            </div>
-          </motion.div>
-        </div>
+          <div className="mt-10">
+            <FullDepthChartWindow rows={rows} />
+          </div>
 
-        <div className="mt-10">
-          <FullDepthChartWindow rows={rows} />
-        </div>
-
-        <div className="mt-8">
-          <PositionStatusCounts rows={rows} />
+          <div className="mt-8">
+            <PositionStatusCounts rows={rows} />
+          </div>
         </div>
       </div>
-    </div>
   );
 }

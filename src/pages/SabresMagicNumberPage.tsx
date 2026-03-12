@@ -49,7 +49,7 @@ export default function SabresMagicNumberPage() {
                 setLoading(true);
                 setError("");
 
-                const nhlUrl = "https://fupd61gnf3.execute-api.us-east-1.amazonaws.com/standings";
+                const nhlUrl = "https://api.wnysportsnet.com/standings";
                 const response = await fetch(nhlUrl);
 
                 if (!response.ok) {

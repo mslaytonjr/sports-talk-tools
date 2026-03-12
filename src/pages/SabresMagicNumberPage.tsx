@@ -222,8 +222,15 @@ export default function SabresMagicNumberPage() {
 
                                                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
                                                         <div className="rounded-lg bg-slate-900/80 p-3">
-                                                            <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                                                                Best Case For Buffalo
+                                                            <div className="flex items-center justify-between gap-2">
+                                                                <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                                                                    Best Case For Buffalo
+                                                                </div>
+                                                                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-300">
+                                                                    {game.impact === "0 clinch target"
+                                                                        ? "No impact"
+                                                                        : game.impact}
+                                                                </div>
                                                             </div>
                                                             <div className="mt-2 text-sm font-medium text-white">
                                                                 {game.recommendedOutcome}
@@ -232,7 +239,9 @@ export default function SabresMagicNumberPage() {
                                                                 Magic number after game: {game.bestCase.magicPointsNeeded}
                                                             </div>
                                                             <div className="text-xs text-slate-400">
-                                                                Clinch target: {game.bestCase.clinchTarget}
+                                                                Clinch target: {game.impact === "0 clinch target"
+                                                                    ? "No impact"
+                                                                    : game.bestCase.clinchTarget}
                                                             </div>
                                                         </div>
 

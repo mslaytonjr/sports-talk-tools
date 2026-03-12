@@ -2,225 +2,51 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const TOTAL_GAMES = 82;
-const TARGET_TEAM = "Buffalo Sabres";
-const NHL_API_BASE = "https://api-web.nhle.com";
+const SABRES_API_URL =
+    import.meta.env.VITE_SABRES_LAMBDA_URL ?? "https://api.wnysportsnet.com/standings";
 
-type LocalizedValue = {
-    default?: string;
-};
-
-type NhlStanding = {
-    teamName?: LocalizedValue;
-    teamCommonName?: LocalizedValue;
-    teamAbbrev?: LocalizedValue;
-    conferenceAbbrev?: string;
-    gamesPlayed?: number;
-    points?: number;
-    regulationWins?: number;
-    regulationPlusOtWins?: number;
-    overtimeWins?: number;
-    otWins?: number;
-    wins?: number;
-    losses?: number;
-    otLosses?: number;
-    l10Wins?: number;
-    l10Losses?: number;
-    l10OtLosses?: number;
-};
-
-type TeamMax = {
-    team: string;
-    abbrev: string;
-    conference: string;
-    gp: number;
-    pts: number;
-    gamesLeft: number;
-    maxPoints: number;
+type RegulationOvertimeSplit = {
     regulationWins: number | null;
     overtimeWins: number | null;
     overtimeLosses: number | null;
-    last10: string | null;
-    pointPct: number | null;
-};
-
-type ScheduleTeam = {
-    abbrev?: string | LocalizedValue;
-    commonName?: LocalizedValue;
-    placeName?: LocalizedValue;
-};
-
-type ScheduleGame = {
-    startTimeUTC?: string;
-    gameState?: string;
-    homeTeam?: ScheduleTeam;
-    awayTeam?: ScheduleTeam;
+    label: string;
 };
 
 type OpponentPreview = {
-    label: string;
+    date?: string;
     dateLabel: string;
+    opponent: string;
+    venue: "vs" | "@";
+    matchup: string;
     difficulty: number | null;
 };
 
-type CatchTeamRow = {
+type Competitor = {
     team: string;
     teamAbbrev: string;
     currentPoints: number;
-    gamesLeft: number;
-    maxPoints: number;
-    regulationOvertimeSplit: string | null;
+    gamesRemaining: number;
+    maxPossiblePoints: number;
+    next3Opponents: OpponentPreview[];
+    regulationOvertimeSplit: RegulationOvertimeSplit | null;
     trendLast10: string | null;
-    nextOpponents: OpponentPreview[];
     difficultyScore: number | null;
 };
 
-type SabresData = {
+type SabresSummary = {
     currentPoints: number;
     gamesPlayed: number;
-    gamesLeft: number;
+    gamesRemaining: number;
     maxPossiblePoints: number;
     clinchTarget: number;
     magicPointsNeeded: number;
-    catchRows: CatchTeamRow[];
 };
 
-function getLocalizedText(value?: string | LocalizedValue | null) {
-    if (!value) return "";
-    if (typeof value === "string") return value;
-    return value.default ?? "";
-}
-
-function getTeamLabel(team?: ScheduleTeam) {
-    const abbrev = getLocalizedText(team?.abbrev);
-    const place = getLocalizedText(team?.placeName);
-    const common = getLocalizedText(team?.commonName);
-
-    return [place, common].filter(Boolean).join(" ") || abbrev || "TBD";
-}
-
-function getTeamAbbrev(team?: ScheduleTeam) {
-    return getLocalizedText(team?.abbrev).toUpperCase();
-}
-
-function formatLast10(team: NhlStanding) {
-    if (
-        typeof team.l10Wins !== "number" ||
-        typeof team.l10Losses !== "number" ||
-        typeof team.l10OtLosses !== "number"
-    ) {
-        return null;
-    }
-
-    return `${team.l10Wins}-${team.l10Losses}-${team.l10OtLosses}`;
-}
-
-function formatRegulationOvertimeSplit(team: NhlStanding) {
-    const regulationWins =
-        typeof team.regulationWins === "number" ? team.regulationWins : null;
-    const overtimeWins =
-        typeof team.overtimeWins === "number"
-            ? team.overtimeWins
-            : typeof team.otWins === "number"
-              ? team.otWins
-              : typeof team.regulationPlusOtWins === "number" && regulationWins !== null
-                ? Math.max(0, team.regulationPlusOtWins - regulationWins)
-                : null;
-    const overtimeLosses =
-        typeof team.otLosses === "number" ? team.otLosses : null;
-
-    if (
-        regulationWins === null &&
-        overtimeWins === null &&
-        overtimeLosses === null
-    ) {
-        return null;
-    }
-
-    return `RW ${regulationWins ?? "—"} | OTW ${overtimeWins ?? "—"} | OTL ${overtimeLosses ?? "—"}`;
-}
-
-function getPointPct(team: NhlStanding) {
-    const gamesPlayed = team.gamesPlayed ?? 0;
-    const points = team.points ?? 0;
-
-    if (!gamesPlayed) return null;
-    return points / (gamesPlayed * 2);
-}
-
-function computeDifficultyScore(opponents: OpponentPreview[]) {
-    const valid = opponents.filter(
-        (opponent) => typeof opponent.difficulty === "number"
-    );
-
-    if (!valid.length) return null;
-
-    const average =
-        valid.reduce((sum, opponent) => sum + (opponent.difficulty ?? 0), 0) /
-        valid.length;
-
-    return Math.round(average);
-}
-
-function formatGameDate(dateValue?: string) {
-    if (!dateValue) return "TBD";
-
-    return new Intl.DateTimeFormat("en-US", {
-        month: "short",
-        day: "numeric",
-    }).format(new Date(dateValue));
-}
-
-async function fetchJson<T>(url: string): Promise<T> {
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP ${response.status} for ${url}`);
-    }
-
-    return response.json() as Promise<T>;
-}
-
-async function loadUpcomingOpponents(
-    teamAbbrev: string,
-    pointPctByAbbrev: Map<string, number>
-) {
-    const seasonNowUrl = `${NHL_API_BASE}/v1/club-schedule-season/${teamAbbrev}/now`;
-    const scheduleJson = await fetchJson<{ games?: ScheduleGame[] }>(seasonNowUrl);
-    const games = scheduleJson.games ?? [];
-    const now = Date.now();
-
-    const nextGames = games
-        .filter((game) => {
-            if (!game.startTimeUTC) return false;
-            return new Date(game.startTimeUTC).getTime() >= now;
-        })
-        .sort((a, b) => {
-            const aTime = a.startTimeUTC ? new Date(a.startTimeUTC).getTime() : 0;
-            const bTime = b.startTimeUTC ? new Date(b.startTimeUTC).getTime() : 0;
-            return aTime - bTime;
-        })
-        .slice(0, 3);
-
-    return nextGames.map((game) => {
-        const homeAbbrev = getTeamAbbrev(game.homeTeam);
-        const awayAbbrev = getTeamAbbrev(game.awayTeam);
-        const isHome = homeAbbrev === teamAbbrev;
-        const opponent = isHome ? game.awayTeam : game.homeTeam;
-        const opponentAbbrev = isHome ? awayAbbrev : homeAbbrev;
-        const opponentPct = pointPctByAbbrev.get(opponentAbbrev);
-        const venueLabel = isHome ? "vs" : "@";
-        const difficulty =
-            typeof opponentPct === "number"
-                ? Math.round(Math.min(100, opponentPct * 100 + (isHome ? 0 : 5)))
-                : null;
-
-        return {
-            label: `${venueLabel} ${getTeamLabel(opponent)}`,
-            dateLabel: formatGameDate(game.startTimeUTC),
-            difficulty,
-        };
-    });
-}
+type SabresApiResponse = {
+    asOf: string;
+    sabres: SabresSummary;
+    competitors: Competitor[];
+};
 
 function summaryCard(label: string, value: string | number) {
     return (
@@ -236,163 +62,36 @@ function summaryCard(label: string, value: string | number) {
 export default function SabresMagicNumberPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [data, setData] = useState<SabresData | null>(null);
+    const [data, setData] = useState<SabresApiResponse | null>(null);
 
     useEffect(() => {
-        async function loadStandings() {
+        async function loadSabresData() {
             try {
                 setLoading(true);
                 setError("");
 
-                const standingsJson = await fetchJson<{ standings?: NhlStanding[] }>(
-                    `${NHL_API_BASE}/v1/standings/now`
-                );
-                const standings = standingsJson.standings ?? [];
-
-                const teams: TeamMax[] = standings.map((team) => {
-                    const gp = team.gamesPlayed ?? 0;
-                    const pts = team.points ?? 0;
-                    const gamesLeft = TOTAL_GAMES - gp;
-
-                    return {
-                        team: getLocalizedText(team.teamName) || "Unknown Team",
-                        abbrev: getLocalizedText(team.teamAbbrev).toUpperCase(),
-                        conference: team.conferenceAbbrev ?? "",
-                        gp,
-                        pts,
-                        gamesLeft,
-                        maxPoints: pts + gamesLeft * 2,
-                        regulationWins:
-                            typeof team.regulationWins === "number"
-                                ? team.regulationWins
-                                : null,
-                        overtimeWins:
-                            typeof team.overtimeWins === "number"
-                                ? team.overtimeWins
-                                : typeof team.otWins === "number"
-                                  ? team.otWins
-                                  : typeof team.regulationPlusOtWins === "number" &&
-                                      typeof team.regulationWins === "number"
-                                    ? Math.max(0, team.regulationPlusOtWins - team.regulationWins)
-                                    : null,
-                        overtimeLosses:
-                            typeof team.otLosses === "number" ? team.otLosses : null,
-                        last10: formatLast10(team),
-                        pointPct: getPointPct(team),
-                    };
-                });
-
-                const pointPctByAbbrev = new Map<string, number>(
-                    teams
-                        .filter(
-                            (team): team is TeamMax & { pointPct: number } =>
-                                typeof team.pointPct === "number"
-                        )
-                        .map((team) => [team.abbrev, team.pointPct])
-                );
-
-                const east = teams
-                    .filter((team) => team.conference === "E")
-                    .sort((a, b) => {
-                        if (b.maxPoints !== a.maxPoints) return b.maxPoints - a.maxPoints;
-                        if (b.pts !== a.pts) return b.pts - a.pts;
-                        return a.team.localeCompare(b.team);
-                    });
-
-                const sabres = east.find((team) => team.team === TARGET_TEAM);
-
-                if (!sabres) {
-                    throw new Error("Buffalo Sabres not found in standings");
+                if (!SABRES_API_URL) {
+                    throw new Error("Missing VITE_SABRES_LAMBDA_URL");
                 }
 
-                if (east.length < 9) {
-                    throw new Error("Unexpected Eastern Conference standings data");
+                const response = await fetch(SABRES_API_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
 
-                const competingTeams = east.filter(
-                    (team) => team.team !== TARGET_TEAM && team.maxPoints >= sabres.pts
-                );
-
-                const upcomingByTeam = await Promise.all(
-                    competingTeams.map(async (team) => {
-                        try {
-                            const nextOpponents = await loadUpcomingOpponents(
-                                team.abbrev,
-                                pointPctByAbbrev
-                            );
-
-                            return [team.abbrev, nextOpponents] as const;
-                        } catch (scheduleError) {
-                            console.error(`Failed to load schedule for ${team.abbrev}:`, scheduleError);
-                            return [team.abbrev, [] as OpponentPreview[]] as const;
-                        }
-                    })
-                );
-
-                const upcomingMap = new Map(upcomingByTeam);
-
-                const catchRows: CatchTeamRow[] = competingTeams
-                    .map((team) => {
-                        const nextOpponents = upcomingMap.get(team.abbrev) ?? [];
-
-                        return {
-                            team: team.team,
-                            teamAbbrev: team.abbrev,
-                            currentPoints: team.pts,
-                            gamesLeft: team.gamesLeft,
-                            maxPoints: team.maxPoints,
-                            regulationOvertimeSplit: formatRegulationOvertimeSplit({
-                                regulationWins: team.regulationWins ?? undefined,
-                                overtimeWins: team.overtimeWins ?? undefined,
-                                otLosses: team.overtimeLosses ?? undefined,
-                            }),
-                            trendLast10: team.last10,
-                            nextOpponents,
-                            difficultyScore: computeDifficultyScore(nextOpponents),
-                        };
-                    })
-                    .sort((a, b) => {
-                        if (b.maxPoints !== a.maxPoints) return b.maxPoints - a.maxPoints;
-                        return b.currentPoints - a.currentPoints;
-                    });
-
-                const eastWithoutSabres = east.filter((team) => team.team !== TARGET_TEAM);
-
-                const teamsThatCouldFinishAboveSabres = eastWithoutSabres
-                    .filter((team) => team.maxPoints >= sabres.pts)
-                    .sort((a, b) => {
-                        if (b.maxPoints !== a.maxPoints) return b.maxPoints - a.maxPoints;
-                        return b.pts - a.pts;
-                    });
-
-                const eighthChallengerMax =
-                    teamsThatCouldFinishAboveSabres.length >= 8
-                        ? teamsThatCouldFinishAboveSabres[7].maxPoints
-                        : 0;
-
-                const clinchTarget = eighthChallengerMax + 1;
-                const magicPointsNeeded = Math.max(0, clinchTarget - sabres.pts);
-
-                setData({
-                    currentPoints: sabres.pts,
-                    gamesPlayed: sabres.gp,
-                    gamesLeft: sabres.gamesLeft,
-                    maxPossiblePoints: sabres.maxPoints,
-                    clinchTarget,
-                    magicPointsNeeded,
-                    catchRows,
-                });
+                const json = (await response.json()) as SabresApiResponse;
+                setData(json);
             } catch (loadError) {
-                console.error("Failed to load standings:", loadError);
+                console.error("Failed to load Sabres data:", loadError);
                 setError(
-                    loadError instanceof Error ? loadError.message : "Failed to load standings"
+                    loadError instanceof Error ? loadError.message : "Failed to load Sabres data"
                 );
             } finally {
                 setLoading(false);
             }
         }
 
-        loadStandings();
+        loadSabresData();
     }, []);
 
     if (loading) {
@@ -414,20 +113,20 @@ export default function SabresMagicNumberPage() {
                     <h1 className="text-2xl font-bold sm:text-3xl">Sabres Magic Number</h1>
                     <p className="max-w-3xl text-sm text-slate-300 sm:text-base">
                         Competing teams show current points, remaining games, maximum possible
-                        points, next three opponents, available regulation/overtime splits, last-10
-                        trend, and a 0-100 difficulty score for the next three games.
+                        points, next three opponents, regulation/overtime split when available,
+                        last-10 trend, and a 0-100 difficulty score for the next three games.
                     </p>
                     <p className="text-xs text-slate-400">
-                        Difficulty score uses opponent points percentage with a small road-game bump.
+                        As of {data.asOf}. Data is loaded through the WNYSportsNet Lambda endpoint.
                     </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-                    {summaryCard("Current Points", data.currentPoints)}
-                    {summaryCard("Games Played", data.gamesPlayed)}
-                    {summaryCard("Games Left", data.gamesLeft)}
-                    {summaryCard("Max Possible", data.maxPossiblePoints)}
-                    {summaryCard("Magic Points Needed", data.magicPointsNeeded)}
+                    {summaryCard("Current Points", data.sabres.currentPoints)}
+                    {summaryCard("Games Played", data.sabres.gamesPlayed)}
+                    {summaryCard("Games Left", data.sabres.gamesRemaining)}
+                    {summaryCard("Max Possible", data.sabres.maxPossiblePoints)}
+                    {summaryCard("Magic Points Needed", data.sabres.magicPointsNeeded)}
                 </div>
 
                 <Card className="border-slate-800 bg-slate-900/70">
@@ -438,12 +137,15 @@ export default function SabresMagicNumberPage() {
                     </CardHeader>
                     <CardContent className="pt-0 text-slate-200">
                         Buffalo guarantees a finish above ninth place by reaching{" "}
-                        <span className="font-semibold text-white">{data.clinchTarget}</span> points.
+                        <span className="font-semibold text-white">
+                            {data.sabres.clinchTarget}
+                        </span>{" "}
+                        points.
                     </CardContent>
                 </Card>
 
                 <div className="grid gap-4 lg:grid-cols-2">
-                    {data.catchRows.map((row) => (
+                    {data.competitors.map((row) => (
                         <Card key={row.teamAbbrev} className="border-slate-800 bg-slate-900/80">
                             <CardHeader className="space-y-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -467,7 +169,7 @@ export default function SabresMagicNumberPage() {
                                             Left
                                         </div>
                                         <div className="mt-1 text-xl font-semibold text-white">
-                                            {row.gamesLeft}
+                                            {row.gamesRemaining}
                                         </div>
                                     </div>
                                     <div className="rounded-xl bg-slate-950/70 p-3">
@@ -475,7 +177,7 @@ export default function SabresMagicNumberPage() {
                                             Max
                                         </div>
                                         <div className="mt-1 text-xl font-semibold text-white">
-                                            {row.maxPoints}
+                                            {row.maxPossiblePoints}
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +190,7 @@ export default function SabresMagicNumberPage() {
                                             Regulation / Overtime
                                         </div>
                                         <div className="mt-2 text-sm text-slate-100">
-                                            {row.regulationOvertimeSplit ?? "Not available"}
+                                            {row.regulationOvertimeSplit?.label ?? "Not available"}
                                         </div>
                                     </div>
 
@@ -516,19 +218,19 @@ export default function SabresMagicNumberPage() {
                                     </div>
 
                                     <div className="mt-3 grid gap-2">
-                                        {row.nextOpponents.length === 0 ? (
+                                        {row.next3Opponents.length === 0 ? (
                                             <div className="text-sm text-slate-400">
                                                 Upcoming schedule not available.
                                             </div>
                                         ) : (
-                                            row.nextOpponents.map((opponent) => (
+                                            row.next3Opponents.map((opponent) => (
                                                 <div
-                                                    key={`${row.teamAbbrev}-${opponent.dateLabel}-${opponent.label}`}
+                                                    key={`${row.teamAbbrev}-${opponent.dateLabel}-${opponent.matchup}`}
                                                     className="flex items-center justify-between gap-3 rounded-lg bg-slate-900/80 px-3 py-2"
                                                 >
                                                     <div>
                                                         <div className="text-sm font-medium text-white">
-                                                            {opponent.label}
+                                                            {opponent.matchup}
                                                         </div>
                                                         <div className="text-xs text-slate-400">
                                                             {opponent.dateLabel}

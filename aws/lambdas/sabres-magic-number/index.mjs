@@ -11,6 +11,10 @@ const pointPct = (points = 0, gamesPlayed = 0) => {
   return gamesPlayed > 0 ? points / (gamesPlayed * 2) : null;
 };
 
+const clamp = (value, min, max) => {
+  return Math.min(max, Math.max(min, value));
+};
+
 const formatLast10 = (team) => {
   if (
     typeof team.l10Wins !== "number" ||
@@ -57,6 +61,21 @@ const formatDate = (dateValue) => {
   }).format(new Date(dateValue));
 };
 
+const formatApiDate = (dateValue) => {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(dateValue);
+};
+
+const addDays = (dateValue, daysToAdd) => {
+  const nextDate = new Date(dateValue);
+  nextDate.setUTCDate(nextDate.getUTCDate() + daysToAdd);
+  return nextDate;
+};
+
 const teamLabel = (team) => {
   const place = text(team?.placeName);
   const common = text(team?.commonName);
@@ -66,8 +85,77 @@ const teamLabel = (team) => {
 };
 
 const teamAbbrev = (team) => text(team?.abbrev).toUpperCase();
+const fullTeamName = (team) => {
+  const place = text(team?.placeName);
+  const common = text(team?.commonName);
+  return [place, common].filter(Boolean).join(" ");
+};
 
-async function getNext3Opponents(abbrev, pointPctByAbbrev) {
+const daysBetween = (firstDate, secondDate) => {
+  const msPerDay = 24 * 60 * 60 * 1000;
+  return Math.round((secondDate - firstDate) / msPerDay);
+};
+
+function buildDifficulty(game, teamAbbrevValue, pointPctByAbbrev, teamMetricsByAbbrev, priorGameDate) {
+  const home = teamAbbrev(game.homeTeam);
+  const away = teamAbbrev(game.awayTeam);
+  const isHome = home === teamAbbrevValue;
+  const opponent = isHome ? game.awayTeam : game.homeTeam;
+  const opponentAbbrev = isHome ? away : home;
+  const opponentMetrics = teamMetricsByAbbrev.get(opponentAbbrev);
+
+  const opponentOverall = typeof pointPctByAbbrev.get(opponentAbbrev) === "number"
+    ? pointPctByAbbrev.get(opponentAbbrev)
+    : null;
+  const opponentRecent = opponentMetrics?.last10PointPct ?? null;
+  const venueStrength = isHome
+    ? opponentMetrics?.roadPointPct ?? null
+    : opponentMetrics?.homePointPct ?? null;
+
+  const gameDate = game.startTimeUTC ? new Date(game.startTimeUTC) : null;
+  const isBackToBack = Boolean(
+    priorGameDate && gameDate && daysBetween(priorGameDate, gameDate) <= 1
+  );
+
+  let rawScore = 50;
+
+  if (typeof opponentOverall === "number") {
+    rawScore += (opponentOverall - 0.5) * 50;
+  }
+
+  if (typeof opponentRecent === "number") {
+    rawScore += (opponentRecent - 0.5) * 30;
+  }
+
+  if (typeof venueStrength === "number") {
+    rawScore += (venueStrength - 0.5) * 20;
+  }
+
+  if (!isHome) {
+    rawScore += 4;
+  }
+
+  if (isBackToBack) {
+    rawScore += 7;
+  }
+
+  return {
+    score: Math.round(clamp(rawScore, 0, 100)),
+    isBackToBack,
+    components: {
+      opponentOverall: typeof opponentOverall === "number" ? Math.round(opponentOverall * 100) : null,
+      opponentRecent: typeof opponentRecent === "number" ? Math.round(opponentRecent * 100) : null,
+      venueStrength: typeof venueStrength === "number" ? Math.round(venueStrength * 100) : null,
+      roadGame: !isHome,
+      backToBack: isBackToBack,
+    },
+    opponent,
+    opponentAbbrev,
+    isHome,
+  };
+}
+
+async function getNext3Opponents(abbrev, pointPctByAbbrev, teamMetricsByAbbrev) {
   const resp = await fetch(`${NHL_API_BASE}/v1/club-schedule-season/${abbrev}/now`);
   if (!resp.ok) {
     throw new Error(`Schedule fetch failed for ${abbrev}: HTTP ${resp.status}`);
@@ -82,27 +170,245 @@ async function getNext3Opponents(abbrev, pointPctByAbbrev) {
     .sort((a, b) => new Date(a.startTimeUTC).getTime() - new Date(b.startTimeUTC).getTime())
     .slice(0, 3);
 
+  let priorGameDate = null;
+
   return nextGames.map((game) => {
-    const home = teamAbbrev(game.homeTeam);
-    const away = teamAbbrev(game.awayTeam);
-    const isHome = home === abbrev;
-    const opponent = isHome ? game.awayTeam : game.homeTeam;
-    const opponentAbbrev = isHome ? away : home;
-    const pct = pointPctByAbbrev.get(opponentAbbrev);
-    const difficulty =
-      typeof pct === "number"
-        ? Math.round(Math.min(100, pct * 100 + (isHome ? 0 : 5)))
-        : null;
+    const difficulty = buildDifficulty(
+      game,
+      abbrev,
+      pointPctByAbbrev,
+      teamMetricsByAbbrev,
+      priorGameDate
+    );
+    priorGameDate = game.startTimeUTC ? new Date(game.startTimeUTC) : priorGameDate;
 
     return {
       date: game.startTimeUTC,
       dateLabel: formatDate(game.startTimeUTC),
-      opponent: teamLabel(opponent),
-      venue: isHome ? "vs" : "@",
-      matchup: `${isHome ? "vs" : "@"} ${teamLabel(opponent)}`,
-      difficulty,
+      opponent: teamLabel(difficulty.opponent),
+      venue: difficulty.isHome ? "vs" : "@",
+      matchup: `${difficulty.isHome ? "vs" : "@"} ${teamLabel(difficulty.opponent)}`,
+      difficulty: difficulty.score,
+      difficultyBreakdown: difficulty.components,
     };
   });
+}
+
+function cloneTeam(team) {
+  return {
+    ...team,
+  };
+}
+
+function recomputeSabresRace(eastTeams) {
+  const east = eastTeams
+    .map(cloneTeam)
+    .sort((a, b) => {
+      if (b.maxPossiblePoints !== a.maxPossiblePoints) {
+        return b.maxPossiblePoints - a.maxPossiblePoints;
+      }
+      if (b.currentPoints !== a.currentPoints) {
+        return b.currentPoints - a.currentPoints;
+      }
+      return a.team.localeCompare(b.team);
+    });
+
+  const sabres = east.find((team) => team.team === TARGET_TEAM);
+  if (!sabres) {
+    throw new Error("Buffalo Sabres not found in simulated standings");
+  }
+
+  const challengers = east
+    .filter((team) => team.team !== TARGET_TEAM && team.maxPossiblePoints >= sabres.currentPoints)
+    .sort((a, b) => {
+      if (b.maxPossiblePoints !== a.maxPossiblePoints) {
+        return b.maxPossiblePoints - a.maxPossiblePoints;
+      }
+      return b.currentPoints - a.currentPoints;
+    });
+
+  const eighthChallengerMax = challengers.length >= 8 ? challengers[7].maxPossiblePoints : 0;
+  const clinchTarget = eighthChallengerMax + 1;
+  const magicPointsNeeded = Math.max(0, clinchTarget - sabres.currentPoints);
+  const threatTotal = challengers.reduce((sum, team) => sum + team.maxPossiblePoints, 0);
+
+  return {
+    sabres,
+    clinchTarget,
+    magicPointsNeeded,
+    threatCount: challengers.length,
+    threatTotal,
+  };
+}
+
+function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome) {
+  const teamsMap = new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)]));
+  const homeTeam = teamsMap.get(homeAbbrev);
+  const awayTeam = teamsMap.get(awayAbbrev);
+
+  if (!homeTeam || !awayTeam) {
+    throw new Error(`Missing team data for ${homeAbbrev} vs ${awayAbbrev}`);
+  }
+
+  homeTeam.gamesPlayed += 1;
+  awayTeam.gamesPlayed += 1;
+  homeTeam.gamesRemaining = Math.max(0, TOTAL_GAMES - homeTeam.gamesPlayed);
+  awayTeam.gamesRemaining = Math.max(0, TOTAL_GAMES - awayTeam.gamesPlayed);
+
+  if (outcome === "home-reg") {
+    homeTeam.currentPoints += 2;
+  } else if (outcome === "home-ot") {
+    homeTeam.currentPoints += 2;
+    awayTeam.currentPoints += 1;
+  } else if (outcome === "away-ot") {
+    awayTeam.currentPoints += 2;
+    homeTeam.currentPoints += 1;
+  } else if (outcome === "away-reg") {
+    awayTeam.currentPoints += 2;
+  }
+
+  homeTeam.maxPossiblePoints = homeTeam.currentPoints + homeTeam.gamesRemaining * 2;
+  awayTeam.maxPossiblePoints = awayTeam.currentPoints + awayTeam.gamesRemaining * 2;
+
+  const east = Array.from(teamsMap.values()).filter((team) => team.conference === "E");
+  return recomputeSabresRace(east);
+}
+
+function outcomeLabel(outcome, homeName, awayName) {
+  if (outcome === "home-reg") return `${homeName} win in regulation`;
+  if (outcome === "home-ot") return `${homeName} win in OT/SO`;
+  if (outcome === "away-ot") return `${awayName} win in OT/SO`;
+  return `${awayName} win in regulation`;
+}
+
+function outcomeSortValue(result) {
+  return [
+    result.magicPointsNeeded,
+    result.clinchTarget,
+    result.threatCount,
+    result.threatTotal,
+  ];
+}
+
+function compareOutcomeResults(a, b) {
+  const av = outcomeSortValue(a);
+  const bv = outcomeSortValue(b);
+
+  for (let i = 0; i < av.length; i += 1) {
+    if (av[i] !== bv[i]) {
+      return av[i] - bv[i];
+    }
+  }
+
+  return 0;
+}
+
+async function getNightlyRootingGuide(todayDate, allTeams, baselineRace) {
+  const targetDates = [todayDate, addDays(todayDate, 1)].map(formatApiDate);
+
+  const guides = await Promise.all(
+    targetDates.map(async (date) => {
+      const response = await fetch(`${NHL_API_BASE}/v1/score/${date}`);
+      if (!response.ok) {
+        throw new Error(`Score fetch failed for ${date}: HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const scheduleDate = Array.isArray(data.gameWeek)
+        ? data.gameWeek.find((entry) => entry.date === date)
+        : null;
+      const games = Array.isArray(scheduleDate?.games) ? scheduleDate.games : Array.isArray(data.games) ? data.games : [];
+
+      const modeledGames = games.map((game) => {
+        const homeAbbrev = teamAbbrev(game.homeTeam);
+        const awayAbbrev = teamAbbrev(game.awayTeam);
+        const homeName = fullTeamName(game.homeTeam) || homeAbbrev;
+        const awayName = fullTeamName(game.awayTeam) || awayAbbrev;
+
+        const outcomes = [
+          "home-reg",
+          "home-ot",
+          "away-ot",
+          "away-reg",
+        ].map((outcome) => {
+          const result = simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome);
+          return {
+            outcome,
+            label: outcomeLabel(outcome, homeName, awayName),
+            ...result,
+          };
+        });
+
+        outcomes.sort(compareOutcomeResults);
+
+        const best = outcomes[0];
+        const worst = outcomes[outcomes.length - 1];
+        const impact =
+          baselineRace.magicPointsNeeded - best.magicPointsNeeded !== 0
+            ? `${baselineRace.magicPointsNeeded - best.magicPointsNeeded > 0 ? "-" : "+"}${Math.abs(
+                baselineRace.magicPointsNeeded - best.magicPointsNeeded
+              )} magic points`
+            : `${best.clinchTarget - baselineRace.clinchTarget > 0 ? "+" : ""}${
+                best.clinchTarget - baselineRace.clinchTarget
+              } clinch target`;
+
+        return {
+          gameId: game.id ?? `${date}-${homeAbbrev}-${awayAbbrev}`,
+          startTimeUTC: game.startTimeUTC ?? null,
+          matchup: `${awayName} @ ${homeName}`,
+          homeTeam: {
+            name: homeName,
+            abbrev: homeAbbrev,
+          },
+          awayTeam: {
+            name: awayName,
+            abbrev: awayAbbrev,
+          },
+          recommendedOutcome: best.label,
+          impact,
+          reasoning:
+            compareOutcomeResults(best, worst) === 0
+              ? "This game is close to neutral for Buffalo."
+              : `This result gives Buffalo the lowest simulated playoff pressure from this game.`,
+          bestCase: {
+            outcome: best.outcome,
+            label: best.label,
+            magicPointsNeeded: best.magicPointsNeeded,
+            clinchTarget: best.clinchTarget,
+          },
+          worstCase: {
+            outcome: worst.outcome,
+            label: worst.label,
+            magicPointsNeeded: worst.magicPointsNeeded,
+            clinchTarget: worst.clinchTarget,
+          },
+          relevantToSabres:
+            homeAbbrev === "BUF" ||
+            awayAbbrev === "BUF" ||
+            baselineRace.sabres.teamAbbrev === "BUF" ||
+            allTeams.some(
+              (team) =>
+                team.teamAbbrev === homeAbbrev || team.teamAbbrev === awayAbbrev
+            ),
+        };
+      });
+
+      modeledGames.sort((a, b) => {
+        if (a.bestCase.magicPointsNeeded !== b.bestCase.magicPointsNeeded) {
+          return a.bestCase.magicPointsNeeded - b.bestCase.magicPointsNeeded;
+        }
+        return a.matchup.localeCompare(b.matchup);
+      });
+
+      return {
+        date,
+        label: formatDate(`${date}T12:00:00Z`),
+        games: modeledGames,
+      };
+    })
+  );
+
+  return guides;
 }
 
 export const handler = async () => {
@@ -125,6 +431,9 @@ export const handler = async () => {
       const gp = team.gamesPlayed ?? 0;
       const pts = team.points ?? 0;
       const gamesRemaining = TOTAL_GAMES - gp;
+      const homePointPct = pointPct(team.homePoints ?? 0, team.homeGamesPlayed ?? 0);
+      const roadPointPct = pointPct(team.roadPoints ?? 0, team.roadGamesPlayed ?? 0);
+      const last10PointPct = pointPct(team.l10Points ?? 0, team.l10GamesPlayed ?? 0);
 
       return {
         team: text(team.teamName),
@@ -137,6 +446,9 @@ export const handler = async () => {
         trendLast10: formatLast10(team),
         regulationOvertimeSplit: formatSplit(team),
         pointPct: pointPct(pts, gp),
+        homePointPct,
+        roadPointPct,
+        last10PointPct,
       };
     });
 
@@ -162,6 +474,16 @@ export const handler = async () => {
         .filter((team) => typeof team.pointPct === "number")
         .map((team) => [team.teamAbbrev, team.pointPct])
     );
+    const teamMetricsByAbbrev = new Map(
+      teams.map((team) => [
+        team.teamAbbrev,
+        {
+          homePointPct: team.homePointPct,
+          roadPointPct: team.roadPointPct,
+          last10PointPct: team.last10PointPct,
+        },
+      ])
+    );
 
     const competitorsBase = east.filter(
       (team) => team.team !== TARGET_TEAM && team.maxPossiblePoints >= sabres.currentPoints
@@ -172,7 +494,11 @@ export const handler = async () => {
         let next3Opponents = [];
 
         try {
-          next3Opponents = await getNext3Opponents(team.teamAbbrev, pointPctByAbbrev);
+          next3Opponents = await getNext3Opponents(
+            team.teamAbbrev,
+            pointPctByAbbrev,
+            teamMetricsByAbbrev
+          );
         } catch (error) {
           console.error(`Failed to load schedule for ${team.teamAbbrev}`, error);
         }
@@ -202,19 +528,8 @@ export const handler = async () => {
       })
     );
 
-    const eastWithoutSabres = east.filter((team) => team.team !== TARGET_TEAM);
-    const challengers = eastWithoutSabres
-      .filter((team) => team.maxPossiblePoints >= sabres.currentPoints)
-      .sort((a, b) => {
-        if (b.maxPossiblePoints !== a.maxPossiblePoints) {
-          return b.maxPossiblePoints - a.maxPossiblePoints;
-        }
-        return b.currentPoints - a.currentPoints;
-      });
-
-    const eighthChallengerMax = challengers.length >= 8 ? challengers[7].maxPossiblePoints : 0;
-    const clinchTarget = eighthChallengerMax + 1;
-    const magicPointsNeeded = Math.max(0, clinchTarget - sabres.currentPoints);
+    const baselineRace = recomputeSabresRace(east);
+    const nightlyRootingGuide = await getNightlyRootingGuide(now, teams, baselineRace);
 
     return {
       statusCode: 200,
@@ -230,10 +545,11 @@ export const handler = async () => {
           gamesPlayed: sabres.gamesPlayed,
           gamesRemaining: sabres.gamesRemaining,
           maxPossiblePoints: sabres.maxPossiblePoints,
-          clinchTarget,
-          magicPointsNeeded,
+          clinchTarget: baselineRace.clinchTarget,
+          magicPointsNeeded: baselineRace.magicPointsNeeded,
         },
         competitors,
+        nightlyRootingGuide,
       }),
     };
   } catch (err) {

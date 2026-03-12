@@ -21,6 +21,33 @@ type OpponentPreview = {
     difficulty: number | null;
 };
 
+type RootingGuideGame = {
+    gameId: string | number;
+    startTimeUTC: string | null;
+    matchup: string;
+    recommendedOutcome: string;
+    impact: string;
+    reasoning: string;
+    bestCase: {
+        outcome: string;
+        label: string;
+        magicPointsNeeded: number;
+        clinchTarget: number;
+    };
+    worstCase: {
+        outcome: string;
+        label: string;
+        magicPointsNeeded: number;
+        clinchTarget: number;
+    };
+};
+
+type RootingGuideDay = {
+    date: string;
+    label: string;
+    games: RootingGuideGame[];
+};
+
 type Competitor = {
     team: string;
     teamAbbrev: string;
@@ -46,6 +73,7 @@ type SabresApiResponse = {
     asOf: string;
     sabres: SabresSummary;
     competitors: Competitor[];
+    nightlyRootingGuide?: RootingGuideDay[];
 };
 
 function summaryCard(label: string, value: string | number) {
@@ -143,6 +171,93 @@ export default function SabresMagicNumberPage() {
                         points.
                     </CardContent>
                 </Card>
+
+                {data.nightlyRootingGuide && data.nightlyRootingGuide.length > 0 ? (
+                    <div className="space-y-4">
+                        <div className="space-y-1">
+                            <h2 className="text-xl font-semibold text-white">Nightly Rooting Guide</h2>
+                            <p className="text-sm text-slate-300">
+                                Each game is simulated across regulation and OT outcomes to find the
+                                result that helps Buffalo most.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-4 xl:grid-cols-2">
+                            {data.nightlyRootingGuide.map((day) => (
+                                <Card key={day.date} className="border-slate-800 bg-slate-900/80">
+                                    <CardHeader>
+                                        <CardTitle className="text-lg text-white">{day.label}</CardTitle>
+                                    </CardHeader>
+
+                                    <CardContent className="space-y-3">
+                                        {day.games.length === 0 ? (
+                                            <div className="text-sm text-slate-400">
+                                                No games scheduled.
+                                            </div>
+                                        ) : (
+                                            day.games.map((game) => (
+                                                <div
+                                                    key={game.gameId}
+                                                    className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"
+                                                >
+                                                    <div className="flex flex-wrap items-start justify-between gap-3">
+                                                        <div>
+                                                            <div className="text-sm font-semibold text-white">
+                                                                {game.matchup}
+                                                            </div>
+                                                            <div className="mt-1 text-xs text-slate-400">
+                                                                {game.reasoning}
+                                                            </div>
+                                                        </div>
+
+                                                        <Badge
+                                                            variant="outline"
+                                                            className="border-emerald-700 text-emerald-300"
+                                                        >
+                                                            {game.impact}
+                                                        </Badge>
+                                                    </div>
+
+                                                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                                                        <div className="rounded-lg bg-slate-900/80 p-3">
+                                                            <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                                                                Best For Buffalo
+                                                            </div>
+                                                            <div className="mt-2 text-sm font-medium text-white">
+                                                                {game.recommendedOutcome}
+                                                            </div>
+                                                            <div className="mt-1 text-xs text-slate-400">
+                                                                Magic number after game: {game.bestCase.magicPointsNeeded}
+                                                            </div>
+                                                            <div className="text-xs text-slate-400">
+                                                                Clinch target: {game.bestCase.clinchTarget}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="rounded-lg bg-slate-900/80 p-3">
+                                                            <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                                                                Worst Case
+                                                            </div>
+                                                            <div className="mt-2 text-sm font-medium text-white">
+                                                                {game.worstCase.label}
+                                                            </div>
+                                                            <div className="mt-1 text-xs text-slate-400">
+                                                                Magic number after game: {game.worstCase.magicPointsNeeded}
+                                                            </div>
+                                                            <div className="text-xs text-slate-400">
+                                                                Clinch target: {game.worstCase.clinchTarget}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )}
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                ) : null}
 
                 <div className="grid gap-4 lg:grid-cols-2">
                     {data.competitors.map((row) => (

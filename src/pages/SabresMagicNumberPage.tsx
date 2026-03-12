@@ -139,7 +139,7 @@ export default function SabresMagicNumberPage() {
     }, []);
 
     if (loading) {
-        return <div className="px-4 py-6 text-white">Loading Sabres standings...</div>;
+        return <div className="px-4 py-6 text-white">Loading Sabres Magic Numbers...</div>;
     }
 
     if (error) {

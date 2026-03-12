@@ -146,6 +146,24 @@ function difficultyLabel(score: number | null) {
     return "Brutal";
 }
 
+async function fetchSabresData(url: string) {
+    try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        return (await response.json()) as SabresApiResponse;
+    } catch {
+        const retryResponse = await fetch(url, { cache: "no-store" });
+        if (!retryResponse.ok) {
+            throw new Error(`HTTP ${retryResponse.status}`);
+        }
+
+        return (await retryResponse.json()) as SabresApiResponse;
+    }
+}
+
 function summaryCard(label: string, value: string | number) {
     return (
         <Card className="border-slate-800 bg-slate-900/80">
@@ -173,12 +191,7 @@ export default function SabresMagicNumberPage() {
                     throw new Error("Missing VITE_SABRES_LAMBDA_URL");
                 }
 
-                const response = await fetch(SABRES_API_URL);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const json = (await response.json()) as SabresApiResponse;
+                const json = await fetchSabresData(SABRES_API_URL);
                 setData(json);
                 setSelectedObjective(json.defaultObjective ?? "makePlayoffs");
             } catch (loadError) {

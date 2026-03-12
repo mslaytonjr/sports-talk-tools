@@ -334,10 +334,10 @@ function compareOutcomeResults(a, b) {
   return 0;
 }
 
-async function getNightlyRootingGuide(todayDate, allTeams, baselineRace, objective) {
+async function loadNightlyScoreboards(todayDate) {
   const targetDates = [todayDate, addDays(todayDate, 1)].map(formatApiDate);
 
-  const guides = await Promise.all(
+  return Promise.all(
     targetDates.map(async (date) => {
       const response = await fetch(`${NHL_API_BASE}/v1/score/${date}`);
       if (!response.ok) {
@@ -350,7 +350,18 @@ async function getNightlyRootingGuide(todayDate, allTeams, baselineRace, objecti
         : null;
       const games = Array.isArray(scheduleDate?.games) ? scheduleDate.games : Array.isArray(data.games) ? data.games : [];
 
-      const modeledGames = games.map((game) => {
+      return {
+        date,
+        label: formatDate(`${date}T12:00:00Z`),
+        games,
+      };
+    })
+  );
+}
+
+function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) {
+  return scoreboards.map((scoreboard) => {
+      const modeledGames = scoreboard.games.map((game) => {
         const homeAbbrev = teamAbbrev(game.homeTeam);
         const awayAbbrev = teamAbbrev(game.awayTeam);
         const homeName = fullTeamName(game.homeTeam) || homeAbbrev;
@@ -424,14 +435,11 @@ async function getNightlyRootingGuide(todayDate, allTeams, baselineRace, objecti
       });
 
       return {
-        date,
-        label: formatDate(`${date}T12:00:00Z`),
+        date: scoreboard.date,
+        label: scoreboard.label,
         games: modeledGames,
       };
-    })
-  );
-
-  return guides;
+    });
 }
 
 export const handler = async () => {
@@ -549,14 +557,16 @@ export const handler = async () => {
       competitors.map((team) => [team.teamAbbrev, team])
     );
 
+    const nightlyScoreboards = await loadNightlyScoreboards(now);
+
     const objectiveEntries = await Promise.all(
       Object.values(OBJECTIVES).map(async (objective) => {
         const baselineRace = computeObjectiveRace(teams, objective);
         const objectiveCompetitors = baselineRace.challengers
           .map((team) => competitorMap.get(team.teamAbbrev))
           .filter(Boolean);
-        const nightlyRootingGuide = await getNightlyRootingGuide(
-          now,
+        const nightlyRootingGuide = getNightlyRootingGuide(
+          nightlyScoreboards,
           teams,
           baselineRace,
           objective

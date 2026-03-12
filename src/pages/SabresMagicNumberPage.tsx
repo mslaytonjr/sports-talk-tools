@@ -206,7 +206,9 @@ export default function SabresMagicNumberPage() {
                                                                 {game.matchup}
                                                             </div>
                                                             <div className="mt-1 text-xs text-slate-400">
-                                                                {game.reasoning}
+                                                                {game.reasoning === "This result gives Buffalo the lowest simulated playoff pressure from this game."
+                                                                    ? ""
+                                                                    : game.reasoning}
                                                             </div>
                                                         </div>
 

@@ -6,12 +6,12 @@ export default function App() {
     return (
         <div>
             <nav style={{ padding: 12, display: "flex", gap: 12 }}>
-                <Link to="/DraftChart">NFL Depth Chart</Link>
+                <Link to="/BillsDepthChart">NFL Depth Chart</Link>
                 <Link to="/SabresMagicNumber">Sabres Magic</Link>
             </nav>
 
             <Routes>
-                <Route path="/DraftChart" element={<DepthChartPage />} />
+                <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
             </Routes>
         </div>

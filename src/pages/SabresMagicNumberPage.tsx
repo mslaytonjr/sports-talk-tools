@@ -322,6 +322,7 @@ export default function SabresMagicNumberPage() {
                                                             </div>
                                                             <div className="mt-1 text-xs text-slate-400">
                                                                 {game.reasoning === "This result gives Buffalo the lowest simulated playoff pressure from this game."
+                                                                    || game.reasoning === "This game is close to neutral for Buffalo."
                                                                     ? ""
                                                                     : game.reasoning}
                                                             </div>

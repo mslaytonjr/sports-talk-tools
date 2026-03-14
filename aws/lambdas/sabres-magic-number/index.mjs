@@ -102,6 +102,38 @@ const addDays = (dateValue, daysToAdd) => {
   return nextDate;
 };
 
+const getEasternTimeParts = (dateValue) => {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(dateValue);
+
+  return {
+    weekday: parts.find((part) => part.type === "weekday")?.value ?? "Mon",
+    hour: Number(parts.find((part) => part.type === "hour")?.value ?? "0"),
+    minute: Number(parts.find((part) => part.type === "minute")?.value ?? "0"),
+  };
+};
+
+const getDynamicCacheControl = (dateValue) => {
+  const { weekday, hour, minute } = getEasternTimeParts(dateValue);
+  const currentMinutes = hour * 60 + minute;
+  const isWeekend = weekday === "Sat" || weekday === "Sun";
+  const quietWindowStart = 4 * 60;
+  const liveWindowStart = isWeekend ? 15 * 60 + 30 : 19 * 60;
+
+  if (currentMinutes >= quietWindowStart && currentMinutes < liveWindowStart) {
+    const secondsUntilLiveWindow = Math.max(300, (liveWindowStart - currentMinutes) * 60);
+    const staleWhileRevalidate = Math.min(1800, Math.max(300, Math.floor(secondsUntilLiveWindow / 4)));
+    return `public, max-age=${secondsUntilLiveWindow}, stale-while-revalidate=${staleWhileRevalidate}`;
+  }
+
+  return "public, max-age=360, stale-while-revalidate=120";
+};
+
 const teamLabel = (team) => {
   const place = text(team?.placeName);
   const common = text(team?.commonName);
@@ -395,7 +427,7 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
               } clinch target`;
 
         return {
-          gameId: game.id ?? `${date}-${homeAbbrev}-${awayAbbrev}`,
+          gameId: game.id ?? `${scoreboard.date}-${homeAbbrev}-${awayAbbrev}`,
           startTimeUTC: game.startTimeUTC ?? null,
           matchup: `${awayName} @ ${homeName}`,
           homeTeam: {
@@ -445,6 +477,7 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
 export const handler = async () => {
   try {
     const now = new Date();
+    const cacheControl = getDynamicCacheControl(now);
     const yyyy = now.getFullYear();
     const mm = String(now.getMonth() + 1).padStart(2, "0");
     const dd = String(now.getDate()).padStart(2, "0");
@@ -599,7 +632,7 @@ export const handler = async () => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "public, max-age=180, stale-while-revalidate=60",
+        "Cache-Control": cacheControl,
       },
       body: JSON.stringify({
         asOf: date,

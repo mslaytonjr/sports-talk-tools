@@ -100,7 +100,7 @@ export default function App() {
                                     : "border-white/15 bg-white/5 text-white hover:bg-white/10",
                             ].join(" ")}
                         >
-                            Sabres Magic
+                            Sabres Magic Number
                         </Link>
                     </div>
                 </nav>

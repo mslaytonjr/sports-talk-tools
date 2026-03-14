@@ -327,12 +327,9 @@ export default function SabresMagicNumberPage() {
                                                             </div>
                                                         </div>
                                                         {game.impact === "0 clinch target" ? (
-                                                            <Badge
-                                                                variant="outline"
-                                                                className="border-slate-700 text-slate-200"
-                                                            >
-                                                                No impact
-                                                            </Badge>
+                                                            <div className="rounded-md border border-slate-800 bg-slate-900/70 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400">
+                                                                No Impact On Magic Number Currently
+                                                            </div>
                                                         ) : null}
                                                     </div>
 

@@ -1257,17 +1257,19 @@ export default function BracketRootingGuidePage() {
 
                         <div className="grid gap-4 xl:grid-cols-2">
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                <div className="font-semibold text-white">Games tab columns</div>
+                                <div className="font-semibold text-white">Background Games Sheet Columns</div>
                                 <div className="mt-2 text-xs leading-6 text-slate-400">
-                                    `round`, `region`, `seed_a`, `team_a`, `seed_b`, `team_b`,
-                                    `winner`
+                                    `ROUND`, `REGION`, `SEED A`, `TEAM A`, `SEED B`, `TEAM B`,
+                                    `WINNER`
                                 </div>
                             </div>
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                <div className="font-semibold text-white">Picks tab columns</div>
+                                <div className="font-semibold text-white">Picks Sheet Columns</div>
                                 <div className="mt-2 text-xs leading-6 text-slate-400">
-                                    `player`, `round`, `region`, `seed_a`, `team_a`, `seed_b`,
-                                    `team_b`, optional `winner`
+                                    `ENTRANT` plus one column for each bracket slot, such as
+                                    `R1_EAST_1`, `R2_EAST_1`, `SWEET16_EAST_1`, `ELITE8_EAST_1`,
+                                    `FINAL4_EAST_SOUTH_1`, `FINAL4_MIDWEST_WEST_1`, and
+                                    `CHAMPIONSHIP_1`
                                 </div>
                             </div>
                         </div>
@@ -1277,38 +1279,44 @@ export default function BracketRootingGuidePage() {
                                 <div className="font-semibold text-white">How To Maintain The Sheets</div>
                                 <ol className="mt-3 list-decimal space-y-2 pl-4 text-xs leading-6 text-slate-400">
                                     <li>
-                                        Keep one tab for actual games/results and one tab for picks. Use
-                                        the exact tab names you enter above.
+                                        The master games and results sheet runs in the background. You
+                                        only maintain the picks sheet for your pool and paste its
+                                        published CSV URL here.
                                     </li>
                                     <li>
-                                        Put every actual tournament game in the games tab. If the
-                                        game has already been played, fill in `winner`. If the game
-                                        has not been played yet, leave `winner` blank.
+                                        Use one row per entrant. The first column must be{" "}
+                                        <span className="font-semibold text-slate-200">ENTRANT</span>.
                                     </li>
                                     <li>
-                                        The app maps regional games into the standard NCAA bracket
-                                        automatically from round, region, and seed pairings such as
-                                        `1 vs 16`, `8 vs 9`, `5 vs 12`, and so on.
+                                        Every remaining column is a bracket slot such as{" "}
+                                        <span className="font-semibold text-slate-200">R1_EAST_1</span>,{" "}
+                                        <span className="font-semibold text-slate-200">R2_SOUTH_3</span>,{" "}
+                                        <span className="font-semibold text-slate-200">SWEET16_WEST_2</span>,{" "}
+                                        <span className="font-semibold text-slate-200">ELITE8_MIDWEST_1</span>,{" "}
+                                        <span className="font-semibold text-slate-200">FINAL4_EAST_SOUTH_1</span>,
+                                        and{" "}
+                                        <span className="font-semibold text-slate-200">CHAMPIONSHIP_1</span>.
                                     </li>
                                     <li>
-                                        Final Four pairing is fixed to `EAST vs SOUTH` and
-                                        `MIDWEST vs WEST` for simulation purposes.
+                                        In each slot cell, enter only the team that entrant picked to
+                                        win that game. Do not enter both teams or the full matchup.
                                     </li>
                                     <li>
-                                        In the picks tab, add one row per player per game they
-                                        picked. The app will infer bracket slots from round, region,
-                                        and seeds.
+                                        When the real tournament results change, update the master
+                                        games sheet. When a pool entry changes or you add entrants,
+                                        update the picks sheet. Reload the page data after either one
+                                        changes.
                                     </li>
                                     <li>
-                                        If you include a `winner` column on the picks tab, the app
-                                        will use it directly. If you leave it blank for earlier
-                                        rounds, it will try to infer the picked winner from that
-                                        player&apos;s later-round rows.
+                                        Team name matching ignores case, so `DUKE`, `Duke`, and `duke`
+                                        all compare the same. Spelling still matters, so keep team
+                                        names consistent when possible.
                                     </li>
                                     <li>
-                                        When a real game result is added to the games tab, reload the
-                                        sheet here and the standings plus future rooting model will
-                                        update automatically.
+                                        Final Four slots are fixed to{" "}
+                                        <span className="font-semibold text-slate-200">EAST vs SOUTH</span>{" "}
+                                        and{" "}
+                                        <span className="font-semibold text-slate-200">MIDWEST vs WEST</span>.
                                     </li>
                                 </ol>
                             </div>
@@ -1317,7 +1325,8 @@ export default function BracketRootingGuidePage() {
                                 <div className="font-semibold text-white">How To Make The Sheet Readable</div>
                                 <ol className="mt-3 list-decimal space-y-2 pl-4 text-xs leading-6 text-slate-400">
                                     <li>
-                                        Open the Google Sheet and click <span className="font-semibold text-slate-200">Share</span>.
+                                        Open the picks Google Sheet and click{" "}
+                                        <span className="font-semibold text-slate-200">Share</span>.
                                     </li>
                                     <li>
                                         Under general access, change it to{" "}
@@ -1332,30 +1341,34 @@ export default function BracketRootingGuidePage() {
                                         otherwise the browser fetch will fail.
                                     </li>
                                     <li>
-                                        Copy the sheet id from the URL. It is the long value between
-                                        `/d/` and `/edit`.
+                                        Publish the sheet as CSV or use a public CSV export link, then
+                                        paste that full URL into the picks field on this page.
                                     </li>
                                     <li>
-                                        If link sharing still does not work, use Google Sheets{" "}
-                                        <span className="font-semibold text-slate-200">File &gt; Share &gt; Publish to web</span>
-                                        and keep the tabs publicly available.
+                                        If normal sharing does not work, use Google Sheets{" "}
+                                        <span className="font-semibold text-slate-200">File &gt; Share &gt; Publish to web</span>{" "}
+                                        and copy the generated CSV link.
                                     </li>
                                 </ol>
                             </div>
                         </div>
 
                         <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-xs leading-6 text-emerald-100">
-                            Example games tab row:
+                            Example background games header:
                             <br />
-                            `1 | East | 1 | Duke | 16 | Mount St. Mary&apos;s | Duke`
+                            `ROUND | REGION | SEED A | TEAM A | SEED B | TEAM B | WINNER`
                             <br />
-                            Example future game row:
+                            Example background games row:
                             <br />
-                            `2 | East | 1 | Duke | 8 | Mississippi State |`
+                            `1 | EAST | 1 | DUKE | 16 | SIENA | DUKE`
                             <br />
-                            Example picks tab row:
+                            Example picks header:
                             <br />
-                            `Mark | 1 | East | 1 | Duke | 16 | Mount St. Mary&apos;s | Duke`
+                            `ENTRANT | R1_EAST_1 | R1_EAST_2 | ... | ELITE8_EAST_1 | FINAL4_EAST_SOUTH_1 | FINAL4_MIDWEST_WEST_1 | CHAMPIONSHIP_1`
+                            <br />
+                            Example entrant row:
+                            <br />
+                            `MARK | DUKE | TCU | ... | DUKE | DUKE | HOUSTON | DUKE`
                         </div>
 
                         <p className="text-xs text-slate-400">

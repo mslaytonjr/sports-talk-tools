@@ -57,61 +57,6 @@ const BACKGROUND_GAMES_CSV_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLTTG_-7-70kySWVudmo67YlGO9EiQxyfEYJsj4smLP0PCk8LrBcv0vFj6nSqTkzloaDeAvwlcvDrN/pub?gid=0&single=true&output=csv";
 const REGIONS = ["EAST", "SOUTH", "WEST", "MIDWEST"] as const;
 
-const SAMPLE_DATA: ParsedData = {
-    games: [
-        {
-            id: "east_vs_south_r5_1",
-            round: 5,
-            label: "Final Four East vs South",
-            pickKey: "east_vs_south_r5_1",
-            slots: [{ team: "DUKE" }, { team: "FLORIDA" }],
-        },
-        {
-            id: "midwest_vs_west_r5_1",
-            round: 5,
-            label: "Final Four Midwest vs West",
-            pickKey: "midwest_vs_west_r5_1",
-            slots: [{ team: "HOUSTON" }, { team: "AUBURN" }],
-        },
-        {
-            id: "championship_r6_1",
-            round: 6,
-            label: "Championship",
-            pickKey: "championship_r6_1",
-            slots: [
-                { sourceGameId: "east_vs_south_r5_1" },
-                { sourceGameId: "midwest_vs_west_r5_1" },
-            ],
-        },
-    ],
-    participants: [
-        {
-            name: "Mark",
-            picks: {
-                east_vs_south_r5_1: "DUKE",
-                midwest_vs_west_r5_1: "HOUSTON",
-                championship_r6_1: "DUKE",
-            },
-        },
-        {
-            name: "Jen",
-            picks: {
-                east_vs_south_r5_1: "FLORIDA",
-                midwest_vs_west_r5_1: "HOUSTON",
-                championship_r6_1: "FLORIDA",
-            },
-        },
-        {
-            name: "Chris",
-            picks: {
-                east_vs_south_r5_1: "DUKE",
-                midwest_vs_west_r5_1: "AUBURN",
-                championship_r6_1: "AUBURN",
-            },
-        },
-    ],
-};
-
 const ROUND_LABELS = [
     "First Round",
     "Second Round",
@@ -1438,22 +1383,13 @@ export default function BracketRootingGuidePage() {
                                         </option>
                                     ))}
                                 </select>
+                                {targetName ? (
+                                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-sm text-emerald-100">
+                                        Viewing standings and rooting guidance for{" "}
+                                        <span className="font-semibold text-white">{targetName}</span>.
+                                    </div>
+                                ) : null}
                             </div>
-
-                            <Button
-                                type="button"
-                                variant="secondary"
-                                className="w-full bg-slate-800 text-white hover:bg-slate-700"
-                                onClick={() => {
-                                    setLoadedData(SAMPLE_DATA);
-                                    setSelectedTarget("Mark");
-                                    setScoring(DEFAULT_SCORING);
-                                    setSheetError("");
-                                    setSheetSuccess("Loaded sample bracket data.");
-                                }}
-                            >
-                                Load Sample Data
-                            </Button>
 
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
                                 Best for late-round analysis. The simulator enumerates all valid
@@ -1464,7 +1400,7 @@ export default function BracketRootingGuidePage() {
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
                                 {loadedData
                                     ? `Loaded ${loadedData.games.length} games and ${loadedData.participants.length} brackets.`
-                                    : "No bracket data loaded yet. Load from Google Sheets or use the sample data."}
+                                    : "No bracket data loaded yet. Load from Google Sheets to begin."}
                             </div>
                         </CardContent>
                     </Card>

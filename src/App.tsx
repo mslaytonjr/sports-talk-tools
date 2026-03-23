@@ -1,5 +1,6 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import DepthChartPage from "./pages/DepthChartPage";
+import BracketRootingGuidePage from "./pages/BracketRootingGuidePage";
 import SabresPage from "./pages/SabresMagicNumberPage";
 import logo from "./assets/wny-sports-net-logo.png";
 
@@ -38,6 +39,16 @@ function HomePage() {
                                     rooting guidance built around what helps Buffalo most.
                                 </p>
                                 <div className="landing-card-action">Enter Sabres coverage</div>
+                            </Link>
+
+                            <Link to="/BracketRootingGuide" className="landing-card group">
+                                <div className="landing-card-label">Featured Coverage</div>
+                                <div className="landing-card-title">Bracket Rooting Guide</div>
+                                <p className="landing-card-copy">
+                                    Custom scoring rules, pool pick tracking, and game-by-game
+                                    rooting advice for the bracket you want to win.
+                                </p>
+                                <div className="landing-card-action">Enter bracket tool</div>
                             </Link>
                         </div>
                     </div>
@@ -102,6 +113,17 @@ export default function App() {
                         >
                             Sabres Magic Number
                         </Link>
+                        <Link
+                            to="/BracketRootingGuide"
+                            className={[
+                                "rounded-full border px-4 py-2 text-sm font-medium transition",
+                                location.pathname === "/BracketRootingGuide"
+                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
+                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
+                            ].join(" ")}
+                        >
+                            Bracket Rooting Guide
+                        </Link>
                     </div>
                 </nav>
             </header>
@@ -110,6 +132,7 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
+                <Route path="/BracketRootingGuide" element={<BracketRootingGuidePage />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>
         </div>

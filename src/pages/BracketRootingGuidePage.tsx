@@ -624,7 +624,11 @@ function parseCsv(text: string) {
 }
 
 function normalizeHeader(value: string) {
-    return value.trim().toLowerCase().replaceAll(/[^a-z0-9]+/g, "_");
+    return value
+        .replace(/^\uFEFF/, "")
+        .trim()
+        .toLowerCase()
+        .replaceAll(/[^a-z0-9]+/g, "_");
 }
 
 type SheetResultRow = {
@@ -1039,9 +1043,14 @@ function participantsFromSheet(rows: string[][], games: BracketGame[]) {
     }
 
     const headers = rows[0].map((header) => header.trim());
-    const entrantIndex = headers.findIndex((header) => normalizeHeader(header) === "entrant");
+    const entrantHeaderNames = new Set(["entrant", "entry", "name", "player", "user"]);
+    const entrantIndex = headers.findIndex((header) =>
+        entrantHeaderNames.has(normalizeHeader(header))
+    );
     if (entrantIndex === -1) {
-        throw new Error("Picks sheet must include an ENTRANT column.");
+        throw new Error(
+            `Picks sheet must include an ENTRANT column. Found headers: ${headers.join(", ")}`
+        );
     }
 
     const validGameIds = new Set(games.map((game) => game.id));
@@ -1288,6 +1297,11 @@ export default function BracketRootingGuidePage() {
                                     <li>
                                         Publish the sheet as CSV or use a public CSV export link, then
                                         paste that full URL into the picks field on this page.
+                                    </li>
+                                    <li>
+                                        Publish the picks tab only, not the whole workbook. The CSV
+                                        URL should point at the picks tab `gid` and include
+                                        `single=true`.
                                     </li>
                                     <li>
                                         If normal sharing does not work, use Google Sheets{" "}

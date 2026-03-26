@@ -15,7 +15,7 @@ import {
 } from "@/lib/playImpact";
 
 type StepStatus = "pending" | "active" | "done";
-const AVAILABLE_SEASONS = ["2025"] as const;
+const AVAILABLE_SEASONS = ["2025", "2024", "2023", "2022", "2021", "2020", "2019"] as const;
 
 function formatStatusClass(status: StepStatus) {
     if (status === "done") {

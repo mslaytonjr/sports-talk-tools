@@ -1,0 +1,168 @@
+{
+  "season": 2019,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2019.csv",
+  "generatedAt": "2026-03-26T14:18:45.662Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 47260,
+  "gameCount": 267,
+  "oneScoreRowCount": 28186,
+  "qualifyingSackRowCount": 188,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 188,
+    "averageWpDeltaOffense": -0.06701385817384706,
+    "medianWpDeltaOffense": -0.05616252124309537
+  },
+  "rowsWithWp": 46985,
+  "rowsWithDerivedWpAfter": 46558,
+  "sackCount": 1422,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2019_01_CIN_SEA",
+      "play_id": "3124",
+      "posteam": "CIN",
+      "qtr": "4",
+      "score_differential": "-4",
+      "is_sack": "true",
+      "win_probability_before": 0.317261308431625,
+      "win_probability_after": 0.26053363084793046,
+      "wp_delta_offense": -0.056727677583694514,
+      "desc": "(14:53) 14-A.Dalton sacked at CIN 17 for -8 yards (99-Q.Jefferson)."
+    },
+    {
+      "game_id": "2019_01_CIN_SEA",
+      "play_id": "3515",
+      "posteam": "CIN",
+      "qtr": "4",
+      "score_differential": "-4",
+      "is_sack": "true",
+      "win_probability_before": 0.440119713544846,
+      "win_probability_after": 0.40804815292358443,
+      "wp_delta_offense": -0.0320715606212616,
+      "desc": "(8:22) (Shotgun) 14-A.Dalton sacked at SEA 16 for -2 yards (90-J.Clowney)."
+    },
+    {
+      "game_id": "2019_01_CIN_SEA",
+      "play_id": "4158",
+      "posteam": "CIN",
+      "qtr": "4",
+      "score_differential": "-1",
+      "is_sack": "true",
+      "win_probability_before": 0.295321315526962,
+      "win_probability_after": 0.07529288530349701,
+      "wp_delta_offense": -0.220028430223465,
+      "desc": "(:14) (Shotgun) 14-A.Dalton sacked at CIN 23 for -8 yards (98-R.Green). FUMBLES (98-R.Green), RECOVERED by SEA-21-T.Flowers at CIN 44. 21-T.Flowers to CIN 44 for no gain (11-J.Ross III). The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field was confirmed."
+    },
+    {
+      "game_id": "2019_01_GB_CHI",
+      "play_id": "3836",
+      "posteam": "GB",
+      "qtr": "4",
+      "score_differential": "4",
+      "is_sack": "true",
+      "win_probability_before": 0.803746342658997,
+      "win_probability_after": 0.8236229419708256,
+      "wp_delta_offense": 0.019876599311828613,
+      "desc": "(8:01) 12-A.Rodgers sacked at CHI 39 for -5 yards (94-L.Floyd). PENALTY on CHI-23-K.Fuller, Illegal Contact, 5 yards, enforced at CHI 34 - No Play."
+    },
+    {
+      "game_id": "2019_01_GB_CHI",
+      "play_id": "4576",
+      "posteam": "CHI",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.0437108092010021,
+      "win_probability_after": 0.0050841569900512,
+      "wp_delta_offense": -0.0386266522109509,
+      "desc": "(1:09) (Shotgun) 10-M.Trubisky sacked at CHI 5 for -11 yards (91-P.Smith)."
+    },
+    {
+      "game_id": "2019_01_HOU_NO",
+      "play_id": "3374",
+      "posteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.448358058929443,
+      "win_probability_after": 0.3533290624618527,
+      "wp_delta_offense": -0.09502899646759033,
+      "desc": "(13:01) 4-D.Watson sacked at 50 for -6 yards (47-A.Anzalone)."
+    },
+    {
+      "game_id": "2019_01_HOU_NO",
+      "play_id": "3424",
+      "posteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.316311538219452,
+      "win_probability_after": 0.2571068704128266,
+      "wp_delta_offense": -0.05920466780662542,
+      "desc": "(11:33) (Shotgun) 4-D.Watson sacked at HOU 43 for -6 yards (91-T.Hendrickson). Penalty on HOU-76-S.Henderson, Offensive Holding, declined."
+    },
+    {
+      "game_id": "2019_01_HOU_NO",
+      "play_id": "3582",
+      "posteam": "NO",
+      "qtr": "4",
+      "score_differential": "3",
+      "is_sack": "true",
+      "win_probability_before": 0.762555301189423,
+      "win_probability_after": 0.7280273437500004,
+      "wp_delta_offense": -0.03452795743942261,
+      "desc": "(9:17) (Shotgun) 9-D.Brees sacked at NO 37 for -8 yards (59-W.Mercilus)."
+    },
+    {
+      "game_id": "2019_01_HOU_NO",
+      "play_id": "3755",
+      "posteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.454154908657074,
+      "win_probability_after": 0.39839616417884827,
+      "wp_delta_offense": -0.05575874447822571,
+      "desc": "(5:47) (Shotgun) 4-D.Watson sacked at NO 44 for -1 yards (26-P.Williams)."
+    },
+    {
+      "game_id": "2019_01_HOU_NO",
+      "play_id": "3799",
+      "posteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.342750877141953,
+      "win_probability_after": 0.20681291818618802,
+      "wp_delta_offense": -0.135937958955765,
+      "desc": "(4:25) (Shotgun) 4-D.Watson sacked at HOU 45 for -11 yards (91-T.Hendrickson)."
+    }
+  ]
+}

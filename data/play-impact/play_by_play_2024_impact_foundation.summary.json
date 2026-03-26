@@ -1,0 +1,168 @@
+{
+  "season": 2024,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2024.csv",
+  "generatedAt": "2026-03-26T14:16:36.110Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 49492,
+  "gameCount": 285,
+  "oneScoreRowCount": 31033,
+  "qualifyingSackRowCount": 190,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 190,
+    "averageWpDeltaOffense": -0.06820585129377184,
+    "medianWpDeltaOffense": -0.05596550181508064
+  },
+  "rowsWithWp": 49207,
+  "rowsWithDerivedWpAfter": 48769,
+  "sackCount": 1488,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2024_01_ARI_BUF",
+      "play_id": "3608",
+      "posteam": "ARI",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.263258516788483,
+      "win_probability_after": 0.1983325779438022,
+      "wp_delta_offense": -0.06492593884468079,
+      "desc": "(5:08) (Shotgun) 1-K.Murray sacked at ARI 14 for -5 yards (40-V.Miller)."
+    },
+    {
+      "game_id": "2024_01_GB_PHI",
+      "play_id": "4681",
+      "posteam": "GB",
+      "qtr": "4",
+      "score_differential": "-5",
+      "is_sack": "true",
+      "win_probability_before": 0.169869959354401,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.169869959354401,
+      "desc": "(:03) (Shotgun) 2-M.Willis sacked at GB 49 for -4 yards (53-Z.Baun)."
+    },
+    {
+      "game_id": "2024_01_JAX_MIA",
+      "play_id": "3817",
+      "posteam": "JAX",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.457661718130112,
+      "win_probability_after": 0.38857567310333285,
+      "wp_delta_offense": -0.06908604502677917,
+      "desc": "(3:46) (Shotgun) 16-T.Lawrence sacked at JAX 26 for -4 yards (91-E.Ogbah)."
+    },
+    {
+      "game_id": "2024_01_JAX_MIA",
+      "play_id": "3837",
+      "posteam": "JAX",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.388575673103333,
+      "win_probability_after": 0.3516390323638921,
+      "wp_delta_offense": -0.03693664073944092,
+      "desc": "(3:06) (Shotgun) 16-T.Lawrence sacked at JAX 20 for -6 yards (15-J.Phillips)."
+    },
+    {
+      "game_id": "2024_01_LA_DET",
+      "play_id": "4238",
+      "posteam": "LA",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.557679831981659,
+      "win_probability_after": 0.39220051560550906,
+      "wp_delta_offense": -0.16547931637615,
+      "desc": "(:11) (Shotgun) 9-M.Stafford sacked at LA 25 for -5 yards (97-A.Hutchinson)."
+    },
+    {
+      "game_id": "2024_01_PIT_ATL",
+      "play_id": "3759",
+      "posteam": "PIT",
+      "qtr": "4",
+      "score_differential": "5",
+      "is_sack": "true",
+      "win_probability_before": 0.798076450824738,
+      "win_probability_after": 0.7251065969467168,
+      "wp_delta_offense": -0.07296985387802124,
+      "desc": "(4:23) (No Huddle, Shotgun) 2-J.Fields sacked at PIT 27 for -8 yards (sack split by 15-M.Judon and 97-G.Jarrett)."
+    },
+    {
+      "game_id": "2024_01_PIT_ATL",
+      "play_id": "4197",
+      "posteam": "ATL",
+      "qtr": "4",
+      "score_differential": "-8",
+      "is_sack": "true",
+      "win_probability_before": 0.0232810396701098,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.0232810396701098,
+      "desc": "(:13) (Shotgun) 18-K.Cousins sacked at ATL 28 for -9 yards (90-T.Watt)."
+    },
+    {
+      "game_id": "2024_01_TEN_CHI",
+      "play_id": "3361",
+      "posteam": "TEN",
+      "qtr": "4",
+      "score_differential": "4",
+      "is_sack": "true",
+      "win_probability_before": 0.738629877567291,
+      "win_probability_after": 0.505318909883499,
+      "wp_delta_offense": -0.233310967683792,
+      "desc": "(11:54) (Shotgun) 8-W.Levis sacked at TEN 38 for -10 yards (52-D.Taylor). FUMBLES (52-D.Taylor) [52-D.Taylor], touched at TEN 33, RECOVERED by CHI-53-T.Edwards at TEN 31."
+    },
+    {
+      "game_id": "2024_02_CHI_HOU",
+      "play_id": "4449",
+      "posteam": "CHI",
+      "qtr": "4",
+      "score_differential": "-6",
+      "is_sack": "true",
+      "win_probability_before": 0.153349563479424,
+      "win_probability_after": 0.0977256968617444,
+      "wp_delta_offense": -0.055623866617679596,
+      "desc": "(1:07) (Shotgun) 18-C.Williams sacked at CHI 39 for -8 yards (55-D.Hunter)."
+    },
+    {
+      "game_id": "2024_02_CIN_KC",
+      "play_id": "3204",
+      "posteam": "CIN",
+      "qtr": "4",
+      "score_differential": "5",
+      "is_sack": "true",
+      "win_probability_before": 0.706175446510315,
+      "win_probability_after": 0.40766148236393907,
+      "wp_delta_offense": -0.298513964146376,
+      "desc": "(14:52) (Shotgun) 9-J.Burrow sacked at CIN 34 for 0 yards (sack split by 98-T.Wharton and 51-M.Danna). FUMBLES (98-T.Wharton) [51-M.Danna], RECOVERED by KC-27-C.Conner at CIN 38. 27-C.Conner for 38 yards, TOUCHDOWN."
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "season": 2020,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2020.csv",
+  "generatedAt": "2026-03-26T14:18:37.526Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 47705,
+  "gameCount": 269,
+  "oneScoreRowCount": 28456,
+  "qualifyingSackRowCount": 166,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 166,
+    "averageWpDeltaOffense": -0.0692078775473566,
+    "medianWpDeltaOffense": -0.052115790545940406
+  },
+  "rowsWithWp": 47436,
+  "rowsWithDerivedWpAfter": 46982,
+  "sackCount": 1268,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2020_01_ARI_SF",
+      "play_id": "3361",
+      "posteam": "ARI",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.378636628389359,
+      "win_probability_after": 0.3336738049983983,
+      "wp_delta_offense": -0.04496282339096069,
+      "desc": "(15:00) 1-K.Murray sacked at ARI 40 for -1 yards (93-D.Jones)."
+    },
+    {
+      "game_id": "2020_01_DAL_LA",
+      "play_id": "3803",
+      "posteam": "LA",
+      "qtr": "4",
+      "score_differential": "3",
+      "is_sack": "true",
+      "win_probability_before": 0.773819983005524,
+      "win_probability_after": 0.7000114321708683,
+      "wp_delta_offense": -0.07380855083465576,
+      "desc": "(7:13) (Shotgun) 16-J.Goff sacked at LA 46 for -6 yards (58-A.Smith)."
+    },
+    {
+      "game_id": "2020_01_DAL_LA",
+      "play_id": "4252",
+      "posteam": "DAL",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.250893890857697,
+      "win_probability_after": 0.19344684481620827,
+      "wp_delta_offense": -0.0574470460414887,
+      "desc": "(1:42) (No Huddle, Shotgun) 4-D.Prescott sacked at DAL 18 for -7 yards (54-L.Floyd)."
+    },
+    {
+      "game_id": "2020_01_IND_JAX",
+      "play_id": "3695",
+      "posteam": "JAX",
+      "qtr": "4",
+      "score_differential": "4",
+      "is_sack": "true",
+      "win_probability_before": 0.840237379074097,
+      "win_probability_after": 0.8144929409027103,
+      "wp_delta_offense": -0.02574443817138672,
+      "desc": "(3:03) (Shotgun) 15-G.Minshew sacked at IND 28 for -1 yards (96-D.Autry)."
+    },
+    {
+      "game_id": "2020_01_PHI_WAS",
+      "play_id": "3301",
+      "posteam": "PHI",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.477880448102951,
+      "win_probability_after": 0.4164721965789794,
+      "wp_delta_offense": -0.06140825152397161,
+      "desc": "(14:15) 11-C.Wentz sacked at PHI 15 for -10 yards (91-R.Kerrigan)."
+    },
+    {
+      "game_id": "2020_01_PHI_WAS",
+      "play_id": "3691",
+      "posteam": "WAS",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.735853493213654,
+      "win_probability_after": 0.7579742074012761,
+      "wp_delta_offense": 0.02212071418762207,
+      "desc": "(6:57) (Shotgun) 7-D.Haskins sacked at PHI 3 for 0 yards (sack split by 58-G.Avery and 50-D.Riley)."
+    },
+    {
+      "game_id": "2020_01_TB_NO",
+      "play_id": "3279",
+      "posteam": "TB",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.187156409025192,
+      "win_probability_after": 0.11795514076948141,
+      "wp_delta_offense": -0.0692012682557106,
+      "desc": "(14:56) (Shotgun) 12-T.Brady sacked at TB 20 for -8 yards (56-D.Davis)."
+    },
+    {
+      "game_id": "2020_02_BUF_MIA",
+      "play_id": "3455",
+      "posteam": "BUF",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.443811595439911,
+      "win_probability_after": 0.3793979883193971,
+      "wp_delta_offense": -0.06441360712051392,
+      "desc": "(9:00) (Shotgun) 17-J.Allen sacked at MIA 42 for -4 yards (sack split by 91-E.Ogbah and 43-A.Van Ginkel)."
+    },
+    {
+      "game_id": "2020_02_BUF_MIA",
+      "play_id": "3651",
+      "posteam": "MIA",
+      "qtr": "4",
+      "score_differential": "-4",
+      "is_sack": "true",
+      "win_probability_before": 0.333533883094788,
+      "win_probability_after": 0.2597048282623295,
+      "wp_delta_offense": -0.0738290548324585,
+      "desc": "(5:51) 14-R.Fitzpatrick sacked at MIA 21 for -9 yards (21-J.Poyer)."
+    },
+    {
+      "game_id": "2020_02_CAR_TB",
+      "play_id": "3428",
+      "posteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.201411783695221,
+      "win_probability_after": 0.1718543022871018,
+      "wp_delta_offense": -0.0295574814081192,
+      "desc": "(11:02) 5-T.Bridgewater sacked at CAR 44 for -7 yards (92-W.Gholston)."
+    }
+  ]
+}

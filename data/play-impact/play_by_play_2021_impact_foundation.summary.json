@@ -1,0 +1,168 @@
+{
+  "season": 2021,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2021.csv",
+  "generatedAt": "2026-03-26T14:18:30.079Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 49922,
+  "gameCount": 285,
+  "oneScoreRowCount": 29740,
+  "qualifyingSackRowCount": 158,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 158,
+    "averageWpDeltaOffense": -0.06444578472654561,
+    "medianWpDeltaOffense": -0.05688577145338061
+  },
+  "rowsWithWp": 49637,
+  "rowsWithDerivedWpAfter": 49225,
+  "sackCount": 1387,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2021_01_BAL_LV",
+      "play_id": "3143",
+      "posteam": "LV",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.233763054013252,
+      "win_probability_after": 0.1639066189527509,
+      "wp_delta_offense": -0.0698564350605011,
+      "desc": "(14:44) (Shotgun) 4-D.Carr sacked at LV 23 for -13 yards (6-P.Queen)."
+    },
+    {
+      "game_id": "2021_01_CLE_KC",
+      "play_id": "3149",
+      "posteam": "CLE",
+      "qtr": "4",
+      "score_differential": "2",
+      "is_sack": "true",
+      "win_probability_before": 0.648657143115997,
+      "win_probability_after": 0.5955564379692074,
+      "wp_delta_offense": -0.05310070514678955,
+      "desc": "(10:10) (Shotgun) 6-B.Mayfield sacked at CLE 19 for -6 yards (95-C.Jones)."
+    },
+    {
+      "game_id": "2021_01_CLE_KC",
+      "play_id": "3639",
+      "posteam": "KC",
+      "qtr": "4",
+      "score_differential": "4",
+      "is_sack": "true",
+      "win_probability_before": 0.795947670936585,
+      "win_probability_after": 0.7332559823989874,
+      "wp_delta_offense": -0.06269168853759766,
+      "desc": "(3:41) (Shotgun) 15-P.Mahomes sacked at KC 40 for -9 yards (95-M.Garrett)."
+    },
+    {
+      "game_id": "2021_01_MIN_CIN",
+      "play_id": "3645",
+      "posteam": "CIN",
+      "qtr": "4",
+      "score_differential": "3",
+      "is_sack": "true",
+      "win_probability_before": 0.776016056537628,
+      "win_probability_after": 0.662609577178955,
+      "wp_delta_offense": -0.11340647935867298,
+      "desc": "(8:11) (Shotgun) 9-J.Burrow sacked at CIN 25 for -8 yards (99-D.Hunter)."
+    },
+    {
+      "game_id": "2021_01_MIN_CIN",
+      "play_id": "3764",
+      "posteam": "MIN",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.27583172917366,
+      "win_probability_after": 0.2036843746900556,
+      "wp_delta_offense": -0.0721473544836044,
+      "desc": "(5:47) (Shotgun) 8-K.Cousins sacked at MIN 24 for -8 yards (92-B.Hill)."
+    },
+    {
+      "game_id": "2021_01_PIT_BUF",
+      "play_id": "3346",
+      "posteam": "BUF",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.370948821306229,
+      "win_probability_after": 0.2816482186317447,
+      "wp_delta_offense": -0.08930060267448431,
+      "desc": "(10:31) (Shotgun) 17-J.Allen sacked at BUF 23 for -6 yards (97-C.Heyward)."
+    },
+    {
+      "game_id": "2021_02_ATL_TB",
+      "play_id": "3365",
+      "posteam": "TB",
+      "qtr": "4",
+      "score_differential": "3",
+      "is_sack": "true",
+      "win_probability_before": 0.72300535440445,
+      "win_probability_after": 0.6852301359176641,
+      "wp_delta_offense": -0.03777521848678589,
+      "desc": "(14:30) (Shotgun) 12-T.Brady sacked at TB 29 for -7 yards (45-D.Jones)."
+    },
+    {
+      "game_id": "2021_02_DAL_LAC",
+      "play_id": "3390",
+      "posteam": "DAL",
+      "qtr": "4",
+      "score_differential": "0",
+      "is_sack": "true",
+      "win_probability_before": 0.589312791824341,
+      "win_probability_after": 0.48682087659835804,
+      "wp_delta_offense": -0.102491915225983,
+      "desc": "(11:21) (Shotgun) 4-D.Prescott sacked at LAC 18 for -8 yards (52-K.Fackrell). FUMBLES (52-K.Fackrell) [52-K.Fackrell], recovered by DAL-70-Z.Martin at LAC 16."
+    },
+    {
+      "game_id": "2021_02_DAL_LAC",
+      "play_id": "3729",
+      "posteam": "LAC",
+      "qtr": "4",
+      "score_differential": "-3",
+      "is_sack": "true",
+      "win_probability_before": 0.653681457042694,
+      "win_probability_after": 0.49386137723922696,
+      "wp_delta_offense": -0.15982007980346702,
+      "desc": "(5:35) (Shotgun) 10-J.Herbert sacked at DAL 25 for -18 yards (11-M.Parsons)."
+    },
+    {
+      "game_id": "2021_02_KC_BAL",
+      "play_id": "3428",
+      "posteam": "BAL",
+      "qtr": "4",
+      "score_differential": "-5",
+      "is_sack": "true",
+      "win_probability_before": 0.337891817092896,
+      "win_probability_after": 0.31714308261871393,
+      "wp_delta_offense": -0.020748734474182073,
+      "desc": "(8:29) (Shotgun) 8-L.Jackson sacked at 50 for -6 yards (35-C.Ward). PENALTY on KC-32-T.Mathieu, Illegal Contact, 5 yards, enforced at KC 44 - No Play."
+    }
+  ]
+}

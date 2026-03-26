@@ -1,0 +1,168 @@
+{
+  "season": 2023,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2023.csv",
+  "generatedAt": "2026-03-26T14:18:16.324Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 49665,
+  "gameCount": 285,
+  "oneScoreRowCount": 31485,
+  "qualifyingSackRowCount": 213,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 213,
+    "averageWpDeltaOffense": -0.07000508223942652,
+    "medianWpDeltaOffense": -0.05934113264083862
+  },
+  "rowsWithWp": 49380,
+  "rowsWithDerivedWpAfter": 48925,
+  "sackCount": 1556,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2023_01_ARI_WAS",
+      "play_id": "4214",
+      "posteam": "ARI",
+      "qtr": "4",
+      "score_differential": "-4",
+      "is_sack": "true",
+      "win_probability_before": 0.250361859798431,
+      "win_probability_after": 0.19397559762001002,
+      "wp_delta_offense": -0.05638626217842099,
+      "desc": "(1:29) (No Huddle, Shotgun) 9-J.Dobbs sacked at ARI 31 for -8 yards (93-J.Allen)."
+    },
+    {
+      "game_id": "2023_01_BUF_NYJ",
+      "play_id": "2799",
+      "posteam": "NYJ",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.238360345363617,
+      "win_probability_after": 0.15704520046710968,
+      "wp_delta_offense": -0.08131514489650732,
+      "desc": "(15:00) (Shotgun) 2-Z.Wilson sacked at NYJ 31 for -1 yards (sack split by 56-L.Floyd and 91-E.Oliver)."
+    },
+    {
+      "game_id": "2023_01_BUF_NYJ",
+      "play_id": "2896",
+      "posteam": "BUF",
+      "qtr": "4",
+      "score_differential": "7",
+      "is_sack": "true",
+      "win_probability_before": 0.825467348098755,
+      "win_probability_after": 0.8117621541023256,
+      "wp_delta_offense": -0.013705193996429443,
+      "desc": "(13:10) (No Huddle, Shotgun) 17-J.Allen sacked at BUF 23 for -2 yards (11-J.Johnson)."
+    },
+    {
+      "game_id": "2023_01_CAR_ATL",
+      "play_id": "3147",
+      "posteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-7",
+      "is_sack": "true",
+      "win_probability_before": 0.158366918563843,
+      "win_probability_after": 0.1064683198928835,
+      "wp_delta_offense": -0.0518985986709595,
+      "desc": "(11:42) (Shotgun) 9-B.Young sacked at CAR 29 for -7 yards (sack split by 44-T.Andersen and 97-G.Jarrett)."
+    },
+    {
+      "game_id": "2023_01_LV_DEN",
+      "play_id": "3034",
+      "posteam": "DEN",
+      "qtr": "4",
+      "score_differential": "3",
+      "is_sack": "true",
+      "win_probability_before": 0.712847113609314,
+      "win_probability_after": 0.6649101972579956,
+      "wp_delta_offense": -0.04793691635131836,
+      "desc": "(14:15) (Shotgun) 3-R.Wilson sacked at DEN 43 for -4 yards (90-J.Tillery)."
+    },
+    {
+      "game_id": "2023_01_MIA_LAC",
+      "play_id": "4679",
+      "posteam": "LAC",
+      "qtr": "4",
+      "score_differential": "-2",
+      "is_sack": "true",
+      "win_probability_before": 0.368557661771774,
+      "win_probability_after": 0.2999455928802487,
+      "wp_delta_offense": -0.06861206889152532,
+      "desc": "(1:18) (Shotgun) 10-J.Herbert sacked at LAC 16 for -8 yards (92-Z.Sieler)."
+    },
+    {
+      "game_id": "2023_01_MIA_LAC",
+      "play_id": "4731",
+      "posteam": "LAC",
+      "qtr": "4",
+      "score_differential": "-2",
+      "is_sack": "true",
+      "win_probability_before": 0.27056547999382,
+      "win_probability_after": 0.03729689121246302,
+      "wp_delta_offense": -0.233268588781357,
+      "desc": "(1:01) (Shotgun) 10-J.Herbert sacked at LAC 24 for -9 yards (sack split by 15-J.Phillips and 20-J.Bethel)."
+    },
+    {
+      "game_id": "2023_01_PHI_NE",
+      "play_id": "3858",
+      "posteam": "PHI",
+      "qtr": "4",
+      "score_differential": "8",
+      "is_sack": "true",
+      "win_probability_before": 0.941558480262756,
+      "win_probability_after": 0.9252865314483639,
+      "wp_delta_offense": -0.01627194881439209,
+      "desc": "(7:46) (Shotgun) 1-J.Hurts sacked at NE 48 for -8 yards (6-C.Gonzalez)."
+    },
+    {
+      "game_id": "2023_01_PHI_NE",
+      "play_id": "4250",
+      "posteam": "NE",
+      "qtr": "4",
+      "score_differential": "-5",
+      "is_sack": "true",
+      "win_probability_before": 0.338994383811951,
+      "win_probability_after": 0.22935551404953003,
+      "wp_delta_offense": -0.10963886976242099,
+      "desc": "(2:59) (Shotgun) 10-M.Jones sacked at PHI 43 for -7 yards (sack split by 90-J.Davis and 94-J.Sweat)."
+    },
+    {
+      "game_id": "2023_01_PHI_NE",
+      "play_id": "4614",
+      "posteam": "NE",
+      "qtr": "4",
+      "score_differential": "-5",
+      "is_sack": "true",
+      "win_probability_before": 0.479478031396866,
+      "win_probability_after": 0.359523266553879,
+      "wp_delta_offense": -0.119954764842987,
+      "desc": "(:58) (Shotgun) 10-M.Jones sacked at PHI 22 for -3 yards (98-J.Carter)."
+    }
+  ]
+}

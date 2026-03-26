@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
     filterOneScorePlays,
     filterQualifyingSackPlays,
@@ -16,6 +15,7 @@ import {
 } from "@/lib/playImpact";
 
 type StepStatus = "pending" | "active" | "done";
+const AVAILABLE_SEASONS = ["2025"] as const;
 
 function formatStatusClass(status: StepStatus) {
     if (status === "done") {
@@ -38,7 +38,7 @@ function formatPercent(value: number | null | undefined) {
 }
 
 export default function PlayImpactModelPage() {
-    const [seasonInput, setSeasonInput] = useState("2024");
+    const [seasonInput, setSeasonInput] = useState<string>(AVAILABLE_SEASONS[0]);
     const [seasonData, setSeasonData] = useState<PlayByPlaySeason | null>(null);
     const [publishedSeason, setPublishedSeason] = useState<PublishedPlayImpactSeason | null>(null);
     const [loading, setLoading] = useState(false);
@@ -152,8 +152,8 @@ export default function PlayImpactModelPage() {
 
     async function handleLoadSeason() {
         const season = Number(seasonInput);
-        if (!Number.isInteger(season) || season < 1999 || season > 2100) {
-            setError("Enter a valid NFL season year.");
+        if (!AVAILABLE_SEASONS.includes(seasonInput as (typeof AVAILABLE_SEASONS)[number])) {
+            setError("Select an available published season.");
             return;
         }
 
@@ -260,6 +260,11 @@ export default function PlayImpactModelPage() {
                             The reusable written definition for this V1 metric lives in
                             `docs/play-impact-v1.md`.
                         </p>
+                        <p>
+                            Published site seasons are controlled by `AVAILABLE_SEASONS` in this
+                            page. Add `2024` and `2023` there after their artifacts are generated
+                            and committed.
+                        </p>
                     </CardContent>
                 </Card>
 
@@ -273,12 +278,17 @@ export default function PlayImpactModelPage() {
                                 <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
                                     Season
                                 </div>
-                                <Input
+                                <select
                                     value={seasonInput}
                                     onChange={(event) => setSeasonInput(event.target.value)}
-                                    placeholder="2024"
-                                    className="border-slate-700 bg-slate-950 text-white"
-                                />
+                                    className="flex h-9 w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-1 text-sm text-white shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                                >
+                                    {AVAILABLE_SEASONS.map((season) => (
+                                        <option key={season} value={season}>
+                                            {season}
+                                        </option>
+                                    ))}
+                                </select>
                             </label>
 
                             <div className="flex items-end">
@@ -293,9 +303,8 @@ export default function PlayImpactModelPage() {
                             </div>
 
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                The page now prefers committed season artifacts from the site. If a
-                                pushed season is not available yet, it falls back to live nflverse
-                                loading in the browser.
+                                The deployed page only offers seasons with published site artifacts,
+                                which prevents users from hitting missing-season fetch errors.
                             </div>
                         </div>
 

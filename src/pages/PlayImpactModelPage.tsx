@@ -8,6 +8,7 @@ import {
     filterQualifyingSackPlays,
     loadSeasonPlayByPlay,
     ONE_SCORE_MARGIN,
+    summarizeQualifyingSacks,
     type LoadProgress,
     type PlayByPlaySeason,
 } from "@/lib/playImpact";
@@ -49,6 +50,7 @@ export default function PlayImpactModelPage() {
 
         const oneScoreData = filterOneScorePlays(seasonData);
         const qualifyingSacks = filterQualifyingSackPlays(seasonData);
+        const qualifyingSummary = summarizeQualifyingSacks(seasonData);
         const gameIds = new Set<string>();
         let rowsWithWp = 0;
         let rowsWithWpa = 0;
@@ -73,6 +75,7 @@ export default function PlayImpactModelPage() {
             plays: seasonData.rows.length,
             oneScorePlays: oneScoreData.rows.length,
             qualifyingSacks: qualifyingSacks.rows.length,
+            qualifyingSummary,
             games: gameIds.size,
             rowsWithWp,
             rowsWithWpa,
@@ -291,6 +294,7 @@ export default function PlayImpactModelPage() {
                 </Card>
 
                 {summary ? (
+                    <div className="space-y-6">
                     <Card className="border-slate-800 bg-slate-900/80">
                         <CardHeader>
                             <CardTitle className="text-lg text-white">Season Summary</CardTitle>
@@ -354,6 +358,44 @@ export default function PlayImpactModelPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <Card className="border-slate-800 bg-slate-900/80">
+                        <CardHeader>
+                            <CardTitle className="text-lg text-white">
+                                Qualifying Sack Summary
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="grid gap-3 md:grid-cols-3">
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                    Total Qualifying Plays
+                                </div>
+                                <div className="mt-2 text-2xl font-semibold text-white">
+                                    {summary.qualifyingSummary.qualifyingPlayCount.toLocaleString()}
+                                </div>
+                            </div>
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                    Average wp_delta_offense
+                                </div>
+                                <div className="mt-2 text-2xl font-semibold text-white">
+                                    {summary.qualifyingSummary.averageWpDeltaOffense == null
+                                        ? "n/a"
+                                        : summary.qualifyingSummary.averageWpDeltaOffense.toFixed(4)}
+                                </div>
+                            </div>
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                    Median wp_delta_offense
+                                </div>
+                                <div className="mt-2 text-2xl font-semibold text-white">
+                                    {summary.qualifyingSummary.medianWpDeltaOffense == null
+                                        ? "n/a"
+                                        : summary.qualifyingSummary.medianWpDeltaOffense.toFixed(4)}
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    </div>
                 ) : null}
 
                 {seasonData ? (

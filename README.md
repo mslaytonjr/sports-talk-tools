@@ -59,6 +59,12 @@ The script also writes a reusable qualifying-play dataset:
 
 - `data/play-impact/play_by_play_2024_impact_foundation.q4_one_score_sacks.csv`
 
+The summary JSON also records the first aggregate readout for that filtered sack sample:
+
+- `qualifyingPlayCount`
+- `averageWpDeltaOffense`
+- `medianWpDeltaOffense`
+
 Example output files:
 
 - `data/play-impact/play_by_play_2024_impact_foundation.csv`

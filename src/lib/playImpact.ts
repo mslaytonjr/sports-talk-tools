@@ -59,6 +59,12 @@ export type QualifyingSackSeason = PlayByPlaySeason & {
     };
 };
 
+export type QualifyingSackSummary = {
+    qualifyingPlayCount: number;
+    averageWpDeltaOffense: number | null;
+    medianWpDeltaOffense: number | null;
+};
+
 export type LoadProgress =
     | { stage: "starting"; message: string }
     | { stage: "downloading"; message: string; bytesLoaded: number; totalBytes: number | null }
@@ -232,6 +238,42 @@ export function filterQualifyingSackPlays(seasonData: PlayByPlaySeason): Qualify
             perspective: "offense",
             wpDeltaFormula: "winProbabilityAfter - winProbabilityBefore",
         },
+    };
+}
+
+function average(values: number[]) {
+    if (values.length === 0) {
+        return null;
+    }
+
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function median(values: number[]) {
+    if (values.length === 0) {
+        return null;
+    }
+
+    const sorted = [...values].sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+
+    if (sorted.length % 2 === 0) {
+        return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+
+    return sorted[middle];
+}
+
+export function summarizeQualifyingSacks(seasonData: PlayByPlaySeason): QualifyingSackSummary {
+    const qualifying = filterQualifyingSackPlays(seasonData);
+    const deltas = qualifying.rows
+        .map((row) => row.wpDeltaOffense)
+        .filter((value): value is number => value != null);
+
+    return {
+        qualifyingPlayCount: qualifying.rows.length,
+        averageWpDeltaOffense: average(deltas),
+        medianWpDeltaOffense: median(deltas),
     };
 }
 

@@ -182,6 +182,11 @@ async function main() {
         gameCount: 0,
         oneScoreRowCount: 0,
         qualifyingSackRowCount: 0,
+        qualifyingSackSummary: {
+            qualifyingPlayCount: 0,
+            averageWpDeltaOffense: null,
+            medianWpDeltaOffense: null,
+        },
         rowsWithWp: 0,
         rowsWithDerivedWpAfter: 0,
         sackCount: 0,
@@ -199,6 +204,7 @@ async function main() {
     };
 
     const gameIds = new Set();
+    const qualifyingWpDeltas = [];
     let headers = null;
     let indexes = null;
     let rowCount = 0;
@@ -299,6 +305,8 @@ async function main() {
                             desc: outputRow.desc,
                         });
                     }
+
+                    qualifyingWpDeltas.push(Number(outputRow.wp_delta_offense));
                 }
             }
         }
@@ -373,6 +381,21 @@ async function main() {
 
     summary.rowCount = rowCount;
     summary.gameCount = gameIds.size;
+    summary.qualifyingSackSummary.qualifyingPlayCount = summary.qualifyingSackRowCount;
+
+    if (qualifyingWpDeltas.length > 0) {
+        const average =
+            qualifyingWpDeltas.reduce((sum, value) => sum + value, 0) / qualifyingWpDeltas.length;
+        const sorted = [...qualifyingWpDeltas].sort((a, b) => a - b);
+        const middle = Math.floor(sorted.length / 2);
+        const median =
+            sorted.length % 2 === 0
+                ? (sorted[middle - 1] + sorted[middle]) / 2
+                : sorted[middle];
+
+        summary.qualifyingSackSummary.averageWpDeltaOffense = average;
+        summary.qualifyingSackSummary.medianWpDeltaOffense = median;
+    }
 
     writeFileSync(outputSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
 
@@ -386,6 +409,20 @@ async function main() {
     console.log(`One-score filtered output contains ${summary.oneScoreRowCount.toLocaleString()} plays.`);
     console.log(
         `Fourth-quarter one-score sack output contains ${summary.qualifyingSackRowCount.toLocaleString()} plays.`
+    );
+    console.log(
+        `Average wp_delta_offense: ${
+            summary.qualifyingSackSummary.averageWpDeltaOffense == null
+                ? "n/a"
+                : summary.qualifyingSackSummary.averageWpDeltaOffense.toFixed(6)
+        }`
+    );
+    console.log(
+        `Median wp_delta_offense: ${
+            summary.qualifyingSackSummary.medianWpDeltaOffense == null
+                ? "n/a"
+                : summary.qualifyingSackSummary.medianWpDeltaOffense.toFixed(6)
+        }`
     );
 }
 

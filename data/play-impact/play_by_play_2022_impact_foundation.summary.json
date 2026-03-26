@@ -1,7 +1,7 @@
 {
   "season": 2022,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2022.csv",
-  "generatedAt": "2026-03-26T14:18:23.603Z",
+  "generatedAt": "2026-03-26T16:57:48.444Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
@@ -30,6 +30,170 @@
     "averageWpDeltaOffense": -0.06342936390061003,
     "medianWpDeltaOffense": -0.058035701513290405
   },
+  "topSackLeaders": [
+    {
+      "defender": "7-H.Reddick",
+      "sacks": 6
+    },
+    {
+      "defender": "55-B.Chubb",
+      "sacks": 5
+    },
+    {
+      "defender": "95-C.Jones",
+      "sacks": 5
+    },
+    {
+      "defender": "98-M.Crosby",
+      "sacks": 5
+    },
+    {
+      "defender": "15-J.Phillips",
+      "sacks": 3
+    },
+    {
+      "defender": "49-D.Tranquill",
+      "sacks": 3
+    },
+    {
+      "defender": "55-Z.Smith",
+      "sacks": 3
+    },
+    {
+      "defender": "90-M.Sweat",
+      "sacks": 3
+    },
+    {
+      "defender": "92-B.Hill",
+      "sacks": 3
+    },
+    {
+      "defender": "92-Z.Sieler",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2022_18_TEN_JAX",
+      "play_id": "3405",
+      "posteam": "TEN",
+      "defteam": "JAX",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.726353585720062,
+      "win_probability_after": 0.249422941408166,
+      "wp_delta_offense": -0.476930644311896,
+      "desc": "(3:01) (Shotgun) 11-J.Dobbs sacked at TEN 27 for -8 yards (2-R.Jenkins). FUMBLES (2-R.Jenkins) [2-R.Jenkins], RECOVERED by JAX-41-J.Allen at TEN 37. 41-J.Allen for 37 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2022_15_NYG_WAS",
+      "play_id": "3421",
+      "posteam": "WAS",
+      "defteam": "NYG",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.495189964771271,
+      "win_probability_after": 0.18850368261337297,
+      "wp_delta_offense": -0.306686282157898,
+      "desc": "(6:13) (Shotgun) 4-T.Heinicke sacked at NYG 9 for -4 yards (sack split by 97-D.Lawrence and 51-A.Ojulari). New York Giants challenged the runner was down by contact ruling, and the play was REVERSED. (Shotgun) 4-T.Heinicke sacked at NYG 9 for -4 yards (sack split by 97-D.Lawrence and 51-A.Ojulari). FUMBLES (97-D.Lawrence) [97-D.Lawrence], RECOVERED by NYG-99-L.Williams at NYG 14."
+    },
+    {
+      "game_id": "2022_10_DET_CHI",
+      "play_id": "3744",
+      "posteam": "CHI",
+      "defteam": "DET",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.350188672542572,
+      "win_probability_after": 0.09899646043777505,
+      "wp_delta_offense": -0.251192212104797,
+      "desc": "(1:12) (Shotgun) 1-J.Fields sacked at CHI 22 for -10 yards (99-J.Okwara)."
+    },
+    {
+      "game_id": "2022_17_DEN_KC",
+      "play_id": "3832",
+      "posteam": "DEN",
+      "defteam": "KC",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.236911907792091,
+      "win_probability_after": 0.039154350757598017,
+      "wp_delta_offense": -0.197757557034493,
+      "desc": "(1:21) (Shotgun) 3-R.Wilson sacked at DEN 36 for -9 yards (95-C.Jones)."
+    },
+    {
+      "game_id": "2022_06_BAL_NYG",
+      "play_id": "3681",
+      "posteam": "BAL",
+      "defteam": "NYG",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.217373847961426,
+      "win_probability_after": 0.024592459201812994,
+      "wp_delta_offense": -0.192781388759613,
+      "desc": "(1:40) (Shotgun) 8-L.Jackson sacked at BAL 17 for -8 yards (5-K.Thibodeaux). FUMBLES (5-K.Thibodeaux), touched at BAL 17, RECOVERED by NYG-99-L.Williams at BAL 13."
+    },
+    {
+      "game_id": "2022_17_CAR_TB",
+      "play_id": "3778",
+      "posteam": "CAR",
+      "defteam": "TB",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.271987468004227,
+      "win_probability_after": 0.08636212348938002,
+      "wp_delta_offense": -0.185625344514847,
+      "desc": "(2:32) (Shotgun) 14-S.Darnold sacked at CAR 3 for -10 yards (98-A.Nelson). FUMBLES (98-A.Nelson) [98-A.Nelson], RECOVERED by TB-50-V.Vea at CAR 6."
+    },
+    {
+      "game_id": "2022_09_BUF_NYJ",
+      "play_id": "3522",
+      "posteam": "BUF",
+      "defteam": "NYJ",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.275890350341797,
+      "win_probability_after": 0.093333199620247,
+      "wp_delta_offense": -0.18255715072155,
+      "desc": "(1:17) (No Huddle, Shotgun) 17-J.Allen sacked at BUF 24 for -9 yards (47-B.Huff). FUMBLES (47-B.Huff) [47-B.Huff], touched at BUF 24, recovered by BUF-71-R.Bates at BUF 14."
+    },
+    {
+      "game_id": "2022_15_MIA_BUF",
+      "play_id": "3348",
+      "posteam": "BUF",
+      "defteam": "MIA",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.36937415599823,
+      "win_probability_after": 0.20299929380416898,
+      "wp_delta_offense": -0.166374862194061,
+      "desc": "(14:47) (Shotgun) 17-J.Allen sacked at BUF 45 for -4 yards (15-J.Phillips). FUMBLES (15-J.Phillips) [15-J.Phillips], RECOVERED by MIA-94-C.Wilkins at BUF 49. 94-C.Wilkins to BUF 47 for 2 yards (77-D.Quessenberry)."
+    },
+    {
+      "game_id": "2022_03_ATL_SEA",
+      "play_id": "3615",
+      "posteam": "SEA",
+      "defteam": "ATL",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.385501146316528,
+      "win_probability_after": 0.243361085653305,
+      "wp_delta_offense": -0.142140060663223,
+      "desc": "(2:00) (Shotgun) 7-G.Smith sacked at ATL 38 for -10 yards (97-G.Jarrett)."
+    },
+    {
+      "game_id": "2022_06_WAS_CHI",
+      "play_id": "2971",
+      "posteam": "CHI",
+      "defteam": "WAS",
+      "qtr": "4",
+      "score_differential": "1",
+      "win_probability_before": 0.679517924785614,
+      "win_probability_after": 0.53905463218689,
+      "wp_delta_offense": -0.14046329259872403,
+      "desc": "(11:21) (Shotgun) 1-J.Fields sacked at CHI 30 for -13 yards (90-M.Sweat)."
+    }
+  ],
   "rowsWithWp": 49150,
   "rowsWithDerivedWpAfter": 48705,
   "sackCount": 1442,
@@ -48,121 +212,131 @@
       "game_id": "2022_01_DEN_SEA",
       "play_id": "2965",
       "posteam": "SEA",
+      "defteam": "DEN",
       "qtr": "4",
       "score_differential": "4",
-      "is_sack": "true",
       "win_probability_before": 0.777876079082489,
       "win_probability_after": 0.732219934463501,
       "wp_delta_offense": -0.04565614461898804,
-      "desc": "(13:52) 7-G.Smith sacked at SEA 36 for -8 yards (55-B.Chubb). FUMBLES (55-B.Chubb) [55-B.Chubb], recovered by SEA-67-C.Cross at SEA 36. 67-C.Cross to SEA 36 for no gain (55-B.Chubb)."
+      "desc": "(13:52) 7-G.Smith sacked at SEA 36 for -8 yards (55-B.Chubb). FUMBLES (55-B.Chubb) [55-B.Chubb], recovered by SEA-67-C.Cross at SEA 36. 67-C.Cross to SEA 36 for no gain (55-B.Chubb).",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_DEN_SEA",
       "play_id": "3515",
       "posteam": "SEA",
+      "defteam": "DEN",
       "qtr": "4",
       "score_differential": "1",
-      "is_sack": "true",
       "win_probability_before": 0.706383049488068,
       "win_probability_after": 0.610342085361481,
       "wp_delta_offense": -0.09604096412658691,
-      "desc": "(4:54) (Shotgun) 7-G.Smith sacked at SEA 24 for -10 yards (55-B.Chubb)."
+      "desc": "(4:54) (Shotgun) 7-G.Smith sacked at SEA 24 for -10 yards (55-B.Chubb).",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_JAX_WAS",
       "play_id": "3622",
       "posteam": "WAS",
+      "defteam": "JAX",
       "qtr": "4",
       "score_differential": "-2",
-      "is_sack": "true",
       "win_probability_before": 0.431435675784946,
       "win_probability_after": 0.35134285688400313,
       "wp_delta_offense": -0.08009281890094289,
-      "desc": "(Pass formation) TWO-POINT CONVERSION ATTEMPT. 11-C.Wentz is sacked. ATTEMPT FAILS. Penalty on WAS-68-A.Norwell, Illegal Use of Hands, declined."
+      "desc": "(Pass formation) TWO-POINT CONVERSION ATTEMPT. 11-C.Wentz is sacked. ATTEMPT FAILS. Penalty on WAS-68-A.Norwell, Illegal Use of Hands, declined.",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_JAX_WAS",
       "play_id": "3797",
       "posteam": "JAX",
+      "defteam": "WAS",
       "qtr": "4",
       "score_differential": "2",
-      "is_sack": "true",
       "win_probability_before": 0.745984494686127,
       "win_probability_after": 0.6645971536636356,
       "wp_delta_offense": -0.08138734102249146,
-      "desc": "(7:27) (Shotgun) 16-T.Lawrence sacked at WAS 48 for -6 yards (94-D.Payne)."
+      "desc": "(7:27) (Shotgun) 16-T.Lawrence sacked at WAS 48 for -6 yards (94-D.Payne).",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_LV_LAC",
       "play_id": "3479",
       "posteam": "LV",
+      "defteam": "LAC",
       "qtr": "4",
       "score_differential": "-5",
-      "is_sack": "true",
       "win_probability_before": 0.205380901694298,
       "win_probability_after": 0.12957447767257713,
       "wp_delta_offense": -0.07580642402172089,
-      "desc": "(2:40) (Shotgun) 4-D.Carr sacked at LV 37 for -3 yards (sack split by 97-J.Bosa and 56-M.Fox). FUMBLES (97-J.Bosa) [97-J.Bosa], recovered by LV-76-J.Simpson at LV 35."
+      "desc": "(2:40) (Shotgun) 4-D.Carr sacked at LV 37 for -3 yards (sack split by 97-J.Bosa and 56-M.Fox). FUMBLES (97-J.Bosa) [97-J.Bosa], recovered by LV-76-J.Simpson at LV 35.",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_LV_LAC",
       "play_id": "3525",
       "posteam": "LV",
+      "defteam": "LAC",
       "qtr": "4",
       "score_differential": "-5",
-      "is_sack": "true",
       "win_probability_before": 0.129574477672577,
       "win_probability_after": 0.03946286439895638,
       "wp_delta_offense": -0.0901116132736206,
-      "desc": "(2:00) (Shotgun) 4-D.Carr sacked at LV 28 for -7 yards (52-K.Mack). FUMBLES (52-K.Mack) [52-K.Mack], recovered by LV-74-K.Miller at LV 28."
+      "desc": "(2:00) (Shotgun) 4-D.Carr sacked at LV 28 for -7 yards (52-K.Mack). FUMBLES (52-K.Mack) [52-K.Mack], recovered by LV-74-K.Miller at LV 28.",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_PIT_CIN",
       "play_id": "2651",
       "posteam": "CIN",
+      "defteam": "PIT",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.398726224899292,
       "win_probability_after": 0.3190295100212097,
       "wp_delta_offense": -0.07969671487808228,
-      "desc": "(15:00) (Shotgun) 9-J.Burrow sacked at CIN 5 for -7 yards (56-A.Highsmith)."
+      "desc": "(15:00) (Shotgun) 9-J.Burrow sacked at CIN 5 for -7 yards (56-A.Highsmith).",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_01_PIT_CIN",
       "play_id": "3324",
       "posteam": "CIN",
+      "defteam": "PIT",
       "qtr": "4",
       "score_differential": "-6",
-      "is_sack": "true",
       "win_probability_before": 0.228483766317368,
       "win_probability_after": 0.386018425226212,
       "wp_delta_offense": 0.157534658908844,
-      "desc": "(3:48) (Shotgun) 9-J.Burrow sacked at PIT 40 for -10 yards (90-T.Watt). PENALTY on PIT-20-C.Sutton, Defensive Holding, 6 yards, enforced at PIT 30 - No Play."
+      "desc": "(3:48) (Shotgun) 9-J.Burrow sacked at PIT 40 for -10 yards (90-T.Watt). PENALTY on PIT-20-C.Sutton, Defensive Holding, 6 yards, enforced at PIT 30 - No Play.",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_02_ARI_LV",
       "play_id": "3719",
       "posteam": "ARI",
+      "defteam": "LV",
       "qtr": "4",
       "score_differential": "-8",
-      "is_sack": "true",
       "win_probability_before": 0.102083310484886,
       "win_probability_after": 0.10802318900823576,
       "wp_delta_offense": 0.005939878523349762,
-      "desc": "(2:20) (Shotgun) 1-K.Murray sacked at LV 47 for -6 yards (98-M.Crosby). PENALTY on LV-26-R.Ya-Sin, Defensive Holding, 5 yards, enforced at LV 41 - No Play."
+      "desc": "(2:20) (Shotgun) 1-K.Murray sacked at LV 47 for -6 yards (98-M.Crosby). PENALTY on LV-26-R.Ya-Sin, Defensive Holding, 5 yards, enforced at LV 41 - No Play.",
+      "is_sack": "true"
     },
     {
       "game_id": "2022_02_ATL_LA",
       "play_id": "3645",
       "posteam": "ATL",
+      "defteam": "LA",
       "qtr": "4",
       "score_differential": "-4",
-      "is_sack": "true",
       "win_probability_before": 0.136497899889946,
       "win_probability_after": 0,
       "wp_delta_offense": -0.136497899889946,
-      "desc": "(:06) (Shotgun) 1-M.Mariota sacked at ATL 40 for -10 yards (58-J.Hollins). FUMBLES (58-J.Hollins) [58-J.Hollins], RECOVERED by LA-99-A.Donald at ATL 39."
+      "desc": "(:06) (Shotgun) 1-M.Mariota sacked at ATL 40 for -10 yards (58-J.Hollins). FUMBLES (58-J.Hollins) [58-J.Hollins], RECOVERED by LA-99-A.Donald at ATL 39.",
+      "is_sack": "true"
     }
   ]
 }

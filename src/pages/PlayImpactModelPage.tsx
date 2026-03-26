@@ -123,11 +123,14 @@ export default function PlayImpactModelPage() {
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
     const qualifyingSackRows = useMemo<SampleSackRow[]>(() => {
         if (publishedSeason) {
-            return (publishedSeason.summary.topImpactSacks ?? []).map((row) => ({
+            const publishedRows =
+                publishedSeason.summary.topImpactSacks ?? publishedSeason.summary.validationSample;
+
+            return publishedRows.map((row) => ({
                 gameId: row.game_id,
                 playId: row.play_id,
                 offense: row.posteam,
-                defense: row.defteam,
+                defense: "defteam" in row ? row.defteam : "",
                 qtr: row.qtr,
                 scoreDiff: row.score_differential,
                 winProbabilityBefore: row.win_probability_before,
@@ -159,7 +162,24 @@ export default function PlayImpactModelPage() {
     const topImpactSacks = useMemo(() => sortByImpact(qualifyingSackRows).slice(0, 10), [qualifyingSackRows]);
     const topSackDefenders = useMemo(() => {
         if (publishedSeason) {
-            return publishedSeason.summary.topSackLeaders ?? [];
+            if (publishedSeason.summary.topSackLeaders?.length) {
+                return publishedSeason.summary.topSackLeaders;
+            }
+
+            const fallbackCounts = new Map<string, number>();
+            for (const row of publishedSeason.summary.validationSample) {
+                for (const defender of extractSackDefenders(row.desc)) {
+                    fallbackCounts.set(defender, (fallbackCounts.get(defender) ?? 0) + 1);
+                }
+            }
+
+            return [...fallbackCounts.entries()]
+                .map(([defender, sacks]) => ({ defender, sacks }))
+                .sort(
+                    (left, right) =>
+                        right.sacks - left.sacks || left.defender.localeCompare(right.defender)
+                )
+                .slice(0, 10);
         }
 
         return seasonData ? summarizeTopSackDefenders(filterQualifyingSackPlays(seasonData).rows, 10) : [];

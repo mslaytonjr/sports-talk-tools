@@ -1,7 +1,7 @@
 {
   "season": 2020,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2020.csv",
-  "generatedAt": "2026-03-26T14:18:37.526Z",
+  "generatedAt": "2026-03-26T16:58:03.731Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
@@ -30,6 +30,170 @@
     "averageWpDeltaOffense": -0.0692078775473566,
     "medianWpDeltaOffense": -0.052115790545940406
   },
+  "topSackLeaders": [
+    {
+      "defender": "93-D.Jones",
+      "sacks": 4
+    },
+    {
+      "defender": "45-D.White",
+      "sacks": 3
+    },
+    {
+      "defender": "50-J.Houston",
+      "sacks": 3
+    },
+    {
+      "defender": "53-B.Burns",
+      "sacks": 3
+    },
+    {
+      "defender": "58-S.Barrett",
+      "sacks": 3
+    },
+    {
+      "defender": "92-K.Hyder",
+      "sacks": 3
+    },
+    {
+      "defender": "96-D.Autry",
+      "sacks": 3
+    },
+    {
+      "defender": "97-J.Bosa",
+      "sacks": 3
+    },
+    {
+      "defender": "99-D.Buckner",
+      "sacks": 3
+    },
+    {
+      "defender": "99-L.Williams",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2020_13_DET_CHI",
+      "play_id": "4156",
+      "posteam": "CHI",
+      "defteam": "DET",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.857541918754578,
+      "win_probability_after": 0.390589118003846,
+      "wp_delta_offense": -0.466952800750732,
+      "desc": "(1:54) (Shotgun) 10-M.Trubisky sacked at CHI 9 for -8 yards (95-R.Okwara). FUMBLES (95-R.Okwara), RECOVERED by DET-91-J.Penisini at CHI 7."
+    },
+    {
+      "game_id": "2020_12_NYG_CIN",
+      "play_id": "3871",
+      "posteam": "CIN",
+      "defteam": "NYG",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.436193585395813,
+      "win_probability_after": 0.044418692588805986,
+      "wp_delta_offense": -0.391774892807007,
+      "desc": "(:57) (Shotgun) 8-B.Allen sacked at CIN 40 for -10 yards (91-J.Sheard). FUMBLES (91-J.Sheard) [91-J.Sheard], RECOVERED by NYG-99-L.Williams at CIN 37. 99-L.Williams to CIN 37 for no gain (66-T.Hopkins)."
+    },
+    {
+      "game_id": "2020_06_WAS_NYG",
+      "play_id": "3238",
+      "posteam": "WAS",
+      "defteam": "NYG",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.46945932507515,
+      "win_probability_after": 0.13625142647421296,
+      "wp_delta_offense": -0.333207898600937,
+      "desc": "(3:41) (Shotgun) 8-K.Allen sacked at WAS 45 for -10 yards (51-K.Fackrell). FUMBLES (51-K.Fackrell) [51-K.Fackrell], touched at WAS 47, RECOVERED by NYG-48-T.Crowder at WAS 43. 48-T.Crowder for 43 yards, TOUCHDOWN. Officially, a sack for 8 yards."
+    },
+    {
+      "game_id": "2020_07_DET_ATL",
+      "play_id": "3618",
+      "posteam": "ATL",
+      "defteam": "DET",
+      "qtr": "4",
+      "score_differential": "1",
+      "win_probability_before": 0.710182547569275,
+      "win_probability_after": 0.37820911407470703,
+      "wp_delta_offense": -0.331973433494568,
+      "desc": "(5:39) (Shotgun) 2-M.Ryan sacked at ATL 39 for -9 yards (95-R.Okwara). FUMBLES (95-R.Okwara) [95-R.Okwara], RECOVERED by DET-90-T.Flowers at ATL 36. 90-T.Flowers to ATL 32 for 4 yards (77-J.Carpenter)."
+    },
+    {
+      "game_id": "2020_05_MIN_SEA",
+      "play_id": "4168",
+      "posteam": "MIN",
+      "defteam": "SEA",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.329719752073288,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.329719752073288,
+      "desc": "(:10) (Shotgun) 8-K.Cousins sacked at MIN 27 for -8 yards (95-B.Mayowa). FUMBLES (95-B.Mayowa), touched at MIN 45, recovered by MIN-82-K.Rudolph at MIN 38. The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field stands."
+    },
+    {
+      "game_id": "2020_16_CIN_HOU",
+      "play_id": "3643",
+      "posteam": "HOU",
+      "defteam": "CIN",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.362268298864365,
+      "win_probability_after": 0.05215901136398399,
+      "wp_delta_offense": -0.310109287500381,
+      "desc": "(1:35) (No Huddle, Shotgun) 4-D.Watson sacked at HOU 33 for -7 yards (94-S.Hubbard). FUMBLES (94-S.Hubbard) [94-S.Hubbard], RECOVERED by CIN-70-M.Hunt at HOU 38. HOU-4-D.Watson was injured during the play."
+    },
+    {
+      "game_id": "2020_08_DAL_PHI",
+      "play_id": "3511",
+      "posteam": "DAL",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.333579152822495,
+      "win_probability_after": 0.034326381160877995,
+      "wp_delta_offense": -0.299252771661617,
+      "desc": "(5:34) (Shotgun) 7-B.DiNucci sacked at PHI 31 for -10 yards (57-T.Edwards). FUMBLES (57-T.Edwards) [57-T.Edwards], touched at PHI 35, RECOVERED by PHI-23-R.McLeod at PHI 47. 23-R.McLeod for 53 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2020_04_DEN_NYJ",
+      "play_id": "4322",
+      "posteam": "NYJ",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.361995398998261,
+      "win_probability_after": 0.101587593555451,
+      "wp_delta_offense": -0.26040780544281,
+      "desc": "(2:05) (Shotgun) 14-S.Darnold sacked at NYJ 43 for -7 yards (55-B.Chubb)."
+    },
+    {
+      "game_id": "2020_02_DEN_PIT",
+      "play_id": "4404",
+      "posteam": "DEN",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.314381539821625,
+      "win_probability_after": 0.057513773441314975,
+      "wp_delta_offense": -0.25686776638031,
+      "desc": "(1:55) (Shotgun) 9-J.Driskel sacked at PIT 26 for -11 yards (34-T.Edmunds)."
+    },
+    {
+      "game_id": "2020_03_LA_BUF",
+      "play_id": "3338",
+      "posteam": "BUF",
+      "defteam": "LA",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.786946415901184,
+      "win_probability_after": 0.536919742822647,
+      "wp_delta_offense": -0.250026673078537,
+      "desc": "(7:32) (Shotgun) 17-J.Allen sacked at 50 for -8 yards (99-A.Donald). FUMBLES (99-A.Donald) [99-A.Donald], RECOVERED by LA-99-A.Donald at LA 48. 99-A.Donald to LA 48 for no gain (66-B.Winters). PENALTY on BUF-17-J.Allen, Unsportsmanlike Conduct, 15 yards, enforced at LA 48."
+    }
+  ],
   "rowsWithWp": 47436,
   "rowsWithDerivedWpAfter": 46982,
   "sackCount": 1268,
@@ -48,121 +212,131 @@
       "game_id": "2020_01_ARI_SF",
       "play_id": "3361",
       "posteam": "ARI",
+      "defteam": "SF",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.378636628389359,
       "win_probability_after": 0.3336738049983983,
       "wp_delta_offense": -0.04496282339096069,
-      "desc": "(15:00) 1-K.Murray sacked at ARI 40 for -1 yards (93-D.Jones)."
+      "desc": "(15:00) 1-K.Murray sacked at ARI 40 for -1 yards (93-D.Jones).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_DAL_LA",
       "play_id": "3803",
       "posteam": "LA",
+      "defteam": "DAL",
       "qtr": "4",
       "score_differential": "3",
-      "is_sack": "true",
       "win_probability_before": 0.773819983005524,
       "win_probability_after": 0.7000114321708683,
       "wp_delta_offense": -0.07380855083465576,
-      "desc": "(7:13) (Shotgun) 16-J.Goff sacked at LA 46 for -6 yards (58-A.Smith)."
+      "desc": "(7:13) (Shotgun) 16-J.Goff sacked at LA 46 for -6 yards (58-A.Smith).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_DAL_LA",
       "play_id": "4252",
       "posteam": "DAL",
+      "defteam": "LA",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.250893890857697,
       "win_probability_after": 0.19344684481620827,
       "wp_delta_offense": -0.0574470460414887,
-      "desc": "(1:42) (No Huddle, Shotgun) 4-D.Prescott sacked at DAL 18 for -7 yards (54-L.Floyd)."
+      "desc": "(1:42) (No Huddle, Shotgun) 4-D.Prescott sacked at DAL 18 for -7 yards (54-L.Floyd).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_IND_JAX",
       "play_id": "3695",
       "posteam": "JAX",
+      "defteam": "IND",
       "qtr": "4",
       "score_differential": "4",
-      "is_sack": "true",
       "win_probability_before": 0.840237379074097,
       "win_probability_after": 0.8144929409027103,
       "wp_delta_offense": -0.02574443817138672,
-      "desc": "(3:03) (Shotgun) 15-G.Minshew sacked at IND 28 for -1 yards (96-D.Autry)."
+      "desc": "(3:03) (Shotgun) 15-G.Minshew sacked at IND 28 for -1 yards (96-D.Autry).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_PHI_WAS",
       "play_id": "3301",
       "posteam": "PHI",
+      "defteam": "WAS",
       "qtr": "4",
       "score_differential": "0",
-      "is_sack": "true",
       "win_probability_before": 0.477880448102951,
       "win_probability_after": 0.4164721965789794,
       "wp_delta_offense": -0.06140825152397161,
-      "desc": "(14:15) 11-C.Wentz sacked at PHI 15 for -10 yards (91-R.Kerrigan)."
+      "desc": "(14:15) 11-C.Wentz sacked at PHI 15 for -10 yards (91-R.Kerrigan).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_PHI_WAS",
       "play_id": "3691",
       "posteam": "WAS",
+      "defteam": "PHI",
       "qtr": "4",
       "score_differential": "0",
-      "is_sack": "true",
       "win_probability_before": 0.735853493213654,
       "win_probability_after": 0.7579742074012761,
       "wp_delta_offense": 0.02212071418762207,
-      "desc": "(6:57) (Shotgun) 7-D.Haskins sacked at PHI 3 for 0 yards (sack split by 58-G.Avery and 50-D.Riley)."
+      "desc": "(6:57) (Shotgun) 7-D.Haskins sacked at PHI 3 for 0 yards (sack split by 58-G.Avery and 50-D.Riley).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_01_TB_NO",
       "play_id": "3279",
       "posteam": "TB",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "-7",
-      "is_sack": "true",
       "win_probability_before": 0.187156409025192,
       "win_probability_after": 0.11795514076948141,
       "wp_delta_offense": -0.0692012682557106,
-      "desc": "(14:56) (Shotgun) 12-T.Brady sacked at TB 20 for -8 yards (56-D.Davis)."
+      "desc": "(14:56) (Shotgun) 12-T.Brady sacked at TB 20 for -8 yards (56-D.Davis).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_02_BUF_MIA",
       "play_id": "3455",
       "posteam": "BUF",
+      "defteam": "MIA",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.443811595439911,
       "win_probability_after": 0.3793979883193971,
       "wp_delta_offense": -0.06441360712051392,
-      "desc": "(9:00) (Shotgun) 17-J.Allen sacked at MIA 42 for -4 yards (sack split by 91-E.Ogbah and 43-A.Van Ginkel)."
+      "desc": "(9:00) (Shotgun) 17-J.Allen sacked at MIA 42 for -4 yards (sack split by 91-E.Ogbah and 43-A.Van Ginkel).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_02_BUF_MIA",
       "play_id": "3651",
       "posteam": "MIA",
+      "defteam": "BUF",
       "qtr": "4",
       "score_differential": "-4",
-      "is_sack": "true",
       "win_probability_before": 0.333533883094788,
       "win_probability_after": 0.2597048282623295,
       "wp_delta_offense": -0.0738290548324585,
-      "desc": "(5:51) 14-R.Fitzpatrick sacked at MIA 21 for -9 yards (21-J.Poyer)."
+      "desc": "(5:51) 14-R.Fitzpatrick sacked at MIA 21 for -9 yards (21-J.Poyer).",
+      "is_sack": "true"
     },
     {
       "game_id": "2020_02_CAR_TB",
       "play_id": "3428",
       "posteam": "CAR",
+      "defteam": "TB",
       "qtr": "4",
       "score_differential": "-7",
-      "is_sack": "true",
       "win_probability_before": 0.201411783695221,
       "win_probability_after": 0.1718543022871018,
       "wp_delta_offense": -0.0295574814081192,
-      "desc": "(11:02) 5-T.Bridgewater sacked at CAR 44 for -7 yards (92-W.Gholston)."
+      "desc": "(11:02) 5-T.Bridgewater sacked at CAR 44 for -7 yards (92-W.Gholston).",
+      "is_sack": "true"
     }
   ]
 }

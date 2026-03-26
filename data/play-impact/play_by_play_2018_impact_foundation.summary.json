@@ -1,0 +1,342 @@
+{
+  "season": 2018,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2018.csv",
+  "generatedAt": "2026-03-26T16:58:33.237Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 47109,
+  "gameCount": 267,
+  "oneScoreRowCount": 28405,
+  "qualifyingSackRowCount": 173,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 173,
+    "averageWpDeltaOffense": -0.0753694393841165,
+    "medianWpDeltaOffense": -0.0644435212016106
+  },
+  "topSackLeaders": [
+    {
+      "defender": "56-C.Long",
+      "sacks": 5
+    },
+    {
+      "defender": "99-A.Donald",
+      "sacks": 5
+    },
+    {
+      "defender": "58-H.Landry",
+      "sacks": 4
+    },
+    {
+      "defender": "90-J.Reed",
+      "sacks": 4
+    },
+    {
+      "defender": "91-F.Cox",
+      "sacks": 4
+    },
+    {
+      "defender": "94-C.Jordan",
+      "sacks": 4
+    },
+    {
+      "defender": "99-D.Buckner",
+      "sacks": 4
+    },
+    {
+      "defender": "99-J.Watt",
+      "sacks": 4
+    },
+    {
+      "defender": "50-J.Houston",
+      "sacks": 3
+    },
+    {
+      "defender": "52-K.Mack",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2018_07_CAR_PHI",
+      "play_id": "3867",
+      "posteam": "PHI",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.444030344486237,
+      "win_probability_after": 0.031229078769684004,
+      "wp_delta_offense": -0.412801265716553,
+      "desc": "(:31) (Shotgun) 11-C.Wentz sacked at CAR 19 for -5 yards (90-J.Peppers). FUMBLES (90-J.Peppers), RECOVERED by CAR-93-K.Love at CAR 22. 93-K.Love to CAR 22 for no gain (11-C.Wentz)."
+    },
+    {
+      "game_id": "2018_03_IND_PHI",
+      "play_id": "4043",
+      "posteam": "IND",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.448386579751968,
+      "win_probability_after": 0.046973466873169,
+      "wp_delta_offense": -0.401413112878799,
+      "desc": "(1:19) 12-A.Luck sacked at PHI 20 for -16 yards (96-D.Barnett)."
+    },
+    {
+      "game_id": "2018_14_BAL_KC",
+      "play_id": "4285",
+      "posteam": "BAL",
+      "defteam": "KC",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.544280767440796,
+      "win_probability_after": 0.17873638868331904,
+      "wp_delta_offense": -0.365544378757477,
+      "desc": "(:44) (Shotgun) 8-L.Jackson sacked at BAL 30 for -6 yards (50-J.Houston). FUMBLES (50-J.Houston), RECOVERED by KC-50-J.Houston at BAL 23. 50-J.Houston to BAL 23 for no gain (8-L.Jackson)."
+    },
+    {
+      "game_id": "2018_05_ARI_SF",
+      "play_id": "3875",
+      "posteam": "SF",
+      "defteam": "ARI",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.427222341299057,
+      "win_probability_after": 0.07255377897530002,
+      "wp_delta_offense": -0.354668562323757,
+      "desc": "(4:41) (Shotgun) 3-C.Beathard sacked at SF 33 for -8 yards (43-H.Reddick). FUMBLES (43-H.Reddick), RECOVERED by ARI-57-J.Bynes at SF 23. 57-J.Bynes for 23 yards, TOUCHDOWN. Total sack loss is 18-yds."
+    },
+    {
+      "game_id": "2018_11_KC_LA",
+      "play_id": "4279",
+      "posteam": "LA",
+      "defteam": "KC",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.666436314582825,
+      "win_probability_after": 0.354951354977928,
+      "wp_delta_offense": -0.311484959604897,
+      "desc": "(11:16) (Shotgun) 16-J.Goff sacked at LA 4 for -10 yards (50-J.Houston). FUMBLES (50-J.Houston), RECOVERED by KC-97-A.Bailey at LA 2. 97-A.Bailey for 2 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2018_03_CHI_ARI",
+      "play_id": "4042",
+      "posteam": "ARI",
+      "defteam": "CHI",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.278710126876831,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.278710126876831,
+      "desc": "(:05) (Shotgun) 3-J.Rosen sacked at ARI 39 for -7 yards (27-S.McManis)."
+    },
+    {
+      "game_id": "2018_13_LA_DET",
+      "play_id": "3751",
+      "posteam": "DET",
+      "defteam": "LA",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.435038506984711,
+      "win_probability_after": 0.17062288522720404,
+      "wp_delta_offense": -0.264415621757507,
+      "desc": "(8:26) 9-M.Stafford sacked at DET 29 for -13 yards (99-A.Donald). FUMBLES (99-A.Donald) [99-A.Donald], RECOVERED by LA-50-S.Ebukam at DET 24. 50-S.Ebukam to DET 24 for no gain (87-L.Toilolo)."
+    },
+    {
+      "game_id": "2018_15_CLE_DEN",
+      "play_id": "4436",
+      "posteam": "DEN",
+      "defteam": "CLE",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.322263151407242,
+      "win_probability_after": 0.087969064712525,
+      "wp_delta_offense": -0.234294086694717,
+      "desc": "(:43) (Shotgun) 4-C.Keenum sacked at DEN 39 for -11 yards (22-J.Peppers)."
+    },
+    {
+      "game_id": "2018_01_CHI_GB",
+      "play_id": "3871",
+      "posteam": "CHI",
+      "defteam": "GB",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.313188254833221,
+      "win_probability_after": 0.085399270057678,
+      "wp_delta_offense": -0.227788984775543,
+      "desc": "(1:06) (Shotgun) 10-M.Trubisky sacked at CHI 38 for -8 yards (53-N.Perry). FUMBLES (53-N.Perry) [53-N.Perry], RECOVERED by GB-97-K.Clark at CHI 39. 97-K.Clark to CHI 39 for no gain (75-K.Long)."
+    },
+    {
+      "game_id": "2018_13_IND_JAX",
+      "play_id": "3910",
+      "posteam": "IND",
+      "defteam": "JAX",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.276775300502777,
+      "win_probability_after": 0.08359831571578999,
+      "wp_delta_offense": -0.193176984786987,
+      "desc": "(2:38) 12-A.Luck sacked at JAX 28 for -9 yards (36-R.Harrison). Penalty on IND-64-M.Glowinski, Offensive Holding, declined."
+    }
+  ],
+  "rowsWithWp": 46834,
+  "rowsWithDerivedWpAfter": 46414,
+  "sackCount": 1429,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2018_01_ATL_PHI",
+      "play_id": "3320",
+      "posteam": "ATL",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.428614765405655,
+      "win_probability_after": 0.48839187622070324,
+      "wp_delta_offense": 0.05977711081504822,
+      "desc": "(15:00) (Shotgun) 2-M.Ryan sacked at PHI 35 for -8 yards (91-F.Cox). PENALTY on PHI-96-D.Barnett, Defensive Offside, 5 yards, enforced at PHI 27 - No Play.",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_ATL_PHI",
+      "play_id": "3815",
+      "posteam": "ATL",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "2",
+      "win_probability_before": 0.647005319595337,
+      "win_probability_after": 0.6013740897178651,
+      "wp_delta_offense": -0.045631229877471924,
+      "desc": "(6:31) (Shotgun) 2-M.Ryan sacked at ATL 10 for -8 yards (sack split by 56-C.Long and 91-F.Cox). FUMBLES (56-C.Long) [56-C.Long], recovered by ATL-51-A.Mack at ATL 15. 51-A.Mack to ATL 15 for no gain (77-M.Bennett).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_ATL_PHI",
+      "play_id": "4239",
+      "posteam": "ATL",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.23291052877903,
+      "win_probability_after": 0.15794308483600633,
+      "wp_delta_offense": -0.07496744394302368,
+      "desc": "(1:50) (Shotgun) 2-M.Ryan sacked at PHI 40 for -7 yards (sack split by 56-C.Long and 58-J.Hicks).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_ATL_PHI",
+      "play_id": "4306",
+      "posteam": "ATL",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.430942863225937,
+      "win_probability_after": 0.2635757625103,
+      "wp_delta_offense": -0.16736710071563698,
+      "desc": "(:55) (No Huddle, Shotgun) 2-M.Ryan sacked at PHI 20 for -7 yards (91-F.Cox).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_CHI_GB",
+      "play_id": "3105",
+      "posteam": "CHI",
+      "defteam": "GB",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.712373852729797,
+      "win_probability_after": 0.724759221076965,
+      "wp_delta_offense": 0.012385368347167969,
+      "desc": "(8:29) (Shotgun) 10-M.Trubisky sacked at CHI 32 for 0 yards (76-M.Daniels).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_CHI_GB",
+      "play_id": "3871",
+      "posteam": "CHI",
+      "defteam": "GB",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.313188254833221,
+      "win_probability_after": 0.085399270057678,
+      "wp_delta_offense": -0.227788984775543,
+      "desc": "(1:06) (Shotgun) 10-M.Trubisky sacked at CHI 38 for -8 yards (53-N.Perry). FUMBLES (53-N.Perry) [53-N.Perry], RECOVERED by GB-97-K.Clark at CHI 39. 97-K.Clark to CHI 39 for no gain (75-K.Long).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_CIN_IND",
+      "play_id": "3214",
+      "posteam": "CIN",
+      "defteam": "IND",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.262648403644562,
+      "win_probability_after": 0.21784830093383808,
+      "wp_delta_offense": -0.044800102710723905,
+      "desc": "(14:37) (No Huddle, Shotgun) 14-A.Dalton sacked at IND 47 for -6 yards (92-M.Hunt).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_DAL_CAR",
+      "play_id": "3458",
+      "posteam": "CAR",
+      "defteam": "DAL",
+      "qtr": "4",
+      "score_differential": "8",
+      "win_probability_before": 0.936311542987823,
+      "win_probability_after": 0.9103960990905757,
+      "wp_delta_offense": -0.025915443897247314,
+      "desc": "(5:48) (Shotgun) 1-C.Newton sacked at CAR 25 for -7 yards (90-D.Lawrence).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_DAL_CAR",
+      "play_id": "3574",
+      "posteam": "DAL",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-8",
+      "win_probability_before": 0.0997992679476738,
+      "win_probability_after": 0.0663763657212257,
+      "wp_delta_offense": -0.0334229022264481,
+      "desc": "(3:30) (No Huddle, Shotgun) 4-D.Prescott sacked at DAL 47 for -5 yards (96-W.Horton). Penalty on DAL-71-L.Collins, Offensive Holding, declined.",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2018_01_DAL_CAR",
+      "play_id": "3638",
+      "posteam": "DAL",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-8",
+      "win_probability_before": 0.0917465090751648,
+      "win_probability_after": 0.058772265911102295,
+      "wp_delta_offense": -0.0329742431640625,
+      "desc": "(3:19) (Shotgun) 4-D.Prescott sacked at DAL 44 for -8 yards (99-K.Short).",
+      "is_sack": "true"
+    }
+  ]
+}

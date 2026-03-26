@@ -1,7 +1,7 @@
 {
   "season": 2019,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2019.csv",
-  "generatedAt": "2026-03-26T14:18:45.662Z",
+  "generatedAt": "2026-03-26T16:58:25.562Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
@@ -30,6 +30,170 @@
     "averageWpDeltaOffense": -0.06701385817384706,
     "medianWpDeltaOffense": -0.05616252124309537
   },
+  "topSackLeaders": [
+    {
+      "defender": "58-S.Barrett",
+      "sacks": 5
+    },
+    {
+      "defender": "59-W.Mercilus",
+      "sacks": 5
+    },
+    {
+      "defender": "52-R.Anderson",
+      "sacks": 4
+    },
+    {
+      "defender": "97-E.Griffen",
+      "sacks": 4
+    },
+    {
+      "defender": "99-A.Donald",
+      "sacks": 4
+    },
+    {
+      "defender": "48-J.Jenkins",
+      "sacks": 3
+    },
+    {
+      "defender": "55-F.Clark",
+      "sacks": 3
+    },
+    {
+      "defender": "56-T.Suggs",
+      "sacks": 3
+    },
+    {
+      "defender": "79-J.Hargrave",
+      "sacks": 3
+    },
+    {
+      "defender": "91-P.Smith",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2019_18_MIN_NO",
+      "play_id": "3615",
+      "posteam": "NO",
+      "defteam": "MIN",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.58535236120224,
+      "win_probability_after": 0.22762036323547397,
+      "wp_delta_offense": -0.357731997966766,
+      "desc": "(4:26) (Shotgun) 9-D.Brees sacked at MIN 28 for -8 yards (99-D.Hunter). FUMBLES (99-D.Hunter) [99-D.Hunter], touched at MIN 34, RECOVERED by MIN-92-J.Holmes at MIN 36. 92-J.Holmes to MIN 37 for 1 yard (71-R.Ramczyk)."
+    },
+    {
+      "game_id": "2019_17_CHI_MIN",
+      "play_id": "3039",
+      "posteam": "CHI",
+      "defteam": "MIN",
+      "qtr": "4",
+      "score_differential": "2",
+      "win_probability_before": 0.620450913906097,
+      "win_probability_after": 0.33074414730072,
+      "wp_delta_offense": -0.289706766605377,
+      "desc": "(6:25) (Shotgun) 10-M.Trubisky sacked at CHI 21 for -8 yards (95-I.Odenigbo). FUMBLES (95-I.Odenigbo), RECOVERED by MIN-95-I.Odenigbo at CHI 23. 95-I.Odenigbo for 23 yards, TOUCHDOWN. The Replay Official reviewed the runner was not down by contact ruling, and the play was REVERSED. (Shotgun) 10-M.Trubisky sacked at CHI 21 for -8 yards (95-I.Odenigbo). FUMBLES (95-I.Odenigbo), RECOVERED by MIN-95-I.Odenigbo at CHI 23. 95-I.Odenigbo to CHI 23 for no gain (62-T.Larsen)."
+    },
+    {
+      "game_id": "2019_08_DEN_IND",
+      "play_id": "3607",
+      "posteam": "IND",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.545712828636169,
+      "win_probability_after": 0.29771679639816195,
+      "wp_delta_offense": -0.24799603223800704,
+      "desc": "(7:48) (Shotgun) 7-J.Brissett sacked at IND 39 for -4 yards (95-D.Wolfe). FUMBLES (95-D.Wolfe), RECOVERED by DEN-59-M.Reed at IND 48. 59-M.Reed to IND 48 for no gain (7-J.Brissett). Credit 0 sack yards for DEN #95."
+    },
+    {
+      "game_id": "2019_01_CIN_SEA",
+      "play_id": "4158",
+      "posteam": "CIN",
+      "defteam": "SEA",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.295321315526962,
+      "win_probability_after": 0.07529288530349701,
+      "wp_delta_offense": -0.220028430223465,
+      "desc": "(:14) (Shotgun) 14-A.Dalton sacked at CIN 23 for -8 yards (98-R.Green). FUMBLES (98-R.Green), RECOVERED by SEA-21-T.Flowers at CIN 44. 21-T.Flowers to CIN 44 for no gain (11-J.Ross III). The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field was confirmed."
+    },
+    {
+      "game_id": "2019_09_TB_SEA",
+      "play_id": "3665",
+      "posteam": "TB",
+      "defteam": "SEA",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.521962225437164,
+      "win_probability_after": 0.304776310920715,
+      "wp_delta_offense": -0.21718591451644897,
+      "desc": "(10:48) (Shotgun) 3-J.Winston sacked at SEA 48 for -8 yards (56-M.Kendricks). FUMBLES (56-M.Kendricks) [98-R.Green], RECOVERED by SEA-98-R.Green at SEA 49. 98-R.Green to TB 15 for 36 yards (13-M.Evans)."
+    },
+    {
+      "game_id": "2019_18_BUF_HOU",
+      "play_id": "3614",
+      "posteam": "BUF",
+      "defteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.250004887580872,
+      "win_probability_after": 0.040490388870240035,
+      "wp_delta_offense": -0.209514498710632,
+      "desc": "(1:41) (Shotgun) 17-J.Allen sacked at BUF 39 for -19 yards (54-J.Martin)."
+    },
+    {
+      "game_id": "2019_13_CHI_DET",
+      "play_id": "4435",
+      "posteam": "DET",
+      "defteam": "CHI",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.410052537918091,
+      "win_probability_after": 0.20256333053112,
+      "wp_delta_offense": -0.207489207386971,
+      "desc": "(:41) (Shotgun) 10-D.Blough sacked at CHI 39 for -13 yards (58-R.Smith)."
+    },
+    {
+      "game_id": "2019_15_PHI_WAS",
+      "play_id": "4234",
+      "posteam": "WAS",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.207455024123192,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.207455024123192,
+      "desc": "(:06) (Shotgun) 7-D.Haskins sacked at 50 for -8 yards (29-A.Maddox). FUMBLES (29-A.Maddox) [29-A.Maddox], RECOVERED by PHI-53-N.Bradham at WAS 48. 53-N.Bradham for 48 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2019_05_BAL_PIT",
+      "play_id": "4151",
+      "posteam": "BAL",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.481937229633331,
+      "win_probability_after": 0.285591542720794,
+      "wp_delta_offense": -0.196345686912537,
+      "desc": "(:54) (Shotgun) 8-L.Jackson sacked at PIT 30 for -3 yards (79-J.Hargrave)."
+    },
+    {
+      "game_id": "2019_08_DEN_IND",
+      "play_id": "4408",
+      "posteam": "DEN",
+      "defteam": "IND",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.184541180729866,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.184541180729866,
+      "desc": "(:17) (Shotgun) 5-J.Flacco sacked at DEN 24 for -1 yards (52-B.Banogu). FUMBLES (52-B.Banogu) [52-B.Banogu], recovered by DEN-28-R.Freeman at DEN 24."
+    }
+  ],
   "rowsWithWp": 46985,
   "rowsWithDerivedWpAfter": 46558,
   "sackCount": 1422,
@@ -48,121 +212,131 @@
       "game_id": "2019_01_CIN_SEA",
       "play_id": "3124",
       "posteam": "CIN",
+      "defteam": "SEA",
       "qtr": "4",
       "score_differential": "-4",
-      "is_sack": "true",
       "win_probability_before": 0.317261308431625,
       "win_probability_after": 0.26053363084793046,
       "wp_delta_offense": -0.056727677583694514,
-      "desc": "(14:53) 14-A.Dalton sacked at CIN 17 for -8 yards (99-Q.Jefferson)."
+      "desc": "(14:53) 14-A.Dalton sacked at CIN 17 for -8 yards (99-Q.Jefferson).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_CIN_SEA",
       "play_id": "3515",
       "posteam": "CIN",
+      "defteam": "SEA",
       "qtr": "4",
       "score_differential": "-4",
-      "is_sack": "true",
       "win_probability_before": 0.440119713544846,
       "win_probability_after": 0.40804815292358443,
       "wp_delta_offense": -0.0320715606212616,
-      "desc": "(8:22) (Shotgun) 14-A.Dalton sacked at SEA 16 for -2 yards (90-J.Clowney)."
+      "desc": "(8:22) (Shotgun) 14-A.Dalton sacked at SEA 16 for -2 yards (90-J.Clowney).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_CIN_SEA",
       "play_id": "4158",
       "posteam": "CIN",
+      "defteam": "SEA",
       "qtr": "4",
       "score_differential": "-1",
-      "is_sack": "true",
       "win_probability_before": 0.295321315526962,
       "win_probability_after": 0.07529288530349701,
       "wp_delta_offense": -0.220028430223465,
-      "desc": "(:14) (Shotgun) 14-A.Dalton sacked at CIN 23 for -8 yards (98-R.Green). FUMBLES (98-R.Green), RECOVERED by SEA-21-T.Flowers at CIN 44. 21-T.Flowers to CIN 44 for no gain (11-J.Ross III). The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field was confirmed."
+      "desc": "(:14) (Shotgun) 14-A.Dalton sacked at CIN 23 for -8 yards (98-R.Green). FUMBLES (98-R.Green), RECOVERED by SEA-21-T.Flowers at CIN 44. 21-T.Flowers to CIN 44 for no gain (11-J.Ross III). The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field was confirmed.",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_GB_CHI",
       "play_id": "3836",
       "posteam": "GB",
+      "defteam": "CHI",
       "qtr": "4",
       "score_differential": "4",
-      "is_sack": "true",
       "win_probability_before": 0.803746342658997,
       "win_probability_after": 0.8236229419708256,
       "wp_delta_offense": 0.019876599311828613,
-      "desc": "(8:01) 12-A.Rodgers sacked at CHI 39 for -5 yards (94-L.Floyd). PENALTY on CHI-23-K.Fuller, Illegal Contact, 5 yards, enforced at CHI 34 - No Play."
+      "desc": "(8:01) 12-A.Rodgers sacked at CHI 39 for -5 yards (94-L.Floyd). PENALTY on CHI-23-K.Fuller, Illegal Contact, 5 yards, enforced at CHI 34 - No Play.",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_GB_CHI",
       "play_id": "4576",
       "posteam": "CHI",
+      "defteam": "GB",
       "qtr": "4",
       "score_differential": "-7",
-      "is_sack": "true",
       "win_probability_before": 0.0437108092010021,
       "win_probability_after": 0.0050841569900512,
       "wp_delta_offense": -0.0386266522109509,
-      "desc": "(1:09) (Shotgun) 10-M.Trubisky sacked at CHI 5 for -11 yards (91-P.Smith)."
+      "desc": "(1:09) (Shotgun) 10-M.Trubisky sacked at CHI 5 for -11 yards (91-P.Smith).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_HOU_NO",
       "play_id": "3374",
       "posteam": "HOU",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.448358058929443,
       "win_probability_after": 0.3533290624618527,
       "wp_delta_offense": -0.09502899646759033,
-      "desc": "(13:01) 4-D.Watson sacked at 50 for -6 yards (47-A.Anzalone)."
+      "desc": "(13:01) 4-D.Watson sacked at 50 for -6 yards (47-A.Anzalone).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_HOU_NO",
       "play_id": "3424",
       "posteam": "HOU",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.316311538219452,
       "win_probability_after": 0.2571068704128266,
       "wp_delta_offense": -0.05920466780662542,
-      "desc": "(11:33) (Shotgun) 4-D.Watson sacked at HOU 43 for -6 yards (91-T.Hendrickson). Penalty on HOU-76-S.Henderson, Offensive Holding, declined."
+      "desc": "(11:33) (Shotgun) 4-D.Watson sacked at HOU 43 for -6 yards (91-T.Hendrickson). Penalty on HOU-76-S.Henderson, Offensive Holding, declined.",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_HOU_NO",
       "play_id": "3582",
       "posteam": "NO",
+      "defteam": "HOU",
       "qtr": "4",
       "score_differential": "3",
-      "is_sack": "true",
       "win_probability_before": 0.762555301189423,
       "win_probability_after": 0.7280273437500004,
       "wp_delta_offense": -0.03452795743942261,
-      "desc": "(9:17) (Shotgun) 9-D.Brees sacked at NO 37 for -8 yards (59-W.Mercilus)."
+      "desc": "(9:17) (Shotgun) 9-D.Brees sacked at NO 37 for -8 yards (59-W.Mercilus).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_HOU_NO",
       "play_id": "3755",
       "posteam": "HOU",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.454154908657074,
       "win_probability_after": 0.39839616417884827,
       "wp_delta_offense": -0.05575874447822571,
-      "desc": "(5:47) (Shotgun) 4-D.Watson sacked at NO 44 for -1 yards (26-P.Williams)."
+      "desc": "(5:47) (Shotgun) 4-D.Watson sacked at NO 44 for -1 yards (26-P.Williams).",
+      "is_sack": "true"
     },
     {
       "game_id": "2019_01_HOU_NO",
       "play_id": "3799",
       "posteam": "HOU",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.342750877141953,
       "win_probability_after": 0.20681291818618802,
       "wp_delta_offense": -0.135937958955765,
-      "desc": "(4:25) (Shotgun) 4-D.Watson sacked at HOU 45 for -11 yards (91-T.Hendrickson)."
+      "desc": "(4:25) (Shotgun) 4-D.Watson sacked at HOU 45 for -11 yards (91-T.Hendrickson).",
+      "is_sack": "true"
     }
   ]
 }

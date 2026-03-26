@@ -1,7 +1,7 @@
 {
   "season": 2023,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2023.csv",
-  "generatedAt": "2026-03-26T14:18:16.324Z",
+  "generatedAt": "2026-03-26T16:57:40.639Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
@@ -30,6 +30,170 @@
     "averageWpDeltaOffense": -0.07000508223942652,
     "medianWpDeltaOffense": -0.05934113264083862
   },
+  "topSackLeaders": [
+    {
+      "defender": "58-H.Landry",
+      "sacks": 6
+    },
+    {
+      "defender": "41-J.Allen",
+      "sacks": 4
+    },
+    {
+      "defender": "52-J.Greenard",
+      "sacks": 4
+    },
+    {
+      "defender": "90-T.Watt",
+      "sacks": 4
+    },
+    {
+      "defender": "91-E.Oliver",
+      "sacks": 4
+    },
+    {
+      "defender": "91-T.Hendrickson",
+      "sacks": 4
+    },
+    {
+      "defender": "15-J.Phillips",
+      "sacks": 3
+    },
+    {
+      "defender": "17-A.Ebiketie",
+      "sacks": 3
+    },
+    {
+      "defender": "45-T.Tuipulotu",
+      "sacks": 3
+    },
+    {
+      "defender": "51-K.Paye",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2023_02_CLE_PIT",
+      "play_id": "4056",
+      "posteam": "CLE",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.713084161281586,
+      "win_probability_after": 0.29396723903863503,
+      "wp_delta_offense": -0.419116922242951,
+      "desc": "(7:06) 4-D.Watson sacked at CLE 13 for -7 yards (56-A.Highsmith). FUMBLES (56-A.Highsmith) [56-A.Highsmith], RECOVERED by PIT-90-T.Watt at CLE 16. 90-T.Watt for 16 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2023_06_SEA_CIN",
+      "play_id": "3683",
+      "posteam": "SEA",
+      "defteam": "CIN",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.42337891459465,
+      "win_probability_after": 0.08956778049469,
+      "wp_delta_offense": -0.33381113409996,
+      "desc": "(2:08) (Shotgun) 7-G.Smith sacked at CIN 14 for -8 yards (94-S.Hubbard)."
+    },
+    {
+      "game_id": "2023_04_DEN_CHI",
+      "play_id": "3340",
+      "posteam": "CHI",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "7",
+      "win_probability_before": 0.91213458776474,
+      "win_probability_after": 0.581793482512738,
+      "wp_delta_offense": -0.330341105252002,
+      "desc": "(7:05) 1-J.Fields sacked at CHI 42 for -10 yards (42-N.Bonitto). FUMBLES (42-N.Bonitto), RECOVERED by DEN-0-J.Cooper at CHI 35. 0-J.Cooper for 35 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2023_18_LA_SF",
+      "play_id": "3789",
+      "posteam": "SF",
+      "defteam": "LA",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.378099858760834,
+      "win_probability_after": 0.07931274175643904,
+      "wp_delta_offense": -0.298787117004395,
+      "desc": "(:33) (Shotgun) 14-S.Darnold sacked at SF 37 for -3 yards (94-D.Johnson). FUMBLES (94-D.Johnson) [94-D.Johnson], RECOVERED by LA-0-B.Young at SF 43."
+    },
+    {
+      "game_id": "2023_05_BAL_PIT",
+      "play_id": "3929",
+      "posteam": "BAL",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.282770037651062,
+      "win_probability_after": 0.01948291063308699,
+      "wp_delta_offense": -0.263287127017975,
+      "desc": "(1:12) (Shotgun) 8-L.Jackson sacked at BAL 35 for -9 yards (56-A.Highsmith). FUMBLES (56-A.Highsmith), RECOVERED by PIT-90-T.Watt at BAL 36. 90-T.Watt to BAL 18 for 18 yards (3-O.Beckham; 8-L.Jackson)."
+    },
+    {
+      "game_id": "2023_07_CLE_IND",
+      "play_id": "4961",
+      "posteam": "IND",
+      "defteam": "CLE",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.322602659463882,
+      "win_probability_after": 0.06611293554306003,
+      "wp_delta_offense": -0.256489723920822,
+      "desc": "(:09) (Shotgun) 10-G.Minshew sacked at IND 21 for -4 yards (99-Z.Smith). FUMBLES (99-Z.Smith) [99-Z.Smith], RECOVERED by CLE-54-O.Okoronkwo at IND 26."
+    },
+    {
+      "game_id": "2023_05_NYJ_DEN",
+      "play_id": "4029",
+      "posteam": "DEN",
+      "defteam": "NYJ",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.265352547168732,
+      "win_probability_after": 0.015560319783252036,
+      "wp_delta_offense": -0.24979222738548,
+      "desc": "(:41) (Shotgun) 3-R.Wilson sacked at DEN 34 for -7 yards (56-Qu.Williams). FUMBLES (56-Qu.Williams) [56-Qu.Williams], RECOVERED by NYJ-37-Bry.Hall at DEN 39. 37-Bry.Hall for 39 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2023_01_MIA_LAC",
+      "play_id": "4731",
+      "posteam": "LAC",
+      "defteam": "MIA",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.27056547999382,
+      "win_probability_after": 0.03729689121246302,
+      "wp_delta_offense": -0.233268588781357,
+      "desc": "(1:01) (Shotgun) 10-J.Herbert sacked at LAC 24 for -9 yards (sack split by 15-J.Phillips and 20-J.Bethel)."
+    },
+    {
+      "game_id": "2023_14_TEN_MIA",
+      "play_id": "4877",
+      "posteam": "MIA",
+      "defteam": "TEN",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.322408586740494,
+      "win_probability_after": 0.08946895599365301,
+      "wp_delta_offense": -0.232939630746841,
+      "desc": "(:26) (No Huddle, Shotgun) 1-T.Tagovailoa sacked at MIA 42 for -3 yards (58-H.Landry)."
+    },
+    {
+      "game_id": "2023_06_SF_CLE",
+      "play_id": "4039",
+      "posteam": "CLE",
+      "defteam": "SF",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.47248774766922,
+      "win_probability_after": 0.24866209924221003,
+      "wp_delta_offense": -0.22382564842701,
+      "desc": "(4:10) (Shotgun) 10-P.Walker sacked at SF 32 for -11 yards (97-N.Bosa)."
+    }
+  ],
   "rowsWithWp": 49380,
   "rowsWithDerivedWpAfter": 48925,
   "sackCount": 1556,
@@ -48,121 +212,131 @@
       "game_id": "2023_01_ARI_WAS",
       "play_id": "4214",
       "posteam": "ARI",
+      "defteam": "WAS",
       "qtr": "4",
       "score_differential": "-4",
-      "is_sack": "true",
       "win_probability_before": 0.250361859798431,
       "win_probability_after": 0.19397559762001002,
       "wp_delta_offense": -0.05638626217842099,
-      "desc": "(1:29) (No Huddle, Shotgun) 9-J.Dobbs sacked at ARI 31 for -8 yards (93-J.Allen)."
+      "desc": "(1:29) (No Huddle, Shotgun) 9-J.Dobbs sacked at ARI 31 for -8 yards (93-J.Allen).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_BUF_NYJ",
       "play_id": "2799",
       "posteam": "NYJ",
+      "defteam": "BUF",
       "qtr": "4",
       "score_differential": "-7",
-      "is_sack": "true",
       "win_probability_before": 0.238360345363617,
       "win_probability_after": 0.15704520046710968,
       "wp_delta_offense": -0.08131514489650732,
-      "desc": "(15:00) (Shotgun) 2-Z.Wilson sacked at NYJ 31 for -1 yards (sack split by 56-L.Floyd and 91-E.Oliver)."
+      "desc": "(15:00) (Shotgun) 2-Z.Wilson sacked at NYJ 31 for -1 yards (sack split by 56-L.Floyd and 91-E.Oliver).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_BUF_NYJ",
       "play_id": "2896",
       "posteam": "BUF",
+      "defteam": "NYJ",
       "qtr": "4",
       "score_differential": "7",
-      "is_sack": "true",
       "win_probability_before": 0.825467348098755,
       "win_probability_after": 0.8117621541023256,
       "wp_delta_offense": -0.013705193996429443,
-      "desc": "(13:10) (No Huddle, Shotgun) 17-J.Allen sacked at BUF 23 for -2 yards (11-J.Johnson)."
+      "desc": "(13:10) (No Huddle, Shotgun) 17-J.Allen sacked at BUF 23 for -2 yards (11-J.Johnson).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_CAR_ATL",
       "play_id": "3147",
       "posteam": "CAR",
+      "defteam": "ATL",
       "qtr": "4",
       "score_differential": "-7",
-      "is_sack": "true",
       "win_probability_before": 0.158366918563843,
       "win_probability_after": 0.1064683198928835,
       "wp_delta_offense": -0.0518985986709595,
-      "desc": "(11:42) (Shotgun) 9-B.Young sacked at CAR 29 for -7 yards (sack split by 44-T.Andersen and 97-G.Jarrett)."
+      "desc": "(11:42) (Shotgun) 9-B.Young sacked at CAR 29 for -7 yards (sack split by 44-T.Andersen and 97-G.Jarrett).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_LV_DEN",
       "play_id": "3034",
       "posteam": "DEN",
+      "defteam": "LV",
       "qtr": "4",
       "score_differential": "3",
-      "is_sack": "true",
       "win_probability_before": 0.712847113609314,
       "win_probability_after": 0.6649101972579956,
       "wp_delta_offense": -0.04793691635131836,
-      "desc": "(14:15) (Shotgun) 3-R.Wilson sacked at DEN 43 for -4 yards (90-J.Tillery)."
+      "desc": "(14:15) (Shotgun) 3-R.Wilson sacked at DEN 43 for -4 yards (90-J.Tillery).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_MIA_LAC",
       "play_id": "4679",
       "posteam": "LAC",
+      "defteam": "MIA",
       "qtr": "4",
       "score_differential": "-2",
-      "is_sack": "true",
       "win_probability_before": 0.368557661771774,
       "win_probability_after": 0.2999455928802487,
       "wp_delta_offense": -0.06861206889152532,
-      "desc": "(1:18) (Shotgun) 10-J.Herbert sacked at LAC 16 for -8 yards (92-Z.Sieler)."
+      "desc": "(1:18) (Shotgun) 10-J.Herbert sacked at LAC 16 for -8 yards (92-Z.Sieler).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_MIA_LAC",
       "play_id": "4731",
       "posteam": "LAC",
+      "defteam": "MIA",
       "qtr": "4",
       "score_differential": "-2",
-      "is_sack": "true",
       "win_probability_before": 0.27056547999382,
       "win_probability_after": 0.03729689121246302,
       "wp_delta_offense": -0.233268588781357,
-      "desc": "(1:01) (Shotgun) 10-J.Herbert sacked at LAC 24 for -9 yards (sack split by 15-J.Phillips and 20-J.Bethel)."
+      "desc": "(1:01) (Shotgun) 10-J.Herbert sacked at LAC 24 for -9 yards (sack split by 15-J.Phillips and 20-J.Bethel).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_PHI_NE",
       "play_id": "3858",
       "posteam": "PHI",
+      "defteam": "NE",
       "qtr": "4",
       "score_differential": "8",
-      "is_sack": "true",
       "win_probability_before": 0.941558480262756,
       "win_probability_after": 0.9252865314483639,
       "wp_delta_offense": -0.01627194881439209,
-      "desc": "(7:46) (Shotgun) 1-J.Hurts sacked at NE 48 for -8 yards (6-C.Gonzalez)."
+      "desc": "(7:46) (Shotgun) 1-J.Hurts sacked at NE 48 for -8 yards (6-C.Gonzalez).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_PHI_NE",
       "play_id": "4250",
       "posteam": "NE",
+      "defteam": "PHI",
       "qtr": "4",
       "score_differential": "-5",
-      "is_sack": "true",
       "win_probability_before": 0.338994383811951,
       "win_probability_after": 0.22935551404953003,
       "wp_delta_offense": -0.10963886976242099,
-      "desc": "(2:59) (Shotgun) 10-M.Jones sacked at PHI 43 for -7 yards (sack split by 90-J.Davis and 94-J.Sweat)."
+      "desc": "(2:59) (Shotgun) 10-M.Jones sacked at PHI 43 for -7 yards (sack split by 90-J.Davis and 94-J.Sweat).",
+      "is_sack": "true"
     },
     {
       "game_id": "2023_01_PHI_NE",
       "play_id": "4614",
       "posteam": "NE",
+      "defteam": "PHI",
       "qtr": "4",
       "score_differential": "-5",
-      "is_sack": "true",
       "win_probability_before": 0.479478031396866,
       "win_probability_after": 0.359523266553879,
       "wp_delta_offense": -0.119954764842987,
-      "desc": "(:58) (Shotgun) 10-M.Jones sacked at PHI 22 for -3 yards (98-J.Carter)."
+      "desc": "(:58) (Shotgun) 10-M.Jones sacked at PHI 22 for -3 yards (98-J.Carter).",
+      "is_sack": "true"
     }
   ]
 }

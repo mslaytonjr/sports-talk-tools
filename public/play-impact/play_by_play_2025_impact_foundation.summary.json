@@ -1,7 +1,7 @@
 {
   "season": 2025,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.csv",
-  "generatedAt": "2026-03-26T14:05:18.644Z",
+  "generatedAt": "2026-03-26T16:57:24.250Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
@@ -30,6 +30,170 @@
     "averageWpDeltaOffense": -0.07420586215987919,
     "medianWpDeltaOffense": -0.060312747955322266
   },
+  "topSackLeaders": [
+    {
+      "defender": "51-W.Anderson",
+      "sacks": 6
+    },
+    {
+      "defender": "55-D.Hunter",
+      "sacks": 5
+    },
+    {
+      "defender": "0-J.Cooper",
+      "sacks": 4
+    },
+    {
+      "defender": "1-M.Parsons",
+      "sacks": 4
+    },
+    {
+      "defender": "95-D.Brown",
+      "sacks": 4
+    },
+    {
+      "defender": "99-C.Young",
+      "sacks": 4
+    },
+    {
+      "defender": "99-Z.Allen",
+      "sacks": 4
+    },
+    {
+      "defender": "29-J.McMillian",
+      "sacks": 3
+    },
+    {
+      "defender": "43-A.Van Ginkel",
+      "sacks": 3
+    },
+    {
+      "defender": "50-G.Rousseau",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2025_01_SF_SEA",
+      "play_id": "4235",
+      "posteam": "SEA",
+      "defteam": "SF",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.598674774169922,
+      "win_probability_after": 0.06178474426269498,
+      "wp_delta_offense": -0.536890029907227,
+      "desc": "(:42) (No Huddle, Shotgun) 14-S.Darnold sacked at SF 16 for -7 yards (97-N.Bosa). FUMBLES (97-N.Bosa), touched at SF 13, RECOVERED by SF-97-N.Bosa at SF 16. PENALTY on SF-2-D.Lenoir, Unsportsmanlike Conduct, 8 yards, enforced at SF 16."
+    },
+    {
+      "game_id": "2025_09_JAX_LV",
+      "play_id": "4025",
+      "posteam": "LV",
+      "defteam": "JAX",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.682794034481049,
+      "win_probability_after": 0.24012180347927004,
+      "wp_delta_offense": -0.442672231001779,
+      "desc": "(:10) (Shotgun) 7-G.Smith sacked at LV 29 for -5 yards (sack split by 41-J.Hines-Allen and 90-E.Ogbah)."
+    },
+    {
+      "game_id": "2025_06_DEN_NYJ",
+      "play_id": "4065",
+      "posteam": "NYJ",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.350935161113739,
+      "win_probability_after": 0.052221119403839,
+      "wp_delta_offense": -0.2987140417099,
+      "desc": "(1:14) (Shotgun) 7-J.Fields sacked at NYJ 44 for -12 yards (sack split by 0-J.Cooper and 22-B.Jones)."
+    },
+    {
+      "game_id": "2025_13_LA_CAR",
+      "play_id": "3442",
+      "posteam": "LA",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.472489982843399,
+      "win_probability_after": 0.18544077873229997,
+      "wp_delta_offense": -0.287049204111099,
+      "desc": "(2:34) (Shotgun) 9-M.Stafford sacked at CAR 31 for -9 yards (95-D.Brown). FUMBLES (95-D.Brown) [95-D.Brown], RECOVERED by CAR-98-D.Wonnum at CAR 30. 98-D.Wonnum to CAR 49 for 19 yards (15-K.Mumpfield). PENALTY on CAR, Unsportsmanlike Conduct, 15 yards, enforced at CAR 49."
+    },
+    {
+      "game_id": "2025_14_PIT_BAL",
+      "play_id": "4539",
+      "posteam": "BAL",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.270291179418564,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.270291179418564,
+      "desc": "(:09) (Shotgun) 8-L.Jackson sacked at PIT 38 for -8 yards (56-A.Highsmith)."
+    },
+    {
+      "game_id": "2025_10_JAX_HOU",
+      "play_id": "4638",
+      "posteam": "JAX",
+      "defteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.258709490299225,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.258709490299225,
+      "desc": "(:07) (Shotgun) 16-T.Lawrence sacked at JAX 30 for -5 yards (51-W.Anderson). FUMBLES (51-W.Anderson) [51-W.Anderson], RECOVERED by HOU-90-S.Rankins at JAX 32. 90-S.Rankins for 32 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2025_03_ARI_SF",
+      "play_id": "3694",
+      "posteam": "SF",
+      "defteam": "ARI",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.488673031330109,
+      "win_probability_after": 0.263118982315064,
+      "wp_delta_offense": -0.225554049015045,
+      "desc": "(3:26) (Shotgun) 10-M.Jones sacked at SF 6 for 0 yards (2-Ma.Wilson). PENALTY on SF-77-D.Puni, Offensive Holding, 6 yards, enforced in End Zone, SAFETY - No Play."
+    },
+    {
+      "game_id": "2025_16_MIN_NYG",
+      "play_id": "3770",
+      "posteam": "NYG",
+      "defteam": "MIN",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.295277893543243,
+      "win_probability_after": 0.07742482423782301,
+      "wp_delta_offense": -0.21785306930542,
+      "desc": "(2:05) (Shotgun) 6-J.Dart sacked at NYG 39 for -8 yards (43-A.Van Ginkel)."
+    },
+    {
+      "game_id": "2025_19_HOU_PIT",
+      "play_id": "3273",
+      "posteam": "PIT",
+      "defteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.316002190113068,
+      "win_probability_after": 0.110349687000692,
+      "wp_delta_offense": -0.205652503112376,
+      "desc": "(11:34) (No Huddle, Shotgun) 8-A.Rodgers sacked at PIT 33 for -10 yards (sack split by 51-W.Anderson and 90-S.Rankins). FUMBLES (51-W.Anderson) [51-W.Anderson], RECOVERED by HOU-90-S.Rankins at PIT 33. 90-S.Rankins for 33 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2025_07_GB_ARI",
+      "play_id": "4262",
+      "posteam": "ARI",
+      "defteam": "GB",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.491789549589157,
+      "win_probability_after": 0.298693150281906,
+      "wp_delta_offense": -0.19309639930725098,
+      "desc": "(:32) (No Huddle, Shotgun) 7-J.Brissett sacked at GB 35 for -9 yards (1-M.Parsons)."
+    }
+  ],
   "rowsWithWp": 48486,
   "rowsWithDerivedWpAfter": 48033,
   "sackCount": 1458,
@@ -48,121 +212,131 @@
       "game_id": "2025_01_ARI_NO",
       "play_id": "4287",
       "posteam": "ARI",
+      "defteam": "NO",
       "qtr": "4",
       "score_differential": "7",
-      "is_sack": "true",
       "win_probability_before": 0.94183224439621,
       "win_probability_after": 0.9462649226188663,
       "wp_delta_offense": 0.00443267822265625,
-      "desc": "(2:23) (Shotgun) 1-K.Murray sacked at ARI 17 for -15 yards (1-A.Taylor)."
+      "desc": "(2:23) (Shotgun) 1-K.Murray sacked at ARI 17 for -15 yards (1-A.Taylor).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_CIN_CLE",
       "play_id": "3401",
       "posteam": "CIN",
+      "defteam": "CLE",
       "qtr": "4",
       "score_differential": "1",
-      "is_sack": "true",
       "win_probability_before": 0.549074649810791,
       "win_probability_after": 0.4982761740684509,
       "wp_delta_offense": -0.05079847574234009,
-      "desc": "(9:22) (Shotgun) 9-J.Burrow sacked at CIN 14 for -6 yards (95-M.Garrett)."
+      "desc": "(9:22) (Shotgun) 9-J.Burrow sacked at CIN 14 for -6 yards (95-M.Garrett).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_CIN_CLE",
       "play_id": "3428",
       "posteam": "CIN",
+      "defteam": "CLE",
       "qtr": "4",
       "score_differential": "1",
-      "is_sack": "true",
       "win_probability_before": 0.498276174068451,
       "win_probability_after": 0.5118623971939088,
       "wp_delta_offense": 0.01358622312545782,
-      "desc": "(8:36) (Shotgun) 9-J.Burrow sacked at CIN 9 for -5 yards (95-M.Garrett)."
+      "desc": "(8:36) (Shotgun) 9-J.Burrow sacked at CIN 9 for -5 yards (95-M.Garrett).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_CIN_CLE",
       "play_id": "3455",
       "posteam": "CIN",
+      "defteam": "CLE",
       "qtr": "4",
       "score_differential": "1",
-      "is_sack": "true",
       "win_probability_before": 0.511862397193909,
       "win_probability_after": 0.4793725907802585,
       "wp_delta_offense": -0.03248980641365051,
-      "desc": "(7:54) (Shotgun) 9-J.Burrow sacked at CIN 2 for -7 yards (57-I.McGuire)."
+      "desc": "(7:54) (Shotgun) 9-J.Burrow sacked at CIN 2 for -7 yards (57-I.McGuire).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_CIN_CLE",
       "play_id": "3707",
       "posteam": "CLE",
+      "defteam": "CIN",
       "qtr": "4",
       "score_differential": "-1",
-      "is_sack": "true",
       "win_probability_before": 0.697506725788117,
       "win_probability_after": 0.583318710327149,
       "wp_delta_offense": -0.11418801546096802,
-      "desc": "(3:10) (Shotgun) 15-J.Flacco sacked at CIN 18 for -6 yards (92-B.Hill)."
+      "desc": "(3:10) (Shotgun) 15-J.Flacco sacked at CIN 18 for -6 yards (92-B.Hill).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_HOU_LA",
       "play_id": "3165",
       "posteam": "LA",
+      "defteam": "HOU",
       "qtr": "4",
       "score_differential": "5",
-      "is_sack": "true",
       "win_probability_before": 0.805130183696747,
       "win_probability_after": 0.8024693131446841,
       "wp_delta_offense": -0.0026608705520629883,
-      "desc": "(14:18) (Shotgun) 9-M.Stafford sacked at LA 48 for -8 yards (91-F.Fatukasi)."
+      "desc": "(14:18) (Shotgun) 9-M.Stafford sacked at LA 48 for -8 yards (91-F.Fatukasi).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_HOU_LA",
       "play_id": "3234",
       "posteam": "LA",
+      "defteam": "HOU",
       "qtr": "4",
       "score_differential": "5",
-      "is_sack": "true",
       "win_probability_before": 0.831823587417603,
       "win_probability_after": 0.7809033989906315,
       "wp_delta_offense": -0.050920188426971436,
-      "desc": "(12:33) (Shotgun) 9-M.Stafford sacked at HOU 39 for -6 yards (51-W.Anderson). LA-69-K.Dotson was injured during the play."
+      "desc": "(12:33) (Shotgun) 9-M.Stafford sacked at HOU 39 for -6 yards (51-W.Anderson). LA-69-K.Dotson was injured during the play.",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_KC_LAC",
       "play_id": "3998",
       "posteam": "LAC",
+      "defteam": "KC",
       "qtr": "4",
       "score_differential": "6",
-      "is_sack": "true",
       "win_probability_before": 0.929802119731903,
       "win_probability_after": 0.9388974308967589,
       "wp_delta_offense": 0.009095311164855957,
-      "desc": "(2:21) (Shotgun) 10-J.Herbert sacked at LAC 34 for -5 yards (23-D.Tranquill)."
+      "desc": "(2:21) (Shotgun) 10-J.Herbert sacked at LAC 34 for -5 yards (23-D.Tranquill).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_MIN_CHI",
       "play_id": "3299",
       "posteam": "CHI",
+      "defteam": "MIN",
       "qtr": "4",
       "score_differential": "5",
-      "is_sack": "true",
       "win_probability_before": 0.786510229110718,
       "win_probability_after": 0.753794312477112,
       "wp_delta_offense": -0.03271591663360596,
-      "desc": "(12:09) (Shotgun) 18-C.Williams sacked at CHI 17 for -8 yards (97-J.Hargrave)."
+      "desc": "(12:09) (Shotgun) 18-C.Williams sacked at CHI 17 for -8 yards (97-J.Hargrave).",
+      "is_sack": "true"
     },
     {
       "game_id": "2025_01_MIN_CHI",
       "play_id": "3592",
       "posteam": "CHI",
+      "defteam": "MIN",
       "qtr": "4",
       "score_differential": "-3",
-      "is_sack": "true",
       "win_probability_before": 0.452815979719162,
       "win_probability_after": 0.4022469818592072,
       "wp_delta_offense": -0.05056899785995478,
-      "desc": "(8:24) 18-C.Williams sacked ob at CHI 43 for -4 yards (97-J.Hargrave)."
+      "desc": "(8:24) 18-C.Williams sacked ob at CHI 43 for -4 yards (97-J.Hargrave).",
+      "is_sack": "true"
     }
   ]
 }

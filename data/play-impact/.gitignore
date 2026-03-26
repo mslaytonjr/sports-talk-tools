@@ -1,0 +1,5 @@
+*.csv
+*.json
+!.gitignore
+!*_impact_foundation.q4_one_score_sacks.csv
+!*_impact_foundation.summary.json

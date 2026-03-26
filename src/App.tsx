@@ -2,6 +2,7 @@ import { Link, Route, Routes, useLocation } from "react-router-dom";
 import DepthChartPage from "./pages/DepthChartPage";
 import BracketRootingGuidePage from "./pages/BracketRootingGuidePage";
 import SabresPage from "./pages/SabresMagicNumberPage";
+import PlayImpactModelPage from "./pages/PlayImpactModelPage";
 import logo from "./assets/wny-sports-net-logo.png";
 
 function HomePage() {
@@ -49,6 +50,16 @@ function HomePage() {
                                     rooting advice for the bracket you want to win.
                                 </p>
                                 <div className="landing-card-action">Enter bracket tool</div>
+                            </Link>
+
+                            <Link to="/PlayImpactModel" className="landing-card group">
+                                <div className="landing-card-label">Build In Progress</div>
+                                <div className="landing-card-title">Play Impact Model</div>
+                                <p className="landing-card-copy">
+                                    Start with one season of play-by-play, preserve win probability
+                                    context, and build the impact model from clean data.
+                                </p>
+                                <div className="landing-card-action">Enter model workspace</div>
                             </Link>
                         </div>
                     </div>
@@ -114,6 +125,17 @@ export default function App() {
                             Sabres Magic Number
                         </Link>
                         <Link
+                            to="/PlayImpactModel"
+                            className={[
+                                "rounded-full border px-4 py-2 text-sm font-medium transition",
+                                location.pathname === "/PlayImpactModel"
+                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
+                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
+                            ].join(" ")}
+                        >
+                            Play Impact Model
+                        </Link>
+                        <Link
                             to="/BracketRootingGuide"
                             className={[
                                 "rounded-full border px-4 py-2 text-sm font-medium transition",
@@ -132,6 +154,7 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
+                <Route path="/PlayImpactModel" element={<PlayImpactModelPage />} />
                 <Route path="/BracketRootingGuide" element={<BracketRootingGuidePage />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>

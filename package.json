@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "build:play-impact-season": "node ./scripts/build-play-impact-season.mjs",
     "deploy:sabres-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-sabres-lambda.ps1"
   },
   "dependencies": {

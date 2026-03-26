@@ -3,6 +3,7 @@ export const NFLVERSE_PBP_URL = (season: number) =>
 
 export type PlayByPlayRow = {
     gameId: string;
+    playId: string;
     season: number | null;
     week: number | null;
     seasonType: string;
@@ -15,11 +16,14 @@ export type PlayByPlayRow = {
     defteam: string;
     playType: string;
     desc: string;
+    isSack: boolean;
     wp: number | null;
     defWp: number | null;
     homeWp: number | null;
     awayWp: number | null;
     wpa: number | null;
+    winProbabilityBefore: number | null;
+    winProbabilityAfter: number | null;
 };
 
 export type PlayByPlaySeason = {
@@ -36,6 +40,7 @@ export type LoadProgress =
 
 const SELECTED_COLUMNS = [
     "game_id",
+    "play_id",
     "season",
     "week",
     "season_type",
@@ -76,8 +81,14 @@ function normalizeHeader(value: string) {
 }
 
 function mapRow(row: string[], indexes: Record<ColumnName, number>): PlayByPlayRow {
+    const playType = safeText(row[indexes.play_type]);
+    const description = safeText(row[indexes.desc]);
+    const wp = parseNumber(row[indexes.wp]);
+    const wpa = parseNumber(row[indexes.wpa]);
+
     return {
         gameId: safeText(row[indexes.game_id]),
+        playId: safeText(row[indexes.play_id]),
         season: parseNumber(row[indexes.season]),
         week: parseNumber(row[indexes.week]),
         seasonType: safeText(row[indexes.season_type]),
@@ -88,13 +99,17 @@ function mapRow(row: string[], indexes: Record<ColumnName, number>): PlayByPlayR
         scoreDifferential: parseNumber(row[indexes.score_differential]),
         posteam: safeText(row[indexes.posteam]),
         defteam: safeText(row[indexes.defteam]),
-        playType: safeText(row[indexes.play_type]),
-        desc: safeText(row[indexes.desc]),
-        wp: parseNumber(row[indexes.wp]),
+        playType,
+        desc: description,
+        isSack: playType === "sack" || /\bsacked\b/i.test(description),
+        wp,
         defWp: parseNumber(row[indexes.def_wp]),
         homeWp: parseNumber(row[indexes.home_wp]),
         awayWp: parseNumber(row[indexes.away_wp]),
-        wpa: parseNumber(row[indexes.wpa]),
+        wpa,
+        winProbabilityBefore: wp,
+        winProbabilityAfter:
+            wp != null && wpa != null ? Math.max(0, Math.min(1, wp + wpa)) : null,
     };
 }
 

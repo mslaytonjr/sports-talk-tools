@@ -1,7 +1,7 @@
 {
   "season": 2021,
   "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2021.csv",
-  "generatedAt": "2026-03-26T16:57:56.400Z",
+  "generatedAt": "2026-03-26T19:12:08.392Z",
   "notes": [
     "One-score is defined at the play level as absolute score differential less than or equal to 8.",
     "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",

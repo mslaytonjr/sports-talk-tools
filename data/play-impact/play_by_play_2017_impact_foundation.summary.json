@@ -1,0 +1,342 @@
+{
+  "season": 2017,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2017.csv",
+  "generatedAt": "2026-03-26T19:13:51.918Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 47245,
+  "gameCount": 267,
+  "oneScoreRowCount": 29461,
+  "qualifyingSackRowCount": 168,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 168,
+    "averageWpDeltaOffense": -0.07591376991272043,
+    "medianWpDeltaOffense": -0.05887223035097125
+  },
+  "topSackLeaders": [
+    {
+      "defender": "54-M.Ingram",
+      "sacks": 4
+    },
+    {
+      "defender": "91-C.Wake",
+      "sacks": 4
+    },
+    {
+      "defender": "48-V.Bell",
+      "sacks": 3
+    },
+    {
+      "defender": "50-J.Houston",
+      "sacks": 3
+    },
+    {
+      "defender": "90-J.Pierre-Paul",
+      "sacks": 3
+    },
+    {
+      "defender": "91-Y.Ngakoue",
+      "sacks": 3
+    },
+    {
+      "defender": "96-C.Dunlap",
+      "sacks": 3
+    },
+    {
+      "defender": "99-K.Short",
+      "sacks": 3
+    },
+    {
+      "defender": "41-Z.Cunningham",
+      "sacks": 2
+    },
+    {
+      "defender": "47-K.Alonso",
+      "sacks": 2
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2017_12_CAR_NYJ",
+      "play_id": "3801",
+      "posteam": "NYJ",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "2",
+      "win_probability_before": 0.71754252910614,
+      "win_probability_after": 0.298997702479362,
+      "wp_delta_offense": -0.418544826626778,
+      "desc": "(12:16) 15-J.McCown sacked at NYJ 36 for -9 yards (96-W.Horton). FUMBLES (96-W.Horton) [96-W.Horton], touched at NYJ 36, RECOVERED by CAR-59-L.Kuechly at NYJ 34. 59-L.Kuechly for 34 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2017_05_LAC_NYG",
+      "play_id": "4120",
+      "posteam": "NYG",
+      "defteam": "LAC",
+      "qtr": "4",
+      "score_differential": "2",
+      "win_probability_before": 0.730661153793335,
+      "win_probability_after": 0.35612720251083396,
+      "wp_delta_offense": -0.374533951282501,
+      "desc": "(4:00) (Shotgun) 10-E.Manning sacked at NYG 11 for -12 yards (54-M.Ingram). FUMBLES (54-M.Ingram) [54-M.Ingram], RECOVERED by LAC-54-M.Ingram at NYG 11. 54-M.Ingram to NYG 11 for no gain (76-D.Fluker)."
+    },
+    {
+      "game_id": "2017_05_SEA_LA",
+      "play_id": "3890",
+      "posteam": "LA",
+      "defteam": "SEA",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.424218565225601,
+      "win_probability_after": 0.131591975688934,
+      "wp_delta_offense": -0.292626589536667,
+      "desc": "(2:57) (No Huddle, Shotgun) 16-J.Goff sacked at LA 35 for -8 yards (55-F.Clark). FUMBLES (55-F.Clark) [55-F.Clark], RECOVERED by SEA-91-S.Richardson at LA 40. 91-S.Richardson to LA 20 for 20 yards (77-A.Whitworth)."
+    },
+    {
+      "game_id": "2017_14_PHI_LA",
+      "play_id": "3965",
+      "posteam": "LA",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "1",
+      "win_probability_before": 0.681125998497009,
+      "win_probability_after": 0.39435297250747703,
+      "wp_delta_offense": -0.286773025989532,
+      "desc": "(8:26) 16-J.Goff sacked at LA 29 for -6 yards (56-C.Long). FUMBLES (56-C.Long) [56-C.Long], RECOVERED by PHI-23-R.McLeod at LA 34. 23-R.McLeod to LA 25 for 9 yards (16-J.Goff)."
+    },
+    {
+      "game_id": "2017_01_PHI_WAS",
+      "play_id": "3794",
+      "posteam": "WAS",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.29902908205986,
+      "win_probability_after": 0.014239554263651033,
+      "wp_delta_offense": -0.284789527796209,
+      "desc": "(1:38) (No Huddle, Shotgun) 8-K.Cousins sacked at WAS 24 for -8 yards (55-B.Graham). FUMBLES (55-B.Graham) [55-B.Graham], RECOVERED by PHI-91-F.Cox at WAS 20. 91-F.Cox for 20 yards, TOUCHDOWN. The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field stands."
+    },
+    {
+      "game_id": "2017_14_BAL_PIT",
+      "play_id": "4800",
+      "posteam": "BAL",
+      "defteam": "PIT",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.248884409666061,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.248884409666061,
+      "desc": "(:16) (Shotgun) 5-J.Flacco sacked at BAL 31 for -8 yards (90-T.Watt). FUMBLES (90-T.Watt) [90-T.Watt], ball out of bounds at BAL 36."
+    },
+    {
+      "game_id": "2017_12_JAX_ARI",
+      "play_id": "3586",
+      "posteam": "ARI",
+      "defteam": "JAX",
+      "qtr": "4",
+      "score_differential": "6",
+      "win_probability_before": 0.771336913108826,
+      "win_probability_after": 0.540068060727533,
+      "wp_delta_offense": -0.23126885238129302,
+      "desc": "(12:19) (Shotgun) 7-B.Gabbert sacked at ARI 10 for -5 yards (91-Y.Ngakoue). FUMBLES (91-Y.Ngakoue) [91-Y.Ngakoue], RECOVERED by JAX-93-C.Campbell at ARI 10. 93-C.Campbell for 10 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2017_09_IND_HOU",
+      "play_id": "4202",
+      "posteam": "HOU",
+      "defteam": "IND",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.226598709821701,
+      "win_probability_after": 0,
+      "wp_delta_offense": -0.226598709821701,
+      "desc": "(:02) (Shotgun) 3-T.Savage sacked at IND 17 for -10 yards (93-J.Sheard). FUMBLES (93-J.Sheard) [93-J.Sheard], touched at IND 23, RECOVERED by IND-52-B.Mingo at IND 34. 52-B.Mingo to IND 34 for no gain (12-B.Ellington)."
+    },
+    {
+      "game_id": "2017_21_PHI_NE",
+      "play_id": "4039",
+      "posteam": "NE",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.281733095645905,
+      "win_probability_after": 0.05557388067245497,
+      "wp_delta_offense": -0.22615921497345,
+      "desc": "(2:16) (Shotgun) 12-T.Brady sacked at NE 26 for -7 yards (55-B.Graham). FUMBLES (55-B.Graham) [55-B.Graham], RECOVERED by PHI-96-D.Barnett at NE 28. 96-D.Barnett to NE 31 for -3 yards (60-D.Andrews)."
+    },
+    {
+      "game_id": "2017_12_HOU_BAL",
+      "play_id": "3855",
+      "posteam": "HOU",
+      "defteam": "BAL",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.387600302696228,
+      "win_probability_after": 0.16289311647415203,
+      "wp_delta_offense": -0.224707186222076,
+      "desc": "(4:56) (Shotgun) 3-T.Savage sacked at HOU 48 for -8 yards (55-T.Suggs). FUMBLES (55-T.Suggs) [55-T.Suggs], RECOVERED by BAL-57-C.Mosley at HOU 49. 57-C.Mosley to HOU 49 for no gain (3-T.Savage)."
+    }
+  ],
+  "rowsWithWp": 46972,
+  "rowsWithDerivedWpAfter": 46528,
+  "sackCount": 1318,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2017_01_ARI_DET",
+      "play_id": "3409",
+      "posteam": "ARI",
+      "defteam": "DET",
+      "qtr": "4",
+      "score_differential": "2",
+      "win_probability_before": 0.617928683757782,
+      "win_probability_after": 0.5611321330070496,
+      "wp_delta_offense": -0.05679655075073242,
+      "desc": "(15:00) (Shotgun) 3-C.Palmer sacked at ARI 34 for -5 yards (69-A.Zettel).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_01_ATL_CHI",
+      "play_id": "3984",
+      "posteam": "CHI",
+      "defteam": "ATL",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.214587673544884,
+      "win_probability_after": 0.014162898063660001,
+      "wp_delta_offense": -0.200424775481224,
+      "desc": "(:08) (Shotgun) 8-M.Glennon sacked at ATL 14 for -9 yards (50-B.Reed).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_01_KC_NE",
+      "play_id": "4362",
+      "posteam": "NE",
+      "defteam": "KC",
+      "qtr": "4",
+      "score_differential": "-8",
+      "win_probability_before": 0.114384442567825,
+      "win_probability_after": 0.08498191088438,
+      "wp_delta_offense": -0.029402531683445005,
+      "desc": "(5:14) (Shotgun) 12-T.Brady sacked at NE 18 for -7 yards (50-J.Houston). KC-29-E.Berry was injured during the play.",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_01_LAC_DEN",
+      "play_id": "3271",
+      "posteam": "DEN",
+      "defteam": "LAC",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.877689063549042,
+      "win_probability_after": 0.848976254463196,
+      "wp_delta_offense": -0.028712809085845947,
+      "desc": "(5:39) (Shotgun) 13-T.Siemian sacked at LAC 19 for -6 yards (sack split by 99-J.Bosa and 54-M.Ingram).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_01_LAC_DEN",
+      "play_id": "3294",
+      "posteam": "DEN",
+      "defteam": "LAC",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.848976254463196,
+      "win_probability_after": 0.7667704224586489,
+      "wp_delta_offense": -0.08220583200454712,
+      "desc": "(4:53) (Shotgun) 13-T.Siemian sacked at LAC 32 for -13 yards (54-M.Ingram).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_01_PHI_WAS",
+      "play_id": "3794",
+      "posteam": "WAS",
+      "defteam": "PHI",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.29902908205986,
+      "win_probability_after": 0.014239554263651033,
+      "wp_delta_offense": -0.284789527796209,
+      "desc": "(1:38) (No Huddle, Shotgun) 8-K.Cousins sacked at WAS 24 for -8 yards (55-B.Graham). FUMBLES (55-B.Graham) [55-B.Graham], RECOVERED by PHI-91-F.Cox at WAS 20. 91-F.Cox for 20 yards, TOUCHDOWN. The Replay Official reviewed the fumble ruling, and the play was Upheld. The ruling on the field stands.",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_02_ARI_IND",
+      "play_id": "3970",
+      "posteam": "IND",
+      "defteam": "ARI",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.646462798118591,
+      "win_probability_after": 0.5928643941879269,
+      "wp_delta_offense": -0.05359840393066406,
+      "desc": "(:55) (No Huddle, Shotgun) 7-J.Brissett sacked at IND 12 for -9 yards (55-C.Jones). FUMBLES (55-C.Jones), and recovers at IND 13. 7-J.Brissett to IND 13 for no gain (92-F.Rucker). Sack was for -8 yards",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_02_HOU_CIN",
+      "play_id": "3377",
+      "posteam": "CIN",
+      "defteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.544982194900513,
+      "win_probability_after": 0.4594044089317325,
+      "wp_delta_offense": -0.08557778596878052,
+      "desc": "(9:08) (Shotgun) 14-A.Dalton sacked at CIN 49 for -3 yards (55-B.McKinney).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_02_MIA_LAC",
+      "play_id": "3265",
+      "posteam": "MIA",
+      "defteam": "LAC",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.401620924472809,
+      "win_probability_after": 0.3650315105915071,
+      "wp_delta_offense": -0.03658941388130188,
+      "desc": "(7:14) (Shotgun) 6-J.Cutler sacked at LAC 17 for 0 yards (40-C.McCain).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2017_02_PHI_KC",
+      "play_id": "3346",
+      "posteam": "PHI",
+      "defteam": "KC",
+      "qtr": "4",
+      "score_differential": "-7",
+      "win_probability_before": 0.15987291932106,
+      "win_probability_after": 0.12792485952377297,
+      "wp_delta_offense": -0.031948059797287015,
+      "desc": "(6:25) (Shotgun) 11-C.Wentz sacked at PHI 22 for -3 yards (50-J.Houston).",
+      "is_sack": "true"
+    }
+  ]
+}

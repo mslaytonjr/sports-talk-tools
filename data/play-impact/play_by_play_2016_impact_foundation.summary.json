@@ -1,0 +1,342 @@
+{
+  "season": 2016,
+  "sourceUrl": "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2016.csv",
+  "generatedAt": "2026-03-26T19:15:29.323Z",
+  "notes": [
+    "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+    "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+    "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before."
+  ],
+  "filters": {
+    "oneScore": {
+      "appliedAt": "play",
+      "absoluteScoreDifferentialLte": 8
+    },
+    "qualifyingSacks": {
+      "appliedAt": "play",
+      "quarterEquals": 4,
+      "absoluteScoreDifferentialLte": 8,
+      "playType": "sack",
+      "perspective": "offense",
+      "wpDeltaFormula": "win_probability_after - win_probability_before"
+    }
+  },
+  "rowCount": 47651,
+  "gameCount": 267,
+  "oneScoreRowCount": 29082,
+  "qualifyingSackRowCount": 179,
+  "qualifyingSackSummary": {
+    "qualifyingPlayCount": 179,
+    "averageWpDeltaOffense": -0.06416372242953436,
+    "medianWpDeltaOffense": -0.05175504088401789
+  },
+  "topSackLeaders": [
+    {
+      "defender": "56-C.Avril",
+      "sacks": 5
+    },
+    {
+      "defender": "99-D.Hunter",
+      "sacks": 5
+    },
+    {
+      "defender": "55-T.Suggs",
+      "sacks": 4
+    },
+    {
+      "defender": "58-V.Miller",
+      "sacks": 4
+    },
+    {
+      "defender": "90-J.Pierre-Paul",
+      "sacks": 4
+    },
+    {
+      "defender": "93-T.Murphy",
+      "sacks": 4
+    },
+    {
+      "defender": "51-B.Irvin",
+      "sacks": 3
+    },
+    {
+      "defender": "54-O.Vernon",
+      "sacks": 3
+    },
+    {
+      "defender": "55-F.Clark",
+      "sacks": 3
+    },
+    {
+      "defender": "91-C.Marsh",
+      "sacks": 3
+    }
+  ],
+  "topImpactSacks": [
+    {
+      "game_id": "2016_03_LA_TB",
+      "play_id": "3314",
+      "posteam": "TB",
+      "defteam": "LA",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.526857912540436,
+      "win_probability_after": 0.110795549499215,
+      "wp_delta_offense": -0.416062363041221,
+      "desc": "(11:56) (Shotgun) 3-J.Winston sacked at LA 23 for -10 yards (94-R.Quinn). FUMBLES (94-R.Quinn) [92-C.Thomas], RECOVERED by LA-93-E.Westbrooks at LA 23. 93-E.Westbrooks for 77 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2016_03_CLE_MIA",
+      "play_id": "4356",
+      "posteam": "MIA",
+      "defteam": "CLE",
+      "qtr": "4",
+      "score_differential": "0",
+      "win_probability_before": 0.594716310501099,
+      "win_probability_after": 0.238783597946167,
+      "wp_delta_offense": -0.355932712554932,
+      "desc": "(:26) (Shotgun) 17-R.Tannehill sacked at MIA 27 for -8 yards (52-C.Lemonier). FUMBLES (52-C.Lemonier) [52-C.Lemonier], RECOVERED by CLE-52-C.Lemonier at MIA 27. 52-C.Lemonier to MIA 27 for no gain (70-J.James)."
+    },
+    {
+      "game_id": "2016_14_WAS_PHI",
+      "play_id": "3875",
+      "posteam": "PHI",
+      "defteam": "WAS",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.366391360759735,
+      "win_probability_after": 0.03144949674606301,
+      "wp_delta_offense": -0.334941864013672,
+      "desc": "(:21) (Shotgun) 11-C.Wentz sacked at WAS 22 for -8 yards (91-R.Kerrigan). FUMBLES (91-R.Kerrigan) [91-R.Kerrigan], RECOVERED by WAS-93-T.Murphy at WAS 27. 93-T.Murphy to WAS 34 for 7 yards (24-R.Mathews)."
+    },
+    {
+      "game_id": "2016_02_GB_MIN",
+      "play_id": "3342",
+      "posteam": "GB",
+      "defteam": "MIN",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.458757787942886,
+      "win_probability_after": 0.181460499763488,
+      "wp_delta_offense": -0.277297288179398,
+      "desc": "(7:00) (No Huddle, Shotgun) 12-A.Rodgers sacked at MIN 46 for -6 yards (96-B.Robison). FUMBLES (96-B.Robison), RECOVERED by MIN-93-S.Stephen at MIN 44. 93-S.Stephen to MIN 44 for no gain (73-J.Tretter)."
+    },
+    {
+      "game_id": "2016_07_IND_TEN",
+      "play_id": "4130",
+      "posteam": "TEN",
+      "defteam": "IND",
+      "qtr": "4",
+      "score_differential": "-4",
+      "win_probability_before": 0.274596005678177,
+      "win_probability_after": 0.018680928087829007,
+      "wp_delta_offense": -0.255915077590348,
+      "desc": "(1:55) (Shotgun) 8-M.Mariota sacked at TEN 18 for -7 yards (99-T.McGill). FUMBLES (99-T.McGill) [99-T.McGill], RECOVERED by IND-98-R.Mathis at TEN 14. 98-R.Mathis for 14 yards, TOUCHDOWN."
+    },
+    {
+      "game_id": "2016_12_NE_NYJ",
+      "play_id": "3953",
+      "posteam": "NYJ",
+      "defteam": "NE",
+      "qtr": "4",
+      "score_differential": "-5",
+      "win_probability_before": 0.23391717672348,
+      "win_probability_after": 0.035020411014556996,
+      "wp_delta_offense": -0.198896765708923,
+      "desc": "(1:51) (Shotgun) 14-R.Fitzpatrick sacked at NYJ 23 for -7 yards (95-C.Long). FUMBLES (95-C.Long), RECOVERED by NE-98-T.Flowers at NYJ 31. 98-T.Flowers to NYJ 34 for -3 yards (29-B.Powell)."
+    },
+    {
+      "game_id": "2016_12_CAR_OAK",
+      "play_id": "4216",
+      "posteam": "CAR",
+      "defteam": "LV",
+      "qtr": "4",
+      "score_differential": "-3",
+      "win_probability_before": 0.219701603055,
+      "win_probability_after": 0.02735930681228599,
+      "wp_delta_offense": -0.192342296242714,
+      "desc": "(1:00) (Shotgun) 1-C.Newton sacked at CAR 47 for -9 yards (52-K.Mack). FUMBLES (52-K.Mack) [52-K.Mack], RECOVERED by LV-52-K.Mack at CAR 45. 52-K.Mack to CAR 45 for no gain (79-C.Scott)."
+    },
+    {
+      "game_id": "2016_04_OAK_BAL",
+      "play_id": "3313",
+      "posteam": "BAL",
+      "defteam": "LV",
+      "qtr": "4",
+      "score_differential": "-2",
+      "win_probability_before": 0.457937389612198,
+      "win_probability_after": 0.271664261817932,
+      "wp_delta_offense": -0.18627312779426597,
+      "desc": "(14:57) (Shotgun) 5-J.Flacco sacked at BAL 30 for -8 yards (51-B.Irvin). FUMBLES (51-B.Irvin) [51-B.Irvin], RECOVERED by LV-96-D.Autry at BAL 29. 96-D.Autry to BAL 29 for no gain (66-R.Jensen)."
+    },
+    {
+      "game_id": "2016_12_CIN_BAL",
+      "play_id": "4200",
+      "posteam": "CIN",
+      "defteam": "BAL",
+      "qtr": "4",
+      "score_differential": "-7",
+      "win_probability_before": 0.182979688048363,
+      "win_probability_after": 0.012463271617890015,
+      "wp_delta_offense": -0.170516416430473,
+      "desc": "(1:12) (Shotgun) 14-A.Dalton sacked at BAL 24 for -8 yards (58-E.Dumervil). FUMBLES (58-E.Dumervil) [58-E.Dumervil], RECOVERED by BAL-93-L.Guy at BAL 21. 93-L.Guy to BAL 21 for no gain (68-K.Zeitler)."
+    },
+    {
+      "game_id": "2016_02_IND_DEN",
+      "play_id": "4047",
+      "posteam": "IND",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.160326048731804,
+      "win_probability_after": 0.006799498727312003,
+      "wp_delta_offense": -0.153526550004492,
+      "desc": "(1:51) (Shotgun) 12-A.Luck sacked at IND 15 for -10 yards (58-V.Miller). FUMBLES (58-V.Miller) [58-V.Miller], RECOVERED by DEN-56-S.Ray at IND 15. 56-S.Ray for 15 yards, TOUCHDOWN."
+    }
+  ],
+  "rowsWithWp": 47376,
+  "rowsWithDerivedWpAfter": 46958,
+  "sackCount": 1234,
+  "requiredFields": [
+    "game_id",
+    "play_id",
+    "qtr",
+    "score_differential",
+    "is_sack",
+    "win_probability_before",
+    "win_probability_after",
+    "wp_delta_offense"
+  ],
+  "validationSample": [
+    {
+      "game_id": "2016_01_BUF_BAL",
+      "play_id": "2726",
+      "posteam": "BAL",
+      "defteam": "BUF",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.702613532543182,
+      "win_probability_after": 0.6301433444023129,
+      "wp_delta_offense": -0.07247018814086914,
+      "desc": "(13:26) (Shotgun) 5-J.Flacco sacked at BAL 22 for -8 yards (55-J.Hughes).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_BUF_BAL",
+      "play_id": "3069",
+      "posteam": "BAL",
+      "defteam": "BUF",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.843259751796722,
+      "win_probability_after": 0.8042264580726619,
+      "wp_delta_offense": -0.03903329372406006,
+      "desc": "(8:16) (Shotgun) 5-J.Flacco sacked at BUF 27 for -6 yards (91-L.Douzable).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_BUF_BAL",
+      "play_id": "3195",
+      "posteam": "BAL",
+      "defteam": "BUF",
+      "qtr": "4",
+      "score_differential": "3",
+      "win_probability_before": 0.887678682804108,
+      "win_probability_after": 0.8461162447929386,
+      "wp_delta_offense": -0.041562438011169434,
+      "desc": "(6:25) (No Huddle, Shotgun) 5-J.Flacco sacked at BUF 19 for -9 yards (sack split by 57-L.Alexander and 91-L.Douzable).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_BUF_BAL",
+      "play_id": "3337",
+      "posteam": "BUF",
+      "defteam": "BAL",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.171227484941483,
+      "win_probability_after": 0.10051204264164018,
+      "wp_delta_offense": -0.0707154422998428,
+      "desc": "(4:53) (Shotgun) 5-T.Taylor sacked at BUF 14 for -12 yards (55-T.Suggs). Penalty on BUF-70-E.Wood, Offensive Holding, declined.",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_CAR_DEN",
+      "play_id": "3503",
+      "posteam": "DEN",
+      "defteam": "CAR",
+      "qtr": "4",
+      "score_differential": "1",
+      "win_probability_before": 0.683804094791412,
+      "win_probability_after": 0.5966544747352597,
+      "wp_delta_offense": -0.08714962005615234,
+      "desc": "(3:36) (Shotgun) 13-T.Siemian sacked at DEN 18 for -10 yards (33-T.Boston).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_CAR_DEN",
+      "play_id": "3597",
+      "posteam": "CAR",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.424546599388123,
+      "win_probability_after": 0.397567212581635,
+      "wp_delta_offense": -0.02697938680648798,
+      "desc": "(3:06) (Shotgun) 1-C.Newton sacked at CAR 30 for -5 yards (sack split by 51-T.Davis and 94-D.Ware).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_CAR_DEN",
+      "play_id": "3637",
+      "posteam": "CAR",
+      "defteam": "DEN",
+      "qtr": "4",
+      "score_differential": "-1",
+      "win_probability_before": 0.349309682846069,
+      "win_probability_after": 0.2701945602893826,
+      "wp_delta_offense": -0.0791151225566864,
+      "desc": "(2:15) (Shotgun) 1-C.Newton sacked at CAR 29 for -6 yards (58-V.Miller).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_CHI_HOU",
+      "play_id": "3281",
+      "posteam": "CHI",
+      "defteam": "HOU",
+      "qtr": "4",
+      "score_differential": "-6",
+      "win_probability_before": 0.188987880945206,
+      "win_probability_after": 0.1231055334210399,
+      "wp_delta_offense": -0.0658823475241661,
+      "desc": "(9:44) (Shotgun) 6-J.Cutler sacked at CHI 36 for -9 yards (59-W.Mercilus). FUMBLES (59-W.Mercilus) [59-W.Mercilus], and recovers at CHI 36. 6-J.Cutler to CHI 36 for no gain (90-J.Clowney).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_CIN_NYJ",
+      "play_id": "3268",
+      "posteam": "CIN",
+      "defteam": "NYJ",
+      "qtr": "4",
+      "score_differential": "1",
+      "win_probability_before": 0.68519788980484,
+      "win_probability_after": 0.5944277644157409,
+      "wp_delta_offense": -0.09077012538909912,
+      "desc": "(9:54) (Shotgun) 14-A.Dalton sacked at NYJ 34 for -8 yards (92-L.Williams).",
+      "is_sack": "true"
+    },
+    {
+      "game_id": "2016_01_GB_JAX",
+      "play_id": "3295",
+      "posteam": "JAX",
+      "defteam": "GB",
+      "qtr": "4",
+      "score_differential": "-7",
+      "win_probability_before": 0.209714442491531,
+      "win_probability_after": 0.16312190890312162,
+      "wp_delta_offense": -0.046592533588409396,
+      "desc": "(11:52) 5-B.Bortles sacked at JAX 23 for -8 yards (42-M.Burnett).",
+      "is_sack": "true"
+    }
+  ]
+}

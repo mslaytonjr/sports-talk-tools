@@ -3,17 +3,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+    extractSackDefenders,
     filterOneScorePlays,
     filterQualifyingSackPlays,
     loadPublishedPlayImpactSeason,
     ONE_SCORE_MARGIN,
     summarizeQualifyingSacks,
+    summarizeTopSackDefenders,
     type PlayByPlaySeason,
     type PublishedPlayImpactSeason,
 } from "@/lib/playImpact";
 
 type StepStatus = "pending" | "active" | "done";
 const AVAILABLE_SEASONS = ["2025", "2024", "2023", "2022", "2021", "2020", "2019"] as const;
+
+type SampleSackRow = {
+    gameId: string;
+    playId: string;
+    offense: string;
+    defense: string;
+    qtr: string | number | null;
+    scoreDiff: string | number | null;
+    winProbabilityBefore: number | null;
+    winProbabilityAfter: number | null;
+    wpDeltaOffense: number | null;
+    defenders: string[];
+    desc: string;
+};
 
 function formatStatusClass(status: StepStatus) {
     if (status === "done") {
@@ -97,12 +113,47 @@ export default function PlayImpactModelPage() {
     }, [seasonData]);
 
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
-    const qualifyingSackSample = useMemo(() => {
+    const qualifyingSackSample = useMemo<SampleSackRow[]>(() => {
         if (publishedSeason) {
-            return publishedSeason.qualifyingSacks.slice(0, 8);
+            return publishedSeason.summary.validationSample.slice(0, 8).map((row) => ({
+                gameId: row.game_id,
+                playId: row.play_id,
+                offense: row.posteam,
+                defense: "",
+                qtr: row.qtr,
+                scoreDiff: row.score_differential,
+                winProbabilityBefore: row.win_probability_before,
+                winProbabilityAfter: row.win_probability_after,
+                wpDeltaOffense: row.wp_delta_offense,
+                defenders: extractSackDefenders(row.desc),
+                desc: row.desc,
+            }));
         }
 
-        return seasonData ? filterQualifyingSackPlays(seasonData).rows.slice(0, 8) : [];
+        return seasonData
+            ? filterQualifyingSackPlays(seasonData)
+                  .rows.slice(0, 8)
+                  .map((row) => ({
+                      gameId: row.gameId,
+                      playId: row.playId,
+                      offense: row.posteam,
+                      defense: row.defteam,
+                      qtr: row.qtr,
+                      scoreDiff: row.scoreDifferential,
+                      winProbabilityBefore: row.winProbabilityBefore,
+                      winProbabilityAfter: row.winProbabilityAfter,
+                      wpDeltaOffense: row.wpDeltaOffense,
+                      defenders: extractSackDefenders(row.desc),
+                      desc: row.desc,
+                  }))
+            : [];
+    }, [publishedSeason, seasonData]);
+    const topSackDefenders = useMemo(() => {
+        if (publishedSeason) {
+            return publishedSeason.summary.topSackLeaders ?? [];
+        }
+
+        return seasonData ? summarizeTopSackDefenders(filterQualifyingSackPlays(seasonData).rows, 10) : [];
     }, [publishedSeason, seasonData]);
 
     const steps = useMemo(
@@ -416,6 +467,41 @@ export default function PlayImpactModelPage() {
                             </div>
                         </CardContent>
                     </Card>
+                    <Card className="border-slate-800 bg-slate-900/80">
+                        <CardHeader>
+                            <CardTitle className="text-lg text-white">
+                                Top Sack Recorders
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
+                                These counts are parsed from qualifying sack play descriptions, so
+                                they are a practical readout for this v1 workflow rather than an
+                                official stat feed.
+                            </div>
+                            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+                                {topSackDefenders.map((leader, index) => (
+                                    <div
+                                        key={leader.defender}
+                                        className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"
+                                    >
+                                        <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                            #{index + 1}
+                                        </div>
+                                        <div className="mt-2 text-sm font-semibold text-white">
+                                            {leader.defender}
+                                        </div>
+                                        <div className="mt-2 text-sm text-slate-300">
+                                            Sacks:{" "}
+                                            <span className="font-semibold text-white">
+                                                {leader.sacks}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
                     </div>
                 ) : null}
 
@@ -446,7 +532,8 @@ export default function PlayImpactModelPage() {
                                             <th className="px-3 py-2 text-left">Qtr</th>
                                             <th className="px-3 py-2 text-left">Down</th>
                                             <th className="px-3 py-2 text-left">Play Type</th>
-                                            <th className="px-3 py-2 text-left">Posteam</th>
+                                            <th className="px-3 py-2 text-left">Offense</th>
+                                            <th className="px-3 py-2 text-left">Defense</th>
                                             <th className="px-3 py-2 text-left">WP</th>
                                             <th className="px-3 py-2 text-left">WPA</th>
                                             <th className="px-3 py-2 text-left">Description</th>
@@ -461,6 +548,7 @@ export default function PlayImpactModelPage() {
                                                 <td className="px-3 py-2 text-slate-200">{row.down ?? ""}</td>
                                                 <td className="px-3 py-2 text-slate-200">{row.playType}</td>
                                                 <td className="px-3 py-2 text-slate-200">{row.posteam}</td>
+                                                <td className="px-3 py-2 text-slate-200">{row.defteam}</td>
                                                 <td className="px-3 py-2 text-slate-200">
                                                     {formatPercent(row.wp)}
                                                 </td>
@@ -499,24 +587,37 @@ export default function PlayImpactModelPage() {
                                         <tr>
                                             <th className="px-3 py-2 text-left">Game</th>
                                             <th className="px-3 py-2 text-left">Play</th>
-                                            <th className="px-3 py-2 text-left">Posteam</th>
+                                            <th className="px-3 py-2 text-left">Offense</th>
+                                            <th className="px-3 py-2 text-left">Defense</th>
                                             <th className="px-3 py-2 text-left">Qtr</th>
                                             <th className="px-3 py-2 text-left">Score Diff</th>
                                             <th className="px-3 py-2 text-left">WP Before</th>
                                             <th className="px-3 py-2 text-left">WP After</th>
                                             <th className="px-3 py-2 text-left">wp_delta_offense</th>
+                                            <th className="px-3 py-2 text-left">Sack By</th>
                                             <th className="px-3 py-2 text-left">Description</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-800 bg-slate-900/60">
                                         {qualifyingSackSample.map((row) => (
                                             <tr key={`${row.gameId}-${row.playId}`}>
-                                                <td className="px-3 py-2 text-slate-200">{row.gameId}</td>
-                                                <td className="px-3 py-2 text-slate-200">{row.playId}</td>
-                                                <td className="px-3 py-2 text-slate-200">{row.posteam}</td>
-                                                <td className="px-3 py-2 text-slate-200">{row.qtr}</td>
                                                 <td className="px-3 py-2 text-slate-200">
-                                                    {row.scoreDifferential}
+                                                    {row.gameId}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.playId}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.offense}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.defense}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.qtr}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.scoreDiff}
                                                 </td>
                                                 <td className="px-3 py-2 text-slate-200">
                                                     {formatPercent(row.winProbabilityBefore)}
@@ -528,6 +629,9 @@ export default function PlayImpactModelPage() {
                                                     {row.wpDeltaOffense == null
                                                         ? "n/a"
                                                         : row.wpDeltaOffense.toFixed(3)}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.defenders.join(", ")}
                                                 </td>
                                                 <td className="max-w-[560px] px-3 py-2 text-slate-300">
                                                     {row.desc}

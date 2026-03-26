@@ -57,6 +57,41 @@ function normalizeHeader(value) {
     return value.replace(/^\uFEFF/, "").trim().toLowerCase();
 }
 
+function normalizeDefenderToken(value) {
+    return value.trim().replace(/\.$/, "");
+}
+
+function extractSackDefenders(description) {
+    const defenders = new Set();
+
+    const splitMatch = description.match(/sack split by ([^)]+)\)/i);
+    if (splitMatch) {
+        for (const token of splitMatch[1].split(/\sand\s/i)) {
+            const cleaned = normalizeDefenderToken(token);
+            if (cleaned) {
+                defenders.add(cleaned);
+            }
+        }
+    }
+
+    const parenMatches = [...description.matchAll(/\(([^)]+)\)/g)];
+    for (const match of parenMatches) {
+        const content = match[1];
+        if (/shotgun|no huddle|pass|ob/i.test(content)) {
+            continue;
+        }
+
+        for (const token of content.split(/\sand\s|,\s*/i)) {
+            const cleaned = normalizeDefenderToken(token);
+            if (/^\d+-/.test(cleaned)) {
+                defenders.add(cleaned);
+            }
+        }
+    }
+
+    return [...defenders];
+}
+
 function toCsvCell(value) {
     const text = value == null ? "" : String(value);
     if (/[",\n\r]/.test(text)) {
@@ -197,6 +232,7 @@ async function main() {
             averageWpDeltaOffense: null,
             medianWpDeltaOffense: null,
         },
+        topSackLeaders: [],
         rowsWithWp: 0,
         rowsWithDerivedWpAfter: 0,
         sackCount: 0,
@@ -215,6 +251,7 @@ async function main() {
 
     const gameIds = new Set();
     const qualifyingWpDeltas = [];
+    const defenderCounts = new Map();
     let headers = null;
     let indexes = null;
     let rowCount = 0;
@@ -317,6 +354,9 @@ async function main() {
                     }
 
                     qualifyingWpDeltas.push(Number(outputRow.wp_delta_offense));
+                    for (const defender of extractSackDefenders(outputRow.desc)) {
+                        defenderCounts.set(defender, (defenderCounts.get(defender) ?? 0) + 1);
+                    }
                 }
             }
         }
@@ -406,6 +446,11 @@ async function main() {
         summary.qualifyingSackSummary.averageWpDeltaOffense = average;
         summary.qualifyingSackSummary.medianWpDeltaOffense = median;
     }
+
+    summary.topSackLeaders = [...defenderCounts.entries()]
+        .map(([defender, sacks]) => ({ defender, sacks }))
+        .sort((left, right) => right.sacks - left.sacks || left.defender.localeCompare(right.defender))
+        .slice(0, 10);
 
     writeFileSync(outputSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
     writeFileSync(publicSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");

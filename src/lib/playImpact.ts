@@ -65,6 +65,11 @@ export type QualifyingSackSummary = {
     medianWpDeltaOffense: number | null;
 };
 
+export type SackLeader = {
+    defender: string;
+    sacks: number;
+};
+
 export type PublishedPlayImpactSummary = {
     season: number;
     sourceUrl: string;
@@ -89,6 +94,7 @@ export type PublishedPlayImpactSummary = {
     oneScoreRowCount: number;
     qualifyingSackRowCount: number;
     qualifyingSackSummary: QualifyingSackSummary;
+    topSackLeaders?: SackLeader[];
     rowsWithWp: number;
     rowsWithDerivedWpAfter: number;
     sackCount: number;
@@ -110,7 +116,6 @@ export type PublishedPlayImpactSummary = {
 export type PublishedPlayImpactSeason = {
     season: number;
     summary: PublishedPlayImpactSummary;
-    qualifyingSacks: QualifyingSackPlay[];
     source: "published-artifacts";
 };
 
@@ -254,14 +259,6 @@ function createCsvStreamParser(onRow: (row: string[]) => void) {
     };
 }
 
-function parseCsvRows(text: string) {
-    const rows: string[][] = [];
-    const parser = createCsvStreamParser((row) => rows.push(row));
-    parser.write(text);
-    parser.finish();
-    return rows;
-}
-
 export function isOneScorePlay(row: PlayByPlayRow) {
     return row.scoreDifferential != null && Math.abs(row.scoreDifferential) <= ONE_SCORE_MARGIN;
 }
@@ -334,93 +331,75 @@ export function summarizeQualifyingSacks(seasonData: PlayByPlaySeason): Qualifyi
     };
 }
 
-export async function loadPublishedPlayImpactSeason(
-    season: number
-): Promise<PublishedPlayImpactSeason> {
+function normalizeDefenderToken(value: string) {
+    return value.trim().replace(/\.$/, "");
+}
+
+export function extractSackDefenders(description: string) {
+    const defenders = new Set<string>();
+
+    const splitMatch = description.match(/sack split by ([^)]+)\)/i);
+    if (splitMatch) {
+        for (const token of splitMatch[1].split(/\sand\s/i)) {
+            const cleaned = normalizeDefenderToken(token);
+            if (cleaned) {
+                defenders.add(cleaned);
+            }
+        }
+    }
+
+    const parenMatches = [...description.matchAll(/\(([^)]+)\)/g)];
+    for (const match of parenMatches) {
+        const content = match[1];
+        if (/shotgun|no huddle|pass|ob/i.test(content)) {
+            continue;
+        }
+
+        for (const token of content.split(/\sand\s|,\s*/i)) {
+            const cleaned = normalizeDefenderToken(token);
+            if (/^\d+-/.test(cleaned)) {
+                defenders.add(cleaned);
+            }
+        }
+    }
+
+    return [...defenders];
+}
+
+export function summarizeTopSackDefenders(
+    rows: QualifyingSackPlay[],
+    limit = 10
+): SackLeader[] {
+    const counts = new Map<string, number>();
+
+    for (const row of rows) {
+        const defenders = extractSackDefenders(row.desc);
+        for (const defender of defenders) {
+            counts.set(defender, (counts.get(defender) ?? 0) + 1);
+        }
+    }
+
+    return [...counts.entries()]
+        .map(([defender, sacks]) => ({ defender, sacks }))
+        .sort((left, right) => right.sacks - left.sacks || left.defender.localeCompare(right.defender))
+        .slice(0, limit);
+}
+
+export async function loadPublishedPlayImpactSeason(season: number): Promise<PublishedPlayImpactSeason> {
     const basePath = `/play-impact/play_by_play_${season}_impact_foundation`;
     const summaryPath = `${basePath}.summary.json`;
-    const qualifyingSacksPath = `${basePath}.q4_one_score_sacks.csv`;
 
-    const [summaryResponse, qualifyingSacksResponse] = await Promise.all([
-        fetch(summaryPath, { cache: "no-store" }),
-        fetch(qualifyingSacksPath, { cache: "no-store" }),
-    ]);
+    const summaryResponse = await fetch(summaryPath, { cache: "no-store" });
 
-    if (!summaryResponse.ok || !qualifyingSacksResponse.ok) {
+    if (!summaryResponse.ok) {
         throw new Error("Published play impact artifacts were not found for that season.");
     }
 
     const summary = (await summaryResponse.json()) as PublishedPlayImpactSummary;
-    const csvText = await qualifyingSacksResponse.text();
-    const rows = parseCsvRows(csvText);
-
-    if (rows.length < 2) {
-        throw new Error("Published qualifying sack CSV is empty or unreadable.");
-    }
-
-    const headers = rows[0].map(normalizeHeader);
-    const indexOf = (name: string) => headers.indexOf(name);
-    const requiredCsvHeaders = [
-        "game_id",
-        "play_id",
-        "season",
-        "week",
-        "season_type",
-        "qtr",
-        "score_differential",
-        "posteam",
-        "defteam",
-        "play_type",
-        "desc",
-        "is_sack",
-        "win_probability_before",
-        "win_probability_after",
-        "wp_delta_offense",
-    ];
-    const missingHeaders = requiredCsvHeaders.filter((header) => indexOf(header) === -1);
-    if (missingHeaders.length > 0) {
-        throw new Error(
-            `Published qualifying sack CSV is missing expected headers: ${missingHeaders.join(", ")}.`
-        );
-    }
-
-    const qualifyingSacks = rows.slice(1).map((row) => {
-        const playType = safeText(row[indexOf("play_type")]);
-        const description = safeText(row[indexOf("desc")]);
-        const wp = parseNumber(row[indexOf("wp")]);
-        const wpa = parseNumber(row[indexOf("wpa")]);
-
-        return {
-            gameId: safeText(row[indexOf("game_id")]),
-            playId: safeText(row[indexOf("play_id")]),
-            season: parseNumber(row[indexOf("season")]),
-            week: parseNumber(row[indexOf("week")]),
-            seasonType: safeText(row[indexOf("season_type")]),
-            qtr: parseNumber(row[indexOf("qtr")]),
-            down: parseNumber(row[indexOf("down")]),
-            ydstogo: parseNumber(row[indexOf("ydstogo")]),
-            gameSecondsRemaining: parseNumber(row[indexOf("game_seconds_remaining")]),
-            scoreDifferential: parseNumber(row[indexOf("score_differential")]),
-            posteam: safeText(row[indexOf("posteam")]),
-            defteam: safeText(row[indexOf("defteam")]),
-            playType,
-            desc: description,
-            isSack: safeText(row[indexOf("is_sack")]) === "true",
-            wp,
-            defWp: parseNumber(row[indexOf("def_wp")]),
-            homeWp: parseNumber(row[indexOf("home_wp")]),
-            awayWp: parseNumber(row[indexOf("away_wp")]),
-            wpa,
-            winProbabilityBefore: parseNumber(row[indexOf("win_probability_before")]) ?? 0,
-            winProbabilityAfter: parseNumber(row[indexOf("win_probability_after")]) ?? 0,
-            wpDeltaOffense: parseNumber(row[indexOf("wp_delta_offense")]) ?? 0,
-        } satisfies QualifyingSackPlay;
-    });
 
     return {
         season,
         summary,
-        qualifyingSacks,
         source: "published-artifacts",
     };
 }

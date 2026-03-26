@@ -2,6 +2,10 @@
 
 ## Play Impact Model Data Workflow
 
+The reusable V1 metric definition lives in:
+
+- `docs/play-impact-v1.md`
+
 To build a reproducible one-season play-by-play dataset for the play impact work:
 
 ```bash

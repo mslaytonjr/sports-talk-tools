@@ -207,6 +207,10 @@ export default function PlayImpactModelPage() {
                         <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-200">
                             `wpDeltaOffense = winProbabilityAfter - winProbabilityBefore`
                         </div>
+                        <p>
+                            The reusable written definition for this V1 metric lives in
+                            `docs/play-impact-v1.md`.
+                        </p>
                     </CardContent>
                 </Card>
 

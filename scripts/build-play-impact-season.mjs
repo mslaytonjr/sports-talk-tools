@@ -1,4 +1,4 @@
-import { createWriteStream, mkdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, createWriteStream, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,6 +15,7 @@ if (!Number.isInteger(season) || season < 1999 || season > 2100) {
 
 const sourceUrl = `https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_${season}.csv`;
 const outputDir = resolve(projectRoot, "data", "play-impact");
+const publicOutputDir = resolve(projectRoot, "public", "play-impact");
 const outputCsvPath = resolve(outputDir, `play_by_play_${season}_impact_foundation.csv`);
 const outputOneScoreCsvPath = resolve(
     outputDir,
@@ -25,9 +26,18 @@ const outputQualifyingSacksCsvPath = resolve(
     `play_by_play_${season}_impact_foundation.q4_one_score_sacks.csv`
 );
 const outputSummaryPath = resolve(outputDir, `play_by_play_${season}_impact_foundation.summary.json`);
+const publicQualifyingSacksCsvPath = resolve(
+    publicOutputDir,
+    `play_by_play_${season}_impact_foundation.q4_one_score_sacks.csv`
+);
+const publicSummaryPath = resolve(
+    publicOutputDir,
+    `play_by_play_${season}_impact_foundation.summary.json`
+);
 const ONE_SCORE_MARGIN = 8;
 
 mkdirSync(outputDir, { recursive: true });
+mkdirSync(publicOutputDir, { recursive: true });
 
 function safeText(value) {
     return value?.trim() ?? "";
@@ -398,11 +408,15 @@ async function main() {
     }
 
     writeFileSync(outputSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
+    writeFileSync(publicSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
+    copyFileSync(outputQualifyingSacksCsvPath, publicQualifyingSacksCsvPath);
 
     console.log(`Wrote ${outputCsvPath}`);
     console.log(`Wrote ${outputOneScoreCsvPath}`);
     console.log(`Wrote ${outputQualifyingSacksCsvPath}`);
     console.log(`Wrote ${outputSummaryPath}`);
+    console.log(`Published ${publicQualifyingSacksCsvPath}`);
+    console.log(`Published ${publicSummaryPath}`);
     console.log(
         `Validated ${summary.rowCount.toLocaleString()} rows across ${summary.gameCount.toLocaleString()} games.`
     );

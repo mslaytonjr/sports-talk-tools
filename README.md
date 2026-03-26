@@ -19,6 +19,7 @@ That script:
 - writes a trimmed CSV to `data/play-impact/`
 - writes a one-score filtered CSV to `data/play-impact/`
 - writes a JSON validation summary alongside it
+- publishes the summary JSON and qualifying sack CSV to `public/play-impact/` for site use
 
 The output includes:
 
@@ -75,6 +76,8 @@ Example output files:
 - `data/play-impact/play_by_play_2024_impact_foundation.one_score.csv`
 - `data/play-impact/play_by_play_2024_impact_foundation.q4_one_score_sacks.csv`
 - `data/play-impact/play_by_play_2024_impact_foundation.summary.json`
+- `public/play-impact/play_by_play_2024_impact_foundation.q4_one_score_sacks.csv`
+- `public/play-impact/play_by_play_2024_impact_foundation.summary.json`
 
 The rest of this repo remains a Vite + React app.
 

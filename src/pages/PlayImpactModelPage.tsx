@@ -7,10 +7,12 @@ import {
     filterOneScorePlays,
     filterQualifyingSackPlays,
     loadSeasonPlayByPlay,
+    loadPublishedPlayImpactSeason,
     ONE_SCORE_MARGIN,
     summarizeQualifyingSacks,
     type LoadProgress,
     type PlayByPlaySeason,
+    type PublishedPlayImpactSeason,
 } from "@/lib/playImpact";
 
 type StepStatus = "pending" | "active" | "done";
@@ -38,12 +40,26 @@ function formatPercent(value: number | null | undefined) {
 export default function PlayImpactModelPage() {
     const [seasonInput, setSeasonInput] = useState("2024");
     const [seasonData, setSeasonData] = useState<PlayByPlaySeason | null>(null);
+    const [publishedSeason, setPublishedSeason] = useState<PublishedPlayImpactSeason | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [progress, setProgress] = useState<LoadProgress | null>(null);
     const [activityLog, setActivityLog] = useState<string[]>([]);
 
     const summary = useMemo(() => {
+        if (publishedSeason) {
+            return {
+                plays: publishedSeason.summary.rowCount,
+                oneScorePlays: publishedSeason.summary.oneScoreRowCount,
+                qualifyingSacks: publishedSeason.summary.qualifyingSackRowCount,
+                qualifyingSummary: publishedSeason.summary.qualifyingSackSummary,
+                games: publishedSeason.summary.gameCount,
+                rowsWithWp: publishedSeason.summary.rowsWithWp,
+                rowsWithWpa: publishedSeason.summary.rowsWithDerivedWpAfter,
+                sacks: publishedSeason.summary.sackCount,
+            };
+        }
+
         if (!seasonData) {
             return null;
         }
@@ -84,20 +100,34 @@ export default function PlayImpactModelPage() {
     }, [seasonData]);
 
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
-    const qualifyingSackSample = useMemo(
-        () => (seasonData ? filterQualifyingSackPlays(seasonData).rows.slice(0, 8) : []),
-        [seasonData]
-    );
+    const qualifyingSackSample = useMemo(() => {
+        if (publishedSeason) {
+            return publishedSeason.qualifyingSacks.slice(0, 8);
+        }
+
+        return seasonData ? filterQualifyingSackPlays(seasonData).rows.slice(0, 8) : [];
+    }, [publishedSeason, seasonData]);
 
     const steps = useMemo(
         () => [
             {
-                title: "Download one season from nflverse",
-                detail: "Pull the public season CSV from nflverse's play-by-play release.",
+                title: "Load published site artifacts first",
+                detail: "Use committed play impact outputs from /public when that season has already been pushed.",
                 status: progress
-                    ? progress.stage === "starting" || progress.stage === "downloading"
+                    ? progress.stage === "starting"
                         ? "active"
                         : "done"
+                    : "pending",
+            },
+            {
+                title: "Fall back to live nflverse data if needed",
+                detail: "If no published artifact exists for that season yet, fetch the raw season file and build the view in-browser.",
+                status: progress
+                    ? progress.stage === "downloading" || progress.stage === "parsing"
+                        ? "active"
+                        : progress.stage === "complete"
+                          ? "done"
+                          : "pending"
                     : "pending",
             },
             {
@@ -130,20 +160,39 @@ export default function PlayImpactModelPage() {
         setLoading(true);
         setError("");
         setSeasonData(null);
+        setPublishedSeason(null);
         setProgress(null);
         setActivityLog([`Queued ${season} season load.`]);
 
         try {
-            const data = await loadSeasonPlayByPlay(season, (nextProgress) => {
-                setProgress(nextProgress);
-                setActivityLog((current) => {
-                    if (current[current.length - 1] === nextProgress.message) {
-                        return current;
-                    }
-                    return [...current.slice(-5), nextProgress.message];
+            try {
+                setProgress({
+                    stage: "starting",
+                    message: `Checking for published ${season} play impact artifacts.`,
                 });
-            });
-            setSeasonData(data);
+                const published = await loadPublishedPlayImpactSeason(season);
+                setPublishedSeason(published);
+                setActivityLog((current) => [
+                    ...current.slice(-5),
+                    `Loaded published ${season} artifacts from the site bundle.`,
+                ]);
+            } catch {
+                setActivityLog((current) => [
+                    ...current.slice(-5),
+                    `No published ${season} artifacts found. Falling back to live nflverse data.`,
+                ]);
+
+                const data = await loadSeasonPlayByPlay(season, (nextProgress) => {
+                    setProgress(nextProgress);
+                    setActivityLog((current) => {
+                        if (current[current.length - 1] === nextProgress.message) {
+                            return current;
+                        }
+                        return [...current.slice(-5), nextProgress.message];
+                    });
+                });
+                setSeasonData(data);
+            }
         } catch (caughtError) {
             setError(
                 caughtError instanceof Error ? caughtError.message : "Failed to load season data."
@@ -244,9 +293,9 @@ export default function PlayImpactModelPage() {
                             </div>
 
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                Source: nflverse season CSV release. We are keeping the first pass
-                                browser-native so the data path is easy to inspect before we build
-                                filters and summaries on top.
+                                The page now prefers committed season artifacts from the site. If a
+                                pushed season is not available yet, it falls back to live nflverse
+                                loading in the browser.
                             </div>
                         </div>
 

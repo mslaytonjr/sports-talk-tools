@@ -31,6 +31,14 @@ type SampleSackRow = {
     desc: string;
 };
 
+function sortByImpact(rows: SampleSackRow[]) {
+    return [...rows].sort((left, right) => {
+        const leftValue = left.wpDeltaOffense ?? 0;
+        const rightValue = right.wpDeltaOffense ?? 0;
+        return leftValue - rightValue;
+    });
+}
+
 function formatStatusClass(status: StepStatus) {
     if (status === "done") {
         return "border-emerald-500/40 bg-emerald-500/10 text-emerald-100";
@@ -113,13 +121,13 @@ export default function PlayImpactModelPage() {
     }, [seasonData]);
 
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
-    const qualifyingSackSample = useMemo<SampleSackRow[]>(() => {
+    const qualifyingSackRows = useMemo<SampleSackRow[]>(() => {
         if (publishedSeason) {
-            return publishedSeason.summary.validationSample.slice(0, 8).map((row) => ({
+            return (publishedSeason.summary.topImpactSacks ?? []).map((row) => ({
                 gameId: row.game_id,
                 playId: row.play_id,
                 offense: row.posteam,
-                defense: "",
+                defense: row.defteam,
                 qtr: row.qtr,
                 scoreDiff: row.score_differential,
                 winProbabilityBefore: row.win_probability_before,
@@ -132,7 +140,7 @@ export default function PlayImpactModelPage() {
 
         return seasonData
             ? filterQualifyingSackPlays(seasonData)
-                  .rows.slice(0, 8)
+                  .rows
                   .map((row) => ({
                       gameId: row.gameId,
                       playId: row.playId,
@@ -148,6 +156,7 @@ export default function PlayImpactModelPage() {
                   }))
             : [];
     }, [publishedSeason, seasonData]);
+    const topImpactSacks = useMemo(() => sortByImpact(qualifyingSackRows).slice(0, 10), [qualifyingSackRows]);
     const topSackDefenders = useMemo(() => {
         if (publishedSeason) {
             return publishedSeason.summary.topSackLeaders ?? [];
@@ -470,7 +479,7 @@ export default function PlayImpactModelPage() {
                     <Card className="border-slate-800 bg-slate-900/80">
                         <CardHeader>
                             <CardTitle className="text-lg text-white">
-                                Top Sack Recorders
+                                Sack Counts By Player
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -479,26 +488,31 @@ export default function PlayImpactModelPage() {
                                 they are a practical readout for this v1 workflow rather than an
                                 official stat feed.
                             </div>
-                            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-                                {topSackDefenders.map((leader, index) => (
-                                    <div
-                                        key={leader.defender}
-                                        className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"
-                                    >
-                                        <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
-                                            #{index + 1}
-                                        </div>
-                                        <div className="mt-2 text-sm font-semibold text-white">
-                                            {leader.defender}
-                                        </div>
-                                        <div className="mt-2 text-sm text-slate-300">
-                                            Sacks:{" "}
-                                            <span className="font-semibold text-white">
-                                                {leader.sacks}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
+                            <div className="overflow-x-auto rounded-xl border border-slate-800">
+                                <table className="min-w-full divide-y divide-slate-800 text-sm">
+                                    <thead className="bg-slate-950/80 text-slate-300">
+                                        <tr>
+                                            <th className="px-3 py-2 text-left">Rank</th>
+                                            <th className="px-3 py-2 text-left">Player</th>
+                                            <th className="px-3 py-2 text-left">Sacks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-800 bg-slate-900/60">
+                                        {topSackDefenders.map((leader, index) => (
+                                            <tr key={leader.defender}>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="px-3 py-2 font-semibold text-white">
+                                                    {leader.defender}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {leader.sacks}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </CardContent>
                     </Card>
@@ -567,18 +581,20 @@ export default function PlayImpactModelPage() {
                     </Card>
                 ) : null}
 
-                {qualifyingSackSample.length > 0 ? (
+                {topImpactSacks.length > 0 ? (
                     <Card className="border-slate-800 bg-slate-900/80">
                         <CardHeader>
                             <CardTitle className="text-lg text-white">
-                                Qualifying Sack Sample
+                                Biggest Win Probability Swing Sacks
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                These are sample 4th-quarter, one-score sack plays with offense-side
-                                win probability delta so the calculation can be inspected for
-                                correctness.
+                                These are the qualifying 4th-quarter one-score sacks with the
+                                largest negative `wp_delta_offense`, meaning the biggest drop in the
+                                offense&apos;s win probability under the v1 metric. Published site
+                                seasons use the precomputed top-impact list from the season
+                                summary.
                             </div>
 
                             <div className="overflow-x-auto rounded-xl border border-slate-800">
@@ -599,7 +615,7 @@ export default function PlayImpactModelPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-800 bg-slate-900/60">
-                                        {qualifyingSackSample.map((row) => (
+                                        {topImpactSacks.map((row) => (
                                             <tr key={`${row.gameId}-${row.playId}`}>
                                                 <td className="px-3 py-2 text-slate-200">
                                                     {row.gameId}

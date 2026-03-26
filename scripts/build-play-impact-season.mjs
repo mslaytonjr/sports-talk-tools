@@ -233,6 +233,7 @@ async function main() {
             medianWpDeltaOffense: null,
         },
         topSackLeaders: [],
+        topImpactSacks: [],
         rowsWithWp: 0,
         rowsWithDerivedWpAfter: 0,
         sackCount: 0,
@@ -252,6 +253,7 @@ async function main() {
     const gameIds = new Set();
     const qualifyingWpDeltas = [];
     const defenderCounts = new Map();
+    const topImpactSacks = [];
     let headers = null;
     let indexes = null;
     let rowCount = 0;
@@ -333,6 +335,19 @@ async function main() {
                 summary.oneScoreRowCount += 1;
 
                 if (safeText(outputRow.qtr) === "4" && outputRow.is_sack === "true" && outputRow.wp_delta_offense !== "") {
+                    const impactRow = {
+                        game_id: outputRow.game_id,
+                        play_id: outputRow.play_id,
+                        posteam: outputRow.posteam,
+                        defteam: outputRow.defteam,
+                        qtr: outputRow.qtr,
+                        score_differential: outputRow.score_differential,
+                        win_probability_before: Number(outputRow.win_probability_before),
+                        win_probability_after: Number(outputRow.win_probability_after),
+                        wp_delta_offense: Number(outputRow.wp_delta_offense),
+                        desc: outputRow.desc,
+                    };
+
                     qualifyingSacksCsvWriter.write(
                         `${outputColumns.map((column) => toCsvCell(outputRow[column])).join(",")}\n`
                     );
@@ -340,20 +355,13 @@ async function main() {
 
                     if (summary.validationSample.length < 10) {
                         summary.validationSample.push({
-                            game_id: outputRow.game_id,
-                            play_id: outputRow.play_id,
-                            posteam: outputRow.posteam,
-                            qtr: outputRow.qtr,
-                            score_differential: outputRow.score_differential,
+                            ...impactRow,
                             is_sack: outputRow.is_sack,
-                            win_probability_before: outputRow.win_probability_before,
-                            win_probability_after: outputRow.win_probability_after,
-                            wp_delta_offense: outputRow.wp_delta_offense,
-                            desc: outputRow.desc,
                         });
                     }
 
                     qualifyingWpDeltas.push(Number(outputRow.wp_delta_offense));
+                    topImpactSacks.push(impactRow);
                     for (const defender of extractSackDefenders(outputRow.desc)) {
                         defenderCounts.set(defender, (defenderCounts.get(defender) ?? 0) + 1);
                     }
@@ -450,6 +458,9 @@ async function main() {
     summary.topSackLeaders = [...defenderCounts.entries()]
         .map(([defender, sacks]) => ({ defender, sacks }))
         .sort((left, right) => right.sacks - left.sacks || left.defender.localeCompare(right.defender))
+        .slice(0, 10);
+    summary.topImpactSacks = topImpactSacks
+        .sort((left, right) => left.wp_delta_offense - right.wp_delta_offense)
         .slice(0, 10);
 
     writeFileSync(outputSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");

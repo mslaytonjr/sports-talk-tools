@@ -69,6 +69,8 @@ The summary JSON also records the first aggregate readout for that filtered sack
 - `qualifyingPlayCount`
 - `averageWpDeltaOffense`
 - `medianWpDeltaOffense`
+- `topImpactSacks`
+- `topSackLeaders`
 
 Example output files:
 

@@ -70,6 +70,19 @@ export type SackLeader = {
     sacks: number;
 };
 
+export type PublishedImpactSack = {
+    game_id: string;
+    play_id: string;
+    posteam: string;
+    defteam: string;
+    qtr: string;
+    score_differential: string;
+    win_probability_before: number;
+    win_probability_after: number;
+    wp_delta_offense: number;
+    desc: string;
+};
+
 export type PublishedPlayImpactSummary = {
     season: number;
     sourceUrl: string;
@@ -95,22 +108,12 @@ export type PublishedPlayImpactSummary = {
     qualifyingSackRowCount: number;
     qualifyingSackSummary: QualifyingSackSummary;
     topSackLeaders?: SackLeader[];
+    topImpactSacks?: PublishedImpactSack[];
     rowsWithWp: number;
     rowsWithDerivedWpAfter: number;
     sackCount: number;
     requiredFields: string[];
-    validationSample: Array<{
-        game_id: string;
-        play_id: string;
-        posteam: string;
-        qtr: string;
-        score_differential: string;
-        is_sack: string;
-        win_probability_before: number;
-        win_probability_after: number;
-        wp_delta_offense: number;
-        desc: string;
-    }>;
+    validationSample: Array<PublishedImpactSack & { is_sack: string }>;
 };
 
 export type PublishedPlayImpactSeason = {

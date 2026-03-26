@@ -118,7 +118,7 @@ export default function PlayImpactModelPage() {
             rowsWithWpa,
             sacks,
         };
-    }, [seasonData]);
+    }, [publishedSeason, seasonData]);
 
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
     const qualifyingSackRows = useMemo<SampleSackRow[]>(() => {

@@ -13,6 +13,7 @@ That script:
 - downloads one full nflverse play-by-play season
 - keeps the first-pass fields needed for the impact model
 - writes a trimmed CSV to `data/play-impact/`
+- writes a one-score filtered CSV to `data/play-impact/`
 - writes a JSON validation summary alongside it
 
 The output includes:
@@ -27,9 +28,19 @@ The output includes:
 
 `win_probability_after` is derived as offensive `wp + wpa`, clipped to `[0, 1]`.
 
+For the initial sack impact analysis, the one-score filter is defined at the play level as:
+
+```text
+abs(score_differential) <= 8
+```
+
+This filter is applied in code and the script writes a reusable filtered dataset for downstream
+steps.
+
 Example output files:
 
 - `data/play-impact/play_by_play_2024_impact_foundation.csv`
+- `data/play-impact/play_by_play_2024_impact_foundation.one_score.csv`
 - `data/play-impact/play_by_play_2024_impact_foundation.summary.json`
 
 The rest of this repo remains a Vite + React app.

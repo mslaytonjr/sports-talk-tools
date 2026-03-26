@@ -1,5 +1,6 @@
 export const NFLVERSE_PBP_URL = (season: number) =>
     `https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_${season}.csv`;
+export const ONE_SCORE_MARGIN = 8;
 
 export type PlayByPlayRow = {
     gameId: string;
@@ -30,6 +31,13 @@ export type PlayByPlaySeason = {
     season: number;
     sourceUrl: string;
     rows: PlayByPlayRow[];
+};
+
+export type OneScorePlayByPlaySeason = PlayByPlaySeason & {
+    filter: {
+        type: "one-score";
+        absoluteScoreDifferentialLte: number;
+    };
 };
 
 export type LoadProgress =
@@ -167,6 +175,21 @@ function createCsvStreamParser(onRow: (row: string[]) => void) {
             if (current.length > 0 || row.length > 0) {
                 pushRow();
             }
+        },
+    };
+}
+
+export function isOneScorePlay(row: PlayByPlayRow) {
+    return row.scoreDifferential != null && Math.abs(row.scoreDifferential) <= ONE_SCORE_MARGIN;
+}
+
+export function filterOneScorePlays(seasonData: PlayByPlaySeason): OneScorePlayByPlaySeason {
+    return {
+        ...seasonData,
+        rows: seasonData.rows.filter(isOneScorePlay),
+        filter: {
+            type: "one-score",
+            absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
         },
     };
 }

@@ -16,7 +16,12 @@ if (!Number.isInteger(season) || season < 1999 || season > 2100) {
 const sourceUrl = `https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_${season}.csv`;
 const outputDir = resolve(projectRoot, "data", "play-impact");
 const outputCsvPath = resolve(outputDir, `play_by_play_${season}_impact_foundation.csv`);
+const outputOneScoreCsvPath = resolve(
+    outputDir,
+    `play_by_play_${season}_impact_foundation.one_score.csv`
+);
 const outputSummaryPath = resolve(outputDir, `play_by_play_${season}_impact_foundation.summary.json`);
+const ONE_SCORE_MARGIN = 8;
 
 mkdirSync(outputDir, { recursive: true });
 
@@ -137,14 +142,27 @@ async function main() {
     }
 
     const csvWriter = createWriteStream(outputCsvPath, { encoding: "utf8" });
+    const oneScoreCsvWriter = createWriteStream(outputOneScoreCsvPath, { encoding: "utf8" });
     csvWriter.write(`${outputColumns.join(",")}\n`);
+    oneScoreCsvWriter.write(`${outputColumns.join(",")}\n`);
 
     const summary = {
         season,
         sourceUrl,
         generatedAt: new Date().toISOString(),
+        notes: [
+            "One-score is defined at the play level as absolute score differential less than or equal to 8.",
+            "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+        ],
+        filters: {
+            oneScore: {
+                appliedAt: "play",
+                absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
+            },
+        },
         rowCount: 0,
         gameCount: 0,
+        oneScoreRowCount: 0,
         rowsWithWp: 0,
         rowsWithDerivedWpAfter: 0,
         sackCount: 0,
@@ -229,6 +247,16 @@ async function main() {
             `${outputColumns.map((column) => toCsvCell(outputRow[column])).join(",")}\n`
         );
 
+        if (outputRow.score_differential !== "") {
+            const scoreDifferential = Number(outputRow.score_differential);
+            if (Math.abs(scoreDifferential) <= ONE_SCORE_MARGIN) {
+                oneScoreCsvWriter.write(
+                    `${outputColumns.map((column) => toCsvCell(outputRow[column])).join(",")}\n`
+                );
+                summary.oneScoreRowCount += 1;
+            }
+        }
+
         rowCount += 1;
         if (gameId) {
             gameIds.add(gameId);
@@ -277,16 +305,28 @@ async function main() {
         });
     });
 
+    await new Promise((resolveStream, rejectStream) => {
+        oneScoreCsvWriter.end((error) => {
+            if (error) {
+                rejectStream(error);
+                return;
+            }
+            resolveStream();
+        });
+    });
+
     summary.rowCount = rowCount;
     summary.gameCount = gameIds.size;
 
     writeFileSync(outputSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
 
     console.log(`Wrote ${outputCsvPath}`);
+    console.log(`Wrote ${outputOneScoreCsvPath}`);
     console.log(`Wrote ${outputSummaryPath}`);
     console.log(
         `Validated ${summary.rowCount.toLocaleString()} rows across ${summary.gameCount.toLocaleString()} games.`
     );
+    console.log(`One-score filtered output contains ${summary.oneScoreRowCount.toLocaleString()} plays.`);
 }
 
 main().catch((error) => {

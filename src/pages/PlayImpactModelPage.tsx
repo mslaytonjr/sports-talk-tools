@@ -4,7 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
+    filterOneScorePlays,
     loadSeasonPlayByPlay,
+    ONE_SCORE_MARGIN,
     type LoadProgress,
     type PlayByPlaySeason,
 } from "@/lib/playImpact";
@@ -44,6 +46,7 @@ export default function PlayImpactModelPage() {
             return null;
         }
 
+        const oneScoreData = filterOneScorePlays(seasonData);
         const gameIds = new Set<string>();
         let rowsWithWp = 0;
         let rowsWithWpa = 0;
@@ -66,6 +69,7 @@ export default function PlayImpactModelPage() {
 
         return {
             plays: seasonData.rows.length,
+            oneScorePlays: oneScoreData.rows.length,
             games: gameIds.size,
             rowsWithWp,
             rowsWithWpa,
@@ -150,6 +154,28 @@ export default function PlayImpactModelPage() {
                         expose the rows we will filter later for one-score fourth-quarter sacks.
                     </p>
                 </div>
+
+                <Card className="border-slate-800 bg-slate-900/80">
+                    <CardHeader>
+                        <CardTitle className="text-lg text-white">One-Score Filter Definition</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm text-slate-300">
+                        <p>
+                            For the initial sack impact work, a one-score game is defined at the{" "}
+                            <span className="font-semibold text-white">play level</span> as:
+                            absolute score differential less than or equal to{" "}
+                            <span className="font-semibold text-white">{ONE_SCORE_MARGIN}</span>.
+                        </p>
+                        <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-200">
+                            Code rule: `Math.abs(scoreDifferential) &lt;= {ONE_SCORE_MARGIN}`
+                        </div>
+                        <p>
+                            That rule is implemented in the shared play impact model code so the
+                            same boundary can be reused by the script workflow and all downstream
+                            analysis steps.
+                        </p>
+                    </CardContent>
+                </Card>
 
                 <Card className="border-slate-800 bg-slate-900/80">
                     <CardHeader>
@@ -246,6 +272,14 @@ export default function PlayImpactModelPage() {
                                 </div>
                                 <div className="mt-2 text-2xl font-semibold text-white">
                                     {summary.plays.toLocaleString()}
+                                </div>
+                            </div>
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                    One-Score Plays
+                                </div>
+                                <div className="mt-2 text-2xl font-semibold text-white">
+                                    {summary.oneScorePlays.toLocaleString()}
                                 </div>
                             </div>
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">

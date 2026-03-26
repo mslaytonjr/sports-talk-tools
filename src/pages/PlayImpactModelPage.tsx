@@ -5,11 +5,9 @@ import { Button } from "@/components/ui/button";
 import {
     filterOneScorePlays,
     filterQualifyingSackPlays,
-    loadSeasonPlayByPlay,
     loadPublishedPlayImpactSeason,
     ONE_SCORE_MARGIN,
     summarizeQualifyingSacks,
-    type LoadProgress,
     type PlayByPlaySeason,
     type PublishedPlayImpactSeason,
 } from "@/lib/playImpact";
@@ -43,7 +41,6 @@ export default function PlayImpactModelPage() {
     const [publishedSeason, setPublishedSeason] = useState<PublishedPlayImpactSeason | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [progress, setProgress] = useState<LoadProgress | null>(null);
     const [activityLog, setActivityLog] = useState<string[]>([]);
 
     const summary = useMemo(() => {
@@ -113,41 +110,15 @@ export default function PlayImpactModelPage() {
             {
                 title: "Load published site artifacts first",
                 detail: "Use committed play impact outputs from /public when that season has already been pushed.",
-                status: progress
-                    ? progress.stage === "starting"
-                        ? "active"
-                        : "done"
-                    : "pending",
-            },
-            {
-                title: "Fall back to live nflverse data if needed",
-                detail: "If no published artifact exists for that season yet, fetch the raw season file and build the view in-browser.",
-                status: progress
-                    ? progress.stage === "downloading" || progress.stage === "parsing"
-                        ? "active"
-                        : progress.stage === "complete"
-                          ? "done"
-                          : "pending"
-                    : "pending",
-            },
-            {
-                title: "Stream and parse the CSV",
-                detail: "Read the file incrementally so the browser is not waiting on one giant text blob.",
-                status: progress
-                    ? progress.stage === "parsing"
-                        ? "active"
-                        : progress.stage === "complete"
-                          ? "done"
-                          : "pending"
-                    : "pending",
+                status: publishedSeason ? "done" : loading ? "active" : "pending",
             },
             {
                 title: "Keep only the model columns",
                 detail: "Retain play context plus the win probability fields needed for impact work.",
-                status: seasonData ? "done" : "pending",
+                status: publishedSeason || seasonData ? "done" : "pending",
             },
         ] satisfies { title: string; detail: string; status: StepStatus }[],
-        [progress, seasonData]
+        [loading, publishedSeason, seasonData]
     );
 
     async function handleLoadSeason() {
@@ -161,42 +132,29 @@ export default function PlayImpactModelPage() {
         setError("");
         setSeasonData(null);
         setPublishedSeason(null);
-        setProgress(null);
         setActivityLog([`Queued ${season} season load.`]);
 
         try {
-            try {
-                setProgress({
-                    stage: "starting",
-                    message: `Checking for published ${season} play impact artifacts.`,
-                });
-                const published = await loadPublishedPlayImpactSeason(season);
-                setPublishedSeason(published);
-                setActivityLog((current) => [
-                    ...current.slice(-5),
-                    `Loaded published ${season} artifacts from the site bundle.`,
-                ]);
-            } catch {
-                setActivityLog((current) => [
-                    ...current.slice(-5),
-                    `No published ${season} artifacts found. Falling back to live nflverse data.`,
-                ]);
-
-                const data = await loadSeasonPlayByPlay(season, (nextProgress) => {
-                    setProgress(nextProgress);
-                    setActivityLog((current) => {
-                        if (current[current.length - 1] === nextProgress.message) {
-                            return current;
-                        }
-                        return [...current.slice(-5), nextProgress.message];
-                    });
-                });
-                setSeasonData(data);
-            }
+            setActivityLog((current) => [
+                ...current.slice(-5),
+                `Checking for published ${season} play impact artifacts.`,
+            ]);
+            const published = await loadPublishedPlayImpactSeason(season);
+            setPublishedSeason(published);
+            setActivityLog((current) => [
+                ...current.slice(-5),
+                `Loaded published ${season} artifacts from the site bundle.`,
+            ]);
         } catch (caughtError) {
             setError(
-                caughtError instanceof Error ? caughtError.message : "Failed to load season data."
+                caughtError instanceof Error
+                    ? caughtError.message
+                    : "Published season artifacts could not be loaded."
             );
+            setActivityLog((current) => [
+                ...current.slice(-5),
+                `Published ${season} artifacts were not found on the site.`,
+            ]);
         } finally {
             setLoading(false);
         }
@@ -303,8 +261,9 @@ export default function PlayImpactModelPage() {
                             </div>
 
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
-                                The deployed page only offers seasons with published site artifacts,
-                                which prevents users from hitting missing-season fetch errors.
+                                The deployed page only loads published site artifacts. If a season
+                                is missing here, generate it locally, commit the `public/play-impact`
+                                files, and redeploy.
                             </div>
                         </div>
 

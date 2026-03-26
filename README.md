@@ -37,10 +37,33 @@ abs(score_differential) <= 8
 This filter is applied in code and the script writes a reusable filtered dataset for downstream
 steps.
 
+For the initial sack impact analysis, qualifying plays are:
+
+- 4th quarter
+- one-score by the definition above
+- sack plays
+
+The offensive win probability delta is defined as:
+
+```text
+wp_delta_offense = win_probability_after - win_probability_before
+```
+
+Offense perspective is canonical:
+
+- `posteam` is treated as the offense
+- `win_probability_before` is the offense's pre-play win probability
+- `win_probability_after` remains in that same offense frame
+
+The script also writes a reusable qualifying-play dataset:
+
+- `data/play-impact/play_by_play_2024_impact_foundation.q4_one_score_sacks.csv`
+
 Example output files:
 
 - `data/play-impact/play_by_play_2024_impact_foundation.csv`
 - `data/play-impact/play_by_play_2024_impact_foundation.one_score.csv`
+- `data/play-impact/play_by_play_2024_impact_foundation.q4_one_score_sacks.csv`
 - `data/play-impact/play_by_play_2024_impact_foundation.summary.json`
 
 The rest of this repo remains a Vite + React app.

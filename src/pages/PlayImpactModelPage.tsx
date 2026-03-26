@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
     filterOneScorePlays,
+    filterQualifyingSackPlays,
     loadSeasonPlayByPlay,
     ONE_SCORE_MARGIN,
     type LoadProgress,
@@ -47,6 +48,7 @@ export default function PlayImpactModelPage() {
         }
 
         const oneScoreData = filterOneScorePlays(seasonData);
+        const qualifyingSacks = filterQualifyingSackPlays(seasonData);
         const gameIds = new Set<string>();
         let rowsWithWp = 0;
         let rowsWithWpa = 0;
@@ -70,6 +72,7 @@ export default function PlayImpactModelPage() {
         return {
             plays: seasonData.rows.length,
             oneScorePlays: oneScoreData.rows.length,
+            qualifyingSacks: qualifyingSacks.rows.length,
             games: gameIds.size,
             rowsWithWp,
             rowsWithWpa,
@@ -78,6 +81,10 @@ export default function PlayImpactModelPage() {
     }, [seasonData]);
 
     const sampleRows = useMemo(() => seasonData?.rows.slice(0, 8) ?? [], [seasonData]);
+    const qualifyingSackSample = useMemo(
+        () => (seasonData ? filterQualifyingSackPlays(seasonData).rows.slice(0, 8) : []),
+        [seasonData]
+    );
 
     const steps = useMemo(
         () => [
@@ -179,6 +186,29 @@ export default function PlayImpactModelPage() {
 
                 <Card className="border-slate-800 bg-slate-900/80">
                     <CardHeader>
+                        <CardTitle className="text-lg text-white">Sack Impact Metric Definition</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm text-slate-300">
+                        <p>
+                            Qualifying plays for the first impact pass are:
+                            <span className="font-semibold text-white"> 4th quarter</span>,
+                            <span className="font-semibold text-white"> one-score</span>,
+                            and
+                            <span className="font-semibold text-white"> sack plays</span>.
+                        </p>
+                        <p>
+                            Offense perspective is canonical. `posteam` is treated as the offense,
+                            `winProbabilityBefore` is the offense&apos;s pre-play win probability, and
+                            `winProbabilityAfter` stays in that same offense frame.
+                        </p>
+                        <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-200">
+                            `wpDeltaOffense = winProbabilityAfter - winProbabilityBefore`
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="border-slate-800 bg-slate-900/80">
+                    <CardHeader>
                         <CardTitle className="text-lg text-white">Load One Season</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -265,7 +295,7 @@ export default function PlayImpactModelPage() {
                         <CardHeader>
                             <CardTitle className="text-lg text-white">Season Summary</CardTitle>
                         </CardHeader>
-                        <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+                        <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
                                 <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
                                     Plays
@@ -280,6 +310,14 @@ export default function PlayImpactModelPage() {
                                 </div>
                                 <div className="mt-2 text-2xl font-semibold text-white">
                                     {summary.oneScorePlays.toLocaleString()}
+                                </div>
+                            </div>
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                    Q4 One-Score Sacks
+                                </div>
+                                <div className="mt-2 text-2xl font-semibold text-white">
+                                    {summary.qualifyingSacks.toLocaleString()}
                                 </div>
                             </div>
                             <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
@@ -365,6 +403,68 @@ export default function PlayImpactModelPage() {
                                                 </td>
                                                 <td className="px-3 py-2 text-slate-200">
                                                     {row.wpa == null ? "n/a" : row.wpa.toFixed(3)}
+                                                </td>
+                                                <td className="max-w-[560px] px-3 py-2 text-slate-300">
+                                                    {row.desc}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ) : null}
+
+                {qualifyingSackSample.length > 0 ? (
+                    <Card className="border-slate-800 bg-slate-900/80">
+                        <CardHeader>
+                            <CardTitle className="text-lg text-white">
+                                Qualifying Sack Sample
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-300">
+                                These are sample 4th-quarter, one-score sack plays with offense-side
+                                win probability delta so the calculation can be inspected for
+                                correctness.
+                            </div>
+
+                            <div className="overflow-x-auto rounded-xl border border-slate-800">
+                                <table className="min-w-full divide-y divide-slate-800 text-sm">
+                                    <thead className="bg-slate-950/80 text-slate-300">
+                                        <tr>
+                                            <th className="px-3 py-2 text-left">Game</th>
+                                            <th className="px-3 py-2 text-left">Play</th>
+                                            <th className="px-3 py-2 text-left">Posteam</th>
+                                            <th className="px-3 py-2 text-left">Qtr</th>
+                                            <th className="px-3 py-2 text-left">Score Diff</th>
+                                            <th className="px-3 py-2 text-left">WP Before</th>
+                                            <th className="px-3 py-2 text-left">WP After</th>
+                                            <th className="px-3 py-2 text-left">wp_delta_offense</th>
+                                            <th className="px-3 py-2 text-left">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-800 bg-slate-900/60">
+                                        {qualifyingSackSample.map((row) => (
+                                            <tr key={`${row.gameId}-${row.playId}`}>
+                                                <td className="px-3 py-2 text-slate-200">{row.gameId}</td>
+                                                <td className="px-3 py-2 text-slate-200">{row.playId}</td>
+                                                <td className="px-3 py-2 text-slate-200">{row.posteam}</td>
+                                                <td className="px-3 py-2 text-slate-200">{row.qtr}</td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {row.scoreDifferential}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {formatPercent(row.winProbabilityBefore)}
+                                                </td>
+                                                <td className="px-3 py-2 text-slate-200">
+                                                    {formatPercent(row.winProbabilityAfter)}
+                                                </td>
+                                                <td className="px-3 py-2 font-semibold text-white">
+                                                    {row.wpDeltaOffense == null
+                                                        ? "n/a"
+                                                        : row.wpDeltaOffense.toFixed(3)}
                                                 </td>
                                                 <td className="max-w-[560px] px-3 py-2 text-slate-300">
                                                     {row.desc}

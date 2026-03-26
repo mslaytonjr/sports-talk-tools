@@ -25,6 +25,7 @@ export type PlayByPlayRow = {
     wpa: number | null;
     winProbabilityBefore: number | null;
     winProbabilityAfter: number | null;
+    wpDeltaOffense: number | null;
 };
 
 export type PlayByPlaySeason = {
@@ -37,6 +38,24 @@ export type OneScorePlayByPlaySeason = PlayByPlaySeason & {
     filter: {
         type: "one-score";
         absoluteScoreDifferentialLte: number;
+    };
+};
+
+export type QualifyingSackPlay = PlayByPlayRow & {
+    winProbabilityBefore: number;
+    winProbabilityAfter: number;
+    wpDeltaOffense: number;
+};
+
+export type QualifyingSackSeason = PlayByPlaySeason & {
+    rows: QualifyingSackPlay[];
+    filter: {
+        type: "fourth-quarter-one-score-sacks";
+        quarterEquals: number;
+        absoluteScoreDifferentialLte: number;
+        playType: "sack";
+        perspective: "offense";
+        wpDeltaFormula: "winProbabilityAfter - winProbabilityBefore";
     };
 };
 
@@ -118,6 +137,7 @@ function mapRow(row: string[], indexes: Record<ColumnName, number>): PlayByPlayR
         winProbabilityBefore: wp,
         winProbabilityAfter:
             wp != null && wpa != null ? Math.max(0, Math.min(1, wp + wpa)) : null,
+        wpDeltaOffense: wpa,
     };
 }
 
@@ -190,6 +210,27 @@ export function filterOneScorePlays(seasonData: PlayByPlaySeason): OneScorePlayB
         filter: {
             type: "one-score",
             absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
+        },
+    };
+}
+
+export function isFourthQuarterOneScoreSack(row: PlayByPlayRow) {
+    return row.qtr === 4 && isOneScorePlay(row) && row.isSack;
+}
+
+export function filterQualifyingSackPlays(seasonData: PlayByPlaySeason): QualifyingSackSeason {
+    return {
+        ...seasonData,
+        rows: seasonData.rows.filter((row): row is QualifyingSackPlay => {
+            return isFourthQuarterOneScoreSack(row) && row.wpDeltaOffense != null;
+        }),
+        filter: {
+            type: "fourth-quarter-one-score-sacks",
+            quarterEquals: 4,
+            absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
+            playType: "sack",
+            perspective: "offense",
+            wpDeltaFormula: "winProbabilityAfter - winProbabilityBefore",
         },
     };
 }

@@ -20,6 +20,10 @@ const outputOneScoreCsvPath = resolve(
     outputDir,
     `play_by_play_${season}_impact_foundation.one_score.csv`
 );
+const outputQualifyingSacksCsvPath = resolve(
+    outputDir,
+    `play_by_play_${season}_impact_foundation.q4_one_score_sacks.csv`
+);
 const outputSummaryPath = resolve(outputDir, `play_by_play_${season}_impact_foundation.summary.json`);
 const ONE_SCORE_MARGIN = 8;
 
@@ -127,6 +131,7 @@ const outputColumns = [
     "is_sack",
     "win_probability_before",
     "win_probability_after",
+    "wp_delta_offense",
     "wp",
     "def_wp",
     "home_wp",
@@ -143,8 +148,12 @@ async function main() {
 
     const csvWriter = createWriteStream(outputCsvPath, { encoding: "utf8" });
     const oneScoreCsvWriter = createWriteStream(outputOneScoreCsvPath, { encoding: "utf8" });
+    const qualifyingSacksCsvWriter = createWriteStream(outputQualifyingSacksCsvPath, {
+        encoding: "utf8",
+    });
     csvWriter.write(`${outputColumns.join(",")}\n`);
     oneScoreCsvWriter.write(`${outputColumns.join(",")}\n`);
+    qualifyingSacksCsvWriter.write(`${outputColumns.join(",")}\n`);
 
     const summary = {
         season,
@@ -153,16 +162,26 @@ async function main() {
         notes: [
             "One-score is defined at the play level as absolute score differential less than or equal to 8.",
             "win_probability_after is derived as offensive wp + wpa clipped to [0, 1].",
+            "Offense perspective is canonical: posteam is treated as the offense, wp is offense win probability before the play, and wp_delta_offense = win_probability_after - win_probability_before.",
         ],
         filters: {
             oneScore: {
                 appliedAt: "play",
                 absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
             },
+            qualifyingSacks: {
+                appliedAt: "play",
+                quarterEquals: 4,
+                absoluteScoreDifferentialLte: ONE_SCORE_MARGIN,
+                playType: "sack",
+                perspective: "offense",
+                wpDeltaFormula: "win_probability_after - win_probability_before",
+            },
         },
         rowCount: 0,
         gameCount: 0,
         oneScoreRowCount: 0,
+        qualifyingSackRowCount: 0,
         rowsWithWp: 0,
         rowsWithDerivedWpAfter: 0,
         sackCount: 0,
@@ -174,7 +193,9 @@ async function main() {
             "is_sack",
             "win_probability_before",
             "win_probability_after",
+            "wp_delta_offense",
         ],
+        validationSample: [],
     };
 
     const gameIds = new Set();
@@ -216,6 +237,8 @@ async function main() {
         const wpa = parseNumber(row[indexes.wpa]);
         const winProbabilityAfter =
             wp != null && wpa != null ? Math.max(0, Math.min(1, wp + wpa)) : null;
+        const wpDeltaOffense =
+            wp != null && winProbabilityAfter != null ? winProbabilityAfter - wp : null;
         const isSack = playType === "sack" || /\bsacked\b/i.test(description);
 
         const outputRow = {
@@ -236,6 +259,7 @@ async function main() {
             is_sack: isSack ? "true" : "false",
             win_probability_before: wp == null ? "" : wp,
             win_probability_after: winProbabilityAfter == null ? "" : winProbabilityAfter,
+            wp_delta_offense: wpDeltaOffense == null ? "" : wpDeltaOffense,
             wp: wp == null ? "" : wp,
             def_wp: safeText(row[indexes.def_wp]),
             home_wp: safeText(row[indexes.home_wp]),
@@ -254,6 +278,28 @@ async function main() {
                     `${outputColumns.map((column) => toCsvCell(outputRow[column])).join(",")}\n`
                 );
                 summary.oneScoreRowCount += 1;
+
+                if (safeText(outputRow.qtr) === "4" && outputRow.is_sack === "true" && outputRow.wp_delta_offense !== "") {
+                    qualifyingSacksCsvWriter.write(
+                        `${outputColumns.map((column) => toCsvCell(outputRow[column])).join(",")}\n`
+                    );
+                    summary.qualifyingSackRowCount += 1;
+
+                    if (summary.validationSample.length < 10) {
+                        summary.validationSample.push({
+                            game_id: outputRow.game_id,
+                            play_id: outputRow.play_id,
+                            posteam: outputRow.posteam,
+                            qtr: outputRow.qtr,
+                            score_differential: outputRow.score_differential,
+                            is_sack: outputRow.is_sack,
+                            win_probability_before: outputRow.win_probability_before,
+                            win_probability_after: outputRow.win_probability_after,
+                            wp_delta_offense: outputRow.wp_delta_offense,
+                            desc: outputRow.desc,
+                        });
+                    }
+                }
             }
         }
 
@@ -315,6 +361,16 @@ async function main() {
         });
     });
 
+    await new Promise((resolveStream, rejectStream) => {
+        qualifyingSacksCsvWriter.end((error) => {
+            if (error) {
+                rejectStream(error);
+                return;
+            }
+            resolveStream();
+        });
+    });
+
     summary.rowCount = rowCount;
     summary.gameCount = gameIds.size;
 
@@ -322,11 +378,15 @@ async function main() {
 
     console.log(`Wrote ${outputCsvPath}`);
     console.log(`Wrote ${outputOneScoreCsvPath}`);
+    console.log(`Wrote ${outputQualifyingSacksCsvPath}`);
     console.log(`Wrote ${outputSummaryPath}`);
     console.log(
         `Validated ${summary.rowCount.toLocaleString()} rows across ${summary.gameCount.toLocaleString()} games.`
     );
     console.log(`One-score filtered output contains ${summary.oneScoreRowCount.toLocaleString()} plays.`);
+    console.log(
+        `Fourth-quarter one-score sack output contains ${summary.qualifyingSackRowCount.toLocaleString()} plays.`
+    );
 }
 
 main().catch((error) => {

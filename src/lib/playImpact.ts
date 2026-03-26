@@ -355,16 +355,35 @@ export async function loadPublishedPlayImpactSeason(
     const rows = parseCsvRows(csvText);
 
     if (rows.length < 2) {
-        return {
-            season,
-            summary,
-            qualifyingSacks: [],
-            source: "published-artifacts",
-        };
+        throw new Error("Published qualifying sack CSV is empty or unreadable.");
     }
 
     const headers = rows[0].map(normalizeHeader);
     const indexOf = (name: string) => headers.indexOf(name);
+    const requiredCsvHeaders = [
+        "game_id",
+        "play_id",
+        "season",
+        "week",
+        "season_type",
+        "qtr",
+        "score_differential",
+        "posteam",
+        "defteam",
+        "play_type",
+        "desc",
+        "is_sack",
+        "win_probability_before",
+        "win_probability_after",
+        "wp_delta_offense",
+    ];
+    const missingHeaders = requiredCsvHeaders.filter((header) => indexOf(header) === -1);
+    if (missingHeaders.length > 0) {
+        throw new Error(
+            `Published qualifying sack CSV is missing expected headers: ${missingHeaders.join(", ")}.`
+        );
+    }
+
     const qualifyingSacks = rows.slice(1).map((row) => {
         const playType = safeText(row[indexOf("play_type")]);
         const description = safeText(row[indexOf("desc")]);

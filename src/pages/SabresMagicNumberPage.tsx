@@ -59,6 +59,12 @@ type Competitor = {
     currentPoints: number;
     gamesRemaining: number;
     maxPossiblePoints: number;
+    thresholdPoints?: number;
+    tiebreakStatus?: {
+        sabresHasClinchableEdge: boolean;
+        winningMetric: string | null;
+        label: string;
+    };
     next3Opponents: OpponentPreview[];
     regulationOvertimeSplit: RegulationOvertimeSplit | null;
     trendLast10: string | null;
@@ -387,7 +393,8 @@ export default function SabresMagicNumberPage() {
                         <h2 className="text-xl font-semibold text-white">Competing Teams</h2>
                         <p className="text-sm text-slate-300">
                             Competing teams show current points, remaining games, maximum possible
-                            points, next three opponents, regulation/overtime split when available,
+                            points, the tiebreak-aware point threshold Buffalo still needs against
+                            them, next three opponents, regulation/overtime split when available,
                             last-10 trend, and a 0-100 difficulty score for the next three games.
                         </p>
                     </div>
@@ -403,7 +410,7 @@ export default function SabresMagicNumberPage() {
                                     </Badge>
                                 </div>
 
-                                <div className="grid grid-cols-3 gap-2 text-sm">
+                                <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
                                     <div className="rounded-xl bg-slate-950/70 p-3">
                                         <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
                                             Current
@@ -428,10 +435,27 @@ export default function SabresMagicNumberPage() {
                                             {row.maxPossiblePoints}
                                         </div>
                                     </div>
+                                    <div className="rounded-xl bg-slate-950/70 p-3">
+                                        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                                            Safe At
+                                        </div>
+                                        <div className="mt-1 text-xl font-semibold text-white">
+                                            {row.thresholdPoints ?? row.maxPossiblePoints + 1}
+                                        </div>
+                                    </div>
                                 </div>
                             </CardHeader>
 
                             <CardContent className="space-y-4">
+                                <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+                                    <div className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                                        Tiebreak Status Vs Buffalo
+                                    </div>
+                                    <div className="mt-2 text-sm text-slate-100">
+                                        {row.tiebreakStatus?.label ?? "Tiebreaker not yet clinched"}
+                                    </div>
+                                </div>
+
                                 <div className="grid gap-3 sm:grid-cols-2">
                                     <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
                                         <div className="text-xs uppercase tracking-[0.18em] text-slate-400">

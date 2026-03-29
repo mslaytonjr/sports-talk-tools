@@ -149,6 +149,101 @@ const fullTeamName = (team) => {
   return [place, common].filter(Boolean).join(" ");
 };
 
+const getRowWins = (team) => {
+  if (typeof team.regulationPlusOtWins === "number") {
+    return team.regulationPlusOtWins;
+  }
+
+  if (typeof team.regulationWins === "number" && typeof team.overtimeWins === "number") {
+    return team.regulationWins + team.overtimeWins;
+  }
+
+  if (typeof team.regulationWins === "number" && typeof team.otWins === "number") {
+    return team.regulationWins + team.otWins;
+  }
+
+  return null;
+};
+
+const buildTiebreakStats = (team) => ({
+  regulationWins: typeof team.regulationWins === "number" ? team.regulationWins : null,
+  rowWins: getRowWins(team),
+  totalWins: typeof team.wins === "number" ? team.wins : null,
+});
+
+const getMaxTiebreakStats = (team) => ({
+  regulationWins:
+    typeof team.tiebreakStats?.regulationWins === "number"
+      ? team.tiebreakStats.regulationWins + team.gamesRemaining
+      : null,
+  rowWins:
+    typeof team.tiebreakStats?.rowWins === "number"
+      ? team.tiebreakStats.rowWins + team.gamesRemaining
+      : null,
+  totalWins:
+    typeof team.tiebreakStats?.totalWins === "number"
+      ? team.tiebreakStats.totalWins + team.gamesRemaining
+      : null,
+});
+
+function getClinchTiebreakStatus(sabres, challenger) {
+  const comparisons = [
+    {
+      key: "regulationWins",
+      label: "RW",
+      sabresValue: sabres.tiebreakStats?.regulationWins,
+      challengerMax: getMaxTiebreakStats(challenger).regulationWins,
+    },
+    {
+      key: "rowWins",
+      label: "ROW",
+      sabresValue: sabres.tiebreakStats?.rowWins,
+      challengerMax: getMaxTiebreakStats(challenger).rowWins,
+    },
+    {
+      key: "totalWins",
+      label: "W",
+      sabresValue: sabres.tiebreakStats?.totalWins,
+      challengerMax: getMaxTiebreakStats(challenger).totalWins,
+    },
+  ];
+
+  for (const comparison of comparisons) {
+    if (
+      typeof comparison.sabresValue !== "number" ||
+      typeof comparison.challengerMax !== "number"
+    ) {
+      return {
+        sabresHasClinchableEdge: false,
+        winningMetric: null,
+        label: "Tiebreaker not yet clinched",
+      };
+    }
+
+    if (comparison.sabresValue > comparison.challengerMax) {
+      return {
+        sabresHasClinchableEdge: true,
+        winningMetric: comparison.key,
+        label: `Sabres clinch tie on ${comparison.label}`,
+      };
+    }
+
+    if (comparison.sabresValue < comparison.challengerMax) {
+      return {
+        sabresHasClinchableEdge: false,
+        winningMetric: null,
+        label: "Tiebreaker not yet clinched",
+      };
+    }
+  }
+
+  return {
+    sabresHasClinchableEdge: false,
+    winningMetric: null,
+    label: "Tiebreaker not yet clinched",
+  };
+}
+
 const daysBetween = (firstDate, secondDate) => {
   const msPerDay = 24 * 60 * 60 * 1000;
   return Math.round((secondDate - firstDate) / msPerDay);
@@ -255,6 +350,7 @@ async function getNext3Opponents(abbrev, pointPctByAbbrev, teamMetricsByAbbrev) 
 function cloneTeam(team) {
   return {
     ...team,
+    tiebreakStats: team.tiebreakStats ? { ...team.tiebreakStats } : null,
   };
 }
 
@@ -278,19 +374,27 @@ function computeObjectiveRace(allTeams, objective) {
 
   const challengers = teams
     .filter((team) => objective.isCompetitor(team, sabres))
-    .filter((team) => team.maxPossiblePoints >= sabres.currentPoints)
+    .map((team) => {
+      const tiebreakStatus = getClinchTiebreakStatus(sabres, team);
+      return {
+        ...team,
+        tiebreakStatus,
+        thresholdPoints: team.maxPossiblePoints + (tiebreakStatus.sabresHasClinchableEdge ? 0 : 1),
+      };
+    })
+    .filter((team) => team.thresholdPoints > sabres.currentPoints)
     .sort((a, b) => {
-      if (b.maxPossiblePoints !== a.maxPossiblePoints) {
-        return b.maxPossiblePoints - a.maxPossiblePoints;
+      if (b.thresholdPoints !== a.thresholdPoints) {
+        return b.thresholdPoints - a.thresholdPoints;
       }
       return b.currentPoints - a.currentPoints;
     });
 
   const thresholdMax =
     challengers.length > objective.cutoffIndex
-      ? challengers[objective.cutoffIndex].maxPossiblePoints
+      ? challengers[objective.cutoffIndex].thresholdPoints
       : 0;
-  const clinchTarget = thresholdMax + 1;
+  const clinchTarget = thresholdMax;
   const magicPointsNeeded = Math.max(0, clinchTarget - sabres.currentPoints);
   const threatTotal = challengers.reduce((sum, team) => sum + team.maxPossiblePoints, 0);
 
@@ -321,14 +425,44 @@ function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome, objectiv
 
   if (outcome === "home-reg") {
     homeTeam.currentPoints += 2;
+    if (typeof homeTeam.tiebreakStats?.regulationWins === "number") {
+      homeTeam.tiebreakStats.regulationWins += 1;
+    }
+    if (typeof homeTeam.tiebreakStats?.rowWins === "number") {
+      homeTeam.tiebreakStats.rowWins += 1;
+    }
+    if (typeof homeTeam.tiebreakStats?.totalWins === "number") {
+      homeTeam.tiebreakStats.totalWins += 1;
+    }
   } else if (outcome === "home-ot") {
     homeTeam.currentPoints += 2;
     awayTeam.currentPoints += 1;
+    if (typeof homeTeam.tiebreakStats?.rowWins === "number") {
+      homeTeam.tiebreakStats.rowWins += 1;
+    }
+    if (typeof homeTeam.tiebreakStats?.totalWins === "number") {
+      homeTeam.tiebreakStats.totalWins += 1;
+    }
   } else if (outcome === "away-ot") {
     awayTeam.currentPoints += 2;
     homeTeam.currentPoints += 1;
+    if (typeof awayTeam.tiebreakStats?.rowWins === "number") {
+      awayTeam.tiebreakStats.rowWins += 1;
+    }
+    if (typeof awayTeam.tiebreakStats?.totalWins === "number") {
+      awayTeam.tiebreakStats.totalWins += 1;
+    }
   } else if (outcome === "away-reg") {
     awayTeam.currentPoints += 2;
+    if (typeof awayTeam.tiebreakStats?.regulationWins === "number") {
+      awayTeam.tiebreakStats.regulationWins += 1;
+    }
+    if (typeof awayTeam.tiebreakStats?.rowWins === "number") {
+      awayTeam.tiebreakStats.rowWins += 1;
+    }
+    if (typeof awayTeam.tiebreakStats?.totalWins === "number") {
+      awayTeam.tiebreakStats.totalWins += 1;
+    }
   }
 
   homeTeam.maxPossiblePoints = homeTeam.currentPoints + homeTeam.gamesRemaining * 2;
@@ -510,6 +644,7 @@ export const handler = async () => {
         maxPossiblePoints: pts + gamesRemaining * 2,
         trendLast10: formatLast10(team),
         regulationOvertimeSplit: formatSplit(team),
+        tiebreakStats: buildTiebreakStats(team),
         pointPct: pointPct(pts, gp),
         homePointPct,
         roadPointPct,
@@ -579,6 +714,12 @@ export const handler = async () => {
           currentPoints: team.currentPoints,
           gamesRemaining: team.gamesRemaining,
           maxPossiblePoints: team.maxPossiblePoints,
+          tiebreakStatus: team.tiebreakStatus ?? {
+            sabresHasClinchableEdge: false,
+            winningMetric: null,
+            label: "Tiebreaker not yet clinched",
+          },
+          thresholdPoints: team.thresholdPoints ?? team.maxPossiblePoints + 1,
           next3Opponents,
           regulationOvertimeSplit: team.regulationOvertimeSplit,
           trendLast10: team.trendLast10,
@@ -596,7 +737,18 @@ export const handler = async () => {
       Object.values(OBJECTIVES).map(async (objective) => {
         const baselineRace = computeObjectiveRace(teams, objective);
         const objectiveCompetitors = baselineRace.challengers
-          .map((team) => competitorMap.get(team.teamAbbrev))
+          .map((team) => {
+            const competitor = competitorMap.get(team.teamAbbrev);
+            if (!competitor) {
+              return null;
+            }
+
+            return {
+              ...competitor,
+              tiebreakStatus: team.tiebreakStatus,
+              thresholdPoints: team.thresholdPoints,
+            };
+          })
           .filter(Boolean);
         const nightlyRootingGuide = getNightlyRootingGuide(
           nightlyScoreboards,

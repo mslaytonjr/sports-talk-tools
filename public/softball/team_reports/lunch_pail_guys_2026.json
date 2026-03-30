@@ -1,0 +1,360 @@
+{
+  "season": 2026,
+  "team": "Lunch Pail Guys",
+  "team_rating": {
+    "team": "Lunch Pail Guys",
+    "team_id": "lunch_pail_guys",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "12",
+    "unmatched_players": "3",
+    "projected_runs": "10.93461675257339",
+    "offense_index": "0.5757939249703071",
+    "offense_rating": "0.08934851274485901",
+    "defense_rating": "0",
+    "overall_rating": "0.08934851274485901"
+  },
+  "human_summary": {
+    "team_rank": 2,
+    "total_teams": 12,
+    "team_tier": "Top-tier contender",
+    "expected_runs": 10.93461675257339,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 12,
+    "unmatched_players": 3,
+    "roster_match_rate": 0.8,
+    "strongest_absence": {
+      "player_name": "Joey Beyer",
+      "run_swing": 0.58,
+      "win_probability_swing": 0.0295
+    },
+    "easiest_absence": {
+      "player_name": "Greg George",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "Lunch Pail Guys projects as the 2nd-strongest team out of 12.",
+      "The model expects about 10.9 runs per game with the current full roster.",
+      "12 of 15 players have a historical match in the dataset.",
+      "3 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Alex Fass",
+      "matched": "yes",
+      "league_bat_score_rank": 54,
+      "league_bat_score_rank_label": "54th of 161 returning players",
+      "offense_index": 0.5561369814885917,
+      "projected_offense_index": 0.5586798532341035,
+      "trend_adjustment": "0.0025",
+      "profile_confidence": "trusted",
+      "avg": "0.443",
+      "obp": "0.589",
+      "slg": "0.775",
+      "ops": "1.363",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Bob Fass",
+      "matched": "yes",
+      "league_bat_score_rank": 40,
+      "league_bat_score_rank_label": "40th of 161 returning players",
+      "offense_index": 0.5724504418641335,
+      "projected_offense_index": 0.5824162799050008,
+      "trend_adjustment": "0.0100",
+      "profile_confidence": "trusted",
+      "avg": "0.555",
+      "obp": "0.548",
+      "slg": "0.741",
+      "ops": "1.289",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Joey Beyer",
+      "matched": "yes",
+      "league_bat_score_rank": 2,
+      "league_bat_score_rank_label": "2nd of 161 returning players",
+      "offense_index": 0.7795268432358162,
+      "projected_offense_index": 0.7795268432358162,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Rick Beyer",
+      "matched": "yes",
+      "league_bat_score_rank": 65,
+      "league_bat_score_rank_label": "65th of 161 returning players",
+      "offense_index": 0.5864872814697708,
+      "projected_offense_index": 0.5464872814697708,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.541",
+      "obp": "0.521",
+      "slg": "0.754",
+      "ops": "1.275",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "John Sanzone",
+      "matched": "yes",
+      "league_bat_score_rank": 49,
+      "league_bat_score_rank_label": "49th of 161 returning players",
+      "offense_index": 0.5634802260430275,
+      "projected_offense_index": 0.5691402217963892,
+      "trend_adjustment": "0.0057",
+      "profile_confidence": "trusted",
+      "avg": "0.537",
+      "obp": "0.547",
+      "slg": "0.650",
+      "ops": "1.196",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Ricky Beyer",
+      "matched": "yes",
+      "league_bat_score_rank": 4,
+      "league_bat_score_rank_label": "4th of 161 returning players",
+      "offense_index": 0.7661528037762639,
+      "projected_offense_index": 0.7661528037762639,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Jim Morris",
+      "matched": "yes",
+      "league_bat_score_rank": 53,
+      "league_bat_score_rank_label": "53rd of 161 returning players",
+      "offense_index": 0.5396681513904176,
+      "projected_offense_index": 0.5603577248524121,
+      "trend_adjustment": "0.0207",
+      "profile_confidence": "trusted",
+      "avg": "0.524",
+      "obp": "0.527",
+      "slg": "0.585",
+      "ops": "1.112",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Dave Istvan",
+      "matched": "yes",
+      "league_bat_score_rank": 75,
+      "league_bat_score_rank_label": "75th of 161 returning players",
+      "offense_index": 0.49344811978963043,
+      "projected_offense_index": 0.5334481197896305,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.426",
+      "obp": "0.465",
+      "slg": "0.522",
+      "ops": "0.986",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Rich Fardo",
+      "matched": "yes",
+      "league_bat_score_rank": 104,
+      "league_bat_score_rank_label": "104th of 161 returning players",
+      "offense_index": 0.496125693851481,
+      "projected_offense_index": 0.4872771097041656,
+      "trend_adjustment": "-0.0088",
+      "profile_confidence": "trusted",
+      "avg": "0.433",
+      "obp": "0.435",
+      "slg": "0.557",
+      "ops": "0.992",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Tim Fonseca",
+      "matched": "yes",
+      "league_bat_score_rank": 130,
+      "league_bat_score_rank_label": "130th of 161 returning players",
+      "offense_index": 0.45605662972033,
+      "projected_offense_index": 0.45605662972033,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "trusted",
+      "avg": "0.395",
+      "obp": "0.410",
+      "slg": "0.421",
+      "ops": "0.831",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Brian Scaglione",
+      "matched": "yes",
+      "league_bat_score_rank": 124,
+      "league_bat_score_rank_label": "124th of 161 returning players",
+      "offense_index": 0.468987774467468,
+      "projected_offense_index": 0.468987774467468,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Greg George",
+      "matched": "yes",
+      "league_bat_score_rank": 145,
+      "league_bat_score_rank_label": "145th of 161 returning players",
+      "offense_index": 0.42543189871185677,
+      "projected_offense_index": 0.42543189871185677,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "Robert George",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "RJ Fardo",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Andrew Sanzone",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Joey Beyer",
+      "run_swing": 0.58,
+      "win_probability_swing": 0.0295
+    },
+    {
+      "player_name": "Ricky Beyer",
+      "run_swing": 0.55,
+      "win_probability_swing": 0.0281
+    },
+    {
+      "player_name": "Bob Fass",
+      "run_swing": 0.21,
+      "win_probability_swing": 0.0103
+    },
+    {
+      "player_name": "John Sanzone",
+      "run_swing": 0.18,
+      "win_probability_swing": 0.009
+    },
+    {
+      "player_name": "Jim Morris",
+      "run_swing": 0.16,
+      "win_probability_swing": 0.0082
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Greg George",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Brian Scaglione",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Tim Fonseca",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Rich Fardo",
+      "run_swing": 0.03,
+      "win_probability_swing": 0.0013
+    },
+    {
+      "player_name": "Dave Istvan",
+      "run_swing": 0.11,
+      "win_probability_swing": 0.0056
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Robert George",
+    "RJ Fardo",
+    "Andrew Sanzone"
+  ]
+}

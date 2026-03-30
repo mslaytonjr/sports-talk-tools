@@ -1,0 +1,359 @@
+{
+  "season": 2026,
+  "team": "Black Mambas",
+  "team_rating": {
+    "team": "Black Mambas",
+    "team_id": "black_mambas",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "13",
+    "unmatched_players": "2",
+    "projected_runs": "10.741102042728565",
+    "offense_index": "0.5656038472709842",
+    "offense_rating": "0.07149260187732",
+    "defense_rating": "0",
+    "overall_rating": "0.07149260187732"
+  },
+  "human_summary": {
+    "team_rank": 6,
+    "total_teams": 12,
+    "team_tier": "Solid playoff-level group",
+    "expected_runs": 10.741102042728565,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 13,
+    "unmatched_players": 2,
+    "roster_match_rate": 0.8666666666666667,
+    "strongest_absence": {
+      "player_name": "David Plishka",
+      "run_swing": 0.53,
+      "win_probability_swing": 0.0272
+    },
+    "easiest_absence": {
+      "player_name": "Josh Simon",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "Black Mambas projects as the 6th-strongest team out of 12.",
+      "The model expects about 10.7 runs per game with the current full roster.",
+      "13 of 15 players have a historical match in the dataset.",
+      "2 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "David Plishka",
+      "matched": "yes",
+      "league_bat_score_rank": 6,
+      "league_bat_score_rank_label": "6th of 161 returning players",
+      "offense_index": 0.7541759457342965,
+      "projected_offense_index": 0.7541759457342965,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "trusted",
+      "avg": "0.716",
+      "obp": "0.738",
+      "slg": "1.000",
+      "ops": "1.738",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Chris Czapla",
+      "matched": "yes",
+      "league_bat_score_rank": 7,
+      "league_bat_score_rank_label": "7th of 161 returning players",
+      "offense_index": 0.7238789423359274,
+      "projected_offense_index": 0.7392591955419631,
+      "trend_adjustment": "0.0154",
+      "profile_confidence": "trusted",
+      "avg": "0.659",
+      "obp": "0.644",
+      "slg": "1.060",
+      "ops": "1.704",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Jason Crimmins",
+      "matched": "yes",
+      "league_bat_score_rank": 20,
+      "league_bat_score_rank_label": "20th of 161 returning players",
+      "offense_index": 0.693629269464028,
+      "projected_offense_index": 0.653629269464028,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.592",
+      "obp": "0.632",
+      "slg": "1.045",
+      "ops": "1.676",
+      "notes": ""
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Alex Simon",
+      "matched": "yes",
+      "league_bat_score_rank": 25,
+      "league_bat_score_rank_label": "25th of 161 returning players",
+      "offense_index": 0.6399734754969703,
+      "projected_offense_index": 0.6362537879282887,
+      "trend_adjustment": "-0.0037",
+      "profile_confidence": "trusted",
+      "avg": "0.624",
+      "obp": "0.633",
+      "slg": "0.854",
+      "ops": "1.487",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Ralph Aiello",
+      "matched": "yes",
+      "league_bat_score_rank": 44,
+      "league_bat_score_rank_label": "44th of 161 returning players",
+      "offense_index": 0.5514578245764432,
+      "projected_offense_index": 0.571338936740322,
+      "trend_adjustment": "0.0199",
+      "profile_confidence": "trusted",
+      "avg": "0.526",
+      "obp": "0.550",
+      "slg": "0.604",
+      "ops": "1.154",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Bob Plishka",
+      "matched": "yes",
+      "league_bat_score_rank": 78,
+      "league_bat_score_rank_label": "78th of 161 returning players",
+      "offense_index": 0.5416461568325615,
+      "projected_offense_index": 0.5303602125819978,
+      "trend_adjustment": "-0.0113",
+      "profile_confidence": "trusted",
+      "avg": "0.504",
+      "obp": "0.502",
+      "slg": "0.629",
+      "ops": "1.131",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Rob Thomas",
+      "matched": "yes",
+      "league_bat_score_rank": 97,
+      "league_bat_score_rank_label": "97th of 161 returning players",
+      "offense_index": 0.5325973536678373,
+      "projected_offense_index": 0.49259735366783736,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.504",
+      "obp": "0.509",
+      "slg": "0.560",
+      "ops": "1.068",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Alex Boden",
+      "matched": "yes",
+      "league_bat_score_rank": 102,
+      "league_bat_score_rank_label": "102nd of 161 returning players",
+      "offense_index": 0.468609948443703,
+      "projected_offense_index": 0.48973152044855367,
+      "trend_adjustment": "0.0211",
+      "profile_confidence": "trusted",
+      "avg": "0.436",
+      "obp": "0.442",
+      "slg": "0.450",
+      "ops": "0.892",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Josh Simon",
+      "matched": "yes",
+      "league_bat_score_rank": 118,
+      "league_bat_score_rank_label": "118th of 161 returning players",
+      "offense_index": 0.4519996375761259,
+      "projected_offense_index": 0.4737976206249839,
+      "trend_adjustment": "0.0218",
+      "profile_confidence": "trusted",
+      "avg": "0.407",
+      "obp": "0.421",
+      "slg": "0.422",
+      "ops": "0.843",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Jason Rhodes",
+      "matched": "yes",
+      "league_bat_score_rank": 121,
+      "league_bat_score_rank_label": "121st of 161 returning players",
+      "offense_index": 0.45017470646440505,
+      "projected_offense_index": 0.47118025973673316,
+      "trend_adjustment": "0.0210",
+      "profile_confidence": "trusted",
+      "avg": "0.382",
+      "obp": "0.387",
+      "slg": "0.416",
+      "ops": "0.803",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Tony Garrett",
+      "matched": "yes",
+      "league_bat_score_rank": 143,
+      "league_bat_score_rank_label": "143rd of 161 returning players",
+      "offense_index": 0.46390672541277345,
+      "projected_offense_index": 0.4283128257699069,
+      "trend_adjustment": "-0.0356",
+      "profile_confidence": "trusted",
+      "avg": "0.425",
+      "obp": "0.424",
+      "slg": "0.452",
+      "ops": "0.876",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Mike Lawlor",
+      "matched": "yes",
+      "league_bat_score_rank": 147,
+      "league_bat_score_rank_label": "147th of 161 returning players",
+      "offense_index": 0.4374378375097397,
+      "projected_offense_index": 0.4251861281147088,
+      "trend_adjustment": "-0.0123",
+      "profile_confidence": "trusted",
+      "avg": "0.388",
+      "obp": "0.394",
+      "slg": "0.399",
+      "ops": "0.793",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "Bankim Shah",
+      "matched": "yes",
+      "league_bat_score_rank": 156,
+      "league_bat_score_rank_label": "156th of 161 returning players",
+      "offense_index": 0.40259183213181904,
+      "projected_offense_index": 0.3967822171878737,
+      "trend_adjustment": "-0.0058",
+      "profile_confidence": "trusted",
+      "avg": "0.292",
+      "obp": "0.307",
+      "slg": "0.356",
+      "ops": "0.663",
+      "notes": ""
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Tom O'Connor",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Chris Chianese",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "David Plishka",
+      "run_swing": 0.53,
+      "win_probability_swing": 0.0272
+    },
+    {
+      "player_name": "Chris Czapla",
+      "run_swing": 0.5,
+      "win_probability_swing": 0.0257
+    },
+    {
+      "player_name": "Jason Crimmins",
+      "run_swing": 0.34,
+      "win_probability_swing": 0.0173
+    },
+    {
+      "player_name": "Alex Simon",
+      "run_swing": 0.31,
+      "win_probability_swing": 0.0156
+    },
+    {
+      "player_name": "Ralph Aiello",
+      "run_swing": 0.19,
+      "win_probability_swing": 0.0093
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Josh Simon",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Tony Garrett",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Jason Rhodes",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Mike Lawlor",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Bankim Shah",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Tom O'Connor",
+    "Chris Chianese"
+  ]
+}

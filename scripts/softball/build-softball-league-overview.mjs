@@ -47,13 +47,17 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function buildTeamReportHref(teamId, season) {
+  return `../team_reports/${teamId}_${season}.html`;
+}
+
 function buildHtmlReport(payload) {
   const standingsRows = payload.team_rankings
     .map(
       (team) => `
         <tr>
           <td>${team.rank}</td>
-          <td>${escapeHtml(team.team)}</td>
+          <td><a class="team-link" href="${escapeHtml(team.team_report_href)}">${escapeHtml(team.team)}</a></td>
           <td>${formatDecimal(team.projected_runs, 2)}</td>
           <td>${team.matched_players}/${team.roster_size}</td>
           <td>${formatDecimal(team.overall_rating, 3)}</td>
@@ -186,6 +190,15 @@ function buildHtmlReport(payload) {
       letter-spacing: 0.06em;
       color: var(--muted);
     }
+    .team-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .team-link:hover,
+    .team-link:focus-visible {
+      text-decoration: underline;
+    }
     .note {
       margin-top: 10px;
       font-size: 14px;
@@ -226,7 +239,7 @@ function buildHtmlReport(payload) {
     <div class="grid">
       <section class="panel">
         <h2>League Rankings</h2>
-        <p>Teams are ordered by current overall model strength.</p>
+        <p>Teams are ordered by current overall model strength. Click a team name to open its report.</p>
         <table>
           <thead>
             <tr>
@@ -277,6 +290,7 @@ function main() {
       matched_players: Number(row.matched_players || 0),
       roster_size: Number(row.roster_size || 0),
       overall_rating: Number(row.overall_rating || 0),
+      team_report_href: buildTeamReportHref(row.team_id, targetSeason),
     }))
     .sort((left, right) => right.overall_rating - left.overall_rating)
     .map((row, index) => ({

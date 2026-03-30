@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Softball League Overview 2026</title>
+  <style>
+    :root {
+      --bg: #f3efe8;
+      --panel: #fffaf2;
+      --ink: #182028;
+      --muted: #5f6a73;
+      --line: #d7ccba;
+      --accent: #8c2f39;
+      --accent-soft: #f4ddd7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #f7e8df 0, transparent 30%),
+        linear-gradient(180deg, #efe8dc 0%, var(--bg) 100%);
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(24, 32, 40, 0.08);
+    }
+    .hero {
+      padding: 24px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #fff7ef 0%, #fffdf9 60%, #f8ebe5 100%);
+    }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1, h2 {
+      margin: 0 0 10px;
+    }
+    h1 {
+      font-size: 42px;
+      line-height: 1;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .summary-card {
+      border-radius: 14px;
+      padding: 14px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(140, 47, 57, 0.12);
+    }
+    .summary-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-card .value {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+    }
+    .panel {
+      padding: 22px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .team-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .team-link:hover,
+    .team-link:focus-visible {
+      text-decoration: underline;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="kicker">Softball League Overview</div>
+      <h1>2026 League Snapshot</h1>
+      <p>This page ranks the current teams by model strength and highlights the five players whose one-game absence hurts their team the most.</p>
+      <div class="summary-strip">
+        <div class="summary-card">
+          <div class="label">Top Team</div>
+          <div class="value">Wild Things</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Best Important Player</div>
+          <div class="value">Kevin Marquez</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Highest One-Game Run Loss</div>
+          <div class="value">0.63 runs</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>League Rankings</h2>
+        <p>Teams are ordered by current overall model strength. Click a team name to open its report.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Expected Runs</th>
+              <th>Matched Roster</th>
+              <th>Overall Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td>1</td>
+          <td><a class="team-link" href="./team_reports/wild_things_2026.html">Wild Things</a></td>
+          <td>11.19</td>
+          <td>14/15</td>
+          <td>0.112</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><a class="team-link" href="./team_reports/lunch_pail_guys_2026.html">Lunch Pail Guys</a></td>
+          <td>10.93</td>
+          <td>12/15</td>
+          <td>0.089</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><a class="team-link" href="./team_reports/the_ryan_express_2026.html">The Ryan Express</a></td>
+          <td>10.88</td>
+          <td>13/15</td>
+          <td>0.084</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><a class="team-link" href="./team_reports/muscle_hamsters_2026.html">Muscle Hamsters</a></td>
+          <td>10.81</td>
+          <td>13/15</td>
+          <td>0.077</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a class="team-link" href="./team_reports/the_sultans_of_swat_2026.html">The Sultans of Swat</a></td>
+          <td>10.78</td>
+          <td>13/15</td>
+          <td>0.075</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><a class="team-link" href="./team_reports/black_mambas_2026.html">Black Mambas</a></td>
+          <td>10.74</td>
+          <td>13/15</td>
+          <td>0.071</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><a class="team-link" href="./team_reports/bash_brothers_2026.html">Bash Brothers</a></td>
+          <td>10.70</td>
+          <td>12/15</td>
+          <td>0.068</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a class="team-link" href="./team_reports/the_big_papi_s_2026.html">The Big Papi&#39;s</a></td>
+          <td>10.32</td>
+          <td>15/15</td>
+          <td>0.032</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><a class="team-link" href="./team_reports/honey_badgers_2026.html">Honey Badgers</a></td>
+          <td>10.14</td>
+          <td>15/15</td>
+          <td>0.014</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="team-link" href="./team_reports/7th_floor_crew_2026.html">7th Floor Crew</a></td>
+          <td>10.07</td>
+          <td>15/15</td>
+          <td>0.007</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><a class="team-link" href="./team_reports/the_big_units_2026.html">The Big Units</a></td>
+          <td>10.06</td>
+          <td>13/15</td>
+          <td>0.006</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><a class="team-link" href="./team_reports/nails_2026.html">Nails</a></td>
+          <td>10.04</td>
+          <td>13/15</td>
+          <td>0.004</td>
+        </tr></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Top 5 Most Important Players</h2>
+        <p>These are the five players whose one-game absence creates the biggest drop for their team.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Team</th>
+              <th>Run Loss</th>
+              <th>Win Odds Loss</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td>1</td>
+          <td>Kevin Marquez</td>
+          <td>The Sultans of Swat</td>
+          <td>0.63 runs</td>
+          <td>3.2%</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Joey Beyer</td>
+          <td>Lunch Pail Guys</td>
+          <td>0.58 runs</td>
+          <td>2.9%</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Max Metz</td>
+          <td>Bash Brothers</td>
+          <td>0.56 runs</td>
+          <td>2.9%</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Ricky Beyer</td>
+          <td>Lunch Pail Guys</td>
+          <td>0.55 runs</td>
+          <td>2.8%</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>David Plishka</td>
+          <td>Black Mambas</td>
+          <td>0.53 runs</td>
+          <td>2.7%</td>
+        </tr></tbody>
+        </table>
+        <p class="note">This section is league-wide, not per team.</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

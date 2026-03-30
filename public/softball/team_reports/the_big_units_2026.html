@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Big Units 2026 Team Report</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffaf0;
+      --ink: #182028;
+      --muted: #5d6873;
+      --accent: #1d5b79;
+      --line: #d9cdb8;
+      --good: #1f7a4d;
+      --warn: #8d5b12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, #efe5d2 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    .hero, .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(24, 32, 40, 0.08);
+    }
+    .hero {
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #fff7e8 0%, #f7fbff 100%);
+    }
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: 40px; line-height: 1; }
+    h2 { font-size: 22px; }
+    p { margin: 0 0 10px; color: var(--muted); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .summary-card {
+      background: rgba(29, 91, 121, 0.06);
+      border: 1px solid rgba(29, 91, 121, 0.14);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .summary-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .summary-card .sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(31, 122, 77, 0.10);
+      color: var(--good);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tag.warn {
+      background: rgba(141, 91, 18, 0.10);
+      color: var(--warn);
+    }
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="kicker">Softball Team Report</div>
+      <h1>The Big Units</h1>
+      <p>2026 season outlook. Needs help to close the gap</p>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="label">League Rank</div>
+          <div class="value">11th</div>
+          <div class="sub">Out of 12 teams</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Expected Runs</div>
+          <div class="value">10.1</div>
+          <div class="sub">Projected runs per game</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Matched Roster</div>
+          <div class="value">87%</div>
+          <div class="sub">13 of 15 players matched</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Best Available Core</div>
+          <div class="value">15/15</div>
+          <div class="sub">Active players in current report</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="panel">
+          <h2>Plain-English Readout</h2>
+          <ul>
+            <li>The Big Units projects as the 11th-strongest team out of 12.</li><li>The model expects about 10.1 runs per game with the current full roster.</li><li>13 of 15 players have a historical match in the dataset.</li><li>2 roster spots are still using fallback assumptions because there is no clean historical match.</li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <h2>Best Full Lineup If Everyone Shows</h2>
+          <p>This is the recommended batting order based on who creates traffic, who drives in runs, and how strong each bat projects to be.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Spot</th>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Bat Score</th>
+                <th>League Rank</th>
+                <th>OBP</th>
+                <th>OPS</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>1</td>
+          <td>Chris Mazur</td>
+          <td>Table setter</td>
+          <td>0.613</td>
+          <td>29th of 161 returning players</td>
+          <td>0.528</td>
+          <td>1.256</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Greg Espersen</td>
+          <td>Contact bat</td>
+          <td>0.584</td>
+          <td>39th of 161 returning players</td>
+          <td>0.532</td>
+          <td>1.352</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Rob Guilbert</td>
+          <td>Run producer</td>
+          <td>0.534</td>
+          <td>73rd of 161 returning players</td>
+          <td>0.548</td>
+          <td>1.217</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Dave Schachman</td>
+          <td>Run producer</td>
+          <td>0.520</td>
+          <td>83rd of 161 returning players</td>
+          <td>0.549</td>
+          <td>1.167</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Tom Clougher</td>
+          <td>Run producer</td>
+          <td>0.569</td>
+          <td>48th of 161 returning players</td>
+          <td>0.536</td>
+          <td>1.149</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Greg Auerbach</td>
+          <td>Core lineup</td>
+          <td>0.549</td>
+          <td>62nd of 161 returning players</td>
+          <td>0.506</td>
+          <td>1.091</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Eric Stivers</td>
+          <td>Core lineup</td>
+          <td>0.507</td>
+          <td>89th of 161 returning players</td>
+          <td>0.519</td>
+          <td>1.044</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Dave Reiss</td>
+          <td>Core lineup</td>
+          <td>0.511</td>
+          <td>88th of 161 returning players</td>
+          <td>0.490</td>
+          <td>1.016</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Lance Zacker</td>
+          <td>Core lineup</td>
+          <td>0.474</td>
+          <td>116th of 161 returning players</td>
+          <td>0.457</td>
+          <td>0.965</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Keith Olsen</td>
+          <td>Core lineup</td>
+          <td>0.534</td>
+          <td>74th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Neil Ascione</td>
+          <td>Depth bat</td>
+          <td>0.425</td>
+          <td>146th of 161 returning players</td>
+          <td>0.411</td>
+          <td>0.888</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Evan Schachman</td>
+          <td>Depth bat</td>
+          <td>0.468</td>
+          <td>125th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Tom Schur</td>
+          <td>Depth bat</td>
+          <td>0.416</td>
+          <td>150th of 161 returning players</td>
+          <td>0.284</td>
+          <td>0.614</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Luke Guilbert</td>
+          <td>Depth bat</td>
+          <td>0.000</td>
+          <td>Rookie / unmatched</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Rookie/no historical match</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Kevin Reiss</td>
+          <td>Depth bat</td>
+          <td>0.000</td>
+          <td>Rookie / unmatched</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Rookie/no historical match</td>
+        </tr></tbody>
+          </table>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel">
+          <h2>Most Important Absences</h2>
+          <p>If one of these players is out, the offense takes the biggest hit.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Run Drop</th>
+                <th>Win Odds Drop</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>Chris Mazur</td>
+          <td>0.26 runs</td>
+          <td>1.4%</td>
+        </tr>
+        <tr>
+          <td>Greg Espersen</td>
+          <td>0.21 runs</td>
+          <td>1.1%</td>
+        </tr>
+        <tr>
+          <td>Tom Clougher</td>
+          <td>0.18 runs</td>
+          <td>1.0%</td>
+        </tr>
+        <tr>
+          <td>Greg Auerbach</td>
+          <td>0.14 runs</td>
+          <td>0.8%</td>
+        </tr>
+        <tr>
+          <td>Rob Guilbert</td>
+          <td>0.11 runs</td>
+          <td>0.6%</td>
+        </tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <h2>Rookies Or Unmatched Players</h2>
+          <p>These roster spots do not have a clean historical match, so the model is using fallback assumptions.</p>
+          <ul><li>Luke Guilbert</li><li>Kevin Reiss</li></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

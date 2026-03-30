@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>7th Floor Crew 2026 Team Report</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffaf0;
+      --ink: #182028;
+      --muted: #5d6873;
+      --accent: #1d5b79;
+      --line: #d9cdb8;
+      --good: #1f7a4d;
+      --warn: #8d5b12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, #efe5d2 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    .hero, .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(24, 32, 40, 0.08);
+    }
+    .hero {
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #fff7e8 0%, #f7fbff 100%);
+    }
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: 40px; line-height: 1; }
+    h2 { font-size: 22px; }
+    p { margin: 0 0 10px; color: var(--muted); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .summary-card {
+      background: rgba(29, 91, 121, 0.06);
+      border: 1px solid rgba(29, 91, 121, 0.14);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .summary-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .summary-card .sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(31, 122, 77, 0.10);
+      color: var(--good);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tag.warn {
+      background: rgba(141, 91, 18, 0.10);
+      color: var(--warn);
+    }
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="kicker">Softball Team Report</div>
+      <h1>7th Floor Crew</h1>
+      <p>2026 season outlook. Needs help to close the gap</p>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="label">League Rank</div>
+          <div class="value">10th</div>
+          <div class="sub">Out of 12 teams</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Expected Runs</div>
+          <div class="value">10.1</div>
+          <div class="sub">Projected runs per game</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Matched Roster</div>
+          <div class="value">100%</div>
+          <div class="sub">15 of 15 players matched</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Best Available Core</div>
+          <div class="value">15/15</div>
+          <div class="sub">Active players in current report</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="panel">
+          <h2>Plain-English Readout</h2>
+          <ul>
+            <li>7th Floor Crew projects as the 10th-strongest team out of 12.</li><li>The model expects about 10.1 runs per game with the current full roster.</li><li>15 of 15 players have a historical match in the dataset.</li><li>Every roster spot matched to a historical player record.</li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <h2>Best Full Lineup If Everyone Shows</h2>
+          <p>This is the recommended batting order based on who creates traffic, who drives in runs, and how strong each bat projects to be.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Spot</th>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Bat Score</th>
+                <th>League Rank</th>
+                <th>OBP</th>
+                <th>OPS</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>1</td>
+          <td>Brad Hartung</td>
+          <td>Table setter</td>
+          <td>0.562</td>
+          <td>52nd of 161 returning players</td>
+          <td>0.575</td>
+          <td>1.308</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Dean Sottile</td>
+          <td>Contact bat</td>
+          <td>0.588</td>
+          <td>38th of 161 returning players</td>
+          <td>0.526</td>
+          <td>1.176</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Matt Johnson</td>
+          <td>Run producer</td>
+          <td>0.731</td>
+          <td>8th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Ryan Goodrich</td>
+          <td>Run producer</td>
+          <td>0.532</td>
+          <td>76th of 161 returning players</td>
+          <td>0.545</td>
+          <td>1.218</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Pat McNamara</td>
+          <td>Run producer</td>
+          <td>0.542</td>
+          <td>69th of 161 returning players</td>
+          <td>0.532</td>
+          <td>1.118</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Dave Jones</td>
+          <td>Core lineup</td>
+          <td>0.557</td>
+          <td>58th of 161 returning players</td>
+          <td>0.440</td>
+          <td>1.081</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Nick Adams</td>
+          <td>Core lineup</td>
+          <td>0.477</td>
+          <td>112th of 161 returning players</td>
+          <td>0.465</td>
+          <td>0.977</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Kevin DeJong</td>
+          <td>Core lineup</td>
+          <td>0.494</td>
+          <td>94th of 161 returning players</td>
+          <td>0.410</td>
+          <td>0.848</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Matt Rozell</td>
+          <td>Core lineup</td>
+          <td>0.462</td>
+          <td>126th of 161 returning players</td>
+          <td>0.397</td>
+          <td>0.912</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Steve Sroka</td>
+          <td>Core lineup</td>
+          <td>0.482</td>
+          <td>107th of 161 returning players</td>
+          <td>0.400</td>
+          <td>0.843</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Todd Alden</td>
+          <td>Depth bat</td>
+          <td>0.511</td>
+          <td>87th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Fred Heismeyer</td>
+          <td>Depth bat</td>
+          <td>0.433</td>
+          <td>140th of 161 returning players</td>
+          <td>0.423</td>
+          <td>0.892</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Alexander Sweetwood</td>
+          <td>Depth bat</td>
+          <td>0.470</td>
+          <td>122nd of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>David Vespole</td>
+          <td>Depth bat</td>
+          <td>0.399</td>
+          <td>154th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Mark Slayton</td>
+          <td>Depth bat</td>
+          <td>0.398</td>
+          <td>155th of 161 returning players</td>
+          <td>0.316</td>
+          <td>0.624</td>
+          <td></td>
+        </tr></tbody>
+          </table>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel">
+          <h2>Most Important Absences</h2>
+          <p>If one of these players is out, the offense takes the biggest hit.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Run Drop</th>
+                <th>Win Odds Drop</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>Matt Johnson</td>
+          <td>0.50 runs</td>
+          <td>2.7%</td>
+        </tr>
+        <tr>
+          <td>Dean Sottile</td>
+          <td>0.22 runs</td>
+          <td>1.2%</td>
+        </tr>
+        <tr>
+          <td>Brad Hartung</td>
+          <td>0.17 runs</td>
+          <td>0.9%</td>
+        </tr>
+        <tr>
+          <td>Dave Jones</td>
+          <td>0.16 runs</td>
+          <td>0.9%</td>
+        </tr>
+        <tr>
+          <td>Pat McNamara</td>
+          <td>0.14 runs</td>
+          <td>0.7%</td>
+        </tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <h2>Rookies Or Unmatched Players</h2>
+          <p>These roster spots do not have a clean historical match, so the model is using fallback assumptions.</p>
+          <p>None. Every roster spot matched to a historical player.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

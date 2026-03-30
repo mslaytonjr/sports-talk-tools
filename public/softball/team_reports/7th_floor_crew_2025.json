@@ -1,0 +1,284 @@
+{
+  "season": 2025,
+  "team": "7th Floor Crew",
+  "team_rating": {
+    "team": "7th Floor Crew",
+    "team_id": "7th_floor_crew",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "15",
+    "unmatched_players": "0",
+    "projected_runs": "10.332441503641371",
+    "offense_index": "0.5440846426105996",
+    "offense_rating": "0.032703512999183115",
+    "defense_rating": "-0.2",
+    "overall_rating": "-0.1672964870008169"
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "player_name": "Brad Hartung",
+      "matched": "yes",
+      "offense_index": 0.6017348660222257,
+      "projected_offense_index": 0.5617348660222257,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.573",
+      "obp": "0.575",
+      "slg": "0.733",
+      "ops": "1.308",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "player_name": "Dean Sottile",
+      "matched": "yes",
+      "offense_index": 0.5576205918452476,
+      "projected_offense_index": 0.5882117558452868,
+      "trend_adjustment": "0.0306",
+      "profile_confidence": "trusted",
+      "avg": "0.527",
+      "obp": "0.526",
+      "slg": "0.650",
+      "ops": "1.176",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "player_name": "Matt Johnson",
+      "matched": "yes",
+      "offense_index": 0.7310799435851596,
+      "projected_offense_index": 0.7310799435851596,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 4,
+      "player_name": "Ryan Goodrich",
+      "matched": "yes",
+      "offense_index": 0.57233172413826,
+      "projected_offense_index": 0.5323317241382599,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.543",
+      "obp": "0.545",
+      "slg": "0.673",
+      "ops": "1.218",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "player_name": "Dave Jones",
+      "matched": "yes",
+      "offense_index": 0.5165578694967092,
+      "projected_offense_index": 0.5565578694967093,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.441",
+      "obp": "0.440",
+      "slg": "0.641",
+      "ops": "1.081",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "player_name": "Pat McNamara",
+      "matched": "yes",
+      "offense_index": 0.5061530548956465,
+      "projected_offense_index": 0.5444356707955578,
+      "trend_adjustment": "0.0383",
+      "profile_confidence": "trusted",
+      "avg": "0.484",
+      "obp": "0.495",
+      "slg": "0.484",
+      "ops": "0.979",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "player_name": "Matt Rozell",
+      "matched": "yes",
+      "offense_index": 0.6292817337314732,
+      "projected_offense_index": 0.6292817337314732,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 8,
+      "player_name": "Nick Adams",
+      "matched": "yes",
+      "offense_index": 0.4942280997034241,
+      "projected_offense_index": 0.4774387802223233,
+      "trend_adjustment": "-0.0168",
+      "profile_confidence": "trusted",
+      "avg": "0.439",
+      "obp": "0.465",
+      "slg": "0.512",
+      "ops": "0.977",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "player_name": "Kevin DeJong",
+      "matched": "yes",
+      "offense_index": 0.45426777218729464,
+      "projected_offense_index": 0.4942677721872946,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.398",
+      "obp": "0.410",
+      "slg": "0.438",
+      "ops": "0.848",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "player_name": "Steve Sroka",
+      "matched": "yes",
+      "offense_index": 0.45149050523274753,
+      "projected_offense_index": 0.48190279890362814,
+      "trend_adjustment": "0.0304",
+      "profile_confidence": "trusted",
+      "avg": "0.395",
+      "obp": "0.400",
+      "slg": "0.443",
+      "ops": "0.843",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "player_name": "Todd Alden",
+      "matched": "yes",
+      "offense_index": 0.5113786768642223,
+      "projected_offense_index": 0.5113786768642223,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 12,
+      "player_name": "Fred Heismeyer",
+      "matched": "yes",
+      "offense_index": 0.4622109288709716,
+      "projected_offense_index": 0.43264981568491856,
+      "trend_adjustment": "-0.0296",
+      "profile_confidence": "trusted",
+      "avg": "0.395",
+      "obp": "0.423",
+      "slg": "0.468",
+      "ops": "0.892",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "player_name": "Alexander Sweetwood",
+      "matched": "yes",
+      "offense_index": 0.470204352350013,
+      "projected_offense_index": 0.470204352350013,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 14,
+      "player_name": "David Vespole",
+      "matched": "yes",
+      "offense_index": 0.39852349704628537,
+      "projected_offense_index": 0.39852349704628537,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 15,
+      "player_name": "Mark Slayton",
+      "matched": "yes",
+      "offense_index": 0.3810187299976721,
+      "projected_offense_index": 0.3977885235671133,
+      "trend_adjustment": "0.0168",
+      "profile_confidence": "trusted",
+      "avg": "0.299",
+      "obp": "0.316",
+      "slg": "0.308",
+      "ops": "0.624",
+      "notes": ""
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Matt Johnson",
+      "run_swing": 0.38,
+      "win_probability_swing": 0.0207
+    },
+    {
+      "player_name": "Matt Rozell",
+      "run_swing": 0.21,
+      "win_probability_swing": 0.0115
+    },
+    {
+      "player_name": "Dean Sottile",
+      "run_swing": 0.15,
+      "win_probability_swing": 0.0078
+    },
+    {
+      "player_name": "Brad Hartung",
+      "run_swing": 0.1,
+      "win_probability_swing": 0.0054
+    },
+    {
+      "player_name": "Dave Jones",
+      "run_swing": 0.09,
+      "win_probability_swing": 0.005
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Mark Slayton",
+      "run_swing": -0.09,
+      "win_probability_swing": -0.0045
+    },
+    {
+      "player_name": "David Vespole",
+      "run_swing": -0.08,
+      "win_probability_swing": -0.0045
+    },
+    {
+      "player_name": "Fred Heismeyer",
+      "run_swing": -0.06,
+      "win_probability_swing": -0.0034
+    },
+    {
+      "player_name": "Alexander Sweetwood",
+      "run_swing": -0.04,
+      "win_probability_swing": -0.0023
+    },
+    {
+      "player_name": "Nick Adams",
+      "run_swing": -0.04,
+      "win_probability_swing": -0.0021
+    }
+  ],
+  "rookies_or_unmatched": []
+}

@@ -1,0 +1,359 @@
+{
+  "season": 2026,
+  "team": "The Ryan Express",
+  "team_rating": {
+    "team": "The Ryan Express",
+    "team_id": "the_ryan_express",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "13",
+    "unmatched_players": "2",
+    "projected_runs": "10.877014108289874",
+    "offense_index": "0.5727606908486934",
+    "offense_rating": "0.08406667219229504",
+    "defense_rating": "0",
+    "overall_rating": "0.08406667219229504"
+  },
+  "human_summary": {
+    "team_rank": 3,
+    "total_teams": 12,
+    "team_tier": "Top-tier contender",
+    "expected_runs": 10.877014108289874,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 13,
+    "unmatched_players": 2,
+    "roster_match_rate": 0.8666666666666667,
+    "strongest_absence": {
+      "player_name": "Mark Spoto",
+      "run_swing": 0.47,
+      "win_probability_swing": 0.0238
+    },
+    "easiest_absence": {
+      "player_name": "Matt Siekierka",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "The Ryan Express projects as the 3rd-strongest team out of 12.",
+      "The model expects about 10.9 runs per game with the current full roster.",
+      "13 of 15 players have a historical match in the dataset.",
+      "2 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Ryan Smith",
+      "matched": "yes",
+      "league_bat_score_rank": 14,
+      "league_bat_score_rank_label": "14th of 161 returning players",
+      "offense_index": 0.6724572397762543,
+      "projected_offense_index": 0.7019287391387025,
+      "trend_adjustment": "0.0295",
+      "profile_confidence": "trusted",
+      "avg": "0.592",
+      "obp": "0.625",
+      "slg": "0.932",
+      "ops": "1.557",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Mark Spoto",
+      "matched": "yes",
+      "league_bat_score_rank": 11,
+      "league_bat_score_rank_label": "11th of 161 returning players",
+      "offense_index": 0.691269099369829,
+      "projected_offense_index": 0.722377861584858,
+      "trend_adjustment": "0.0311",
+      "profile_confidence": "trusted",
+      "avg": "0.623",
+      "obp": "0.606",
+      "slg": "0.991",
+      "ops": "1.597",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Mark Davis",
+      "matched": "yes",
+      "league_bat_score_rank": 26,
+      "league_bat_score_rank_label": "26th of 161 returning players",
+      "offense_index": 0.6296169801958871,
+      "projected_offense_index": 0.6342534951356207,
+      "trend_adjustment": "0.0046",
+      "profile_confidence": "trusted",
+      "avg": "0.602",
+      "obp": "0.593",
+      "slg": "0.837",
+      "ops": "1.430",
+      "notes": ""
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Ken O'Brien",
+      "matched": "yes",
+      "league_bat_score_rank": 47,
+      "league_bat_score_rank_label": "47th of 161 returning players",
+      "offense_index": 0.5956997760573702,
+      "projected_offense_index": 0.5703620111730558,
+      "trend_adjustment": "-0.0253",
+      "profile_confidence": "trusted",
+      "avg": "0.553",
+      "obp": "0.558",
+      "slg": "0.741",
+      "ops": "1.299",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Danny Fariello",
+      "matched": "yes",
+      "league_bat_score_rank": 46,
+      "league_bat_score_rank_label": "46th of 161 returning players",
+      "offense_index": 0.5706995013987186,
+      "projected_offense_index": 0.5708955107621583,
+      "trend_adjustment": "0.0002",
+      "profile_confidence": "trusted",
+      "avg": "0.542",
+      "obp": "0.529",
+      "slg": "0.740",
+      "ops": "1.269",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Mark Fedele",
+      "matched": "yes",
+      "league_bat_score_rank": 61,
+      "league_bat_score_rank_label": "61st of 161 returning players",
+      "offense_index": 0.5146564219323472,
+      "projected_offense_index": 0.5546564219323472,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.476",
+      "obp": "0.479",
+      "slg": "0.573",
+      "ops": "1.052",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Ken Horan",
+      "matched": "yes",
+      "league_bat_score_rank": 82,
+      "league_bat_score_rank_label": "82nd of 161 returning players",
+      "offense_index": 0.5100358608587964,
+      "projected_offense_index": 0.5201309212178118,
+      "trend_adjustment": "0.0101",
+      "profile_confidence": "trusted",
+      "avg": "0.454",
+      "obp": "0.439",
+      "slg": "0.612",
+      "ops": "1.050",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Michael Fedele",
+      "matched": "yes",
+      "league_bat_score_rank": 22,
+      "league_bat_score_rank_label": "22nd of 161 returning players",
+      "offense_index": 0.6448240295141169,
+      "projected_offense_index": 0.6448240295141169,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Ralph Fariello",
+      "matched": "yes",
+      "league_bat_score_rank": 114,
+      "league_bat_score_rank_label": "114th of 161 returning players",
+      "offense_index": 0.516460565641794,
+      "projected_offense_index": 0.476460565641794,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.462",
+      "obp": "0.483",
+      "slg": "0.571",
+      "ops": "1.055",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Ken Eagle",
+      "matched": "yes",
+      "league_bat_score_rank": 119,
+      "league_bat_score_rank_label": "119th of 161 returning players",
+      "offense_index": 0.47354074569785043,
+      "projected_offense_index": 0.47354074569785043,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Adam Handler",
+      "matched": "yes",
+      "league_bat_score_rank": 138,
+      "league_bat_score_rank_label": "138th of 161 returning players",
+      "offense_index": 0.4552911098550869,
+      "projected_offense_index": 0.43531439869495253,
+      "trend_adjustment": "-0.0200",
+      "profile_confidence": "trusted",
+      "avg": "0.390",
+      "obp": "0.406",
+      "slg": "0.419",
+      "ops": "0.825",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Matt Siekierka",
+      "matched": "yes",
+      "league_bat_score_rank": 136,
+      "league_bat_score_rank_label": "136th of 161 returning players",
+      "offense_index": 0.4336018624894023,
+      "projected_offense_index": 0.44307839177835046,
+      "trend_adjustment": "0.0095",
+      "profile_confidence": "trusted",
+      "avg": "0.347",
+      "obp": "0.371",
+      "slg": "0.389",
+      "ops": "0.760",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "Michael Rothenberg",
+      "matched": "yes",
+      "league_bat_score_rank": 139,
+      "league_bat_score_rank_label": "139th of 161 returning players",
+      "offense_index": 0.4346795868973979,
+      "projected_offense_index": 0.4346795868973979,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Eric Davis",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Brian Lusk",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Mark Spoto",
+      "run_swing": 0.47,
+      "win_probability_swing": 0.0238
+    },
+    {
+      "player_name": "Ryan Smith",
+      "run_swing": 0.43,
+      "win_probability_swing": 0.0218
+    },
+    {
+      "player_name": "Michael Fedele",
+      "run_swing": 0.32,
+      "win_probability_swing": 0.0162
+    },
+    {
+      "player_name": "Mark Davis",
+      "run_swing": 0.3,
+      "win_probability_swing": 0.0152
+    },
+    {
+      "player_name": "Danny Fariello",
+      "run_swing": 0.18,
+      "win_probability_swing": 0.0092
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Matt Siekierka",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Adam Handler",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Michael Rothenberg",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Ken Eagle",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Ralph Fariello",
+      "run_swing": 0,
+      "win_probability_swing": 0.0002
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Eric Davis",
+    "Brian Lusk"
+  ]
+}

@@ -20,6 +20,7 @@
     "softball:team-report": "node ./scripts/softball/build-softball-team-report.mjs",
     "softball:team-report:all": "node ./scripts/softball/build-all-softball-team-reports.mjs",
     "softball:league-overview": "node ./scripts/softball/build-softball-league-overview.mjs",
+    "softball:publish-reports": "node ./scripts/softball/publish-softball-reports.mjs",
     "softball:publish-opening-day": "node ./scripts/softball/publish-softball-opening-day-odds.mjs"
   },
   "dependencies": {

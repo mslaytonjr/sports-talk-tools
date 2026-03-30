@@ -1,0 +1,358 @@
+{
+  "season": 2026,
+  "team": "Wild Things",
+  "team_rating": {
+    "team": "Wild Things",
+    "team_id": "wild_things",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "14",
+    "unmatched_players": "1",
+    "projected_runs": "11.190271847544944",
+    "offense_index": "0.5892561846821242",
+    "offense_rating": "0.11245972282781258",
+    "defense_rating": "0",
+    "overall_rating": "0.11245972282781258"
+  },
+  "human_summary": {
+    "team_rank": 1,
+    "total_teams": 12,
+    "team_tier": "Top-tier contender",
+    "expected_runs": 11.190271847544944,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 14,
+    "unmatched_players": 1,
+    "roster_match_rate": 0.9333333333333333,
+    "strongest_absence": {
+      "player_name": "Kurt Heim",
+      "run_swing": 0.55,
+      "win_probability_swing": 0.0264
+    },
+    "easiest_absence": {
+      "player_name": "Paul Martino",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "Wild Things projects as the 1st-strongest team out of 12.",
+      "The model expects about 11.2 runs per game with the current full roster.",
+      "14 of 15 players have a historical match in the dataset.",
+      "1 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Kurt Heim",
+      "matched": "yes",
+      "league_bat_score_rank": 5,
+      "league_bat_score_rank_label": "5th of 161 returning players",
+      "offense_index": 0.7227105469598779,
+      "projected_offense_index": 0.7627105469598779,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.644",
+      "obp": "0.655",
+      "slg": "1.091",
+      "ops": "1.747",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Rick Bernstein",
+      "matched": "yes",
+      "league_bat_score_rank": 12,
+      "league_bat_score_rank_label": "12th of 161 returning players",
+      "offense_index": 0.7208993408254097,
+      "projected_offense_index": 0.7174220327729615,
+      "trend_adjustment": "-0.0035",
+      "profile_confidence": "trusted",
+      "avg": "0.650",
+      "obp": "0.679",
+      "slg": "1.009",
+      "ops": "1.688",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Derek Lynn",
+      "matched": "yes",
+      "league_bat_score_rank": 16,
+      "league_bat_score_rank_label": "16th of 161 returning players",
+      "offense_index": 0.6551386704571744,
+      "projected_offense_index": 0.6951386704571745,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.608",
+      "obp": "0.614",
+      "slg": "0.872",
+      "ops": "1.486",
+      "notes": ""
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Kay Klele",
+      "matched": "yes",
+      "league_bat_score_rank": 27,
+      "league_bat_score_rank_label": "27th of 161 returning players",
+      "offense_index": 0.6162160135626397,
+      "projected_offense_index": 0.6251691223349608,
+      "trend_adjustment": "0.0090",
+      "profile_confidence": "trusted",
+      "avg": "0.521",
+      "obp": "0.527",
+      "slg": "0.899",
+      "ops": "1.426",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Shaun Spielberger",
+      "matched": "yes",
+      "league_bat_score_rank": 35,
+      "league_bat_score_rank_label": "35th of 161 returning players",
+      "offense_index": 0.5890969539346991,
+      "projected_offense_index": 0.6005116166895708,
+      "trend_adjustment": "0.0114",
+      "profile_confidence": "trusted",
+      "avg": "0.560",
+      "obp": "0.585",
+      "slg": "0.669",
+      "ops": "1.254",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Nick Catanese",
+      "matched": "yes",
+      "league_bat_score_rank": 36,
+      "league_bat_score_rank_label": "36th of 161 returning players",
+      "offense_index": 0.5528632401311733,
+      "projected_offense_index": 0.5928632401311733,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.502",
+      "obp": "0.487",
+      "slg": "0.704",
+      "ops": "1.192",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Rich Heim",
+      "matched": "yes",
+      "league_bat_score_rank": 72,
+      "league_bat_score_rank_label": "72nd of 161 returning players",
+      "offense_index": 0.4954435797901196,
+      "projected_offense_index": 0.5354435797901196,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.447",
+      "obp": "0.467",
+      "slg": "0.520",
+      "ops": "0.986",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Matt Martino",
+      "matched": "yes",
+      "league_bat_score_rank": 106,
+      "league_bat_score_rank_label": "106th of 161 returning players",
+      "offense_index": 0.5180552208375225,
+      "projected_offense_index": 0.48427094847612256,
+      "trend_adjustment": "-0.0338",
+      "profile_confidence": "trusted",
+      "avg": "0.470",
+      "obp": "0.451",
+      "slg": "0.586",
+      "ops": "1.037",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Andrew Benson",
+      "matched": "yes",
+      "league_bat_score_rank": 34,
+      "league_bat_score_rank_label": "34th of 161 returning players",
+      "offense_index": 0.6045742433149419,
+      "projected_offense_index": 0.6045742433149419,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Ryan Stefanic",
+      "matched": "yes",
+      "league_bat_score_rank": 85,
+      "league_bat_score_rank_label": "85th of 161 returning players",
+      "offense_index": 0.47518877117865466,
+      "projected_offense_index": 0.5151887711786547,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.421",
+      "obp": "0.458",
+      "slg": "0.460",
+      "ops": "0.918",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Paul Martino",
+      "matched": "yes",
+      "league_bat_score_rank": 135,
+      "league_bat_score_rank_label": "135th of 161 returning players",
+      "offense_index": 0.44535248971073477,
+      "projected_offense_index": 0.4445393489011476,
+      "trend_adjustment": "-0.0008",
+      "profile_confidence": "trusted",
+      "avg": "0.398",
+      "obp": "0.395",
+      "slg": "0.417",
+      "ops": "0.812",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Jason Benson",
+      "matched": "yes",
+      "league_bat_score_rank": 142,
+      "league_bat_score_rank_label": "142nd of 161 returning players",
+      "offense_index": 0.45055802771366044,
+      "projected_offense_index": 0.4302975585187623,
+      "trend_adjustment": "-0.0203",
+      "profile_confidence": "trusted",
+      "avg": "0.385",
+      "obp": "0.414",
+      "slg": "0.401",
+      "ops": "0.815",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "John Stefanic",
+      "matched": "yes",
+      "league_bat_score_rank": 157,
+      "league_bat_score_rank_label": "157th of 161 returning players",
+      "offense_index": 0.40797808790138484,
+      "projected_offense_index": 0.3920006886622067,
+      "trend_adjustment": "-0.0160",
+      "profile_confidence": "trusted",
+      "avg": "0.330",
+      "obp": "0.334",
+      "slg": "0.361",
+      "ops": "0.695",
+      "notes": ""
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Mike Levine",
+      "matched": "yes",
+      "league_bat_score_rank": 152,
+      "league_bat_score_rank_label": "152nd of 161 returning players",
+      "offense_index": 0.364057705959766,
+      "projected_offense_index": 0.4023844989769005,
+      "trend_adjustment": "0.0383",
+      "profile_confidence": "trusted",
+      "avg": "0.249",
+      "obp": "0.306",
+      "slg": "0.267",
+      "ops": "0.573",
+      "notes": ""
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Jason Naggiar",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Kurt Heim",
+      "run_swing": 0.55,
+      "win_probability_swing": 0.0264
+    },
+    {
+      "player_name": "Rick Bernstein",
+      "run_swing": 0.46,
+      "win_probability_swing": 0.0222
+    },
+    {
+      "player_name": "Derek Lynn",
+      "run_swing": 0.42,
+      "win_probability_swing": 0.0201
+    },
+    {
+      "player_name": "Kay Klele",
+      "run_swing": 0.29,
+      "win_probability_swing": 0.0137
+    },
+    {
+      "player_name": "Andrew Benson",
+      "run_swing": 0.25,
+      "win_probability_swing": 0.0118
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Paul Martino",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "John Stefanic",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Jason Benson",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Mike Levine",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Matt Martino",
+      "run_swing": 0.02,
+      "win_probability_swing": 0.0009
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Jason Naggiar"
+  ]
+}

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wild Things 2026 Team Report</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffaf0;
+      --ink: #182028;
+      --muted: #5d6873;
+      --accent: #1d5b79;
+      --line: #d9cdb8;
+      --good: #1f7a4d;
+      --warn: #8d5b12;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, #efe5d2 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    .hero, .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(24, 32, 40, 0.08);
+    }
+    .hero {
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #fff7e8 0%, #f7fbff 100%);
+    }
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: 40px; line-height: 1; }
+    h2 { font-size: 22px; }
+    p { margin: 0 0 10px; color: var(--muted); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .summary-card {
+      background: rgba(29, 91, 121, 0.06);
+      border: 1px solid rgba(29, 91, 121, 0.14);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .summary-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .summary-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .summary-card .sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(31, 122, 77, 0.10);
+      color: var(--good);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tag.warn {
+      background: rgba(141, 91, 18, 0.10);
+      color: var(--warn);
+    }
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="kicker">Softball Team Report</div>
+      <h1>Wild Things</h1>
+      <p>2026 season outlook. Top-tier contender</p>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="label">League Rank</div>
+          <div class="value">1st</div>
+          <div class="sub">Out of 12 teams</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Expected Runs</div>
+          <div class="value">11.2</div>
+          <div class="sub">Projected runs per game</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Matched Roster</div>
+          <div class="value">93%</div>
+          <div class="sub">14 of 15 players matched</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Best Available Core</div>
+          <div class="value">15/15</div>
+          <div class="sub">Active players in current report</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="panel">
+          <h2>Plain-English Readout</h2>
+          <ul>
+            <li>Wild Things projects as the 1st-strongest team out of 12.</li><li>The model expects about 11.2 runs per game with the current full roster.</li><li>14 of 15 players have a historical match in the dataset.</li><li>1 roster spots are still using fallback assumptions because there is no clean historical match.</li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <h2>Best Full Lineup If Everyone Shows</h2>
+          <p>This is the recommended batting order based on who creates traffic, who drives in runs, and how strong each bat projects to be.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Spot</th>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Bat Score</th>
+                <th>League Rank</th>
+                <th>OBP</th>
+                <th>OPS</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>1</td>
+          <td>Kurt Heim</td>
+          <td>Table setter</td>
+          <td>0.763</td>
+          <td>5th of 161 returning players</td>
+          <td>0.655</td>
+          <td>1.747</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Rick Bernstein</td>
+          <td>Contact bat</td>
+          <td>0.717</td>
+          <td>12th of 161 returning players</td>
+          <td>0.679</td>
+          <td>1.688</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Derek Lynn</td>
+          <td>Run producer</td>
+          <td>0.695</td>
+          <td>16th of 161 returning players</td>
+          <td>0.614</td>
+          <td>1.486</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Kay Klele</td>
+          <td>Run producer</td>
+          <td>0.625</td>
+          <td>27th of 161 returning players</td>
+          <td>0.527</td>
+          <td>1.426</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Shaun Spielberger</td>
+          <td>Run producer</td>
+          <td>0.601</td>
+          <td>35th of 161 returning players</td>
+          <td>0.585</td>
+          <td>1.254</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Nick Catanese</td>
+          <td>Core lineup</td>
+          <td>0.593</td>
+          <td>36th of 161 returning players</td>
+          <td>0.487</td>
+          <td>1.192</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Rich Heim</td>
+          <td>Core lineup</td>
+          <td>0.535</td>
+          <td>72nd of 161 returning players</td>
+          <td>0.467</td>
+          <td>0.986</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Matt Martino</td>
+          <td>Core lineup</td>
+          <td>0.484</td>
+          <td>106th of 161 returning players</td>
+          <td>0.451</td>
+          <td>1.037</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Andrew Benson</td>
+          <td>Core lineup</td>
+          <td>0.605</td>
+          <td>34th of 161 returning players</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Profile stats hidden until validation confidence improves</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Ryan Stefanic</td>
+          <td>Core lineup</td>
+          <td>0.515</td>
+          <td>85th of 161 returning players</td>
+          <td>0.458</td>
+          <td>0.918</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Paul Martino</td>
+          <td>Depth bat</td>
+          <td>0.445</td>
+          <td>135th of 161 returning players</td>
+          <td>0.395</td>
+          <td>0.812</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Jason Benson</td>
+          <td>Depth bat</td>
+          <td>0.430</td>
+          <td>142nd of 161 returning players</td>
+          <td>0.414</td>
+          <td>0.815</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>John Stefanic</td>
+          <td>Depth bat</td>
+          <td>0.392</td>
+          <td>157th of 161 returning players</td>
+          <td>0.334</td>
+          <td>0.695</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Mike Levine</td>
+          <td>Depth bat</td>
+          <td>0.402</td>
+          <td>152nd of 161 returning players</td>
+          <td>0.306</td>
+          <td>0.573</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Jason Naggiar</td>
+          <td>Depth bat</td>
+          <td>0.000</td>
+          <td>Rookie / unmatched</td>
+          <td>Limited data</td>
+          <td>Limited data</td>
+          <td>Rookie/no historical match</td>
+        </tr></tbody>
+          </table>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel">
+          <h2>Most Important Absences</h2>
+          <p>If one of these players is out, the offense takes the biggest hit.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Run Drop</th>
+                <th>Win Odds Drop</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td>Kurt Heim</td>
+          <td>0.55 runs</td>
+          <td>2.6%</td>
+        </tr>
+        <tr>
+          <td>Rick Bernstein</td>
+          <td>0.46 runs</td>
+          <td>2.2%</td>
+        </tr>
+        <tr>
+          <td>Derek Lynn</td>
+          <td>0.42 runs</td>
+          <td>2.0%</td>
+        </tr>
+        <tr>
+          <td>Kay Klele</td>
+          <td>0.29 runs</td>
+          <td>1.4%</td>
+        </tr>
+        <tr>
+          <td>Andrew Benson</td>
+          <td>0.25 runs</td>
+          <td>1.2%</td>
+        </tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <h2>Rookies Or Unmatched Players</h2>
+          <p>These roster spots do not have a clean historical match, so the model is using fallback assumptions.</p>
+          <ul><li>Jason Naggiar</li></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

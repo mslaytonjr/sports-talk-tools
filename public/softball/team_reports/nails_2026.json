@@ -1,0 +1,359 @@
+{
+  "season": 2026,
+  "team": "Nails",
+  "team_rating": {
+    "team": "Nails",
+    "team_id": "nails",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "13",
+    "unmatched_players": "2",
+    "projected_runs": "10.041091681818168",
+    "offense_index": "0.5287427736413464",
+    "offense_rating": "0.004100748607327783",
+    "defense_rating": "0",
+    "overall_rating": "0.004100748607327783"
+  },
+  "human_summary": {
+    "team_rank": 12,
+    "total_teams": 12,
+    "team_tier": "Needs help to close the gap",
+    "expected_runs": 10.041091681818168,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 13,
+    "unmatched_players": 2,
+    "roster_match_rate": 0.8666666666666667,
+    "strongest_absence": {
+      "player_name": "Chris Stappas",
+      "run_swing": 0.28,
+      "win_probability_swing": 0.015
+    },
+    "easiest_absence": {
+      "player_name": "Dave Jensen",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "Nails projects as the 12th-strongest team out of 12.",
+      "The model expects about 10.0 runs per game with the current full roster.",
+      "13 of 15 players have a historical match in the dataset.",
+      "2 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Chris Stappas",
+      "matched": "yes",
+      "league_bat_score_rank": 28,
+      "league_bat_score_rank_label": "28th of 161 returning players",
+      "offense_index": 0.5791426007284914,
+      "projected_offense_index": 0.6191426007284915,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.558",
+      "obp": "0.595",
+      "slg": "0.680",
+      "ops": "1.275",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Jacob Lieberman",
+      "matched": "yes",
+      "league_bat_score_rank": 63,
+      "league_bat_score_rank_label": "63rd of 161 returning players",
+      "offense_index": 0.5581596784764052,
+      "projected_offense_index": 0.5474634063332185,
+      "trend_adjustment": "-0.0107",
+      "profile_confidence": "trusted",
+      "avg": "0.558",
+      "obp": "0.567",
+      "slg": "0.597",
+      "ops": "1.164",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Jason Vogt",
+      "matched": "yes",
+      "league_bat_score_rank": 41,
+      "league_bat_score_rank_label": "41st of 161 returning players",
+      "offense_index": 0.6117764460295656,
+      "projected_offense_index": 0.5819376547803982,
+      "trend_adjustment": "-0.0298",
+      "profile_confidence": "trusted",
+      "avg": "0.524",
+      "obp": "0.544",
+      "slg": "0.876",
+      "ops": "1.421",
+      "notes": ""
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Justin Vogt",
+      "matched": "yes",
+      "league_bat_score_rank": 68,
+      "league_bat_score_rank_label": "68th of 161 returning players",
+      "offense_index": 0.5819023650619595,
+      "projected_offense_index": 0.5419023650619594,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.490",
+      "obp": "0.524",
+      "slg": "0.799",
+      "ops": "1.323",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Chuck Puleo",
+      "matched": "yes",
+      "league_bat_score_rank": 70,
+      "league_bat_score_rank_label": "70th of 161 returning players",
+      "offense_index": 0.562492910875066,
+      "projected_offense_index": 0.5369654865268763,
+      "trend_adjustment": "-0.0255",
+      "profile_confidence": "trusted",
+      "avg": "0.542",
+      "obp": "0.544",
+      "slg": "0.627",
+      "ops": "1.172",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Craig Engelhardt",
+      "matched": "yes",
+      "league_bat_score_rank": 59,
+      "league_bat_score_rank_label": "59th of 161 returning players",
+      "offense_index": 0.5150665374893212,
+      "projected_offense_index": 0.5550665374893212,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.468",
+      "obp": "0.483",
+      "slg": "0.588",
+      "ops": "1.071",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Alex Lieberman",
+      "matched": "yes",
+      "league_bat_score_rank": 92,
+      "league_bat_score_rank_label": "92nd of 161 returning players",
+      "offense_index": 0.5361693701734395,
+      "projected_offense_index": 0.5001254673841202,
+      "trend_adjustment": "-0.0360",
+      "profile_confidence": "trusted",
+      "avg": "0.471",
+      "obp": "0.446",
+      "slg": "0.675",
+      "ops": "1.122",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Bob Vogt",
+      "matched": "yes",
+      "league_bat_score_rank": 79,
+      "league_bat_score_rank_label": "79th of 161 returning players",
+      "offense_index": 0.4956376095742442,
+      "projected_offense_index": 0.5267359304546229,
+      "trend_adjustment": "0.0311",
+      "profile_confidence": "trusted",
+      "avg": "0.452",
+      "obp": "0.448",
+      "slg": "0.552",
+      "ops": "1.000",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Bret Hartman",
+      "matched": "yes",
+      "league_bat_score_rank": 95,
+      "league_bat_score_rank_label": "95th of 161 returning players",
+      "offense_index": 0.48739827218261056,
+      "projected_offense_index": 0.4941888798991037,
+      "trend_adjustment": "0.0068",
+      "profile_confidence": "trusted",
+      "avg": "0.445",
+      "obp": "0.450",
+      "slg": "0.494",
+      "ops": "0.944",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Mike Cafaro",
+      "matched": "yes",
+      "league_bat_score_rank": 120,
+      "league_bat_score_rank_label": "120th of 161 returning players",
+      "offense_index": 0.45874804668567304,
+      "projected_offense_index": 0.4722882966063309,
+      "trend_adjustment": "0.0135",
+      "profile_confidence": "trusted",
+      "avg": "0.374",
+      "obp": "0.374",
+      "slg": "0.390",
+      "ops": "0.764",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Sameer Sawe",
+      "matched": "yes",
+      "league_bat_score_rank": 117,
+      "league_bat_score_rank_label": "117th of 161 returning players",
+      "offense_index": 0.4350918268115086,
+      "projected_offense_index": 0.47404520567149144,
+      "trend_adjustment": "0.0390",
+      "profile_confidence": "trusted",
+      "avg": "0.345",
+      "obp": "0.369",
+      "slg": "0.384",
+      "ops": "0.753",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Dave Jensen",
+      "matched": "yes",
+      "league_bat_score_rank": 144,
+      "league_bat_score_rank_label": "144th of 161 returning players",
+      "offense_index": 0.43568896098012494,
+      "projected_offense_index": 0.4259728533558023,
+      "trend_adjustment": "-0.0097",
+      "profile_confidence": "trusted",
+      "avg": "0.372",
+      "obp": "0.370",
+      "slg": "0.397",
+      "ops": "0.767",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "James Walker",
+      "matched": "yes",
+      "league_bat_score_rank": 141,
+      "league_bat_score_rank_label": "141st of 161 returning players",
+      "offense_index": 0.4375015206389611,
+      "projected_offense_index": 0.43040774834435863,
+      "trend_adjustment": "-0.0071",
+      "profile_confidence": "trusted",
+      "avg": "0.345",
+      "obp": "0.382",
+      "slg": "0.345",
+      "ops": "0.727",
+      "notes": ""
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Jacob Vogt",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Tyler Lieberman",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Chris Stappas",
+      "run_swing": 0.28,
+      "win_probability_swing": 0.015
+    },
+    {
+      "player_name": "Jason Vogt",
+      "run_swing": 0.21,
+      "win_probability_swing": 0.0111
+    },
+    {
+      "player_name": "Craig Engelhardt",
+      "run_swing": 0.15,
+      "win_probability_swing": 0.0083
+    },
+    {
+      "player_name": "Jacob Lieberman",
+      "run_swing": 0.14,
+      "win_probability_swing": 0.0075
+    },
+    {
+      "player_name": "Justin Vogt",
+      "run_swing": 0.13,
+      "win_probability_swing": 0.007
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Dave Jensen",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Mike Cafaro",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Sameer Sawe",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "James Walker",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Bret Hartman",
+      "run_swing": 0.04,
+      "win_probability_swing": 0.0021
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Jacob Vogt",
+    "Tyler Lieberman"
+  ]
+}

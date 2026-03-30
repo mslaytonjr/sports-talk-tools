@@ -1,0 +1,359 @@
+{
+  "season": 2026,
+  "team": "The Sultans of Swat",
+  "team_rating": {
+    "team": "The Sultans of Swat",
+    "team_id": "the_sultans_of_swat",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "13",
+    "unmatched_players": "2",
+    "projected_runs": "10.778586568912477",
+    "offense_index": "0.5675777035976823",
+    "offense_rating": "0.07497634783398728",
+    "defense_rating": "0",
+    "overall_rating": "0.07497634783398728"
+  },
+  "human_summary": {
+    "team_rank": 5,
+    "total_teams": 12,
+    "team_tier": "Solid playoff-level group",
+    "expected_runs": 10.778586568912477,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 13,
+    "unmatched_players": 2,
+    "roster_match_rate": 0.8666666666666667,
+    "strongest_absence": {
+      "player_name": "Kevin Marquez",
+      "run_swing": 0.63,
+      "win_probability_swing": 0.032
+    },
+    "easiest_absence": {
+      "player_name": "Seth Friedman",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "The Sultans of Swat projects as the 5th-strongest team out of 12.",
+      "The model expects about 10.8 runs per game with the current full roster.",
+      "13 of 15 players have a historical match in the dataset.",
+      "2 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Dave Auerbach",
+      "matched": "yes",
+      "league_bat_score_rank": 9,
+      "league_bat_score_rank_label": "9th of 161 returning players",
+      "offense_index": 0.7626928147414462,
+      "projected_offense_index": 0.7241872056520314,
+      "trend_adjustment": "-0.0385",
+      "profile_confidence": "trusted",
+      "avg": "0.607",
+      "obp": "0.625",
+      "slg": "1.274",
+      "ops": "1.899",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Keith Rothfritz",
+      "matched": "yes",
+      "league_bat_score_rank": 21,
+      "league_bat_score_rank_label": "21st of 161 returning players",
+      "offense_index": 0.6125664051295051,
+      "projected_offense_index": 0.6525664051295051,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.578",
+      "obp": "0.563",
+      "slg": "0.810",
+      "ops": "1.373",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Kevin Marquez",
+      "matched": "yes",
+      "league_bat_score_rank": 1,
+      "league_bat_score_rank_label": "1st of 161 returning players",
+      "offense_index": 0.804502355433799,
+      "projected_offense_index": 0.804502355433799,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Jim Halpin",
+      "matched": "yes",
+      "league_bat_score_rank": 42,
+      "league_bat_score_rank_label": "42nd of 161 returning players",
+      "offense_index": 0.5667758039040538,
+      "projected_offense_index": 0.5788054424016754,
+      "trend_adjustment": "0.0120",
+      "profile_confidence": "trusted",
+      "avg": "0.556",
+      "obp": "0.569",
+      "slg": "0.614",
+      "ops": "1.183",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Jay Glickson",
+      "matched": "yes",
+      "league_bat_score_rank": 43,
+      "league_bat_score_rank_label": "43rd of 161 returning players",
+      "offense_index": 0.5462563655749539,
+      "projected_offense_index": 0.5758550174696327,
+      "trend_adjustment": "0.0296",
+      "profile_confidence": "trusted",
+      "avg": "0.526",
+      "obp": "0.530",
+      "slg": "0.611",
+      "ops": "1.142",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Kyle Doench",
+      "matched": "yes",
+      "league_bat_score_rank": 55,
+      "league_bat_score_rank_label": "55th of 161 returning players",
+      "offense_index": 0.5210421533541642,
+      "projected_offense_index": 0.5574653009962367,
+      "trend_adjustment": "0.0364",
+      "profile_confidence": "trusted",
+      "avg": "0.472",
+      "obp": "0.476",
+      "slg": "0.604",
+      "ops": "1.080",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Adam Steckelman",
+      "matched": "yes",
+      "league_bat_score_rank": 86,
+      "league_bat_score_rank_label": "86th of 161 returning players",
+      "offense_index": 0.5149171863820694,
+      "projected_offense_index": 0.5120484001996733,
+      "trend_adjustment": "-0.0029",
+      "profile_confidence": "trusted",
+      "avg": "0.476",
+      "obp": "0.485",
+      "slg": "0.548",
+      "ops": "1.032",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Dave Richmond",
+      "matched": "yes",
+      "league_bat_score_rank": 105,
+      "league_bat_score_rank_label": "105th of 161 returning players",
+      "offense_index": 0.5265903049336375,
+      "projected_offense_index": 0.4865903049336375,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.501",
+      "obp": "0.527",
+      "slg": "0.540",
+      "ops": "1.068",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Pete DeFrank",
+      "matched": "yes",
+      "league_bat_score_rank": 110,
+      "league_bat_score_rank_label": "110th of 161 returning players",
+      "offense_index": 0.5204181839277734,
+      "projected_offense_index": 0.4804181839277734,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.482",
+      "obp": "0.513",
+      "slg": "0.540",
+      "ops": "1.053",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Dimitri Rassias",
+      "matched": "yes",
+      "league_bat_score_rank": 131,
+      "league_bat_score_rank_label": "131st of 161 returning players",
+      "offense_index": 0.4484681684295647,
+      "projected_offense_index": 0.4545639729741142,
+      "trend_adjustment": "0.0061",
+      "profile_confidence": "trusted",
+      "avg": "0.378",
+      "obp": "0.395",
+      "slg": "0.424",
+      "ops": "0.820",
+      "notes": ""
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Seth Friedman",
+      "matched": "yes",
+      "league_bat_score_rank": 137,
+      "league_bat_score_rank_label": "137th of 161 returning players",
+      "offense_index": 0.45136992926836955,
+      "projected_offense_index": 0.4429413091686579,
+      "trend_adjustment": "-0.0084",
+      "profile_confidence": "trusted",
+      "avg": "0.376",
+      "obp": "0.381",
+      "slg": "0.447",
+      "ops": "0.828",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "John McDonough",
+      "matched": "yes",
+      "league_bat_score_rank": 151,
+      "league_bat_score_rank_label": "151st of 161 returning players",
+      "offense_index": 0.3706073595518952,
+      "projected_offense_index": 0.4106073595518952,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.279",
+      "obp": "0.311",
+      "slg": "0.279",
+      "ops": "0.591",
+      "notes": ""
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "Will Zaragoza",
+      "matched": "yes",
+      "league_bat_score_rank": 149,
+      "league_bat_score_rank_label": "149th of 161 returning players",
+      "offense_index": 0.4190568707905064,
+      "projected_offense_index": 0.41711143309747584,
+      "trend_adjustment": "-0.0019",
+      "profile_confidence": "trusted",
+      "avg": "0.190",
+      "obp": "0.190",
+      "slg": "0.190",
+      "ops": "0.379",
+      "notes": ""
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Sal DAmbrosia",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "John Hogan",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Kevin Marquez",
+      "run_swing": 0.63,
+      "win_probability_swing": 0.032
+    },
+    {
+      "player_name": "Dave Auerbach",
+      "run_swing": 0.48,
+      "win_probability_swing": 0.0241
+    },
+    {
+      "player_name": "Keith Rothfritz",
+      "run_swing": 0.34,
+      "win_probability_swing": 0.0171
+    },
+    {
+      "player_name": "Jim Halpin",
+      "run_swing": 0.2,
+      "win_probability_swing": 0.01
+    },
+    {
+      "player_name": "Jay Glickson",
+      "run_swing": 0.19,
+      "win_probability_swing": 0.0097
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Seth Friedman",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Will Zaragoza",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Dimitri Rassias",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "John McDonough",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Pete DeFrank",
+      "run_swing": 0.01,
+      "win_probability_swing": 0.0006
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Sal DAmbrosia",
+    "John Hogan"
+  ]
+}

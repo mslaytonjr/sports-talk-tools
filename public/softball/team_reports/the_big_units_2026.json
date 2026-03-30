@@ -1,0 +1,359 @@
+{
+  "season": 2026,
+  "team": "The Big Units",
+  "team_rating": {
+    "team": "The Big Units",
+    "team_id": "the_big_units",
+    "roster_size": "15",
+    "active_players": "15",
+    "matched_players": "13",
+    "unmatched_players": "2",
+    "projected_runs": "10.059398476866404",
+    "offense_index": "0.5297067709732116",
+    "offense_rating": "0.005922276337794406",
+    "defense_rating": "0",
+    "overall_rating": "0.005922276337794406"
+  },
+  "human_summary": {
+    "team_rank": 11,
+    "total_teams": 12,
+    "team_tier": "Needs help to close the gap",
+    "expected_runs": 10.059398476866404,
+    "roster_size": 15,
+    "active_players": 15,
+    "matched_players": 13,
+    "unmatched_players": 2,
+    "roster_match_rate": 0.8666666666666667,
+    "strongest_absence": {
+      "player_name": "Chris Mazur",
+      "run_swing": 0.26,
+      "win_probability_swing": 0.0142
+    },
+    "easiest_absence": {
+      "player_name": "Evan Schachman",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    "plain_english_notes": [
+      "The Big Units projects as the 11th-strongest team out of 12.",
+      "The model expects about 10.1 runs per game with the current full roster.",
+      "13 of 15 players have a historical match in the dataset.",
+      "2 roster spots are still using fallback assumptions because there is no clean historical match."
+    ]
+  },
+  "best_full_order_if_everyone_shows": [
+    {
+      "spot": 1,
+      "lineup_role": "Table setter",
+      "player_name": "Chris Mazur",
+      "matched": "yes",
+      "league_bat_score_rank": 29,
+      "league_bat_score_rank_label": "29th of 161 returning players",
+      "offense_index": 0.5725896776112522,
+      "projected_offense_index": 0.6125896776112523,
+      "trend_adjustment": "0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.503",
+      "obp": "0.528",
+      "slg": "0.728",
+      "ops": "1.256",
+      "notes": ""
+    },
+    {
+      "spot": 2,
+      "lineup_role": "Contact bat",
+      "player_name": "Greg Espersen",
+      "matched": "yes",
+      "league_bat_score_rank": 39,
+      "league_bat_score_rank_label": "39th of 161 returning players",
+      "offense_index": 0.5963626332843079,
+      "projected_offense_index": 0.5844775437853321,
+      "trend_adjustment": "-0.0119",
+      "profile_confidence": "trusted",
+      "avg": "0.511",
+      "obp": "0.532",
+      "slg": "0.820",
+      "ops": "1.352",
+      "notes": ""
+    },
+    {
+      "spot": 3,
+      "lineup_role": "Run producer",
+      "player_name": "Rob Guilbert",
+      "matched": "yes",
+      "league_bat_score_rank": 73,
+      "league_bat_score_rank_label": "73rd of 161 returning players",
+      "offense_index": 0.5733408320125688,
+      "projected_offense_index": 0.5340324030799177,
+      "trend_adjustment": "-0.0393",
+      "profile_confidence": "trusted",
+      "avg": "0.551",
+      "obp": "0.548",
+      "slg": "0.669",
+      "ops": "1.217",
+      "notes": ""
+    },
+    {
+      "spot": 4,
+      "lineup_role": "Run producer",
+      "player_name": "Dave Schachman",
+      "matched": "yes",
+      "league_bat_score_rank": 83,
+      "league_bat_score_rank_label": "83rd of 161 returning players",
+      "offense_index": 0.560031458267583,
+      "projected_offense_index": 0.520031458267583,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.538",
+      "obp": "0.549",
+      "slg": "0.618",
+      "ops": "1.167",
+      "notes": ""
+    },
+    {
+      "spot": 5,
+      "lineup_role": "Run producer",
+      "player_name": "Tom Clougher",
+      "matched": "yes",
+      "league_bat_score_rank": 48,
+      "league_bat_score_rank_label": "48th of 161 returning players",
+      "offense_index": 0.5476885827530231,
+      "projected_offense_index": 0.5692883470724983,
+      "trend_adjustment": "0.0216",
+      "profile_confidence": "trusted",
+      "avg": "0.518",
+      "obp": "0.536",
+      "slg": "0.613",
+      "ops": "1.149",
+      "notes": ""
+    },
+    {
+      "spot": 6,
+      "lineup_role": "Core lineup",
+      "player_name": "Greg Auerbach",
+      "matched": "yes",
+      "league_bat_score_rank": 62,
+      "league_bat_score_rank_label": "62nd of 161 returning players",
+      "offense_index": 0.5275826277420542,
+      "projected_offense_index": 0.5491978554361998,
+      "trend_adjustment": "0.0216",
+      "profile_confidence": "trusted",
+      "avg": "0.480",
+      "obp": "0.506",
+      "slg": "0.585",
+      "ops": "1.091",
+      "notes": ""
+    },
+    {
+      "spot": 7,
+      "lineup_role": "Core lineup",
+      "player_name": "Eric Stivers",
+      "matched": "yes",
+      "league_bat_score_rank": 89,
+      "league_bat_score_rank_label": "89th of 161 returning players",
+      "offense_index": 0.5207418272013603,
+      "projected_offense_index": 0.5067461925434618,
+      "trend_adjustment": "-0.0140",
+      "profile_confidence": "trusted",
+      "avg": "0.489",
+      "obp": "0.519",
+      "slg": "0.524",
+      "ops": "1.044",
+      "notes": ""
+    },
+    {
+      "spot": 8,
+      "lineup_role": "Core lineup",
+      "player_name": "Dave Reiss",
+      "matched": "yes",
+      "league_bat_score_rank": 88,
+      "league_bat_score_rank_label": "88th of 161 returning players",
+      "offense_index": 0.5122184023723232,
+      "projected_offense_index": 0.5109671830495311,
+      "trend_adjustment": "-0.0013",
+      "profile_confidence": "trusted",
+      "avg": "0.495",
+      "obp": "0.490",
+      "slg": "0.526",
+      "ops": "1.016",
+      "notes": ""
+    },
+    {
+      "spot": 9,
+      "lineup_role": "Core lineup",
+      "player_name": "Lance Zacker",
+      "matched": "yes",
+      "league_bat_score_rank": 116,
+      "league_bat_score_rank_label": "116th of 161 returning players",
+      "offense_index": 0.49227932530684043,
+      "projected_offense_index": 0.4743711278770995,
+      "trend_adjustment": "-0.0179",
+      "profile_confidence": "trusted",
+      "avg": "0.449",
+      "obp": "0.457",
+      "slg": "0.507",
+      "ops": "0.965",
+      "notes": ""
+    },
+    {
+      "spot": 10,
+      "lineup_role": "Core lineup",
+      "player_name": "Keith Olsen",
+      "matched": "yes",
+      "league_bat_score_rank": 74,
+      "league_bat_score_rank_label": "74th of 161 returning players",
+      "offense_index": 0.533548515727473,
+      "projected_offense_index": 0.533548515727473,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 11,
+      "lineup_role": "Depth bat",
+      "player_name": "Neil Ascione",
+      "matched": "yes",
+      "league_bat_score_rank": 146,
+      "league_bat_score_rank_label": "146th of 161 returning players",
+      "offense_index": 0.46531160422494744,
+      "projected_offense_index": 0.42531160422494746,
+      "trend_adjustment": "-0.0400",
+      "profile_confidence": "trusted",
+      "avg": "0.403",
+      "obp": "0.411",
+      "slg": "0.478",
+      "ops": "0.888",
+      "notes": ""
+    },
+    {
+      "spot": 12,
+      "lineup_role": "Depth bat",
+      "player_name": "Evan Schachman",
+      "matched": "yes",
+      "league_bat_score_rank": 125,
+      "league_bat_score_rank_label": "125th of 161 returning players",
+      "offense_index": 0.4675139186014446,
+      "projected_offense_index": 0.4675139186014446,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "limited",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Profile stats hidden until validation confidence improves"
+    },
+    {
+      "spot": 13,
+      "lineup_role": "Depth bat",
+      "player_name": "Tom Schur",
+      "matched": "yes",
+      "league_bat_score_rank": 150,
+      "league_bat_score_rank_label": "150th of 161 returning players",
+      "offense_index": 0.4298057425297219,
+      "projected_offense_index": 0.41577309089829173,
+      "trend_adjustment": "-0.0140",
+      "profile_confidence": "trusted",
+      "avg": "0.284",
+      "obp": "0.284",
+      "slg": "0.329",
+      "ops": "0.614",
+      "notes": ""
+    },
+    {
+      "spot": 14,
+      "lineup_role": "Depth bat",
+      "player_name": "Luke Guilbert",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    },
+    {
+      "spot": 15,
+      "lineup_role": "Depth bat",
+      "player_name": "Kevin Reiss",
+      "matched": "no",
+      "league_bat_score_rank": null,
+      "league_bat_score_rank_label": "Rookie / unmatched",
+      "offense_index": 0,
+      "projected_offense_index": 0,
+      "trend_adjustment": "0.0000",
+      "profile_confidence": "rookie",
+      "avg": "n/a",
+      "obp": "n/a",
+      "slg": "n/a",
+      "ops": "n/a",
+      "notes": "Rookie/no historical match"
+    }
+  ],
+  "top_5_must_have_players": [
+    {
+      "player_name": "Chris Mazur",
+      "run_swing": 0.26,
+      "win_probability_swing": 0.0142
+    },
+    {
+      "player_name": "Greg Espersen",
+      "run_swing": 0.21,
+      "win_probability_swing": 0.0113
+    },
+    {
+      "player_name": "Tom Clougher",
+      "run_swing": 0.18,
+      "win_probability_swing": 0.0098
+    },
+    {
+      "player_name": "Greg Auerbach",
+      "run_swing": 0.14,
+      "win_probability_swing": 0.0077
+    },
+    {
+      "player_name": "Rob Guilbert",
+      "run_swing": 0.11,
+      "win_probability_swing": 0.0061
+    }
+  ],
+  "lowest_penalty_absences": [
+    {
+      "player_name": "Evan Schachman",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Lance Zacker",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Tom Schur",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Neil Ascione",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Eric Stivers",
+      "run_swing": 0.06,
+      "win_probability_swing": 0.0033
+    }
+  ],
+  "rookies_or_unmatched": [
+    "Luke Guilbert",
+    "Kevin Reiss"
+  ]
+}

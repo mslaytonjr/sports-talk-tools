@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "12",
     "unmatched_players": "3",
-    "projected_runs": "10.702410170296911",
+    "projected_runs": "11.600666666666667",
     "offense_index": "0.5635664146296775",
-    "offense_rating": "0.06788387266940052",
+    "offense_rating": "0.32203752585661327",
     "defense_rating": "0",
-    "overall_rating": "0.06788387266940052"
+    "overall_rating": "0.32203752585661327"
   },
   "human_summary": {
     "team_rank": 7,
     "total_teams": 12,
     "team_tier": "Middle-of-the-pack team",
-    "expected_runs": 10.702410170296911,
+    "expected_runs": 11.600666666666667,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 12,
@@ -26,8 +26,8 @@
     "roster_match_rate": 0.8,
     "strongest_absence": {
       "player_name": "Max Metz",
-      "run_swing": 0.56,
-      "win_probability_swing": 0.0289
+      "run_swing": 2.67,
+      "win_probability_swing": 0.1368
     },
     "easiest_absence": {
       "player_name": "Marty Eagan",
@@ -36,7 +36,7 @@
     },
     "plain_english_notes": [
       "Bash Brothers projects as the 7th-strongest team out of 12.",
-      "The model expects about 10.7 runs per game with the current full roster.",
+      "The model expects about 11.6 runs per game with the current full roster.",
       "12 of 15 players have a historical match in the dataset.",
       "3 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -301,28 +301,28 @@
   "top_5_must_have_players": [
     {
       "player_name": "Max Metz",
-      "run_swing": 0.56,
-      "win_probability_swing": 0.0289
+      "run_swing": 2.67,
+      "win_probability_swing": 0.1368
     },
     {
       "player_name": "Malachi Metz",
-      "run_swing": 0.31,
-      "win_probability_swing": 0.0159
+      "run_swing": 2.27,
+      "win_probability_swing": 0.1148
     },
     {
-      "player_name": "Mike Metz",
-      "run_swing": 0.26,
-      "win_probability_swing": 0.0132
+      "player_name": "Jared Bruno",
+      "run_swing": 1.15,
+      "win_probability_swing": 0.0553
     },
     {
-      "player_name": "Brian Cass",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.0094
+      "player_name": "Mike Kideckel",
+      "run_swing": 1.07,
+      "win_probability_swing": 0.0513
     },
     {
-      "player_name": "Craig Ferluge",
-      "run_swing": 0.15,
-      "win_probability_swing": 0.0078
+      "player_name": "Chris Longano",
+      "run_swing": 1.01,
+      "win_probability_swing": 0.0485
     }
   ],
   "lowest_penalty_absences": [
@@ -332,24 +332,24 @@
       "win_probability_swing": 0
     },
     {
+      "player_name": "Logan Horowitz",
+      "run_swing": 0.13,
+      "win_probability_swing": 0.006
+    },
+    {
       "player_name": "Brian Godau",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.61,
+      "win_probability_swing": 0.0288
+    },
+    {
+      "player_name": "Brian Cass",
+      "run_swing": 0.72,
+      "win_probability_swing": 0.0339
     },
     {
       "player_name": "Steve Horowitz",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Jared Bruno",
-      "run_swing": 0.09,
-      "win_probability_swing": 0.0044
-    },
-    {
-      "player_name": "Chris Longano",
-      "run_swing": 0.1,
-      "win_probability_swing": 0.0049
+      "run_swing": 0.86,
+      "win_probability_swing": 0.0412
     }
   ],
   "rookies_or_unmatched": [

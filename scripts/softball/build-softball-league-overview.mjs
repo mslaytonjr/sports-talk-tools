@@ -226,7 +226,7 @@ function buildHtmlReport(payload) {
           <div class="value">${escapeHtml(payload.team_rankings[0]?.team ?? "n/a")}</div>
         </div>
         <div class="summary-card">
-          <div class="label">Best Important Player</div>
+          <div class="label">Most Important Player</div>
           <div class="value">${escapeHtml(payload.top_5_most_important_players[0]?.player_name ?? "n/a")}</div>
         </div>
         <div class="summary-card">

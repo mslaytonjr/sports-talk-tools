@@ -8,35 +8,35 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.877014108289874",
+    "projected_runs": "13.69",
     "offense_index": "0.5727606908486934",
-    "offense_rating": "0.08406667219229504",
+    "offense_rating": "0.4876405974316937",
     "defense_rating": "0",
-    "overall_rating": "0.08406667219229504"
+    "overall_rating": "0.4876405974316937"
   },
   "human_summary": {
-    "team_rank": 3,
+    "team_rank": 2,
     "total_teams": 12,
     "team_tier": "Top-tier contender",
-    "expected_runs": 10.877014108289874,
+    "expected_runs": 13.69,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Mark Spoto",
-      "run_swing": 0.47,
-      "win_probability_swing": 0.0238
+      "player_name": "Ryan Smith",
+      "run_swing": 2.4,
+      "win_probability_swing": 0.1102
     },
     "easiest_absence": {
-      "player_name": "Matt Siekierka",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "player_name": "Adam Handler",
+      "run_swing": 0.07,
+      "win_probability_swing": 0.0027
     },
     "plain_english_notes": [
-      "The Ryan Express projects as the 3rd-strongest team out of 12.",
-      "The model expects about 10.9 runs per game with the current full roster.",
+      "The Ryan Express projects as the 2nd-strongest team out of 12.",
+      "The model expects about 13.7 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,56 +300,56 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Mark Spoto",
-      "run_swing": 0.47,
-      "win_probability_swing": 0.0238
-    },
-    {
       "player_name": "Ryan Smith",
-      "run_swing": 0.43,
-      "win_probability_swing": 0.0218
+      "run_swing": 2.4,
+      "win_probability_swing": 0.1102
     },
     {
-      "player_name": "Michael Fedele",
-      "run_swing": 0.32,
-      "win_probability_swing": 0.0162
+      "player_name": "Mark Spoto",
+      "run_swing": 2.39,
+      "win_probability_swing": 0.1098
     },
     {
       "player_name": "Mark Davis",
-      "run_swing": 0.3,
-      "win_probability_swing": 0.0152
+      "run_swing": 1.4,
+      "win_probability_swing": 0.0615
     },
     {
-      "player_name": "Danny Fariello",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.0092
+      "player_name": "Ken O'Brien",
+      "run_swing": 0.94,
+      "win_probability_swing": 0.0404
+    },
+    {
+      "player_name": "Ralph Fariello",
+      "run_swing": 0.93,
+      "win_probability_swing": 0.0399
     }
   ],
   "lowest_penalty_absences": [
     {
-      "player_name": "Matt Siekierka",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
       "player_name": "Adam Handler",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.07,
+      "win_probability_swing": 0.0027
     },
     {
-      "player_name": "Michael Rothenberg",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "player_name": "Matt Siekierka",
+      "run_swing": 0.13,
+      "win_probability_swing": 0.0053
+    },
+    {
+      "player_name": "Ken Horan",
+      "run_swing": 0.14,
+      "win_probability_swing": 0.0058
     },
     {
       "player_name": "Ken Eagle",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.22,
+      "win_probability_swing": 0.0089
     },
     {
-      "player_name": "Ralph Fariello",
-      "run_swing": 0,
-      "win_probability_swing": 0.0002
+      "player_name": "Michael Rothenberg",
+      "run_swing": 0.34,
+      "win_probability_swing": 0.0141
     }
   ],
   "rookies_or_unmatched": [

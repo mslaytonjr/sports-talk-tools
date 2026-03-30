@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "12",
     "unmatched_players": "3",
-    "projected_runs": "10.93461675257339",
+    "projected_runs": "12.321333333333333",
     "offense_index": "0.5757939249703071",
-    "offense_rating": "0.08934851274485901",
+    "offense_rating": "0.38230713548902057",
     "defense_rating": "0",
-    "overall_rating": "0.08934851274485901"
+    "overall_rating": "0.38230713548902057"
   },
   "human_summary": {
-    "team_rank": 2,
+    "team_rank": 5,
     "total_teams": 12,
-    "team_tier": "Top-tier contender",
-    "expected_runs": 10.93461675257339,
+    "team_tier": "Solid playoff-level group",
+    "expected_runs": 12.321333333333333,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 12,
@@ -26,8 +26,8 @@
     "roster_match_rate": 0.8,
     "strongest_absence": {
       "player_name": "Joey Beyer",
-      "run_swing": 0.58,
-      "win_probability_swing": 0.0295
+      "run_swing": 2.26,
+      "win_probability_swing": 0.1025
     },
     "easiest_absence": {
       "player_name": "Greg George",
@@ -35,8 +35,8 @@
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "Lunch Pail Guys projects as the 2nd-strongest team out of 12.",
-      "The model expects about 10.9 runs per game with the current full roster.",
+      "Lunch Pail Guys projects as the 5th-strongest team out of 12.",
+      "The model expects about 12.3 runs per game with the current full roster.",
       "12 of 15 players have a historical match in the dataset.",
       "3 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -301,28 +301,28 @@
   "top_5_must_have_players": [
     {
       "player_name": "Joey Beyer",
-      "run_swing": 0.58,
-      "win_probability_swing": 0.0295
+      "run_swing": 2.26,
+      "win_probability_swing": 0.1025
     },
     {
       "player_name": "Ricky Beyer",
-      "run_swing": 0.55,
-      "win_probability_swing": 0.0281
+      "run_swing": 2.14,
+      "win_probability_swing": 0.0963
     },
     {
       "player_name": "Bob Fass",
-      "run_swing": 0.21,
-      "win_probability_swing": 0.0103
+      "run_swing": 1.5,
+      "win_probability_swing": 0.0654
     },
     {
       "player_name": "John Sanzone",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.009
+      "run_swing": 1.48,
+      "win_probability_swing": 0.0645
     },
     {
-      "player_name": "Jim Morris",
-      "run_swing": 0.16,
-      "win_probability_swing": 0.0082
+      "player_name": "Rick Beyer",
+      "run_swing": 1.47,
+      "win_probability_swing": 0.0644
     }
   ],
   "lowest_penalty_absences": [
@@ -333,23 +333,23 @@
     },
     {
       "player_name": "Brian Scaglione",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Tim Fonseca",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Rich Fardo",
-      "run_swing": 0.03,
-      "win_probability_swing": 0.0013
+      "run_swing": 0.65,
+      "win_probability_swing": 0.0274
     },
     {
       "player_name": "Dave Istvan",
-      "run_swing": 0.11,
-      "win_probability_swing": 0.0056
+      "run_swing": 0.82,
+      "win_probability_swing": 0.0346
+    },
+    {
+      "player_name": "Tim Fonseca",
+      "run_swing": 0.84,
+      "win_probability_swing": 0.0354
+    },
+    {
+      "player_name": "Jim Morris",
+      "run_swing": 0.87,
+      "win_probability_swing": 0.037
     }
   ],
   "rookies_or_unmatched": [

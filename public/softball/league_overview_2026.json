@@ -1,80 +1,80 @@
 {
-  "generated_at": "2026-03-30T17:11:21.996Z",
+  "generated_at": "2026-03-30T17:58:31.396Z",
   "season": 2026,
   "team_rankings": [
     {
-      "team": "Wild Things",
-      "team_id": "wild_things",
-      "projected_runs": 11.190271847544944,
-      "matched_players": 14,
+      "team": "The Sultans of Swat",
+      "team_id": "the_sultans_of_swat",
+      "projected_runs": 13.807333333333334,
+      "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.11245972282781258,
-      "team_report_href": "./team_reports/wild_things_2026.html",
+      "overall_rating": 0.4961748101171858,
+      "team_report_href": "./team_reports/the_sultans_of_swat_2026.html",
       "rank": 1,
       "rank_label": "1st"
     },
     {
-      "team": "Lunch Pail Guys",
-      "team_id": "lunch_pail_guys",
-      "projected_runs": 10.93461675257339,
-      "matched_players": 12,
+      "team": "The Ryan Express",
+      "team_id": "the_ryan_express",
+      "projected_runs": 13.69,
+      "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.08934851274485901,
-      "team_report_href": "./team_reports/lunch_pail_guys_2026.html",
+      "overall_rating": 0.4876405974316937,
+      "team_report_href": "./team_reports/the_ryan_express_2026.html",
       "rank": 2,
       "rank_label": "2nd"
     },
     {
-      "team": "The Ryan Express",
-      "team_id": "the_ryan_express",
-      "projected_runs": 10.877014108289874,
-      "matched_players": 13,
+      "team": "Wild Things",
+      "team_id": "wild_things",
+      "projected_runs": 13.492,
+      "matched_players": 14,
       "roster_size": 15,
-      "overall_rating": 0.08406667219229504,
-      "team_report_href": "./team_reports/the_ryan_express_2026.html",
+      "overall_rating": 0.47307187533074,
+      "team_report_href": "./team_reports/wild_things_2026.html",
       "rank": 3,
       "rank_label": "3rd"
     },
     {
-      "team": "Muscle Hamsters",
-      "team_id": "muscle_hamsters",
-      "projected_runs": 10.805132743883718,
+      "team": "Black Mambas",
+      "team_id": "black_mambas",
+      "projected_runs": 12.557333333333334,
       "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.07743618230199181,
-      "team_report_href": "./team_reports/muscle_hamsters_2026.html",
+      "overall_rating": 0.40127978240448015,
+      "team_report_href": "./team_reports/black_mambas_2026.html",
       "rank": 4,
       "rank_label": "4th"
     },
     {
-      "team": "The Sultans of Swat",
-      "team_id": "the_sultans_of_swat",
-      "projected_runs": 10.778586568912477,
-      "matched_players": 13,
+      "team": "Lunch Pail Guys",
+      "team_id": "lunch_pail_guys",
+      "projected_runs": 12.321333333333333,
+      "matched_players": 12,
       "roster_size": 15,
-      "overall_rating": 0.07497634783398728,
-      "team_report_href": "./team_reports/the_sultans_of_swat_2026.html",
+      "overall_rating": 0.38230713548902057,
+      "team_report_href": "./team_reports/lunch_pail_guys_2026.html",
       "rank": 5,
       "rank_label": "5th"
     },
     {
-      "team": "Black Mambas",
-      "team_id": "black_mambas",
-      "projected_runs": 10.741102042728565,
+      "team": "Muscle Hamsters",
+      "team_id": "muscle_hamsters",
+      "projected_runs": 12.032,
       "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.07149260187732,
-      "team_report_href": "./team_reports/black_mambas_2026.html",
+      "overall_rating": 0.3585447253388202,
+      "team_report_href": "./team_reports/muscle_hamsters_2026.html",
       "rank": 6,
       "rank_label": "6th"
     },
     {
       "team": "Bash Brothers",
       "team_id": "bash_brothers",
-      "projected_runs": 10.702410170296911,
+      "projected_runs": 11.600666666666667,
       "matched_players": 12,
       "roster_size": 15,
-      "overall_rating": 0.06788387266940052,
+      "overall_rating": 0.32203752585661327,
       "team_report_href": "./team_reports/bash_brothers_2026.html",
       "rank": 7,
       "rank_label": "7th"
@@ -82,10 +82,10 @@
     {
       "team": "The Big Papi's",
       "team_id": "the_big_papi_s",
-      "projected_runs": 10.323630513488563,
+      "projected_runs": 11.002666666666666,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.03185039913708099,
+      "overall_rating": 0.26911262579212253,
       "team_report_href": "./team_reports/the_big_papi_s_2026.html",
       "rank": 8,
       "rank_label": "8th"
@@ -93,43 +93,43 @@
     {
       "team": "Honey Badgers",
       "team_id": "honey_badgers",
-      "projected_runs": 10.139522675119082,
+      "projected_runs": 10.561333333333334,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.013855830601344685,
+      "overall_rating": 0.2281744910652599,
       "team_report_href": "./team_reports/honey_badgers_2026.html",
       "rank": 9,
       "rank_label": "9th"
     },
     {
-      "team": "7th Floor Crew",
-      "team_id": "7th_floor_crew",
-      "projected_runs": 10.074012080850254,
-      "matched_players": 15,
+      "team": "The Big Units",
+      "team_id": "the_big_units",
+      "projected_runs": 10.238666666666667,
+      "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.0073739535395590545,
-      "team_report_href": "./team_reports/7th_floor_crew_2026.html",
+      "overall_rating": 0.1971463609315237,
+      "team_report_href": "./team_reports/the_big_units_2026.html",
       "rank": 10,
       "rank_label": "10th"
     },
     {
-      "team": "The Big Units",
-      "team_id": "the_big_units",
-      "projected_runs": 10.059398476866404,
-      "matched_players": 13,
+      "team": "7th Floor Crew",
+      "team_id": "7th_floor_crew",
+      "projected_runs": 9.26,
+      "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.005922276337794406,
-      "team_report_href": "./team_reports/the_big_units_2026.html",
+      "overall_rating": 0.09667900678942429,
+      "team_report_href": "./team_reports/7th_floor_crew_2026.html",
       "rank": 11,
       "rank_label": "11th"
     },
     {
       "team": "Nails",
       "team_id": "nails",
-      "projected_runs": 10.041091681818168,
+      "projected_runs": 9.044666666666666,
       "matched_players": 13,
       "roster_size": 15,
-      "overall_rating": 0.004100748607327783,
+      "overall_rating": 0.07315022352634329,
       "team_report_href": "./team_reports/nails_2026.html",
       "rank": 12,
       "rank_label": "12th"
@@ -138,33 +138,33 @@
   "top_5_most_important_players": [
     {
       "team": "The Sultans of Swat",
-      "player_name": "Kevin Marquez",
-      "run_swing": 0.63,
-      "win_probability_swing": 0.032
-    },
-    {
-      "team": "Lunch Pail Guys",
-      "player_name": "Joey Beyer",
-      "run_swing": 0.58,
-      "win_probability_swing": 0.0295
+      "player_name": "Dave Auerbach",
+      "run_swing": 3.09,
+      "win_probability_swing": 0.142
     },
     {
       "team": "Bash Brothers",
       "player_name": "Max Metz",
-      "run_swing": 0.56,
-      "win_probability_swing": 0.0289
+      "run_swing": 2.67,
+      "win_probability_swing": 0.1368
     },
     {
-      "team": "Lunch Pail Guys",
-      "player_name": "Ricky Beyer",
-      "run_swing": 0.55,
-      "win_probability_swing": 0.0281
+      "team": "The Sultans of Swat",
+      "player_name": "Kevin Marquez",
+      "run_swing": 2.94,
+      "win_probability_swing": 0.1338
     },
     {
-      "team": "Black Mambas",
-      "player_name": "David Plishka",
-      "run_swing": 0.53,
-      "win_probability_swing": 0.0272
+      "team": "Muscle Hamsters",
+      "player_name": "Jon Weiner",
+      "run_swing": 2.45,
+      "win_probability_swing": 0.1261
+    },
+    {
+      "team": "Bash Brothers",
+      "player_name": "Malachi Metz",
+      "run_swing": 2.27,
+      "win_probability_swing": 0.1148
     }
   ]
 }

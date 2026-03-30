@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "15",
     "unmatched_players": "0",
-    "projected_runs": "10.074012080850254",
+    "projected_runs": "9.26",
     "offense_index": "0.5304762926296376",
-    "offense_rating": "0.0073739535395590545",
+    "offense_rating": "0.09667900678942429",
     "defense_rating": "0",
-    "overall_rating": "0.0073739535395590545"
+    "overall_rating": "0.09667900678942429"
   },
   "human_summary": {
-    "team_rank": 10,
+    "team_rank": 11,
     "total_teams": 12,
     "team_tier": "Needs help to close the gap",
-    "expected_runs": 10.074012080850254,
+    "expected_runs": 9.26,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 15,
@@ -26,8 +26,8 @@
     "roster_match_rate": 1,
     "strongest_absence": {
       "player_name": "Matt Johnson",
-      "run_swing": 0.5,
-      "win_probability_swing": 0.0267
+      "run_swing": 1.06,
+      "win_probability_swing": 0.06
     },
     "easiest_absence": {
       "player_name": "Matt Rozell",
@@ -35,8 +35,8 @@
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "7th Floor Crew projects as the 10th-strongest team out of 12.",
-      "The model expects about 10.1 runs per game with the current full roster.",
+      "7th Floor Crew projects as the 11th-strongest team out of 12.",
+      "The model expects about 9.3 runs per game with the current full roster.",
       "15 of 15 players have a historical match in the dataset.",
       "Every roster spot matched to a historical player record."
     ]
@@ -301,28 +301,28 @@
   "top_5_must_have_players": [
     {
       "player_name": "Matt Johnson",
-      "run_swing": 0.5,
-      "win_probability_swing": 0.0267
-    },
-    {
-      "player_name": "Dean Sottile",
-      "run_swing": 0.22,
-      "win_probability_swing": 0.0119
+      "run_swing": 1.06,
+      "win_probability_swing": 0.06
     },
     {
       "player_name": "Brad Hartung",
-      "run_swing": 0.17,
-      "win_probability_swing": 0.0092
-    },
-    {
-      "player_name": "Dave Jones",
-      "run_swing": 0.16,
-      "win_probability_swing": 0.0087
+      "run_swing": 0.88,
+      "win_probability_swing": 0.0499
     },
     {
       "player_name": "Pat McNamara",
-      "run_swing": 0.14,
-      "win_probability_swing": 0.0072
+      "run_swing": 0.67,
+      "win_probability_swing": 0.0375
+    },
+    {
+      "player_name": "Nick Adams",
+      "run_swing": 0.31,
+      "win_probability_swing": 0.0172
+    },
+    {
+      "player_name": "Dave Jones",
+      "run_swing": 0.3,
+      "win_probability_swing": 0.0168
     }
   ],
   "lowest_penalty_absences": [
@@ -332,7 +332,7 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Alexander Sweetwood",
+      "player_name": "Dean Sottile",
       "run_swing": 0,
       "win_probability_swing": 0
     },
@@ -342,12 +342,12 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Mark Slayton",
+      "player_name": "Steve Sroka",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "David Vespole",
+      "player_name": "Kevin DeJong",
       "run_swing": 0,
       "win_probability_swing": 0
     }

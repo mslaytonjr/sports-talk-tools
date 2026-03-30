@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "15",
     "unmatched_players": "0",
-    "projected_runs": "10.323630513488563",
+    "projected_runs": "11.002666666666666",
     "offense_index": "0.5436206743968288",
-    "offense_rating": "0.03185039913708099",
+    "offense_rating": "0.26911262579212253",
     "defense_rating": "0",
-    "overall_rating": "0.03185039913708099"
+    "overall_rating": "0.26911262579212253"
   },
   "human_summary": {
     "team_rank": 8,
     "total_teams": 12,
     "team_tier": "Middle-of-the-pack team",
-    "expected_runs": 10.323630513488563,
+    "expected_runs": 11.002666666666666,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 15,
@@ -26,8 +26,8 @@
     "roster_match_rate": 1,
     "strongest_absence": {
       "player_name": "Ralph Avallone",
-      "run_swing": 0.34,
-      "win_probability_swing": 0.0179
+      "run_swing": 0.96,
+      "win_probability_swing": 0.0513
     },
     "easiest_absence": {
       "player_name": "Temple Houston",
@@ -36,7 +36,7 @@
     },
     "plain_english_notes": [
       "The Big Papi's projects as the 8th-strongest team out of 12.",
-      "The model expects about 10.3 runs per game with the current full roster.",
+      "The model expects about 11.0 runs per game with the current full roster.",
       "15 of 15 players have a historical match in the dataset.",
       "Every roster spot matched to a historical player record."
     ]
@@ -301,28 +301,28 @@
   "top_5_must_have_players": [
     {
       "player_name": "Ralph Avallone",
-      "run_swing": 0.34,
-      "win_probability_swing": 0.0179
+      "run_swing": 0.96,
+      "win_probability_swing": 0.0513
     },
     {
       "player_name": "Jason Lew",
-      "run_swing": 0.22,
-      "win_probability_swing": 0.0118
+      "run_swing": 0.47,
+      "win_probability_swing": 0.0246
+    },
+    {
+      "player_name": "Levi Henninger",
+      "run_swing": 0.33,
+      "win_probability_swing": 0.0174
+    },
+    {
+      "player_name": "John Lew",
+      "run_swing": 0.25,
+      "win_probability_swing": 0.013
     },
     {
       "player_name": "Rick DelGizzi",
-      "run_swing": 0.19,
-      "win_probability_swing": 0.0101
-    },
-    {
-      "player_name": "Greg Restino",
-      "run_swing": 0.15,
-      "win_probability_swing": 0.0078
-    },
-    {
-      "player_name": "RJ Leonard",
-      "run_swing": 0.11,
-      "win_probability_swing": 0.0057
+      "run_swing": 0.2,
+      "win_probability_swing": 0.0102
     }
   ],
   "lowest_penalty_absences": [
@@ -332,22 +332,22 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Dave Kaiser",
+      "player_name": "RJ Leonard",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "Deron Green",
+      "player_name": "Andrew Conroy",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "Chris Armelino",
+      "player_name": "Greg Restino",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "Victor Segarra",
+      "player_name": "Mike Bedell",
       "run_swing": 0,
       "win_probability_swing": 0
     }

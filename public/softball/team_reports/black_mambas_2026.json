@@ -8,35 +8,35 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.741102042728565",
+    "projected_runs": "12.557333333333334",
     "offense_index": "0.5656038472709842",
-    "offense_rating": "0.07149260187732",
+    "offense_rating": "0.40127978240448015",
     "defense_rating": "0",
-    "overall_rating": "0.07149260187732"
+    "overall_rating": "0.40127978240448015"
   },
   "human_summary": {
-    "team_rank": 6,
+    "team_rank": 4,
     "total_teams": 12,
     "team_tier": "Solid playoff-level group",
-    "expected_runs": 10.741102042728565,
+    "expected_runs": 12.557333333333334,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "David Plishka",
-      "run_swing": 0.53,
-      "win_probability_swing": 0.0272
+      "player_name": "Jason Crimmins",
+      "run_swing": 2.26,
+      "win_probability_swing": 0.1094
     },
     "easiest_absence": {
-      "player_name": "Josh Simon",
+      "player_name": "Tony Garrett",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "Black Mambas projects as the 6th-strongest team out of 12.",
-      "The model expects about 10.7 runs per game with the current full roster.",
+      "Black Mambas projects as the 4th-strongest team out of 12.",
+      "The model expects about 12.6 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,56 +300,56 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "David Plishka",
-      "run_swing": 0.53,
-      "win_probability_swing": 0.0272
+      "player_name": "Jason Crimmins",
+      "run_swing": 2.26,
+      "win_probability_swing": 0.1094
     },
     {
       "player_name": "Chris Czapla",
-      "run_swing": 0.5,
-      "win_probability_swing": 0.0257
+      "run_swing": 2.18,
+      "win_probability_swing": 0.1051
     },
     {
-      "player_name": "Jason Crimmins",
-      "run_swing": 0.34,
-      "win_probability_swing": 0.0173
+      "player_name": "David Plishka",
+      "run_swing": 1.59,
+      "win_probability_swing": 0.0749
     },
     {
       "player_name": "Alex Simon",
-      "run_swing": 0.31,
-      "win_probability_swing": 0.0156
+      "run_swing": 1.52,
+      "win_probability_swing": 0.0712
     },
     {
       "player_name": "Ralph Aiello",
-      "run_swing": 0.19,
-      "win_probability_swing": 0.0093
+      "run_swing": 1.24,
+      "win_probability_swing": 0.0576
     }
   ],
   "lowest_penalty_absences": [
-    {
-      "player_name": "Josh Simon",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
     {
       "player_name": "Tony Garrett",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "Jason Rhodes",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "player_name": "Rob Thomas",
+      "run_swing": 0.05,
+      "win_probability_swing": 0.002
     },
     {
       "player_name": "Mike Lawlor",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.23,
+      "win_probability_swing": 0.0102
     },
     {
       "player_name": "Bankim Shah",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.37,
+      "win_probability_swing": 0.0167
+    },
+    {
+      "player_name": "Josh Simon",
+      "run_swing": 0.44,
+      "win_probability_swing": 0.0197
     }
   ],
   "rookies_or_unmatched": [

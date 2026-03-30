@@ -8,26 +8,26 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.778586568912477",
+    "projected_runs": "13.807333333333334",
     "offense_index": "0.5675777035976823",
-    "offense_rating": "0.07497634783398728",
+    "offense_rating": "0.4961748101171858",
     "defense_rating": "0",
-    "overall_rating": "0.07497634783398728"
+    "overall_rating": "0.4961748101171858"
   },
   "human_summary": {
-    "team_rank": 5,
+    "team_rank": 1,
     "total_teams": 12,
-    "team_tier": "Solid playoff-level group",
-    "expected_runs": 10.778586568912477,
+    "team_tier": "Top-tier contender",
+    "expected_runs": 13.807333333333334,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Kevin Marquez",
-      "run_swing": 0.63,
-      "win_probability_swing": 0.032
+      "player_name": "Dave Auerbach",
+      "run_swing": 3.09,
+      "win_probability_swing": 0.142
     },
     "easiest_absence": {
       "player_name": "Seth Friedman",
@@ -35,8 +35,8 @@
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "The Sultans of Swat projects as the 5th-strongest team out of 12.",
-      "The model expects about 10.8 runs per game with the current full roster.",
+      "The Sultans of Swat projects as the 1st-strongest team out of 12.",
+      "The model expects about 13.8 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,29 +300,29 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Kevin Marquez",
-      "run_swing": 0.63,
-      "win_probability_swing": 0.032
+      "player_name": "Dave Auerbach",
+      "run_swing": 3.09,
+      "win_probability_swing": 0.142
     },
     {
-      "player_name": "Dave Auerbach",
-      "run_swing": 0.48,
-      "win_probability_swing": 0.0241
+      "player_name": "Kevin Marquez",
+      "run_swing": 2.94,
+      "win_probability_swing": 0.1338
     },
     {
       "player_name": "Keith Rothfritz",
-      "run_swing": 0.34,
-      "win_probability_swing": 0.0171
+      "run_swing": 1.79,
+      "win_probability_swing": 0.0771
     },
     {
       "player_name": "Jim Halpin",
-      "run_swing": 0.2,
-      "win_probability_swing": 0.01
+      "run_swing": 1.64,
+      "win_probability_swing": 0.0703
     },
     {
-      "player_name": "Jay Glickson",
-      "run_swing": 0.19,
-      "win_probability_swing": 0.0097
+      "player_name": "Kyle Doench",
+      "run_swing": 1.48,
+      "win_probability_swing": 0.0629
     }
   ],
   "lowest_penalty_absences": [
@@ -333,23 +333,23 @@
     },
     {
       "player_name": "Will Zaragoza",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Dimitri Rassias",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.28,
+      "win_probability_swing": 0.0112
     },
     {
       "player_name": "John McDonough",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.59,
+      "win_probability_swing": 0.0241
     },
     {
-      "player_name": "Pete DeFrank",
-      "run_swing": 0.01,
-      "win_probability_swing": 0.0006
+      "player_name": "Dimitri Rassias",
+      "run_swing": 0.59,
+      "win_probability_swing": 0.0242
+    },
+    {
+      "player_name": "Adam Steckelman",
+      "run_swing": 0.91,
+      "win_probability_swing": 0.0378
     }
   ],
   "rookies_or_unmatched": [

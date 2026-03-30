@@ -8,26 +8,26 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.041091681818168",
+    "projected_runs": "9.044666666666666",
     "offense_index": "0.5287427736413464",
-    "offense_rating": "0.004100748607327783",
+    "offense_rating": "0.07315022352634329",
     "defense_rating": "0",
-    "overall_rating": "0.004100748607327783"
+    "overall_rating": "0.07315022352634329"
   },
   "human_summary": {
     "team_rank": 12,
     "total_teams": 12,
     "team_tier": "Needs help to close the gap",
-    "expected_runs": 10.041091681818168,
+    "expected_runs": 9.044666666666666,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Chris Stappas",
-      "run_swing": 0.28,
-      "win_probability_swing": 0.015
+      "player_name": "Jason Vogt",
+      "run_swing": 1.66,
+      "win_probability_swing": 0.0943
     },
     "easiest_absence": {
       "player_name": "Dave Jensen",
@@ -36,7 +36,7 @@
     },
     "plain_english_notes": [
       "Nails projects as the 12th-strongest team out of 12.",
-      "The model expects about 10.0 runs per game with the current full roster.",
+      "The model expects about 9.0 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,29 +300,29 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Chris Stappas",
-      "run_swing": 0.28,
-      "win_probability_swing": 0.015
-    },
-    {
       "player_name": "Jason Vogt",
-      "run_swing": 0.21,
-      "win_probability_swing": 0.0111
-    },
-    {
-      "player_name": "Craig Engelhardt",
-      "run_swing": 0.15,
-      "win_probability_swing": 0.0083
-    },
-    {
-      "player_name": "Jacob Lieberman",
-      "run_swing": 0.14,
-      "win_probability_swing": 0.0075
+      "run_swing": 1.66,
+      "win_probability_swing": 0.0943
     },
     {
       "player_name": "Justin Vogt",
-      "run_swing": 0.13,
-      "win_probability_swing": 0.007
+      "run_swing": 1.53,
+      "win_probability_swing": 0.087
+    },
+    {
+      "player_name": "Chris Stappas",
+      "run_swing": 1.2,
+      "win_probability_swing": 0.0677
+    },
+    {
+      "player_name": "Chuck Puleo",
+      "run_swing": 1.07,
+      "win_probability_swing": 0.0599
+    },
+    {
+      "player_name": "Jacob Lieberman",
+      "run_swing": 0.9,
+      "win_probability_swing": 0.0503
     }
   ],
   "lowest_penalty_absences": [
@@ -332,24 +332,24 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Mike Cafaro",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "player_name": "Bob Vogt",
+      "run_swing": 0.03,
+      "win_probability_swing": 0.0017
     },
     {
-      "player_name": "Sameer Sawe",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "player_name": "Mike Cafaro",
+      "run_swing": 0.46,
+      "win_probability_swing": 0.0252
     },
     {
       "player_name": "James Walker",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.46,
+      "win_probability_swing": 0.0253
     },
     {
-      "player_name": "Bret Hartman",
-      "run_swing": 0.04,
-      "win_probability_swing": 0.0021
+      "player_name": "Alex Lieberman",
+      "run_swing": 0.54,
+      "win_probability_swing": 0.0297
     }
   ],
   "rookies_or_unmatched": [

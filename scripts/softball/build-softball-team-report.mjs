@@ -601,6 +601,7 @@ function buildHtmlReport(report) {
         <section class="panel">
           <h2>Best Full Lineup If Everyone Shows</h2>
           <p>This is the recommended batting order based on who creates traffic, who drives in runs, and how strong each bat projects to be.</p>
+          <p>Bat Score is the model's overall hitting grade. Higher means the bat projects to create more offense, using recent results, sample size, and trend adjustment. It is not a batting average. It is a blended score the model uses to compare hitters to each other.</p>
           <table>
             <thead>
               <tr>
@@ -677,6 +678,11 @@ function main() {
     .sort((left, right) => right.win_probability_swing - left.win_probability_swing);
 
   const lineup = buildLineup(teamRows, profileMap, leagueBatScoreRanks);
+  const coreLineupPlayers = new Set(
+    lineup
+      .filter((player) => Number(player.spot) <= 10)
+      .map((player) => canonicalizeName(player.player_name))
+  );
   const humanSummary = buildHumanSummary(teamRating, teamRatings, teamRows, impactRows);
   const report = {
     season: Number(targetSeason),
@@ -684,7 +690,9 @@ function main() {
     team_rating: teamRating ?? null,
     human_summary: humanSummary,
     best_full_order_if_everyone_shows: lineup,
-    top_5_must_have_players: impactRows.slice(0, 5),
+    top_5_must_have_players: impactRows
+      .filter((row) => coreLineupPlayers.has(canonicalizeName(row.player_name)))
+      .slice(0, 5),
     lowest_penalty_absences: [...impactRows]
       .sort((left, right) => left.win_probability_swing - right.win_probability_swing)
       .slice(0, 5),

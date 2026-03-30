@@ -8,35 +8,35 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.805132743883718",
+    "projected_runs": "12.032",
     "offense_index": "0.5689755693505943",
-    "offense_rating": "0.07743618230199181",
+    "offense_rating": "0.3585447253388202",
     "defense_rating": "0",
-    "overall_rating": "0.07743618230199181"
+    "overall_rating": "0.3585447253388202"
   },
   "human_summary": {
-    "team_rank": 4,
+    "team_rank": 6,
     "total_teams": 12,
     "team_tier": "Solid playoff-level group",
-    "expected_runs": 10.805132743883718,
+    "expected_runs": 12.032,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Ryan Boeckel",
-      "run_swing": 0.48,
-      "win_probability_swing": 0.0241
+      "player_name": "Jon Weiner",
+      "run_swing": 2.45,
+      "win_probability_swing": 0.1261
     },
     "easiest_absence": {
-      "player_name": "Brian Quinn",
+      "player_name": "Jigar Desai",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "Muscle Hamsters projects as the 4th-strongest team out of 12.",
-      "The model expects about 10.8 runs per game with the current full roster.",
+      "Muscle Hamsters projects as the 6th-strongest team out of 12.",
+      "The model expects about 12.0 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,37 +300,32 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Ryan Boeckel",
-      "run_swing": 0.48,
-      "win_probability_swing": 0.0241
-    },
-    {
       "player_name": "Jon Weiner",
-      "run_swing": 0.46,
-      "win_probability_swing": 0.023
-    },
-    {
-      "player_name": "Victor Cardona",
-      "run_swing": 0.43,
-      "win_probability_swing": 0.0214
+      "run_swing": 2.45,
+      "win_probability_swing": 0.1261
     },
     {
       "player_name": "John Petrozzino",
-      "run_swing": 0.36,
-      "win_probability_swing": 0.0182
+      "run_swing": 1.76,
+      "win_probability_swing": 0.0882
+    },
+    {
+      "player_name": "Victor Cardona",
+      "run_swing": 1.73,
+      "win_probability_swing": 0.0867
+    },
+    {
+      "player_name": "Ryan Boeckel",
+      "run_swing": 1.67,
+      "win_probability_swing": 0.0837
     },
     {
       "player_name": "Nico Coppola",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.0087
+      "run_swing": 0.89,
+      "win_probability_swing": 0.0432
     }
   ],
   "lowest_penalty_absences": [
-    {
-      "player_name": "Brian Quinn",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
     {
       "player_name": "Jigar Desai",
       "run_swing": 0,
@@ -348,8 +343,13 @@
     },
     {
       "player_name": "Dan Ochs",
-      "run_swing": 0,
-      "win_probability_swing": 0
+      "run_swing": 0.18,
+      "win_probability_swing": 0.0084
+    },
+    {
+      "player_name": "Frank Coppola",
+      "run_swing": 0.52,
+      "win_probability_swing": 0.0248
     }
   ],
   "rookies_or_unmatched": [

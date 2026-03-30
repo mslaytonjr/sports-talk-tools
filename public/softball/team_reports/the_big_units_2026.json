@@ -8,35 +8,35 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "10.059398476866404",
+    "projected_runs": "10.238666666666667",
     "offense_index": "0.5297067709732116",
-    "offense_rating": "0.005922276337794406",
+    "offense_rating": "0.1971463609315237",
     "defense_rating": "0",
-    "overall_rating": "0.005922276337794406"
+    "overall_rating": "0.1971463609315237"
   },
   "human_summary": {
-    "team_rank": 11,
+    "team_rank": 10,
     "total_teams": 12,
     "team_tier": "Needs help to close the gap",
-    "expected_runs": 10.059398476866404,
+    "expected_runs": 10.238666666666667,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Chris Mazur",
-      "run_swing": 0.26,
-      "win_probability_swing": 0.0142
+      "player_name": "Tom Clougher",
+      "run_swing": 0.67,
+      "win_probability_swing": 0.0366
     },
     "easiest_absence": {
-      "player_name": "Evan Schachman",
+      "player_name": "Greg Auerbach",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "The Big Units projects as the 11th-strongest team out of 12.",
-      "The model expects about 10.1 runs per game with the current full roster.",
+      "The Big Units projects as the 10th-strongest team out of 12.",
+      "The model expects about 10.2 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -300,34 +300,44 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Chris Mazur",
-      "run_swing": 0.26,
-      "win_probability_swing": 0.0142
+      "player_name": "Tom Clougher",
+      "run_swing": 0.67,
+      "win_probability_swing": 0.0366
     },
     {
       "player_name": "Greg Espersen",
-      "run_swing": 0.21,
-      "win_probability_swing": 0.0113
+      "run_swing": 0.53,
+      "win_probability_swing": 0.0288
     },
     {
-      "player_name": "Tom Clougher",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.0098
+      "player_name": "Dave Schachman",
+      "run_swing": 0.16,
+      "win_probability_swing": 0.0088
+    },
+    {
+      "player_name": "Chris Mazur",
+      "run_swing": 0.1,
+      "win_probability_swing": 0.0052
     },
     {
       "player_name": "Greg Auerbach",
-      "run_swing": 0.14,
-      "win_probability_swing": 0.0077
-    },
-    {
-      "player_name": "Rob Guilbert",
-      "run_swing": 0.11,
-      "win_probability_swing": 0.0061
+      "run_swing": 0,
+      "win_probability_swing": 0
     }
   ],
   "lowest_penalty_absences": [
     {
-      "player_name": "Evan Schachman",
+      "player_name": "Greg Auerbach",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Rob Guilbert",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Dave Reiss",
       "run_swing": 0,
       "win_probability_swing": 0
     },
@@ -337,19 +347,9 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Tom Schur",
+      "player_name": "Keith Olsen",
       "run_swing": 0,
       "win_probability_swing": 0
-    },
-    {
-      "player_name": "Neil Ascione",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Eric Stivers",
-      "run_swing": 0.06,
-      "win_probability_swing": 0.0033
     }
   ],
   "rookies_or_unmatched": [

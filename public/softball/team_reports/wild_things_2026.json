@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "14",
     "unmatched_players": "1",
-    "projected_runs": "11.190271847544944",
+    "projected_runs": "13.492",
     "offense_index": "0.5892561846821242",
-    "offense_rating": "0.11245972282781258",
+    "offense_rating": "0.47307187533074",
     "defense_rating": "0",
-    "overall_rating": "0.11245972282781258"
+    "overall_rating": "0.47307187533074"
   },
   "human_summary": {
-    "team_rank": 1,
+    "team_rank": 3,
     "total_teams": 12,
     "team_tier": "Top-tier contender",
-    "expected_runs": 11.190271847544944,
+    "expected_runs": 13.492,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 14,
@@ -26,17 +26,17 @@
     "roster_match_rate": 0.9333333333333333,
     "strongest_absence": {
       "player_name": "Kurt Heim",
-      "run_swing": 0.55,
-      "win_probability_swing": 0.0264
+      "run_swing": 2.54,
+      "win_probability_swing": 0.112
     },
     "easiest_absence": {
-      "player_name": "Paul Martino",
+      "player_name": "Rich Heim",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "Wild Things projects as the 1st-strongest team out of 12.",
-      "The model expects about 11.2 runs per game with the current full roster.",
+      "Wild Things projects as the 3rd-strongest team out of 12.",
+      "The model expects about 13.5 runs per game with the current full roster.",
       "14 of 15 players have a historical match in the dataset.",
       "1 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
@@ -301,38 +301,38 @@
   "top_5_must_have_players": [
     {
       "player_name": "Kurt Heim",
-      "run_swing": 0.55,
-      "win_probability_swing": 0.0264
+      "run_swing": 2.54,
+      "win_probability_swing": 0.112
     },
     {
       "player_name": "Rick Bernstein",
-      "run_swing": 0.46,
-      "win_probability_swing": 0.0222
+      "run_swing": 2.25,
+      "win_probability_swing": 0.0981
+    },
+    {
+      "player_name": "Shaun Spielberger",
+      "run_swing": 1.56,
+      "win_probability_swing": 0.0658
     },
     {
       "player_name": "Derek Lynn",
-      "run_swing": 0.42,
-      "win_probability_swing": 0.0201
+      "run_swing": 1.4,
+      "win_probability_swing": 0.0586
     },
     {
-      "player_name": "Kay Klele",
-      "run_swing": 0.29,
-      "win_probability_swing": 0.0137
-    },
-    {
-      "player_name": "Andrew Benson",
-      "run_swing": 0.25,
-      "win_probability_swing": 0.0118
+      "player_name": "Nick Catanese",
+      "run_swing": 1.39,
+      "win_probability_swing": 0.0582
     }
   ],
   "lowest_penalty_absences": [
     {
-      "player_name": "Paul Martino",
+      "player_name": "Rich Heim",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "John Stefanic",
+      "player_name": "Paul Martino",
       "run_swing": 0,
       "win_probability_swing": 0
     },
@@ -342,14 +342,14 @@
       "win_probability_swing": 0
     },
     {
-      "player_name": "Mike Levine",
+      "player_name": "Matt Martino",
       "run_swing": 0,
-      "win_probability_swing": 0
+      "win_probability_swing": 0.0001
     },
     {
-      "player_name": "Matt Martino",
-      "run_swing": 0.02,
-      "win_probability_swing": 0.0009
+      "player_name": "John Stefanic",
+      "run_swing": 0.03,
+      "win_probability_swing": 0.0013
     }
   ],
   "rookies_or_unmatched": [

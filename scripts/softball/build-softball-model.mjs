@@ -24,7 +24,7 @@ const shrinkPlateAppearances = 25;
 const recencyDecay = 0.72;
 const maxTrendAdjustment = 0.04;
 const simulatedInnings = 7;
-const simulationCount = 1500;
+const simulationCount = 10000;
 
 function hashString(value) {
   let hash = 2166136261;

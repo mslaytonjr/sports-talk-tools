@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-03-30T17:58:32.026Z",
+  "generatedAt": "2026-03-30T18:47:04.673Z",
   "season": 2026,
   "leagueContext": {
     "leagueOffenseIndex": 0.5265789720840448,
-    "leagueRunsPerGame": 8.406666666666666,
+    "leagueRunsPerGame": 8.8529,
     "leagueFielding": 1,
     "leagueProfile": {
       "walk_probability": 0.04625436186799317,
@@ -15,7 +15,7 @@
     }
   },
   "simulatedInnings": 7,
-  "simulationCount": 1500,
+  "simulationCount": 10000,
   "teamCount": 12,
   "matchedRosterPlayers": 161,
   "unmatchedRosterPlayers": 19

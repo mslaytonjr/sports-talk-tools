@@ -1,5 +1,47 @@
 # Sports Talk Tools
 
+## Session Resume Note
+
+For future Codex sessions working on the softball pipeline, start by reading:
+
+- `docs/softball-agent-state.md`
+- `docs/softball-prediction-pipeline.md`
+
+## Softball Prediction Pipeline
+
+The softball pipeline is local-only and script-based. It is designed to build reusable historical
+player/team/game data for a beer-league prediction model.
+
+Project notes live in:
+
+- `docs/softball-prediction-pipeline.md`
+- `docs/softball-script-guide.md`
+
+Current commands:
+
+```bash
+npm run softball:normalize -- 2025 2024 2023
+npm run softball:build-dataset -- 2025 2024 2023
+npm run softball:build-model -- 2026
+npm run softball:predict -- 2026
+```
+
+This workflow currently:
+
+- relies on locally saved raw HTML snapshots for the selected seasons
+- saves them under `data/softball/raw/<season>/`
+- normalizes the all-player table into reusable CSV files
+- writes `teams.csv`, `players.csv`, `player_stats.csv`, `games.csv`, and review outputs
+- provides a current-roster input template at `data/softball/inputs/rosters_2026.csv`
+- provides optional `availability_2026.csv` and `schedule_2026.csv` templates
+- builds `team_ratings.csv`, `player_impact.csv`, `predictions.csv`, and `model_summary.json`
+
+Important note:
+
+- the player/all-player normalization is the strongest part of the current foundation
+- `games.csv` is still a first-pass extraction from team-page tables and is intended to be hardened next
+- the current prediction model is player-driven because team-page capture is incomplete for several seasons
+
 ## Play Impact Model Data Workflow
 
 The reusable V1 metric definition lives in:

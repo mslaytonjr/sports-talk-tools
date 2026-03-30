@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-03-30T15:45:01.170Z",
+  "seasons": [
+    {
+      "season": 2025,
+      "teamCount": 12,
+      "playerCount": 228,
+      "playerHeaderCount": 42,
+      "discoveredGameRows": 0,
+      "reviewCount": 36,
+      "usedDerivedTeams": true,
+      "sourceFile": "D:\\DevelopmentWork\\sports-talk-tools\\data\\softball\\raw\\2025\\players_table.html"
+    },
+    {
+      "season": 2024,
+      "teamCount": 12,
+      "playerCount": 243,
+      "playerHeaderCount": 42,
+      "discoveredGameRows": 0,
+      "reviewCount": 45,
+      "usedDerivedTeams": true,
+      "sourceFile": "D:\\DevelopmentWork\\sports-talk-tools\\data\\softball\\raw\\2024\\players_table.html"
+    },
+    {
+      "season": 2023,
+      "teamCount": 11,
+      "playerCount": 207,
+      "playerHeaderCount": 42,
+      "discoveredGameRows": 0,
+      "reviewCount": 27,
+      "usedDerivedTeams": true,
+      "sourceFile": "D:\\DevelopmentWork\\sports-talk-tools\\data\\softball\\raw\\2023\\players_table.html"
+    }
+  ]
+}

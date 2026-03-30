@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-03-30T15:45:09.820Z",
+  "season": 2026,
+  "leagueContext": {
+    "leagueOffenseIndex": 0.5265789720840448,
+    "leagueRunsPerGame": 10,
+    "leagueFielding": 1
+  },
+  "teamCount": 12,
+  "matchedRosterPlayers": 161,
+  "unmatchedRosterPlayers": 19
+}

@@ -9,7 +9,18 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:play-impact-season": "node ./scripts/build-play-impact-season.mjs",
-    "deploy:sabres-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-sabres-lambda.ps1"
+    "deploy:sabres-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-sabres-lambda.ps1",
+    "softball:normalize": "node ./scripts/softball/normalize-softball-data.mjs",
+    "softball:validate": "node ./scripts/softball/validate-softball-stats.mjs",
+    "softball:debug-table": "node ./scripts/softball/debug-softball-table.mjs",
+    "softball:format-html": "node ./scripts/softball/format-softball-html.mjs",
+    "softball:build-dataset": "node ./scripts/softball/build-softball-dataset.mjs",
+    "softball:build-model": "node ./scripts/softball/build-softball-model.mjs",
+    "softball:predict": "node ./scripts/softball/predict-softball-games.mjs",
+    "softball:team-report": "node ./scripts/softball/build-softball-team-report.mjs",
+    "softball:team-report:all": "node ./scripts/softball/build-all-softball-team-reports.mjs",
+    "softball:league-overview": "node ./scripts/softball/build-softball-league-overview.mjs",
+    "softball:publish-opening-day": "node ./scripts/softball/publish-softball-opening-day-odds.mjs"
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.8",

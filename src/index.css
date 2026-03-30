@@ -268,3 +268,52 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.softball-board-shell {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(22, 163, 74, 0.15), transparent 30%),
+      radial-gradient(circle at 90% 12%, rgba(245, 158, 11, 0.14), transparent 22%),
+      linear-gradient(180deg, #090d14 0%, #111827 100%);
+}
+
+.softball-board-hero {
+    background:
+      linear-gradient(135deg, rgba(17, 24, 39, 0.92), rgba(8, 47, 73, 0.86)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+.softball-board-kicker {
+    color: #86efac;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+
+.softball-board-summary {
+    align-content: start;
+}
+
+.softball-summary-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.4rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    padding: 1rem 1.1rem;
+}
+
+.softball-summary-label {
+    color: #94a3b8;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.softball-summary-value {
+    margin-top: 0.65rem;
+    color: #f8fafc;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+}

@@ -3,6 +3,7 @@ import DepthChartPage from "./pages/DepthChartPage";
 import BracketRootingGuidePage from "./pages/BracketRootingGuidePage";
 import SabresPage from "./pages/SabresMagicNumberPage";
 import PlayImpactModelPage from "./pages/PlayImpactModelPage";
+import SoftballOpeningDayOddsPage from "./pages/SoftballOpeningDayOddsPage";
 import logo from "./assets/wny-sports-net-logo.png";
 
 function HomePage() {
@@ -61,6 +62,7 @@ function HomePage() {
                                 </p>
                                 <div className="landing-card-action">Enter model workspace</div>
                             </Link>
+
                         </div>
                     </div>
 
@@ -155,6 +157,7 @@ export default function App() {
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
                 <Route path="/PlayImpactModel" element={<PlayImpactModelPage />} />
+                <Route path="/SoftballOpeningDayOdds" element={<SoftballOpeningDayOddsPage />} />
                 <Route path="/BracketRootingGuide" element={<BracketRootingGuidePage />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>

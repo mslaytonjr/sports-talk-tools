@@ -79,6 +79,7 @@ type Competitor = {
     teamAbbrev: string;
     conference?: string;
     division?: string;
+    playoffDisplayLabel?: string | null;
     currentPoints: number;
     gamesRemaining: number;
     maxPossiblePoints: number;
@@ -142,7 +143,7 @@ function normalizeObjectives(data: SabresApiResponse): NonNullable<SabresApiResp
         makePlayoffs: {
             key: "makePlayoffs",
             title: "Make Playoffs",
-            description: "Finish in the top eight in the Eastern Conference.",
+            description: "Finish top 3 in the Atlantic or claim one of the 2 Eastern Conference wild cards.",
             sabres: fallbackSabres,
             competitors: fallbackCompetitors,
             nightlyRootingGuide: fallbackGuide,
@@ -459,9 +460,19 @@ export default function SabresMagicNumberPage() {
                             <CardHeader className="space-y-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                     <CardTitle className="text-lg text-white">{row.team}</CardTitle>
-                                    <Badge variant="secondary" className="bg-slate-800 text-slate-200">
-                                        {row.teamAbbrev}
-                                    </Badge>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        {row.playoffDisplayLabel ? (
+                                            <Badge
+                                                variant="outline"
+                                                className="border-emerald-500/40 bg-emerald-500/10 text-emerald-200"
+                                            >
+                                                {row.playoffDisplayLabel}
+                                            </Badge>
+                                        ) : null}
+                                        <Badge variant="secondary" className="bg-slate-800 text-slate-200">
+                                            {row.teamAbbrev}
+                                        </Badge>
+                                    </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">

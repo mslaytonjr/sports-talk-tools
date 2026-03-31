@@ -42,6 +42,32 @@ const clamp = (value, min, max) => {
   return Math.min(max, Math.max(min, value));
 };
 
+function compareStandingsOrder(a, b) {
+  if (b.currentPoints !== a.currentPoints) {
+    return b.currentPoints - a.currentPoints;
+  }
+
+  const aRw = a.tiebreakStats?.regulationWins ?? -1;
+  const bRw = b.tiebreakStats?.regulationWins ?? -1;
+  if (bRw !== aRw) {
+    return bRw - aRw;
+  }
+
+  const aRow = a.tiebreakStats?.rowWins ?? -1;
+  const bRow = b.tiebreakStats?.rowWins ?? -1;
+  if (bRow !== aRow) {
+    return bRow - aRow;
+  }
+
+  const aWins = a.tiebreakStats?.totalWins ?? -1;
+  const bWins = b.tiebreakStats?.totalWins ?? -1;
+  if (bWins !== aWins) {
+    return bWins - aWins;
+  }
+
+  return a.team.localeCompare(b.team);
+}
+
 const formatLast10 = (team) => {
   if (
     typeof team.l10Wins !== "number" ||
@@ -525,6 +551,56 @@ function computeObjectiveRace(allTeams, objective) {
   };
 }
 
+function buildPlayoffDisplayOrder(allTeams, sabres) {
+  const eastTeams = allTeams
+    .filter((team) => team.conference === sabres.conference)
+    .slice()
+    .sort(compareStandingsOrder);
+
+  const atlantic = eastTeams.filter((team) => team.division === "A").slice().sort(compareStandingsOrder);
+  const metro = eastTeams.filter((team) => team.division === "M").slice().sort(compareStandingsOrder);
+
+  const topAtlantic = atlantic.slice(0, 3).map((team, index) => ({
+    teamAbbrev: team.teamAbbrev,
+    sortGroup: 1,
+    sortIndex: index + 1,
+    label: `Atlantic ${index + 1}`,
+  }));
+  const topMetro = metro.slice(0, 3).map((team, index) => ({
+    teamAbbrev: team.teamAbbrev,
+    sortGroup: 2,
+    sortIndex: index + 1,
+    label: `Metro ${index + 1}`,
+  }));
+
+  const autoBidAbbrevs = new Set([
+    ...topAtlantic.map((team) => team.teamAbbrev),
+    ...topMetro.map((team) => team.teamAbbrev),
+  ]);
+
+  const wildCards = eastTeams
+    .filter((team) => !autoBidAbbrevs.has(team.teamAbbrev))
+    .slice()
+    .sort(compareStandingsOrder)
+    .map((team, index) => ({
+      teamAbbrev: team.teamAbbrev,
+      sortGroup: index < 2 ? 3 : 4,
+      sortIndex: index < 2 ? index + 1 : index - 1,
+      label: index < 2 ? `Wild Card ${index + 1}` : `Chasing ${index - 1}`,
+    }));
+
+  return new Map(
+    [...topAtlantic, ...topMetro, ...wildCards].map((team) => [
+      team.teamAbbrev,
+      {
+        playoffDisplayGroup: team.sortGroup,
+        playoffDisplayIndex: team.sortIndex,
+        playoffDisplayLabel: team.label,
+      },
+    ])
+  );
+}
+
 function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome, objective) {
   const teamsMap = new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)]));
   applyOutcomeToTeamsMap(teamsMap, homeAbbrev, awayAbbrev, outcome);
@@ -585,22 +661,30 @@ async function loadNightlyScoreboards(todayDate) {
   );
 }
 
-function getComboGames(scoreboard, allTeams, sabresConference) {
+function isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs) {
+  const homeAbbrev = teamAbbrev(game.homeTeam);
+  const awayAbbrev = teamAbbrev(game.awayTeam);
+  const homeConference = conferenceByAbbrev.get(homeAbbrev) ?? "";
+  const awayConference = conferenceByAbbrev.get(awayAbbrev) ?? "";
+
+  if (homeConference === "W" && awayConference === "W") {
+    return false;
+  }
+
+  if (homeAbbrev === "BUF" || awayAbbrev === "BUF") {
+    return true;
+  }
+
+  return challengerAbbrevs.has(homeAbbrev) || challengerAbbrevs.has(awayAbbrev);
+}
+
+function getComboGames(scoreboard, allTeams, challengerAbbrevs) {
   const conferenceByAbbrev = new Map(
     allTeams.map((team) => [team.teamAbbrev, team.conference])
   );
-  const challengerAbbrevs = new Set(
-    allTeams
-      .filter((team) => team.team !== TARGET_TEAM && team.conference === sabresConference)
-      .map((team) => team.teamAbbrev)
-  );
 
   return scoreboard.games
-    .filter((game) => {
-      const homeConference = conferenceByAbbrev.get(teamAbbrev(game.homeTeam)) ?? "";
-      const awayConference = conferenceByAbbrev.get(teamAbbrev(game.awayTeam)) ?? "";
-      return !(homeConference === "W" && awayConference === "W");
-    })
+    .filter((game) => isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs))
     .map((game) => {
       const homeAbbrev = teamAbbrev(game.homeTeam);
       const awayAbbrev = teamAbbrev(game.awayTeam);
@@ -620,12 +704,11 @@ function getComboGames(scoreboard, allTeams, sabresConference) {
 }
 
 function getBestNightCombo(scoreboard, allTeams, baselineRace, objective) {
-  const sabres = allTeams.find((team) => team.team === TARGET_TEAM);
-  if (!sabres) {
-    return null;
-  }
+  const challengerAbbrevs = new Set(
+    baselineRace.challengers.map((team) => team.teamAbbrev)
+  );
 
-  const comboGames = getComboGames(scoreboard, allTeams, sabres.conference);
+  const comboGames = getComboGames(scoreboard, allTeams, challengerAbbrevs);
   if (comboGames.length === 0) {
     return null;
   }
@@ -710,17 +793,15 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
   const conferenceByAbbrev = new Map(
     allTeams.map((team) => [team.teamAbbrev, team.conference])
   );
+  const challengerAbbrevs = new Set(
+    baselineRace.challengers.map((team) => team.teamAbbrev)
+  );
 
   return scoreboards.map((scoreboard) => {
       const modeledGames = scoreboard.games
-        .filter((game) => {
-          const homeAbbrev = teamAbbrev(game.homeTeam);
-          const awayAbbrev = teamAbbrev(game.awayTeam);
-          const homeConference = conferenceByAbbrev.get(homeAbbrev) ?? "";
-          const awayConference = conferenceByAbbrev.get(awayAbbrev) ?? "";
-
-          return !(homeConference === "W" && awayConference === "W");
-        })
+        .filter((game) =>
+          isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs)
+        )
         .map((game) => {
         const homeAbbrev = teamAbbrev(game.homeTeam);
         const awayAbbrev = teamAbbrev(game.awayTeam);
@@ -931,6 +1012,8 @@ export const handler = async () => {
     const objectiveEntries = await Promise.all(
       Object.values(OBJECTIVES).map(async (objective) => {
         const baselineRace = computeObjectiveRace(teams, objective);
+        const playoffDisplayOrder =
+          objective.key === "makePlayoffs" ? buildPlayoffDisplayOrder(teams, sabres) : null;
         const objectiveCompetitors = baselineRace.challengers
           .map((team) => {
             const competitor = competitorMap.get(team.teamAbbrev);
@@ -942,9 +1025,42 @@ export const handler = async () => {
               ...competitor,
               tiebreakStatus: team.tiebreakStatus,
               thresholdPoints: team.thresholdPoints,
+              playoffDisplayLabel:
+                objective.key === "makePlayoffs"
+                  ? playoffDisplayOrder?.get(team.teamAbbrev)?.playoffDisplayLabel ?? null
+                  : null,
+              playoffDisplayGroup:
+                objective.key === "makePlayoffs"
+                  ? playoffDisplayOrder?.get(team.teamAbbrev)?.playoffDisplayGroup ?? null
+                  : null,
+              playoffDisplayIndex:
+                objective.key === "makePlayoffs"
+                  ? playoffDisplayOrder?.get(team.teamAbbrev)?.playoffDisplayIndex ?? null
+                  : null,
             };
           })
-          .filter(Boolean);
+          .filter(Boolean)
+          .sort((left, right) => {
+            if (objective.key === "makePlayoffs") {
+              const leftGroup = left.playoffDisplayGroup ?? 99;
+              const rightGroup = right.playoffDisplayGroup ?? 99;
+              if (leftGroup !== rightGroup) {
+                return leftGroup - rightGroup;
+              }
+
+              const leftIndex = left.playoffDisplayIndex ?? 99;
+              const rightIndex = right.playoffDisplayIndex ?? 99;
+              if (leftIndex !== rightIndex) {
+                return leftIndex - rightIndex;
+              }
+            }
+
+            if ((right.thresholdPoints ?? 0) !== (left.thresholdPoints ?? 0)) {
+              return (right.thresholdPoints ?? 0) - (left.thresholdPoints ?? 0);
+            }
+
+            return (right.currentPoints ?? 0) - (left.currentPoints ?? 0);
+          });
         const nightlyRootingGuide = getNightlyRootingGuide(
           nightlyScoreboards,
           teams,

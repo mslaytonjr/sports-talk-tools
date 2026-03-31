@@ -44,9 +44,32 @@ type RootingGuideGame = {
     };
 };
 
+type RootingGuideComboOutcome = {
+    gameId: string | number;
+    matchup: string;
+    outcome: string;
+    label: string;
+};
+
+type RootingGuideComboSummary = {
+    games_considered: number;
+    best_case: {
+        magicPointsNeeded: number;
+        clinchTarget: number;
+        impact: string;
+        outcomes: RootingGuideComboOutcome[];
+    };
+    worst_case: {
+        magicPointsNeeded: number;
+        clinchTarget: number;
+        outcomes: RootingGuideComboOutcome[];
+    };
+};
+
 type RootingGuideDay = {
     date: string;
     label: string;
+    bestNightCombo?: RootingGuideComboSummary;
     games: RootingGuideGame[];
 };
 
@@ -311,6 +334,37 @@ export default function SabresMagicNumberPage() {
                                     </CardHeader>
 
                                     <CardContent className="space-y-3">
+                                        {day.bestNightCombo ? (
+                                            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+                                                <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-300">
+                                                    Best Full Night For Buffalo
+                                                </div>
+                                                <div className="mt-2 text-sm text-slate-200">
+                                                    Simulated across {day.bestNightCombo.games_considered} relevant games.
+                                                </div>
+                                                <div className="mt-2 text-sm font-medium text-white">
+                                                    Best-case impact: {day.bestNightCombo.best_case.impact}
+                                                </div>
+                                                <div className="mt-1 text-xs text-slate-300">
+                                                    Magic number after slate: {day.bestNightCombo.best_case.magicPointsNeeded}
+                                                </div>
+                                                <div className="text-xs text-slate-300">
+                                                    Clinch target after slate: {day.bestNightCombo.best_case.clinchTarget}
+                                                </div>
+                                                <div className="mt-3 space-y-2">
+                                                    {day.bestNightCombo.best_case.outcomes.map((outcome) => (
+                                                        <div
+                                                            key={`${day.date}-${outcome.gameId}-${outcome.outcome}`}
+                                                            className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-2 text-sm text-slate-100"
+                                                        >
+                                                            <div className="font-medium text-white">{outcome.matchup}</div>
+                                                            <div className="text-xs text-slate-300">{outcome.label}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ) : null}
+
                                         {day.games.length === 0 ? (
                                             <div className="text-sm text-slate-400">
                                                 No games scheduled.

@@ -4,7 +4,12 @@ import { Badge } from "@/components/ui/badge";
 
 const SABRES_API_URL =
     import.meta.env.VITE_SABRES_LAMBDA_URL ?? "https://api.wnysportsnet.com/standings";
-const OBJECTIVE_ORDER = ["makePlayoffs", "winDivision", "winConference"] as const;
+const OBJECTIVE_ORDER = [
+    "makePlayoffs",
+    "topThreeDivision",
+    "winDivision",
+    "winConference",
+] as const;
 type ObjectiveKey = (typeof OBJECTIVE_ORDER)[number];
 
 type RegulationOvertimeSplit = {
@@ -102,6 +107,7 @@ type SabresSummary = {
     maxPossiblePoints: number;
     clinchTarget: number;
     magicPointsNeeded: number;
+    isClinched?: boolean;
 };
 
 type SabresApiResponse = {
@@ -147,6 +153,14 @@ function normalizeObjectives(data: SabresApiResponse): NonNullable<SabresApiResp
             sabres: fallbackSabres,
             competitors: fallbackCompetitors,
             nightlyRootingGuide: fallbackGuide,
+        },
+        topThreeDivision: {
+            key: "topThreeDivision",
+            title: "Top 3 In Division",
+            description: "Finish in the top 3 of the Atlantic Division.",
+            sabres: fallbackSabres,
+            competitors: [],
+            nightlyRootingGuide: [],
         },
         winDivision: {
             key: "winDivision",
@@ -251,6 +265,7 @@ export default function SabresMagicNumberPage() {
 
     const objectives = normalizeObjectives(data);
     const objective = objectives[selectedObjective] ?? objectives.makePlayoffs;
+    const isClinched = objective.sabres.isClinched === true;
 
     return (
         <div className="min-h-screen bg-slate-950 px-3 py-4 text-white sm:px-4 md:px-6">
@@ -299,7 +314,14 @@ export default function SabresMagicNumberPage() {
                     {summaryCard("Games Played", objective.sabres.gamesPlayed)}
                     {summaryCard("Games Left", objective.sabres.gamesRemaining)}
                     {summaryCard("Max Possible", objective.sabres.maxPossiblePoints)}
-                    {summaryCard("Magic Points Needed", objective.sabres.magicPointsNeeded)}
+                    {summaryCard(
+                        objective.key === "makePlayoffs" && isClinched
+                            ? "Playoff Status"
+                            : "Magic Points Needed",
+                        objective.key === "makePlayoffs" && isClinched
+                            ? "Clinched"
+                            : objective.sabres.magicPointsNeeded
+                    )}
                 </div>
 
                 <Card className="border-slate-800 bg-slate-900/70">
@@ -309,11 +331,19 @@ export default function SabresMagicNumberPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-0 text-slate-200">
-                        Buffalo locks in this outcome by reaching{" "}
-                        <span className="font-semibold text-white">
-                            {objective.sabres.clinchTarget}
-                        </span>{" "}
-                        points.
+                        {objective.key === "makePlayoffs" && isClinched ? (
+                            <span className="font-semibold text-white">
+                                Buffalo has already clinched a playoff spot.
+                            </span>
+                        ) : (
+                            <>
+                                Buffalo locks in this outcome by reaching{" "}
+                                <span className="font-semibold text-white">
+                                    {objective.sabres.clinchTarget}
+                                </span>{" "}
+                                points.
+                            </>
+                        )}
                     </CardContent>
                 </Card>
 
@@ -443,19 +473,20 @@ export default function SabresMagicNumberPage() {
                     </div>
                 ) : null}
 
-                <div className="space-y-3">
-                    <div className="space-y-1">
-                        <h2 className="text-xl font-semibold text-white">Competing Teams</h2>
-                        <p className="text-sm text-slate-300">
-                            Competing teams show current points, remaining games, maximum possible
-                            points, the tiebreak-aware point threshold Buffalo still needs against
-                            them, next three opponents, regulation/overtime split when available,
-                            last-10 trend, and a 0-100 difficulty score for the next three games.
-                        </p>
-                    </div>
+                {objective.competitors.length > 0 ? (
+                    <div className="space-y-3">
+                        <div className="space-y-1">
+                            <h2 className="text-xl font-semibold text-white">Competing Teams</h2>
+                            <p className="text-sm text-slate-300">
+                                Competing teams show current points, remaining games, maximum possible
+                                points, the tiebreak-aware point threshold Buffalo still needs against
+                                them, next three opponents, regulation/overtime split when available,
+                                last-10 trend, and a 0-100 difficulty score for the next three games.
+                            </p>
+                        </div>
 
-                    <div className="grid gap-4 lg:grid-cols-2">
-                    {objective.competitors.map((row) => (
+                        <div className="grid gap-4 lg:grid-cols-2">
+                        {objective.competitors.map((row) => (
                         <Card key={row.teamAbbrev} className="border-slate-800 bg-slate-900/80">
                             <CardHeader className="space-y-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -587,8 +618,9 @@ export default function SabresMagicNumberPage() {
                             </CardContent>
                         </Card>
                     ))}
+                        </div>
                     </div>
-                </div>
+                ) : null}
             </div>
         </div>
     );

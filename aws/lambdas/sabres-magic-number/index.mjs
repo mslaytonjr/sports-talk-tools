@@ -1,7 +1,8 @@
 const TOTAL_GAMES = 82;
 const TARGET_TEAM = "Buffalo Sabres";
 const NHL_API_BASE = "https://api-web.nhle.com";
-const MAX_COMBO_GAMES = 8;
+const MAX_COMBO_GAMES = 5;
+const MAX_COMBO_BRANCHES = 4096;
 const OBJECTIVES = {
   makePlayoffs: {
     key: "makePlayoffs",
@@ -10,6 +11,14 @@ const OBJECTIVES = {
     cutoffIndex: 7,
     isCompetitor: (team, sabres) =>
       team.team !== TARGET_TEAM && team.conference === sabres.conference,
+  },
+  topThreeDivision: {
+    key: "topThreeDivision",
+    title: "Top 3 In Division",
+    description: "Finish in the top 3 of the Atlantic Division.",
+    cutoffIndex: 2,
+    isCompetitor: (team, sabres) =>
+      team.team !== TARGET_TEAM && team.division === sabres.division,
   },
   winDivision: {
     key: "winDivision",
@@ -43,6 +52,10 @@ const clamp = (value, min, max) => {
 };
 
 function compareStandingsOrder(a, b) {
+  if ((b.maxPossiblePoints ?? 0) !== (a.maxPossiblePoints ?? 0)) {
+    return (b.maxPossiblePoints ?? 0) - (a.maxPossiblePoints ?? 0);
+  }
+
   if (b.currentPoints !== a.currentPoints) {
     return b.currentPoints - a.currentPoints;
   }
@@ -485,18 +498,12 @@ function computeObjectiveRace(allTeams, objective) {
       : 0;
 
   if (objective.key === "makePlayoffs") {
-    const divisionChallengers = eligibleCompetitors
-      .filter(
-        (team) =>
-          team.division === sabres.division && team.thresholdPoints > sabres.currentPoints
-      )
-      .sort(sortByThreat);
-    const divisionTarget =
-      divisionChallengers.length > 2 ? divisionChallengers[2].thresholdPoints : 0;
-
     const conferenceByDivision = new Map();
     for (const team of eligibleCompetitors) {
-      if (team.conference !== sabres.conference) {
+      if (
+        team.conference !== sabres.conference ||
+        team.thresholdPoints <= sabres.currentPoints
+      ) {
         continue;
       }
       const list = conferenceByDivision.get(team.division) ?? [];
@@ -504,36 +511,34 @@ function computeObjectiveRace(allTeams, objective) {
       conferenceByDivision.set(team.division, list);
     }
 
-    const autoBidTeams = new Set();
+    const playoffField = [];
+    const playoffFieldAbbrevs = new Set();
     for (const divisionTeams of conferenceByDivision.values()) {
       divisionTeams
         .slice()
         .sort(sortByThreat)
         .slice(0, 3)
-        .forEach((team) => autoBidTeams.add(team.teamAbbrev));
+        .forEach((team) => {
+          playoffField.push(team);
+          playoffFieldAbbrevs.add(team.teamAbbrev);
+        });
     }
 
     const wildcardChallengers = eligibleCompetitors
       .filter(
         (team) =>
           team.conference === sabres.conference &&
-          !autoBidTeams.has(team.teamAbbrev) &&
-          team.thresholdPoints > sabres.currentPoints
+          team.thresholdPoints > sabres.currentPoints &&
+          !playoffFieldAbbrevs.has(team.teamAbbrev)
       )
-      .sort(sortByThreat);
-    const wildcardTarget =
-      wildcardChallengers.length > 1 ? wildcardChallengers[1].thresholdPoints : 0;
+      .sort(sortByThreat)
+      .slice(0, 2);
 
-    const positiveTargets = [divisionTarget, wildcardTarget].filter((value) => value > 0);
-    thresholdMax = positiveTargets.length > 0 ? Math.min(...positiveTargets) : 0;
-
-    const challengerMap = new Map();
-    [...divisionChallengers, ...wildcardChallengers].forEach((team) => {
-      if (!challengerMap.has(team.teamAbbrev)) {
-        challengerMap.set(team.teamAbbrev, team);
-      }
-    });
-    challengers = [...challengerMap.values()].sort(sortByThreat);
+    challengers = [...playoffField, ...wildcardChallengers].sort(sortByThreat);
+    thresholdMax =
+      challengers.length > objective.cutoffIndex
+        ? challengers[objective.cutoffIndex].thresholdPoints
+        : 0;
   }
 
   const clinchTarget = thresholdMax;
@@ -707,9 +712,15 @@ function getBestNightCombo(scoreboard, allTeams, baselineRace, objective) {
   const challengerAbbrevs = new Set(
     baselineRace.challengers.map((team) => team.teamAbbrev)
   );
+  if (challengerAbbrevs.size === 0) {
+    return null;
+  }
 
   const comboGames = getComboGames(scoreboard, allTeams, challengerAbbrevs);
   if (comboGames.length === 0) {
+    return null;
+  }
+  if (4 ** comboGames.length > MAX_COMBO_BRANCHES) {
     return null;
   }
 
@@ -1012,19 +1023,28 @@ export const handler = async () => {
     const objectiveEntries = await Promise.all(
       Object.values(OBJECTIVES).map(async (objective) => {
         const baselineRace = computeObjectiveRace(teams, objective);
+        const isClinched = baselineRace.magicPointsNeeded === 0;
         const playoffDisplayOrder =
           objective.key === "makePlayoffs" ? buildPlayoffDisplayOrder(teams, sabres) : null;
-        const objectiveCompetitors = baselineRace.challengers
+        const raceChallengerMap = new Map(
+          baselineRace.challengers.map((team) => [team.teamAbbrev, team])
+        );
+        const competitorSource =
+          objective.key === "makePlayoffs"
+            ? eastCompetitorsBase
+            : baselineRace.challengers;
+        const objectiveCompetitors = competitorSource
           .map((team) => {
             const competitor = competitorMap.get(team.teamAbbrev);
             if (!competitor) {
               return null;
             }
+            const challenger = raceChallengerMap.get(team.teamAbbrev);
 
             return {
               ...competitor,
-              tiebreakStatus: team.tiebreakStatus,
-              thresholdPoints: team.thresholdPoints,
+              tiebreakStatus: challenger?.tiebreakStatus ?? competitor.tiebreakStatus,
+              thresholdPoints: challenger?.thresholdPoints ?? competitor.thresholdPoints,
               playoffDisplayLabel:
                 objective.key === "makePlayoffs"
                   ? playoffDisplayOrder?.get(team.teamAbbrev)?.playoffDisplayLabel ?? null
@@ -1061,12 +1081,15 @@ export const handler = async () => {
 
             return (right.currentPoints ?? 0) - (left.currentPoints ?? 0);
           });
-        const nightlyRootingGuide = getNightlyRootingGuide(
-          nightlyScoreboards,
-          teams,
-          baselineRace,
-          objective
-        );
+        const shouldSuppressDetail = objective.key === "makePlayoffs" && isClinched;
+        const nightlyRootingGuide = shouldSuppressDetail
+          ? []
+          : getNightlyRootingGuide(
+              nightlyScoreboards,
+              teams,
+              baselineRace,
+              objective
+            );
 
         return [
           objective.key,
@@ -1081,8 +1104,9 @@ export const handler = async () => {
               maxPossiblePoints: sabres.maxPossiblePoints,
               clinchTarget: baselineRace.clinchTarget,
               magicPointsNeeded: baselineRace.magicPointsNeeded,
+              isClinched,
             },
-            competitors: objectiveCompetitors,
+            competitors: shouldSuppressDetail ? [] : objectiveCompetitors,
             nightlyRootingGuide,
           },
         ];

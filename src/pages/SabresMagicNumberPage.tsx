@@ -71,16 +71,9 @@ type RootingGuideComboSummary = {
     };
 };
 
-type DailyClinchScenario = {
-    magicPointsNeeded: number;
-    clinchTarget: number;
-    outcomes: RootingGuideComboOutcome[];
-};
-
 type DailyClinchScenarios = {
     canClinchToday: boolean;
-    gamesConsidered: number;
-    scenarios: DailyClinchScenario[];
+    conditions: string[];
     message: string;
 };
 
@@ -382,35 +375,20 @@ export default function SabresMagicNumberPage() {
                                         {objective.key === "makePlayoffs" && day.clinchScenarios ? (
                                             <div className="rounded-xl border border-sky-500/20 bg-sky-500/10 p-4">
                                                 <div className="text-[11px] uppercase tracking-[0.18em] text-sky-300">
-                                                    Clinching Scenarios
+                                                    Daily Clinch Check
                                                 </div>
                                                 <div className="mt-2 text-sm font-medium text-white">
                                                     {day.clinchScenarios.message}
                                                 </div>
                                                 {day.clinchScenarios.canClinchToday ? (
                                                     <>
-                                                        <div className="mt-1 text-xs text-slate-300">
-                                                            Based on {day.clinchScenarios.gamesConsidered} relevant games.
-                                                        </div>
-                                                        <div className="mt-3 space-y-3">
-                                                            {day.clinchScenarios.scenarios.map((scenario, index) => (
+                                                        <div className="mt-3 space-y-2">
+                                                            {day.clinchScenarios.conditions.map((condition) => (
                                                                 <div
-                                                                    key={`${day.date}-clinch-${index}`}
-                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-3"
+                                                                    key={`${day.date}-${condition}`}
+                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-2 text-sm text-slate-100"
                                                                 >
-                                                                    <div className="text-xs font-semibold uppercase tracking-[0.12em] text-sky-200">
-                                                                        Scenario {index + 1}
-                                                                    </div>
-                                                                    <div className="mt-2 space-y-2">
-                                                                        {scenario.outcomes.map((outcome) => (
-                                                                            <div
-                                                                                key={`${day.date}-${index}-${outcome.gameId}-${outcome.outcome}`}
-                                                                                className="text-sm text-slate-100"
-                                                                            >
-                                                                                {outcome.label}
-                                                                            </div>
-                                                                        ))}
-                                                                    </div>
+                                                                    {condition}
                                                                 </div>
                                                             ))}
                                                         </div>

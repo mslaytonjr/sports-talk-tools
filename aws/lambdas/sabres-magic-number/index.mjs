@@ -843,8 +843,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   if (baselineRace.magicPointsNeeded === 0) {
     return {
       canClinchToday: true,
-      gamesConsidered: 0,
-      scenarios: [],
+      conditions: [],
       message: "Already clinched",
     };
   }
@@ -866,25 +865,132 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   if (comboGames.length === 0) {
     return {
       canClinchToday: false,
-      gamesConsidered: 0,
-      scenarios: [],
+      conditions: [],
       message: "Can't clinch today",
     };
   }
 
   const outcomes = ["home-reg", "home-ot", "away-ot", "away-reg"];
-  const clinchingScenarios = [];
+  const scenarioResults = [];
+
+  const serializeOutcomes = (values) => values.slice().sort().join("|");
+  const constraintLabel = (game, allowedOutcomes) => {
+    const homeName = fullTeamName(game.homeTeam) || teamAbbrev(game.homeTeam);
+    const awayName = fullTeamName(game.awayTeam) || teamAbbrev(game.awayTeam);
+    const key = serializeOutcomes(allowedOutcomes);
+
+    if (key === "away-ot|away-reg") return `${awayName} win`;
+    if (key === "home-ot|home-reg") return `${homeName} win`;
+    if (key === "away-ot|away-reg|home-ot") return `${awayName} get at least 1 point`;
+    if (key === "away-ot|home-ot|home-reg") return `${homeName} get at least 1 point`;
+    if (key === "away-ot|home-ot") return `${awayName} and ${homeName} both get a point`;
+    if (key === "away-reg") return `${awayName} win in regulation`;
+    if (key === "away-ot") return `${awayName} win in OT/SO`;
+    if (key === "home-reg") return `${homeName} win in regulation`;
+    if (key === "home-ot") return `${homeName} win in OT/SO`;
+    return `${awayName} @ ${homeName}: ${allowedOutcomes.join(", ")}`;
+  };
+
+  const getRelaxationCandidates = (outcome) => {
+    const candidates = [];
+
+    if (outcome === "home-reg") {
+      candidates.push(["home-reg", "home-ot", "away-ot"], ["home-reg", "home-ot"]);
+    } else if (outcome === "home-ot") {
+      candidates.push(
+        ["home-reg", "home-ot", "away-ot"],
+        ["away-ot", "away-reg", "home-ot"],
+        ["home-reg", "home-ot"],
+        ["away-ot", "home-ot"]
+      );
+    } else if (outcome === "away-ot") {
+      candidates.push(
+        ["away-ot", "away-reg", "home-ot"],
+        ["home-reg", "home-ot", "away-ot"],
+        ["away-ot", "away-reg"],
+        ["away-ot", "home-ot"]
+      );
+    } else if (outcome === "away-reg") {
+      candidates.push(["away-ot", "away-reg", "home-ot"], ["away-ot", "away-reg"]);
+    }
+
+    candidates.push([outcome]);
+    return candidates;
+  };
+
+  const matchesConstraint = (scenario, constraints) =>
+    constraints.every((constraint, index) => {
+      if (!constraint) {
+        return true;
+      }
+      return constraint.includes(scenario.outcomes[index]);
+    });
+
+  const guaranteesClinch = (constraints) =>
+    scenarioResults.every((scenario) => {
+      if (!matchesConstraint(scenario, constraints)) {
+        return true;
+      }
+      return scenario.clinches;
+    });
+
+  const simplifyScenario = (scenario) => {
+    const constraints = scenario.outcomes.map((outcome) => [outcome]);
+
+    for (let index = 0; index < constraints.length; index += 1) {
+      const removedConstraint = constraints[index];
+      constraints[index] = null;
+      if (!guaranteesClinch(constraints)) {
+        constraints[index] = removedConstraint;
+      }
+    }
+
+    for (let index = 0; index < constraints.length; index += 1) {
+      const current = constraints[index];
+      if (!current) {
+        continue;
+      }
+
+      const originalOutcome = current[0];
+      const candidates = getRelaxationCandidates(originalOutcome);
+      for (const candidate of candidates) {
+        if (serializeOutcomes(candidate) === serializeOutcomes(current)) {
+          continue;
+        }
+        const previous = constraints[index];
+        constraints[index] = candidate;
+        if (guaranteesClinch(constraints)) {
+          break;
+        }
+        constraints[index] = previous;
+      }
+    }
+
+    const conditions = constraints
+      .map((constraint, index) =>
+        constraint ? constraintLabel(comboGames[index], constraint) : null
+      )
+      .filter(Boolean);
+
+    const specificityScore = constraints.reduce(
+      (sum, constraint) => sum + (constraint ? constraint.length : 4),
+      0
+    );
+
+    return {
+      conditions,
+      constrainedGames: conditions.length,
+      specificityScore,
+    };
+  };
 
   function visit(index, teamsMap, chosenOutcomes) {
     if (index >= comboGames.length) {
       const result = computeObjectiveRace(Array.from(teamsMap.values()), objective);
-      if (result.magicPointsNeeded === 0) {
-        clinchingScenarios.push({
-          magicPointsNeeded: result.magicPointsNeeded,
-          clinchTarget: result.clinchTarget,
-          outcomes: [...chosenOutcomes],
-        });
-      }
+      scenarioResults.push({
+        outcomes: [...chosenOutcomes],
+        clinches: result.magicPointsNeeded === 0,
+      });
       return;
     }
 
@@ -916,18 +1022,28 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     []
   );
 
-  clinchingScenarios.sort((left, right) => {
-    if (left.clinchTarget !== right.clinchTarget) {
-      return left.clinchTarget - right.clinchTarget;
-    }
-    return left.outcomes.length - right.outcomes.length;
-  });
+  const clinchingScenarios = scenarioResults.filter((scenario) => scenario.clinches);
+  if (clinchingScenarios.length === 0) {
+    return {
+      canClinchToday: false,
+      conditions: [],
+      message: "Can't clinch today",
+    };
+  }
+
+  const simplified = clinchingScenarios
+    .map(simplifyScenario)
+    .sort((left, right) => {
+      if (left.constrainedGames !== right.constrainedGames) {
+        return left.constrainedGames - right.constrainedGames;
+      }
+      return left.specificityScore - right.specificityScore;
+    })[0];
 
   return {
-    canClinchToday: clinchingScenarios.length > 0,
-    gamesConsidered: comboGames.length,
-    scenarios: clinchingScenarios.slice(0, MAX_CLINCH_SCENARIOS),
-    message: clinchingScenarios.length > 0 ? "Can clinch today" : "Can't clinch today",
+    canClinchToday: true,
+    conditions: simplified?.conditions ?? [],
+    message: "Can clinch today if:",
   };
 }
 

@@ -4,8 +4,7 @@ const TARGET_TEAM_ABBREV = "BUF";
 const NHL_API_BASE = "https://api-web.nhle.com";
 const MAX_COMBO_GAMES = 5;
 const MAX_COMBO_BRANCHES = 4096;
-const MAX_CLINCH_COMBO_GAMES = 8;
-const MAX_CLINCH_SCENARIOS = 5;
+const MAX_CLINCH_COMBO_GAMES = 6;
 const OBJECTIVES = {
   makePlayoffs: {
     key: "makePlayoffs",
@@ -869,6 +868,13 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
       message: "Can't clinch today",
     };
   }
+  if (4 ** comboGames.length > MAX_COMBO_BRANCHES) {
+    return {
+      canClinchToday: false,
+      conditions: [],
+      message: "Can't clinch today",
+    };
+  }
 
   const outcomes = ["home-reg", "home-ot", "away-ot", "away-reg"];
   const scenarioResults = [];
@@ -1022,8 +1028,8 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     []
   );
 
-  const clinchingScenarios = scenarioResults.filter((scenario) => scenario.clinches);
-  if (clinchingScenarios.length === 0) {
+  const clinchingScenario = scenarioResults.find((scenario) => scenario.clinches);
+  if (!clinchingScenario) {
     return {
       canClinchToday: false,
       conditions: [],
@@ -1031,14 +1037,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     };
   }
 
-  const simplified = clinchingScenarios
-    .map(simplifyScenario)
-    .sort((left, right) => {
-      if (left.constrainedGames !== right.constrainedGames) {
-        return left.constrainedGames - right.constrainedGames;
-      }
-      return left.specificityScore - right.specificityScore;
-    })[0];
+  const simplified = simplifyScenario(clinchingScenario);
 
   return {
     canClinchToday: true,

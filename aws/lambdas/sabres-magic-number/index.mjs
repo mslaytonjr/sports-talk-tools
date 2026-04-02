@@ -877,10 +877,10 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   }
 
   const outcomes = ["home-reg", "home-ot", "away-ot", "away-reg"];
-  const scenarioResults = [];
+  let clinchingScenario = null;
 
   const serializeOutcomes = (values) => values.slice().sort().join("|");
-  const constraintLabel = (game, allowedOutcomes) => {
+  const conditionLabel = (game, allowedOutcomes) => {
     const homeName = fullTeamName(game.homeTeam) || teamAbbrev(game.homeTeam);
     const awayName = fullTeamName(game.awayTeam) || teamAbbrev(game.awayTeam);
     const key = serializeOutcomes(allowedOutcomes);
@@ -897,106 +897,59 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     return `${awayName} @ ${homeName}: ${allowedOutcomes.join(", ")}`;
   };
 
-  const getRelaxationCandidates = (outcome) => {
-    const candidates = [];
-
-    if (outcome === "home-reg") {
-      candidates.push(["home-reg", "home-ot", "away-ot"], ["home-reg", "home-ot"]);
-    } else if (outcome === "home-ot") {
-      candidates.push(
-        ["home-reg", "home-ot", "away-ot"],
-        ["away-ot", "away-reg", "home-ot"],
+  const getAllowedOutcomes = (selectedOutcome) => {
+    if (selectedOutcome === "home-reg") {
+      return [
+        ["home-reg"],
         ["home-reg", "home-ot"],
-        ["away-ot", "home-ot"]
-      );
-    } else if (outcome === "away-ot") {
-      candidates.push(
-        ["away-ot", "away-reg", "home-ot"],
         ["home-reg", "home-ot", "away-ot"],
-        ["away-ot", "away-reg"],
-        ["away-ot", "home-ot"]
-      );
-    } else if (outcome === "away-reg") {
-      candidates.push(["away-ot", "away-reg", "home-ot"], ["away-ot", "away-reg"]);
+      ];
     }
-
-    candidates.push([outcome]);
-    return candidates;
+    if (selectedOutcome === "home-ot") {
+      return [
+        ["home-ot"],
+        ["home-reg", "home-ot"],
+        ["away-ot", "home-ot"],
+        ["home-reg", "home-ot", "away-ot"],
+        ["away-ot", "away-reg", "home-ot"],
+      ];
+    }
+    if (selectedOutcome === "away-ot") {
+      return [
+        ["away-ot"],
+        ["away-ot", "away-reg"],
+        ["away-ot", "home-ot"],
+        ["home-reg", "home-ot", "away-ot"],
+        ["away-ot", "away-reg", "home-ot"],
+      ];
+    }
+    return [
+      ["away-reg"],
+      ["away-ot", "away-reg"],
+      ["away-ot", "away-reg", "home-ot"],
+    ];
   };
 
-  const matchesConstraint = (scenario, constraints) =>
-    constraints.every((constraint, index) => {
-      if (!constraint) {
-        return true;
-      }
-      return constraint.includes(scenario.outcomes[index]);
-    });
-
-  const guaranteesClinch = (constraints) =>
-    scenarioResults.every((scenario) => {
-      if (!matchesConstraint(scenario, constraints)) {
-        return true;
-      }
-      return scenario.clinches;
-    });
-
-  const simplifyScenario = (scenario) => {
-    const constraints = scenario.outcomes.map((outcome) => [outcome]);
-
-    for (let index = 0; index < constraints.length; index += 1) {
-      const removedConstraint = constraints[index];
-      constraints[index] = null;
-      if (!guaranteesClinch(constraints)) {
-        constraints[index] = removedConstraint;
-      }
+  const clinchesWithScenario = (scenario) => {
+    const teamsMap = new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)]));
+    for (let index = 0; index < comboGames.length; index += 1) {
+      const game = comboGames[index];
+      const homeAbbrev = teamAbbrev(game.homeTeam);
+      const awayAbbrev = teamAbbrev(game.awayTeam);
+      applyOutcomeToTeamsMap(teamsMap, homeAbbrev, awayAbbrev, scenario[index]);
     }
-
-    for (let index = 0; index < constraints.length; index += 1) {
-      const current = constraints[index];
-      if (!current) {
-        continue;
-      }
-
-      const originalOutcome = current[0];
-      const candidates = getRelaxationCandidates(originalOutcome);
-      for (const candidate of candidates) {
-        if (serializeOutcomes(candidate) === serializeOutcomes(current)) {
-          continue;
-        }
-        const previous = constraints[index];
-        constraints[index] = candidate;
-        if (guaranteesClinch(constraints)) {
-          break;
-        }
-        constraints[index] = previous;
-      }
-    }
-
-    const conditions = constraints
-      .map((constraint, index) =>
-        constraint ? constraintLabel(comboGames[index], constraint) : null
-      )
-      .filter(Boolean);
-
-    const specificityScore = constraints.reduce(
-      (sum, constraint) => sum + (constraint ? constraint.length : 4),
-      0
-    );
-
-    return {
-      conditions,
-      constrainedGames: conditions.length,
-      specificityScore,
-    };
+    return computeObjectiveRace(Array.from(teamsMap.values()), objective).magicPointsNeeded === 0;
   };
 
   function visit(index, teamsMap, chosenOutcomes) {
+    if (clinchingScenario) {
+      return;
+    }
     if (index >= comboGames.length) {
       const result = computeObjectiveRace(Array.from(teamsMap.values()), objective);
-      scenarioResults.push({
-        outcomes: [...chosenOutcomes],
-        clinches: result.magicPointsNeeded === 0,
-      });
+      if (result.magicPointsNeeded === 0) {
+        clinchingScenario = [...chosenOutcomes];
+      }
       return;
     }
 
@@ -1012,10 +965,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
       );
       applyOutcomeToTeamsMap(nextTeamsMap, homeAbbrev, awayAbbrev, outcome);
       chosenOutcomes.push({
-        gameId: game.id ?? `${scoreboard.date}-${homeAbbrev}-${awayAbbrev}`,
-        matchup: `${awayName} @ ${homeName}`,
         outcome,
-        label: outcomeLabel(outcome, homeName, awayName),
       });
       visit(index + 1, nextTeamsMap, chosenOutcomes);
       chosenOutcomes.pop();
@@ -1028,7 +978,6 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     []
   );
 
-  const clinchingScenario = scenarioResults.find((scenario) => scenario.clinches);
   if (!clinchingScenario) {
     return {
       canClinchToday: false,
@@ -1037,11 +986,43 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     };
   }
 
-  const simplified = simplifyScenario(clinchingScenario);
+  const conditions = [];
+  for (let index = 0; index < clinchingScenario.length; index += 1) {
+    const selectedOutcome = clinchingScenario[index];
+    let bestAllowed = [selectedOutcome];
+
+    for (const allowedOutcomes of getAllowedOutcomes(selectedOutcome)) {
+      const candidateScenario = [...clinchingScenario];
+      let allAllowedStillClinch = true;
+
+      for (const possibleOutcome of allowedOutcomes) {
+        candidateScenario[index] = possibleOutcome;
+        if (!clinchesWithScenario(candidateScenario)) {
+          allAllowedStillClinch = false;
+          break;
+        }
+      }
+
+      if (allAllowedStillClinch) {
+        bestAllowed = allowedOutcomes;
+      } else {
+        break;
+      }
+    }
+
+    if (bestAllowed.length === 4) {
+      continue;
+    }
+
+    const label = conditionLabel(comboGames[index], bestAllowed);
+    if (label) {
+      conditions.push(label);
+    }
+  }
 
   return {
     canClinchToday: true,
-    conditions: simplified?.conditions ?? [],
+    conditions,
     message: "Can clinch today if:",
   };
 }

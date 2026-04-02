@@ -359,8 +359,9 @@ export default function SabresMagicNumberPage() {
                         <div className="space-y-1">
                             <h2 className="text-xl font-semibold text-white">Nightly Rooting Guide</h2>
                             <p className="text-sm text-slate-300">
-                                Each game is simulated across regulation and OT outcomes to find the
-                                result that helps Buffalo most.
+                                {objective.key === "makePlayoffs"
+                                    ? "Daily clinch check for Buffalo."
+                                    : "Each game is simulated across regulation and OT outcomes to find the result that helps Buffalo most."}
                             </p>
                         </div>
 
@@ -428,7 +429,7 @@ export default function SabresMagicNumberPage() {
                                             </div>
                                         ) : null}
 
-                                        {day.games.length === 0 ? (
+                                        {objective.key === "makePlayoffs" ? null : day.games.length === 0 ? (
                                             <div className="text-sm text-slate-400">
                                                 No games scheduled.
                                             </div>

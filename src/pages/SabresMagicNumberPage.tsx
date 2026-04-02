@@ -71,9 +71,23 @@ type RootingGuideComboSummary = {
     };
 };
 
+type DailyClinchScenario = {
+    magicPointsNeeded: number;
+    clinchTarget: number;
+    outcomes: RootingGuideComboOutcome[];
+};
+
+type DailyClinchScenarios = {
+    canClinchToday: boolean;
+    gamesConsidered: number;
+    scenarios: DailyClinchScenario[];
+    message: string;
+};
+
 type RootingGuideDay = {
     date: string;
     label: string;
+    clinchScenarios?: DailyClinchScenarios | null;
     bestNightCombo?: RootingGuideComboSummary;
     games: RootingGuideGame[];
 };
@@ -365,7 +379,47 @@ export default function SabresMagicNumberPage() {
                                     </CardHeader>
 
                                     <CardContent className="space-y-3">
-                                        {day.bestNightCombo ? (
+                                        {objective.key === "makePlayoffs" && day.clinchScenarios ? (
+                                            <div className="rounded-xl border border-sky-500/20 bg-sky-500/10 p-4">
+                                                <div className="text-[11px] uppercase tracking-[0.18em] text-sky-300">
+                                                    Clinching Scenarios
+                                                </div>
+                                                <div className="mt-2 text-sm font-medium text-white">
+                                                    {day.clinchScenarios.message}
+                                                </div>
+                                                {day.clinchScenarios.canClinchToday ? (
+                                                    <>
+                                                        <div className="mt-1 text-xs text-slate-300">
+                                                            Based on {day.clinchScenarios.gamesConsidered} relevant games.
+                                                        </div>
+                                                        <div className="mt-3 space-y-3">
+                                                            {day.clinchScenarios.scenarios.map((scenario, index) => (
+                                                                <div
+                                                                    key={`${day.date}-clinch-${index}`}
+                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-3"
+                                                                >
+                                                                    <div className="text-xs font-semibold uppercase tracking-[0.12em] text-sky-200">
+                                                                        Scenario {index + 1}
+                                                                    </div>
+                                                                    <div className="mt-2 space-y-2">
+                                                                        {scenario.outcomes.map((outcome) => (
+                                                                            <div
+                                                                                key={`${day.date}-${index}-${outcome.gameId}-${outcome.outcome}`}
+                                                                                className="text-sm text-slate-100"
+                                                                            >
+                                                                                {outcome.label}
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </>
+                                                ) : null}
+                                            </div>
+                                        ) : null}
+
+                                        {objective.key !== "makePlayoffs" && day.bestNightCombo ? (
                                             <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4">
                                                 <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-300">
                                                     Best Full Night For Buffalo

@@ -1,8 +1,11 @@
 const TOTAL_GAMES = 82;
 const TARGET_TEAM = "Buffalo Sabres";
+const TARGET_TEAM_ABBREV = "BUF";
 const NHL_API_BASE = "https://api-web.nhle.com";
 const MAX_COMBO_GAMES = 5;
 const MAX_COMBO_BRANCHES = 4096;
+const MAX_CLINCH_COMBO_GAMES = 8;
+const MAX_CLINCH_SCENARIOS = 5;
 const OBJECTIVES = {
   makePlayoffs: {
     key: "makePlayoffs",
@@ -606,6 +609,12 @@ function buildPlayoffDisplayOrder(allTeams, sabres) {
   );
 }
 
+function getPlayoffPictureAbbrevs(allTeams, sabres, limit = 10) {
+  return new Set(
+    Array.from(buildPlayoffDisplayOrder(allTeams, sabres).keys()).slice(0, limit)
+  );
+}
+
 function simulateGameOutcome(allTeams, homeAbbrev, awayAbbrev, outcome, objective) {
   const teamsMap = new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)]));
   applyOutcomeToTeamsMap(teamsMap, homeAbbrev, awayAbbrev, outcome);
@@ -666,7 +675,7 @@ async function loadNightlyScoreboards(todayDate) {
   );
 }
 
-function isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs) {
+function isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs, focusAbbrevs = null) {
   const homeAbbrev = teamAbbrev(game.homeTeam);
   const awayAbbrev = teamAbbrev(game.awayTeam);
   const homeConference = conferenceByAbbrev.get(homeAbbrev) ?? "";
@@ -676,26 +685,48 @@ function isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs) {
     return false;
   }
 
-  if (homeAbbrev === "BUF" || awayAbbrev === "BUF") {
+  if (homeAbbrev === TARGET_TEAM_ABBREV || awayAbbrev === TARGET_TEAM_ABBREV) {
+    return true;
+  }
+
+  if (
+    focusAbbrevs &&
+    (focusAbbrevs.has(homeAbbrev) || focusAbbrevs.has(awayAbbrev))
+  ) {
     return true;
   }
 
   return challengerAbbrevs.has(homeAbbrev) || challengerAbbrevs.has(awayAbbrev);
 }
 
-function getComboGames(scoreboard, allTeams, challengerAbbrevs) {
+function getComboGames(
+  scoreboard,
+  allTeams,
+  challengerAbbrevs,
+  focusAbbrevs = null,
+  maxGames = MAX_COMBO_GAMES
+) {
   const conferenceByAbbrev = new Map(
     allTeams.map((team) => [team.teamAbbrev, team.conference])
   );
 
   return scoreboard.games
-    .filter((game) => isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs))
+    .filter((game) =>
+      isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs, focusAbbrevs)
+    )
     .map((game) => {
       const homeAbbrev = teamAbbrev(game.homeTeam);
       const awayAbbrev = teamAbbrev(game.awayTeam);
-      const relevance =
+      const challengerRelevance =
         (challengerAbbrevs.has(homeAbbrev) ? 1 : 0) +
         (challengerAbbrevs.has(awayAbbrev) ? 1 : 0);
+      const focusRelevance =
+        focusAbbrevs
+          ? (focusAbbrevs.has(homeAbbrev) ? 1 : 0) + (focusAbbrevs.has(awayAbbrev) ? 1 : 0)
+          : 0;
+      const sabresRelevance =
+        homeAbbrev === TARGET_TEAM_ABBREV || awayAbbrev === TARGET_TEAM_ABBREV ? 1 : 0;
+      const relevance = sabresRelevance * 100 + challengerRelevance * 10 + focusRelevance;
       return { game, relevance };
     })
     .sort((left, right) => {
@@ -704,11 +735,12 @@ function getComboGames(scoreboard, allTeams, challengerAbbrevs) {
       }
       return (left.game.startTimeUTC ?? "").localeCompare(right.game.startTimeUTC ?? "");
     })
-    .slice(0, MAX_COMBO_GAMES)
+    .slice(0, maxGames)
     .map((entry) => entry.game);
 }
 
 function getBestNightCombo(scoreboard, allTeams, baselineRace, objective) {
+  const sabres = baselineRace.sabres;
   const challengerAbbrevs = new Set(
     baselineRace.challengers.map((team) => team.teamAbbrev)
   );
@@ -716,7 +748,14 @@ function getBestNightCombo(scoreboard, allTeams, baselineRace, objective) {
     return null;
   }
 
-  const comboGames = getComboGames(scoreboard, allTeams, challengerAbbrevs);
+  const focusAbbrevs =
+    objective.key === "makePlayoffs" ? getPlayoffPictureAbbrevs(allTeams, sabres) : null;
+  const comboGames = getComboGames(
+    scoreboard,
+    allTeams,
+    challengerAbbrevs,
+    focusAbbrevs
+  );
   if (comboGames.length === 0) {
     return null;
   }
@@ -800,18 +839,113 @@ function getBestNightCombo(scoreboard, allTeams, baselineRace, objective) {
   };
 }
 
+function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective) {
+  if (baselineRace.magicPointsNeeded === 0) {
+    return {
+      canClinchToday: true,
+      gamesConsidered: 0,
+      scenarios: [],
+      message: "Already clinched",
+    };
+  }
+
+  const sabres = baselineRace.sabres;
+  const challengerAbbrevs = new Set(
+    baselineRace.challengers.map((team) => team.teamAbbrev)
+  );
+  const focusAbbrevs =
+    objective.key === "makePlayoffs" ? getPlayoffPictureAbbrevs(allTeams, sabres) : null;
+  const comboGames = getComboGames(
+    scoreboard,
+    allTeams,
+    challengerAbbrevs,
+    focusAbbrevs,
+    MAX_CLINCH_COMBO_GAMES
+  );
+
+  if (comboGames.length === 0) {
+    return {
+      canClinchToday: false,
+      gamesConsidered: 0,
+      scenarios: [],
+      message: "Can't clinch today",
+    };
+  }
+
+  const outcomes = ["home-reg", "home-ot", "away-ot", "away-reg"];
+  const clinchingScenarios = [];
+
+  function visit(index, teamsMap, chosenOutcomes) {
+    if (index >= comboGames.length) {
+      const result = computeObjectiveRace(Array.from(teamsMap.values()), objective);
+      if (result.magicPointsNeeded === 0) {
+        clinchingScenarios.push({
+          magicPointsNeeded: result.magicPointsNeeded,
+          clinchTarget: result.clinchTarget,
+          outcomes: [...chosenOutcomes],
+        });
+      }
+      return;
+    }
+
+    const game = comboGames[index];
+    const homeAbbrev = teamAbbrev(game.homeTeam);
+    const awayAbbrev = teamAbbrev(game.awayTeam);
+    const homeName = fullTeamName(game.homeTeam) || homeAbbrev;
+    const awayName = fullTeamName(game.awayTeam) || awayAbbrev;
+
+    for (const outcome of outcomes) {
+      const nextTeamsMap = new Map(
+        Array.from(teamsMap.entries()).map(([abbrev, team]) => [abbrev, cloneTeam(team)])
+      );
+      applyOutcomeToTeamsMap(nextTeamsMap, homeAbbrev, awayAbbrev, outcome);
+      chosenOutcomes.push({
+        gameId: game.id ?? `${scoreboard.date}-${homeAbbrev}-${awayAbbrev}`,
+        matchup: `${awayName} @ ${homeName}`,
+        outcome,
+        label: outcomeLabel(outcome, homeName, awayName),
+      });
+      visit(index + 1, nextTeamsMap, chosenOutcomes);
+      chosenOutcomes.pop();
+    }
+  }
+
+  visit(
+    0,
+    new Map(allTeams.map((team) => [team.teamAbbrev, cloneTeam(team)])),
+    []
+  );
+
+  clinchingScenarios.sort((left, right) => {
+    if (left.clinchTarget !== right.clinchTarget) {
+      return left.clinchTarget - right.clinchTarget;
+    }
+    return left.outcomes.length - right.outcomes.length;
+  });
+
+  return {
+    canClinchToday: clinchingScenarios.length > 0,
+    gamesConsidered: comboGames.length,
+    scenarios: clinchingScenarios.slice(0, MAX_CLINCH_SCENARIOS),
+    message: clinchingScenarios.length > 0 ? "Can clinch today" : "Can't clinch today",
+  };
+}
+
 function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) {
+  const sabres = baselineRace.sabres;
   const conferenceByAbbrev = new Map(
     allTeams.map((team) => [team.teamAbbrev, team.conference])
   );
   const challengerAbbrevs = new Set(
     baselineRace.challengers.map((team) => team.teamAbbrev)
   );
+  const focusAbbrevs =
+    objective.key === "makePlayoffs" ? getPlayoffPictureAbbrevs(allTeams, sabres) : null;
 
   return scoreboards.map((scoreboard) => {
       const modeledGames = scoreboard.games
         .filter((game) =>
-          isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs)
+          isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs, focusAbbrevs)
         )
         .map((game) => {
         const homeAbbrev = teamAbbrev(game.homeTeam);
@@ -889,6 +1023,10 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
       return {
         date: scoreboard.date,
         label: scoreboard.label,
+        clinchScenarios:
+          objective.key === "makePlayoffs"
+            ? getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
+            : null,
         bestNightCombo: getBestNightCombo(scoreboard, allTeams, baselineRace, objective),
         games: modeledGames,
       };

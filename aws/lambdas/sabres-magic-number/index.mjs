@@ -843,7 +843,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     return {
       canClinchToday: true,
       conditions: [],
-      message: "Already clinched",
+      bestOutcomes: [],
     };
   }
 
@@ -865,14 +865,14 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     return {
       canClinchToday: false,
       conditions: [],
-      message: "Can't clinch today",
+      bestOutcomes: [],
     };
   }
   if (4 ** comboGames.length > MAX_COMBO_BRANCHES) {
     return {
       canClinchToday: false,
       conditions: [],
-      message: "Can't clinch today",
+      bestOutcomes: [],
     };
   }
 
@@ -982,7 +982,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     return {
       canClinchToday: false,
       conditions: [],
-      message: "Can't clinch today",
+      bestOutcomes: [],
     };
   }
 
@@ -1023,7 +1023,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   return {
     canClinchToday: true,
     conditions,
-    message: "Can clinch today if:",
+    bestOutcomes: [],
   };
 }
 
@@ -1039,6 +1039,15 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
     objective.key === "makePlayoffs" ? getPlayoffPictureAbbrevs(allTeams, sabres) : null;
 
   return scoreboards.map((scoreboard) => {
+      const playoffDaySummary =
+        objective.key === "makePlayoffs"
+          ? getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
+          : null;
+      const bestNightCombo =
+        objective.key === "makePlayoffs" && playoffDaySummary?.canClinchToday
+          ? null
+          : getBestNightCombo(scoreboard, allTeams, baselineRace, objective);
+
       const modeledGames = scoreboard.games
         .filter((game) =>
           isRelevantNightlyGame(game, conferenceByAbbrev, challengerAbbrevs, focusAbbrevs)
@@ -1120,10 +1129,13 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
         date: scoreboard.date,
         label: scoreboard.label,
         clinchScenarios:
-          objective.key === "makePlayoffs"
-            ? getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
+          objective.key === "makePlayoffs" && playoffDaySummary
+            ? {
+                ...playoffDaySummary,
+                bestOutcomes: bestNightCombo?.best_case.outcomes.map((outcome) => outcome.label) ?? [],
+              }
             : null,
-        bestNightCombo: getBestNightCombo(scoreboard, allTeams, baselineRace, objective),
+        bestNightCombo,
         games: modeledGames,
       };
     });

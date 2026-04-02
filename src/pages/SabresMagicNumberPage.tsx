@@ -74,7 +74,7 @@ type RootingGuideComboSummary = {
 type DailyClinchScenarios = {
     canClinchToday: boolean;
     conditions: string[];
-    message: string;
+    bestOutcomes: string[];
 };
 
 type RootingGuideDay = {
@@ -379,7 +379,7 @@ export default function SabresMagicNumberPage() {
                                                     Daily Clinch Check
                                                 </div>
                                                 <div className="mt-2 text-sm font-medium text-white">
-                                                    {day.clinchScenarios.message}
+                                                    Can clinch today: {day.clinchScenarios.canClinchToday ? "Yes" : "No"}
                                                 </div>
                                                 {day.clinchScenarios.canClinchToday ? (
                                                     <>
@@ -390,6 +390,22 @@ export default function SabresMagicNumberPage() {
                                                                     className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-2 text-sm text-slate-100"
                                                                 >
                                                                     {condition}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </>
+                                                ) : day.clinchScenarios.bestOutcomes.length > 0 ? (
+                                                    <>
+                                                        <div className="mt-3 text-sm font-medium text-white">
+                                                            Best outcome today:
+                                                        </div>
+                                                        <div className="mt-2 space-y-2">
+                                                            {day.clinchScenarios.bestOutcomes.map((outcome) => (
+                                                                <div
+                                                                    key={`${day.date}-${outcome}`}
+                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-2 text-sm text-slate-100"
+                                                                >
+                                                                    {outcome}
                                                                 </div>
                                                             ))}
                                                         </div>

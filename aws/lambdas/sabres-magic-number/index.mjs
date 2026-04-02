@@ -5,6 +5,7 @@ const NHL_API_BASE = "https://api-web.nhle.com";
 const MAX_COMBO_GAMES = 5;
 const MAX_COMBO_BRANCHES = 4096;
 const MAX_CLINCH_COMBO_GAMES = 6;
+const MAX_CLINCH_BRANCHES = 3;
 const OBJECTIVES = {
   makePlayoffs: {
     key: "makePlayoffs",
@@ -842,7 +843,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   if (baselineRace.magicPointsNeeded === 0) {
     return {
       canClinchToday: true,
-      conditions: [],
+      branches: [],
       bestOutcomes: [],
     };
   }
@@ -864,20 +865,26 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
   if (comboGames.length === 0) {
     return {
       canClinchToday: false,
-      conditions: [],
+      branches: [],
       bestOutcomes: [],
     };
   }
   if (4 ** comboGames.length > MAX_COMBO_BRANCHES) {
     return {
       canClinchToday: false,
-      conditions: [],
+      branches: [],
       bestOutcomes: [],
     };
   }
 
   const outcomes = ["home-reg", "home-ot", "away-ot", "away-reg"];
-  let clinchingScenario = null;
+  const clinchingScenarios = [];
+  let bestScenario = null;
+  const sabresGameIndex = comboGames.findIndex((game) => {
+    const homeAbbrev = teamAbbrev(game.homeTeam);
+    const awayAbbrev = teamAbbrev(game.awayTeam);
+    return homeAbbrev === TARGET_TEAM_ABBREV || awayAbbrev === TARGET_TEAM_ABBREV;
+  });
 
   const serializeOutcomes = (values) => values.slice().sort().join("|");
   const conditionLabel = (game, allowedOutcomes) => {
@@ -941,14 +948,26 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     return computeObjectiveRace(Array.from(teamsMap.values()), objective).magicPointsNeeded === 0;
   };
 
+  const formatScenarioLabels = (scenario) =>
+    scenario.map((outcome, index) => {
+      const game = comboGames[index];
+      const homeName = fullTeamName(game.homeTeam) || teamAbbrev(game.homeTeam);
+      const awayName = fullTeamName(game.awayTeam) || teamAbbrev(game.awayTeam);
+      return outcomeLabel(outcome, homeName, awayName);
+    });
+
   function visit(index, teamsMap, chosenOutcomes) {
-    if (clinchingScenario) {
-      return;
-    }
     if (index >= comboGames.length) {
       const result = computeObjectiveRace(Array.from(teamsMap.values()), objective);
       if (result.magicPointsNeeded === 0) {
-        clinchingScenario = [...chosenOutcomes];
+        clinchingScenarios.push([...chosenOutcomes]);
+      }
+      const payload = {
+        ...result,
+        outcomes: [...chosenOutcomes],
+      };
+  if (!bestScenario || compareOutcomeResults(payload, bestScenario) < 0) {
+        bestScenario = payload;
       }
       return;
     }
@@ -964,9 +983,7 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
         Array.from(teamsMap.entries()).map(([abbrev, team]) => [abbrev, cloneTeam(team)])
       );
       applyOutcomeToTeamsMap(nextTeamsMap, homeAbbrev, awayAbbrev, outcome);
-      chosenOutcomes.push({
-        outcome,
-      });
+      chosenOutcomes.push(outcome);
       visit(index + 1, nextTeamsMap, chosenOutcomes);
       chosenOutcomes.pop();
     }
@@ -978,51 +995,77 @@ function getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
     []
   );
 
-  if (!clinchingScenario) {
+  if (clinchingScenarios.length === 0) {
     return {
       canClinchToday: false,
-      conditions: [],
-      bestOutcomes: [],
+      branches: [],
+      bestOutcomes: bestScenario ? formatScenarioLabels(bestScenario.outcomes) : [],
     };
   }
 
-  const conditions = [];
-  for (let index = 0; index < clinchingScenario.length; index += 1) {
-    const selectedOutcome = clinchingScenario[index];
-    let bestAllowed = [selectedOutcome];
+  const simplifyScenario = (scenario) => {
+    const conditions = [];
+    for (let index = 0; index < scenario.length; index += 1) {
+      const selectedOutcome = scenario[index];
+      let bestAllowed = [selectedOutcome];
 
-    for (const allowedOutcomes of getAllowedOutcomes(selectedOutcome)) {
-      const candidateScenario = [...clinchingScenario];
-      let allAllowedStillClinch = true;
+      for (const allowedOutcomes of getAllowedOutcomes(selectedOutcome)) {
+        const candidateScenario = [...scenario];
+        let allAllowedStillClinch = true;
 
-      for (const possibleOutcome of allowedOutcomes) {
-        candidateScenario[index] = possibleOutcome;
-        if (!clinchesWithScenario(candidateScenario)) {
-          allAllowedStillClinch = false;
+        for (const possibleOutcome of allowedOutcomes) {
+          candidateScenario[index] = possibleOutcome;
+          if (!clinchesWithScenario(candidateScenario)) {
+            allAllowedStillClinch = false;
+            break;
+          }
+        }
+
+        if (allAllowedStillClinch) {
+          bestAllowed = allowedOutcomes;
+        } else {
           break;
         }
       }
 
-      if (allAllowedStillClinch) {
-        bestAllowed = allowedOutcomes;
-      } else {
-        break;
+      if (bestAllowed.length === 4) {
+        continue;
+      }
+
+      const label = conditionLabel(comboGames[index], bestAllowed);
+      if (label) {
+        conditions.push(label);
       }
     }
 
-    if (bestAllowed.length === 4) {
+    return conditions;
+  };
+
+  const groupedScenarios = new Map();
+  for (const scenario of clinchingScenarios) {
+    const sabresOutcome = sabresGameIndex >= 0 ? scenario[sabresGameIndex] : scenario[0];
+    const list = groupedScenarios.get(sabresOutcome) ?? [];
+    list.push(scenario);
+    groupedScenarios.set(sabresOutcome, list);
+  }
+
+  const branches = [];
+  const seenBranches = new Set();
+  for (const scenarios of groupedScenarios.values()) {
+    const conditions = simplifyScenario(scenarios[0]);
+    const key = conditions.join("|");
+    if (!key || seenBranches.has(key)) {
       continue;
     }
-
-    const label = conditionLabel(comboGames[index], bestAllowed);
-    if (label) {
-      conditions.push(label);
-    }
+    seenBranches.add(key);
+    branches.push(conditions);
   }
+
+  branches.sort((left, right) => left.length - right.length);
 
   return {
     canClinchToday: true,
-    conditions,
+    branches: branches.slice(0, MAX_CLINCH_BRANCHES),
     bestOutcomes: [],
   };
 }
@@ -1044,7 +1087,7 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
           ? getClinchScenariosForDay(scoreboard, allTeams, baselineRace, objective)
           : null;
       const bestNightCombo =
-        objective.key === "makePlayoffs" && playoffDaySummary?.canClinchToday
+        objective.key === "makePlayoffs"
           ? null
           : getBestNightCombo(scoreboard, allTeams, baselineRace, objective);
 
@@ -1130,10 +1173,7 @@ function getNightlyRootingGuide(scoreboards, allTeams, baselineRace, objective) 
         label: scoreboard.label,
         clinchScenarios:
           objective.key === "makePlayoffs" && playoffDaySummary
-            ? {
-                ...playoffDaySummary,
-                bestOutcomes: bestNightCombo?.best_case.outcomes.map((outcome) => outcome.label) ?? [],
-              }
+            ? playoffDaySummary
             : null,
         bestNightCombo,
         games: modeledGames,

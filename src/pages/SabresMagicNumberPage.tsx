@@ -73,7 +73,7 @@ type RootingGuideComboSummary = {
 
 type DailyClinchScenarios = {
     canClinchToday: boolean;
-    conditions: string[];
+    branches: string[][];
     bestOutcomes: string[];
 };
 
@@ -383,13 +383,27 @@ export default function SabresMagicNumberPage() {
                                                 </div>
                                                 {day.clinchScenarios.canClinchToday ? (
                                                     <>
-                                                        <div className="mt-3 space-y-2">
-                                                            {day.clinchScenarios.conditions.map((condition) => (
+                                                        <div className="mt-3 space-y-3">
+                                                            {day.clinchScenarios.branches.map((branch, branchIndex) => (
                                                                 <div
-                                                                    key={`${day.date}-${condition}`}
-                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-2 text-sm text-slate-100"
+                                                                    key={`${day.date}-branch-${branchIndex}`}
+                                                                    className="rounded-lg border border-white/10 bg-slate-950/50 px-3 py-3"
                                                                 >
-                                                                    {condition}
+                                                                    {branchIndex > 0 ? (
+                                                                        <div className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-sky-200">
+                                                                            Or
+                                                                        </div>
+                                                                    ) : null}
+                                                                    <div className="space-y-2">
+                                                                        {branch.map((condition) => (
+                                                                            <div
+                                                                                key={`${day.date}-${branchIndex}-${condition}`}
+                                                                                className="text-sm text-slate-100"
+                                                                            >
+                                                                                {condition}
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
                                                                 </div>
                                                             ))}
                                                         </div>

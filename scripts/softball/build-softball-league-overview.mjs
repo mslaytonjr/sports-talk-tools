@@ -1,7 +1,7 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseCsv } from "./shared.mjs";
+import { canonicalizeName, parseCsv, slugify, toNumber } from "./shared.mjs";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = resolve(__dirname, "..", "..");
@@ -9,6 +9,11 @@ const processedRoot = resolve(projectRoot, "data", "softball", "processed");
 const reportRoot = resolve(processedRoot, "league_reports");
 
 const targetSeason = process.argv[2] ?? "2026";
+const directionSeasonWeights = new Map([
+  [1, 1],
+  [2, 0.9],
+  [3, 0.8],
+]);
 
 function readCsvFile(filePath) {
   return parseCsv(readFileSync(filePath, "utf8"));
@@ -51,6 +56,172 @@ function buildTeamReportHref(teamId, season) {
   return `../team_reports/${teamId}_${season}.html`;
 }
 
+function getHistoricalStatsRows() {
+  const trustedPath = resolve(processedRoot, "player_stats_trusted.csv");
+  const validatedPath = resolve(processedRoot, "player_stats_validated.csv");
+  if (existsSync(trustedPath)) {
+    return readCsvFile(trustedPath);
+  }
+  if (existsSync(validatedPath)) {
+    return readCsvFile(validatedPath).filter((row) => row.row_quality !== "rejected");
+  }
+  return readCsvFile(resolve(processedRoot, "player_stats.csv"));
+}
+
+function getSupplemental2025DirectionRows() {
+  const reportPath = resolve(projectRoot, "valhalla2025_h2_report.csv");
+  if (!existsSync(reportPath)) {
+    return [];
+  }
+
+  const historicalIdByName = new Map();
+  for (const row of getHistoricalStatsRows()) {
+    if (String(row.season) !== "2025") {
+      continue;
+    }
+    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    if (!historicalPlayerId || row.canonical_player_name?.startsWith("SUB")) {
+      continue;
+    }
+    historicalIdByName.set(canonicalizeName(row.player_name), historicalPlayerId);
+    historicalIdByName.set(canonicalizeName(row.canonical_player_name), historicalPlayerId);
+  }
+
+  return readCsvFile(reportPath)
+    .map((row) => {
+      const playerName = String(row.Player ?? "").trim();
+      const historicalPlayerId = historicalIdByName.get(canonicalizeName(playerName)) ?? slugify(playerName);
+      return {
+        season: "2025",
+        historical_player_id: historicalPlayerId,
+        canonical_player_id: historicalPlayerId,
+        player_name: playerName,
+        canonical_player_name: canonicalizeName(playerName),
+        h2l: row.H2L,
+        h2c: row.H2C,
+        h2r: row.H2R,
+      };
+    })
+    .filter((row) => {
+      const directionTotal =
+        (toNumber(row.h2l) ?? 0) + (toNumber(row.h2c) ?? 0) + (toNumber(row.h2r) ?? 0);
+      return row.player_name && !row.canonical_player_name.startsWith("SUB") && directionTotal > 0;
+    });
+}
+
+function getWeightedDirectionProfiles() {
+  const rows = [...getHistoricalStatsRows(), ...getSupplemental2025DirectionRows()];
+  const grouped = new Map();
+  const targetSeasonNumber = Number(targetSeason);
+
+  for (const row of rows) {
+    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const season = toNumber(row.season);
+    const left = toNumber(row.h2l);
+    const center = toNumber(row.h2c);
+    const right = toNumber(row.h2r);
+    const directionTotal = (left ?? 0) + (center ?? 0) + (right ?? 0);
+
+    if (
+      !historicalPlayerId ||
+      !season ||
+      !directionTotal ||
+      directionTotal <= 0 ||
+      row.canonical_player_name?.startsWith("SUB")
+    ) {
+      continue;
+    }
+
+    const seasonAge = targetSeasonNumber - season;
+    const seasonWeight = directionSeasonWeights.get(seasonAge);
+    if (seasonWeight == null) {
+      continue;
+    }
+
+    const entry = grouped.get(historicalPlayerId) ?? {
+      historical_player_id: historicalPlayerId,
+      weightedLeft: 0,
+      weightedCenter: 0,
+      weightedRight: 0,
+      weightedTotal: 0,
+      seasons: new Set(),
+    };
+
+    entry.weightedLeft += (left ?? 0) * seasonWeight;
+    entry.weightedCenter += (center ?? 0) * seasonWeight;
+    entry.weightedRight += (right ?? 0) * seasonWeight;
+    entry.weightedTotal += directionTotal * seasonWeight;
+    entry.seasons.add(String(season));
+    grouped.set(historicalPlayerId, entry);
+  }
+
+  return new Map(
+    [...grouped.entries()].map(([key, entry]) => [
+      key,
+      {
+        historical_player_id: key,
+        weighted_left: entry.weightedLeft,
+        weighted_center: entry.weightedCenter,
+        weighted_right: entry.weightedRight,
+        weighted_total: entry.weightedTotal,
+        seasons_used: [...entry.seasons].sort(),
+      },
+    ])
+  );
+}
+
+function buildTeamDirectionProfiles(rosterMatches, directionProfileMap) {
+  const byTeam = new Map();
+
+  for (const row of rosterMatches) {
+    if (row.matched !== "yes") {
+      continue;
+    }
+
+    const profile = directionProfileMap.get(row.historical_player_id);
+    if (!profile) {
+      continue;
+    }
+
+    const teamKey = canonicalizeName(row.team);
+    const entry = byTeam.get(teamKey) ?? {
+      weighted_h2l: 0,
+      weighted_h2c: 0,
+      weighted_h2r: 0,
+      weighted_total: 0,
+      players_with_direction_data: 0,
+      seasons: new Set(),
+    };
+
+    entry.weighted_h2l += profile.weighted_left;
+    entry.weighted_h2c += profile.weighted_center;
+    entry.weighted_h2r += profile.weighted_right;
+    entry.weighted_total += profile.weighted_total;
+    entry.players_with_direction_data += 1;
+    for (const season of profile.seasons_used) {
+      entry.seasons.add(season);
+    }
+    byTeam.set(teamKey, entry);
+  }
+
+  return new Map(
+    [...byTeam.entries()].map(([teamKey, entry]) => [
+      teamKey,
+      {
+        weighted_h2l: Number(entry.weighted_h2l.toFixed(2)),
+        weighted_h2c: Number(entry.weighted_h2c.toFixed(2)),
+        weighted_h2r: Number(entry.weighted_h2r.toFixed(2)),
+        weighted_total: Number(entry.weighted_total.toFixed(2)),
+        h2l_percentage: entry.weighted_total > 0 ? entry.weighted_h2l / entry.weighted_total : 0,
+        h2c_percentage: entry.weighted_total > 0 ? entry.weighted_h2c / entry.weighted_total : 0,
+        h2r_percentage: entry.weighted_total > 0 ? entry.weighted_h2r / entry.weighted_total : 0,
+        players_with_direction_data: entry.players_with_direction_data,
+        seasons_used: [...entry.seasons].sort(),
+      },
+    ])
+  );
+}
+
 function buildHtmlReport(payload) {
   const standingsRows = payload.team_rankings
     .map(
@@ -60,6 +231,9 @@ function buildHtmlReport(payload) {
           <td><a class="team-link" href="${escapeHtml(team.team_report_href)}">${escapeHtml(team.team)}</a></td>
           <td>${formatDecimal(team.projected_runs, 2)}</td>
           <td>${team.matched_players}/${team.roster_size}</td>
+          <td>${formatPct(team.h2l_percentage, 1)}</td>
+          <td>${formatPct(team.h2c_percentage, 1)}</td>
+          <td>${formatPct(team.h2r_percentage, 1)}</td>
           <td>${formatDecimal(team.overall_rating, 3)}</td>
         </tr>`
     )
@@ -247,6 +421,9 @@ function buildHtmlReport(payload) {
               <th>Team</th>
               <th>Expected Runs</th>
               <th>Matched Roster</th>
+              <th>H2L</th>
+              <th>H2C</th>
+              <th>H2R</th>
               <th>Overall Rating</th>
             </tr>
           </thead>
@@ -281,17 +458,34 @@ function buildHtmlReport(payload) {
 function main() {
   const teamRatings = readCsvFile(resolve(processedRoot, "team_ratings.csv"));
   const playerImpact = readCsvFile(resolve(processedRoot, "player_impact.csv"));
+  const rosterMatches = readCsvFile(resolve(processedRoot, "roster_matches.csv"));
+  const directionProfiles = buildTeamDirectionProfiles(
+    rosterMatches,
+    getWeightedDirectionProfiles()
+  );
 
   const teamRankings = [...teamRatings]
-    .map((row) => ({
-      team: row.team,
-      team_id: row.team_id,
-      projected_runs: Number(row.projected_runs || 0),
-      matched_players: Number(row.matched_players || 0),
-      roster_size: Number(row.roster_size || 0),
-      overall_rating: Number(row.overall_rating || 0),
-      team_report_href: buildTeamReportHref(row.team_id, targetSeason),
-    }))
+    .map((row) => {
+      const directionProfile = directionProfiles.get(canonicalizeName(row.team)) ?? {};
+      return {
+        team: row.team,
+        team_id: row.team_id,
+        projected_runs: Number(row.projected_runs || 0),
+        matched_players: Number(row.matched_players || 0),
+        roster_size: Number(row.roster_size || 0),
+        overall_rating: Number(row.overall_rating || 0),
+        team_report_href: buildTeamReportHref(row.team_id, targetSeason),
+        weighted_h2l: directionProfile.weighted_h2l ?? 0,
+        weighted_h2c: directionProfile.weighted_h2c ?? 0,
+        weighted_h2r: directionProfile.weighted_h2r ?? 0,
+        weighted_direction_total: directionProfile.weighted_total ?? 0,
+        h2l_percentage: directionProfile.h2l_percentage ?? 0,
+        h2c_percentage: directionProfile.h2c_percentage ?? 0,
+        h2r_percentage: directionProfile.h2r_percentage ?? 0,
+        direction_players_with_data: directionProfile.players_with_direction_data ?? 0,
+        direction_seasons_used: directionProfile.seasons_used ?? [],
+      };
+    })
     .sort((left, right) => right.overall_rating - left.overall_rating)
     .map((row, index) => ({
       ...row,

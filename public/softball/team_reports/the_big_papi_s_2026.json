@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "15",
     "unmatched_players": "0",
-    "projected_runs": "11.002666666666666",
+    "projected_runs": "10.4914",
     "offense_index": "0.5436206743968288",
-    "offense_rating": "0.26911262579212253",
+    "offense_rating": "0.1698107849825598",
     "defense_rating": "0",
-    "overall_rating": "0.26911262579212253"
+    "overall_rating": "0.1698107849825598"
   },
   "human_summary": {
     "team_rank": 8,
     "total_teams": 12,
     "team_tier": "Middle-of-the-pack team",
-    "expected_runs": 11.002666666666666,
+    "expected_runs": 10.4914,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 15,
@@ -26,20 +26,37 @@
     "roster_match_rate": 1,
     "strongest_absence": {
       "player_name": "Ralph Avallone",
-      "run_swing": 0.96,
-      "win_probability_swing": 0.0513
+      "run_swing": 0.68,
+      "win_probability_swing": 0.0366
     },
     "easiest_absence": {
-      "player_name": "Temple Houston",
+      "player_name": "John Lew",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
       "The Big Papi's projects as the 8th-strongest team out of 12.",
-      "The model expects about 11.0 runs per game with the current full roster.",
+      "The model expects about 10.5 runs per game with the current full roster.",
       "15 of 15 players have a historical match in the dataset.",
       "Every roster spot matched to a historical player record."
     ]
+  },
+  "hit_direction_profile": {
+    "weighted_h2l": 698.3,
+    "weighted_h2c": 878.7,
+    "weighted_h2r": 95.5,
+    "weighted_total": 1672.5,
+    "h2l_percentage": 0.41751868460388636,
+    "h2c_percentage": 0.5253811659192825,
+    "h2r_percentage": 0.05710014947683109,
+    "players_with_direction_data": 15,
+    "matched_roster_players": 15,
+    "seasons_used": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
   "best_full_order_if_everyone_shows": [
     {
@@ -53,6 +70,14 @@
       "projected_offense_index": 0.6684592588407788,
       "trend_adjustment": "0.0242",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.24865229110512133,
+      "h2c_percentage": 0.5579514824797843,
+      "h2r_percentage": 0.19339622641509435,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.614",
       "obp": "0.634",
       "slg": "0.825",
@@ -70,6 +95,14 @@
       "projected_offense_index": 0.6080649457220282,
       "trend_adjustment": "0.0361",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.39526411657559196,
+      "h2c_percentage": 0.5452337583485125,
+      "h2r_percentage": 0.05950212507589558,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.549",
       "obp": "0.553",
       "slg": "0.665",
@@ -87,6 +120,14 @@
       "projected_offense_index": 0.5367635449066964,
       "trend_adjustment": "-0.0329",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.6798418972332015,
+      "h2c_percentage": 0.30434782608695654,
+      "h2r_percentage": 0.015810276679841896,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.483",
       "obp": "0.506",
       "slg": "0.756",
@@ -104,6 +145,14 @@
       "projected_offense_index": 0.5471188341803486,
       "trend_adjustment": "-0.0207",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.6231647634584013,
+      "h2c_percentage": 0.3681348558999456,
+      "h2r_percentage": 0.008700380641653073,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.525",
       "obp": "0.522",
       "slg": "0.694",
@@ -121,6 +170,14 @@
       "projected_offense_index": 0.5917742432578262,
       "trend_adjustment": "0.0179",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.18187001140250852,
+      "h2c_percentage": 0.7251995438996579,
+      "h2r_percentage": 0.09293044469783353,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.552",
       "obp": "0.563",
       "slg": "0.653",
@@ -138,6 +195,12 @@
       "projected_offense_index": 0.5687576964753415,
       "trend_adjustment": "0.0289",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5,
+      "h2c_percentage": 0.4482758620689655,
+      "h2r_percentage": 0.05172413793103448,
+      "direction_seasons_used": [
+        "2024"
+      ],
       "avg": "0.533",
       "obp": "0.521",
       "slg": "0.598",
@@ -155,6 +218,14 @@
       "projected_offense_index": 0.532014373637939,
       "trend_adjustment": "0.0075",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5002724795640328,
+      "h2c_percentage": 0.47956403269754766,
+      "h2r_percentage": 0.020163487738419618,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.511",
       "obp": "0.517",
       "slg": "0.540",
@@ -172,6 +243,13 @@
       "projected_offense_index": 0.4898144926203076,
       "trend_adjustment": "-0.0248",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.32053175775480064,
+      "h2c_percentage": 0.5524372230428362,
+      "h2r_percentage": 0.12703101920236337,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.469",
       "obp": "0.534",
       "slg": "0.482",
@@ -189,6 +267,12 @@
       "projected_offense_index": 0.4918026081639665,
       "trend_adjustment": "0.0000",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.375,
+      "h2c_percentage": 0.6071428571428571,
+      "h2r_percentage": 0.017857142857142856,
+      "direction_seasons_used": [
+        "2023"
+      ],
       "avg": "0.444",
       "obp": "0.475",
       "slg": "0.500",
@@ -206,6 +290,12 @@
       "projected_offense_index": 0.5440866258982952,
       "trend_adjustment": "0.0000",
       "profile_confidence": "limited",
+      "h2l_percentage": 0.2727272727272727,
+      "h2c_percentage": 0.5757575757575758,
+      "h2r_percentage": 0.15151515151515152,
+      "direction_seasons_used": [
+        "2025"
+      ],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -223,6 +313,14 @@
       "projected_offense_index": 0.49050909388225494,
       "trend_adjustment": "0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.25491624180626365,
+      "h2c_percentage": 0.7123088128186453,
+      "h2r_percentage": 0.03277494537509104,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.407",
       "obp": "0.403",
       "slg": "0.438",
@@ -240,6 +338,14 @@
       "projected_offense_index": 0.4617500157718239,
       "trend_adjustment": "0.0082",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.4750593824228028,
+      "h2c_percentage": 0.5249406175771971,
+      "h2r_percentage": 0,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.350",
       "obp": "0.405",
       "slg": "0.420",
@@ -257,6 +363,14 @@
       "projected_offense_index": 0.48187781867628754,
       "trend_adjustment": "0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.21926229508196718,
+      "h2c_percentage": 0.7233606557377048,
+      "h2r_percentage": 0.05737704918032786,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.373",
       "obp": "0.392",
       "slg": "0.382",
@@ -274,6 +388,14 @@
       "projected_offense_index": 0.45822326312279094,
       "trend_adjustment": "0.0182",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5240594925634295,
+      "h2c_percentage": 0.43744531933508307,
+      "h2r_percentage": 0.03849518810148731,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.378",
       "obp": "0.396",
       "slg": "0.395",
@@ -291,6 +413,13 @@
       "projected_offense_index": 0.41745355037239823,
       "trend_adjustment": "-0.0159",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.7135593220338984,
+      "h2c_percentage": 0.2559322033898305,
+      "h2r_percentage": 0.030508474576271188,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.339",
       "obp": "0.396",
       "slg": "0.339",
@@ -301,53 +430,53 @@
   "top_5_must_have_players": [
     {
       "player_name": "Ralph Avallone",
-      "run_swing": 0.96,
-      "win_probability_swing": 0.0513
-    },
-    {
-      "player_name": "Jason Lew",
-      "run_swing": 0.47,
-      "win_probability_swing": 0.0246
-    },
-    {
-      "player_name": "Levi Henninger",
-      "run_swing": 0.33,
-      "win_probability_swing": 0.0174
-    },
-    {
-      "player_name": "John Lew",
-      "run_swing": 0.25,
-      "win_probability_swing": 0.013
+      "run_swing": 0.68,
+      "win_probability_swing": 0.0366
     },
     {
       "player_name": "Rick DelGizzi",
-      "run_swing": 0.2,
-      "win_probability_swing": 0.0102
+      "run_swing": 0.12,
+      "win_probability_swing": 0.0062
+    },
+    {
+      "player_name": "Jason Lew",
+      "run_swing": 0.11,
+      "win_probability_swing": 0.0057
+    },
+    {
+      "player_name": "RJ Leonard",
+      "run_swing": 0.02,
+      "win_probability_swing": 0.0012
+    },
+    {
+      "player_name": "John Lew",
+      "run_swing": 0,
+      "win_probability_swing": 0
     }
   ],
   "lowest_penalty_absences": [
+    {
+      "player_name": "John Lew",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Levi Henninger",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
     {
       "player_name": "Temple Houston",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "RJ Leonard",
+      "player_name": "Mark Armelino",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
       "player_name": "Andrew Conroy",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Greg Restino",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
-    {
-      "player_name": "Mike Bedell",
       "run_swing": 0,
       "win_probability_swing": 0
     }

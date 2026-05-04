@@ -123,6 +123,11 @@
       background: rgba(141, 91, 18, 0.10);
       color: var(--warn);
     }
+    .note {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
     @media (max-width: 900px) {
       .grid {
         grid-template-columns: 1fr;
@@ -138,16 +143,16 @@
     <section class="hero">
       <div class="kicker">Softball Team Report</div>
       <h1>The Big Units</h1>
-      <p>2026 season outlook. Needs help to close the gap</p>
+      <p>2026 season outlook. Middle-of-the-pack team</p>
       <div class="summary-grid">
         <div class="summary-card">
           <div class="label">League Rank</div>
-          <div class="value">10th</div>
+          <div class="value">9th</div>
           <div class="sub">Out of 12 teams</div>
         </div>
         <div class="summary-card">
           <div class="label">Expected Runs</div>
-          <div class="value">10.2</div>
+          <div class="value">10.4</div>
           <div class="sub">Projected runs per game</div>
         </div>
         <div class="summary-card">
@@ -168,7 +173,7 @@
         <section class="panel">
           <h2>Plain-English Readout</h2>
           <ul>
-            <li>The Big Units projects as the 10th-strongest team out of 12.</li><li>The model expects about 10.2 runs per game with the current full roster.</li><li>13 of 15 players have a historical match in the dataset.</li><li>2 roster spots are still using fallback assumptions because there is no clean historical match.</li>
+            <li>The Big Units projects as the 9th-strongest team out of 12.</li><li>The model expects about 10.4 runs per game with the current full roster.</li><li>13 of 15 players have a historical match in the dataset.</li><li>2 roster spots are still using fallback assumptions because there is no clean historical match.</li>
           </ul>
         </section>
 
@@ -184,6 +189,9 @@
                 <th>Role</th>
                 <th>Bat Score</th>
                 <th>League Rank</th>
+                <th>H2L</th>
+                <th>H2C</th>
+                <th>H2R</th>
                 <th>OBP</th>
                 <th>OPS</th>
                 <th>Notes</th>
@@ -196,6 +204,9 @@
           <td>Table setter</td>
           <td>0.613</td>
           <td>29th of 161 returning players</td>
+          <td>46.4%</td>
+          <td>53.6%</td>
+          <td>0.0%</td>
           <td>0.528</td>
           <td>1.256</td>
           <td></td>
@@ -206,6 +217,9 @@
           <td>Contact bat</td>
           <td>0.584</td>
           <td>39th of 161 returning players</td>
+          <td>18.0%</td>
+          <td>64.8%</td>
+          <td>17.2%</td>
           <td>0.532</td>
           <td>1.352</td>
           <td></td>
@@ -216,6 +230,9 @@
           <td>Run producer</td>
           <td>0.534</td>
           <td>73rd of 161 returning players</td>
+          <td>1.8%</td>
+          <td>36.0%</td>
+          <td>62.2%</td>
           <td>0.548</td>
           <td>1.217</td>
           <td></td>
@@ -226,6 +243,9 @@
           <td>Run producer</td>
           <td>0.520</td>
           <td>83rd of 161 returning players</td>
+          <td>20.0%</td>
+          <td>56.5%</td>
+          <td>23.5%</td>
           <td>0.549</td>
           <td>1.167</td>
           <td></td>
@@ -236,6 +256,9 @@
           <td>Run producer</td>
           <td>0.569</td>
           <td>48th of 161 returning players</td>
+          <td>19.7%</td>
+          <td>64.6%</td>
+          <td>15.8%</td>
           <td>0.536</td>
           <td>1.149</td>
           <td></td>
@@ -246,6 +269,9 @@
           <td>Core lineup</td>
           <td>0.549</td>
           <td>62nd of 161 returning players</td>
+          <td>73.7%</td>
+          <td>25.2%</td>
+          <td>1.1%</td>
           <td>0.506</td>
           <td>1.091</td>
           <td></td>
@@ -256,6 +282,9 @@
           <td>Core lineup</td>
           <td>0.507</td>
           <td>89th of 161 returning players</td>
+          <td>25.4%</td>
+          <td>72.6%</td>
+          <td>2.0%</td>
           <td>0.519</td>
           <td>1.044</td>
           <td></td>
@@ -266,6 +295,9 @@
           <td>Core lineup</td>
           <td>0.511</td>
           <td>88th of 161 returning players</td>
+          <td>50.1%</td>
+          <td>48.7%</td>
+          <td>1.2%</td>
           <td>0.490</td>
           <td>1.016</td>
           <td></td>
@@ -276,6 +308,9 @@
           <td>Core lineup</td>
           <td>0.474</td>
           <td>116th of 161 returning players</td>
+          <td>51.6%</td>
+          <td>34.9%</td>
+          <td>13.5%</td>
           <td>0.457</td>
           <td>0.965</td>
           <td></td>
@@ -286,6 +321,9 @@
           <td>Core lineup</td>
           <td>0.534</td>
           <td>74th of 161 returning players</td>
+          <td>19.2%</td>
+          <td>69.2%</td>
+          <td>11.5%</td>
           <td>Limited data</td>
           <td>Limited data</td>
           <td>Profile stats hidden until validation confidence improves</td>
@@ -296,6 +334,9 @@
           <td>Depth bat</td>
           <td>0.425</td>
           <td>146th of 161 returning players</td>
+          <td>24.9%</td>
+          <td>72.5%</td>
+          <td>2.5%</td>
           <td>0.411</td>
           <td>0.888</td>
           <td></td>
@@ -306,6 +347,9 @@
           <td>Depth bat</td>
           <td>0.468</td>
           <td>125th of 161 returning players</td>
+          <td>25.0%</td>
+          <td>60.0%</td>
+          <td>15.0%</td>
           <td>Limited data</td>
           <td>Limited data</td>
           <td>Profile stats hidden until validation confidence improves</td>
@@ -316,6 +360,9 @@
           <td>Depth bat</td>
           <td>0.416</td>
           <td>150th of 161 returning players</td>
+          <td>59.5%</td>
+          <td>40.5%</td>
+          <td>0.0%</td>
           <td>0.284</td>
           <td>0.614</td>
           <td></td>
@@ -326,6 +373,9 @@
           <td>Depth bat</td>
           <td>0.000</td>
           <td>Rookie / unmatched</td>
+          <td>n/a</td>
+          <td>n/a</td>
+          <td>n/a</td>
           <td>Limited data</td>
           <td>Limited data</td>
           <td>Rookie/no historical match</td>
@@ -336,6 +386,9 @@
           <td>Depth bat</td>
           <td>0.000</td>
           <td>Rookie / unmatched</td>
+          <td>n/a</td>
+          <td>n/a</td>
+          <td>n/a</td>
           <td>Limited data</td>
           <td>Limited data</td>
           <td>Rookie/no historical match</td>
@@ -345,6 +398,29 @@
       </div>
 
       <div class="stack">
+        <section class="panel">
+          <h2>Hit Direction Profile</h2>
+          <p>Weighted current-roster history for H2L, H2C, and H2R. Newer seasons count slightly more when direction data is available.</p>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="label">Hits To Left</div>
+              <div class="value">35.7%</div>
+              <div class="sub">478.2 weighted events</div>
+            </div>
+            <div class="summary-card">
+              <div class="label">Hits To Center</div>
+              <div class="value">52.0%</div>
+              <div class="sub">695.4 weighted events</div>
+            </div>
+            <div class="summary-card">
+              <div class="label">Hits To Right</div>
+              <div class="value">12.3%</div>
+              <div class="sub">164.5 weighted events</div>
+            </div>
+          </div>
+          <p class="note">Direction data covers 13 of 13 matched roster players. Seasons used: 2023, 2024, 2025.</p>
+        </section>
+
         <section class="panel">
           <h2>Most Important Absences</h2>
           <p>If one of these players is out, the offense takes the biggest hit.</p>
@@ -358,29 +434,29 @@
             </thead>
             <tbody>
         <tr>
-          <td>Tom Clougher</td>
-          <td>0.67 runs</td>
-          <td>3.7%</td>
-        </tr>
-        <tr>
           <td>Greg Espersen</td>
-          <td>0.53 runs</td>
-          <td>2.9%</td>
+          <td>0.48 runs</td>
+          <td>2.5%</td>
         </tr>
         <tr>
-          <td>Dave Schachman</td>
-          <td>0.16 runs</td>
-          <td>0.9%</td>
+          <td>Rob Guilbert</td>
+          <td>0.44 runs</td>
+          <td>2.4%</td>
         </tr>
         <tr>
           <td>Chris Mazur</td>
-          <td>0.10 runs</td>
-          <td>0.5%</td>
+          <td>0.41 runs</td>
+          <td>2.2%</td>
         </tr>
         <tr>
-          <td>Greg Auerbach</td>
-          <td>0.00 runs</td>
-          <td>0.0%</td>
+          <td>Tom Clougher</td>
+          <td>0.37 runs</td>
+          <td>1.9%</td>
+        </tr>
+        <tr>
+          <td>Dave Schachman</td>
+          <td>0.30 runs</td>
+          <td>1.6%</td>
         </tr></tbody>
           </table>
         </section>

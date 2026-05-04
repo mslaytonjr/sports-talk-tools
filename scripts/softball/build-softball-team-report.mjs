@@ -18,6 +18,11 @@ const reportRoot = resolve(processedRoot, "team_reports");
 const targetSeason = process.argv[2] ?? "2026";
 const requestedTeam = process.argv.slice(3).join(" ").trim() || "7th Floor Crew";
 const recencyDecay = 0.72;
+const directionSeasonWeights = new Map([
+  [1, 1],
+  [2, 0.9],
+  [3, 0.8],
+]);
 
 function readCsvFile(filePath) {
   return parseCsv(readFileSync(filePath, "utf8"));
@@ -192,6 +197,145 @@ function getWeightedProfiles() {
   );
 }
 
+function getSupplemental2025DirectionRows() {
+  const reportPath = resolve(projectRoot, "valhalla2025_h2_report.csv");
+  if (!existsSync(reportPath)) {
+    return [];
+  }
+
+  const historicalIdByName = new Map();
+  for (const row of getHistoricalStatsRows()) {
+    if (String(row.season) !== "2025") {
+      continue;
+    }
+    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    if (!historicalPlayerId || row.canonical_player_name?.startsWith("SUB")) {
+      continue;
+    }
+    historicalIdByName.set(canonicalizeName(row.player_name), historicalPlayerId);
+    historicalIdByName.set(canonicalizeName(row.canonical_player_name), historicalPlayerId);
+  }
+
+  return readCsvFile(reportPath)
+    .map((row) => {
+      const playerName = String(row.Player ?? "").trim();
+      const historicalPlayerId = historicalIdByName.get(canonicalizeName(playerName)) ?? slugify(playerName);
+      return {
+        season: "2025",
+        historical_player_id: historicalPlayerId,
+        canonical_player_id: historicalPlayerId,
+        player_name: playerName,
+        canonical_player_name: canonicalizeName(playerName),
+        h2l: row.H2L,
+        h2c: row.H2C,
+        h2r: row.H2R,
+      };
+    })
+    .filter((row) => {
+      const directionTotal =
+        (toNumber(row.h2l) ?? 0) + (toNumber(row.h2c) ?? 0) + (toNumber(row.h2r) ?? 0);
+      return row.player_name && !row.canonical_player_name.startsWith("SUB") && directionTotal > 0;
+    });
+}
+
+function getWeightedDirectionProfiles() {
+  const rows = [...getHistoricalStatsRows(), ...getSupplemental2025DirectionRows()];
+  const grouped = new Map();
+  const targetSeasonNumber = Number(targetSeason);
+
+  for (const row of rows) {
+    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const season = toNumber(row.season);
+    const left = toNumber(row.h2l);
+    const center = toNumber(row.h2c);
+    const right = toNumber(row.h2r);
+    const directionTotal = (left ?? 0) + (center ?? 0) + (right ?? 0);
+
+    if (
+      !historicalPlayerId ||
+      !season ||
+      !directionTotal ||
+      directionTotal <= 0 ||
+      row.canonical_player_name?.startsWith("SUB")
+    ) {
+      continue;
+    }
+
+    const seasonAge = targetSeasonNumber - season;
+    const seasonWeight = directionSeasonWeights.get(seasonAge);
+    if (seasonWeight == null) {
+      continue;
+    }
+
+    const entry = grouped.get(historicalPlayerId) ?? {
+      historical_player_id: historicalPlayerId,
+      player_name: row.player_name,
+      weightedLeft: 0,
+      weightedCenter: 0,
+      weightedRight: 0,
+      weightedTotal: 0,
+      seasons: new Set(),
+    };
+
+    entry.weightedLeft += (left ?? 0) * seasonWeight;
+    entry.weightedCenter += (center ?? 0) * seasonWeight;
+    entry.weightedRight += (right ?? 0) * seasonWeight;
+    entry.weightedTotal += directionTotal * seasonWeight;
+    entry.seasons.add(String(season));
+    grouped.set(historicalPlayerId, entry);
+  }
+
+  return new Map(
+    [...grouped.entries()].map(([key, entry]) => [
+      key,
+      {
+        historical_player_id: key,
+        player_name: entry.player_name,
+        weighted_left: entry.weightedLeft,
+        weighted_center: entry.weightedCenter,
+        weighted_right: entry.weightedRight,
+        weighted_total: entry.weightedTotal,
+        seasons_used: [...entry.seasons].sort(),
+      },
+    ])
+  );
+}
+
+function buildHitDirectionProfile(teamRows, directionProfileMap) {
+  const matchedPlayers = teamRows.filter((row) => row.matched === "yes");
+  const matchedRosterPlayers = matchedPlayers.length;
+  const profiles = matchedPlayers
+    .map((row) => directionProfileMap.get(row.historical_player_id))
+    .filter(Boolean);
+
+  const totals = profiles.reduce(
+    (sum, profile) => ({
+      left: sum.left + profile.weighted_left,
+      center: sum.center + profile.weighted_center,
+      right: sum.right + profile.weighted_right,
+      total: sum.total + profile.weighted_total,
+    }),
+    { left: 0, center: 0, right: 0, total: 0 }
+  );
+
+  const seasonsUsed = [...new Set(profiles.flatMap((profile) => profile.seasons_used))].sort();
+
+  return {
+    weighted_h2l: Number(totals.left.toFixed(2)),
+    weighted_h2c: Number(totals.center.toFixed(2)),
+    weighted_h2r: Number(totals.right.toFixed(2)),
+    weighted_total: Number(totals.total.toFixed(2)),
+    h2l_percentage: totals.total > 0 ? totals.left / totals.total : 0,
+    h2c_percentage: totals.total > 0 ? totals.center / totals.total : 0,
+    h2r_percentage: totals.total > 0 ? totals.right / totals.total : 0,
+    players_with_direction_data: profiles.length,
+    matched_roster_players: matchedRosterPlayers,
+    seasons_used: seasonsUsed,
+    weighting_note:
+      "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped.",
+  };
+}
+
 function buildLeagueBatScoreRanks(rosterMatches) {
   const rankedPlayers = rosterMatches
     .filter((row) => row.matched === "yes")
@@ -223,11 +367,12 @@ function buildLeagueBatScoreRanks(rosterMatches) {
   };
 }
 
-function buildLineup(teamRows, profileMap, leagueBatScoreRanks) {
+function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRanks) {
   const matched = teamRows
     .filter((row) => row.matched === "yes")
     .map((row) => {
       const profile = profileMap.get(row.historical_player_id);
+      const directionProfile = directionProfileMap.get(row.historical_player_id);
       return {
         ...row,
         avg: profile?.avg ?? null,
@@ -235,6 +380,7 @@ function buildLineup(teamRows, profileMap, leagueBatScoreRanks) {
         slg: profile?.slg ?? null,
         ops: profile?.ops ?? null,
         profile_confidence: profile?.profile_confidence ?? "limited",
+        hit_direction_profile: directionProfile ?? null,
       };
     });
 
@@ -247,6 +393,7 @@ function buildLineup(teamRows, profileMap, leagueBatScoreRanks) {
       slg: null,
       ops: null,
       profile_confidence: "rookie",
+      hit_direction_profile: null,
     }));
 
   const pool = [...matched, ...unmatched];
@@ -306,6 +453,19 @@ function buildLineup(teamRows, profileMap, leagueBatScoreRanks) {
     projected_offense_index: offenseValue(player),
     trend_adjustment: Number(player.trend_adjustment || 0).toFixed(4),
     profile_confidence: player.profile_confidence,
+    h2l_percentage:
+      player.hit_direction_profile?.weighted_total > 0
+        ? player.hit_direction_profile.weighted_left / player.hit_direction_profile.weighted_total
+        : null,
+    h2c_percentage:
+      player.hit_direction_profile?.weighted_total > 0
+        ? player.hit_direction_profile.weighted_center / player.hit_direction_profile.weighted_total
+        : null,
+    h2r_percentage:
+      player.hit_direction_profile?.weighted_total > 0
+        ? player.hit_direction_profile.weighted_right / player.hit_direction_profile.weighted_total
+        : null,
+    direction_seasons_used: player.hit_direction_profile?.seasons_used ?? [],
     avg:
       player.profile_confidence === "trusted" && player.avg != null
         ? clamp(player.avg, 0, 1).toFixed(3)
@@ -389,6 +549,7 @@ function buildHumanSummary(teamRating, teamRatings, teamRows, impactRows) {
 function buildHtmlReport(report) {
   const summary = report.human_summary;
   const teamRating = report.team_rating;
+  const directionProfile = report.hit_direction_profile;
 
   const lineupRows = report.best_full_order_if_everyone_shows
     .map(
@@ -399,6 +560,9 @@ function buildHtmlReport(report) {
           <td>${escapeHtml(player.lineup_role)}</td>
           <td>${formatDecimal(player.projected_offense_index, 3)}</td>
           <td>${escapeHtml(player.league_bat_score_rank_label)}</td>
+          <td>${player.h2l_percentage == null ? "n/a" : formatPct(player.h2l_percentage, 1)}</td>
+          <td>${player.h2c_percentage == null ? "n/a" : formatPct(player.h2c_percentage, 1)}</td>
+          <td>${player.h2r_percentage == null ? "n/a" : formatPct(player.h2r_percentage, 1)}</td>
           <td>${player.obp === "n/a" ? "Limited data" : escapeHtml(player.obp)}</td>
           <td>${player.ops === "n/a" ? "Limited data" : escapeHtml(player.ops)}</td>
           <td>${escapeHtml(player.notes || "")}</td>
@@ -423,6 +587,10 @@ function buildHtmlReport(report) {
           .map((player) => `<li>${escapeHtml(player)}</li>`)
           .join("")}</ul>`
       : "<p>None. Every roster spot matched to a historical player.</p>";
+  const directionSeasonText =
+    directionProfile?.seasons_used?.length > 0
+      ? directionProfile.seasons_used.join(", ")
+      : "No populated direction seasons";
 
   return `<!doctype html>
 <html lang="en">
@@ -549,6 +717,11 @@ function buildHtmlReport(report) {
       background: rgba(141, 91, 18, 0.10);
       color: var(--warn);
     }
+    .note {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
     @media (max-width: 900px) {
       .grid {
         grid-template-columns: 1fr;
@@ -610,6 +783,9 @@ function buildHtmlReport(report) {
                 <th>Role</th>
                 <th>Bat Score</th>
                 <th>League Rank</th>
+                <th>H2L</th>
+                <th>H2C</th>
+                <th>H2R</th>
                 <th>OBP</th>
                 <th>OPS</th>
                 <th>Notes</th>
@@ -621,6 +797,29 @@ function buildHtmlReport(report) {
       </div>
 
       <div class="stack">
+        <section class="panel">
+          <h2>Hit Direction Profile</h2>
+          <p>Weighted current-roster history for H2L, H2C, and H2R. Newer seasons count slightly more when direction data is available.</p>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="label">Hits To Left</div>
+              <div class="value">${formatPct(directionProfile?.h2l_percentage ?? 0, 1)}</div>
+              <div class="sub">${formatDecimal(directionProfile?.weighted_h2l ?? 0, 1)} weighted events</div>
+            </div>
+            <div class="summary-card">
+              <div class="label">Hits To Center</div>
+              <div class="value">${formatPct(directionProfile?.h2c_percentage ?? 0, 1)}</div>
+              <div class="sub">${formatDecimal(directionProfile?.weighted_h2c ?? 0, 1)} weighted events</div>
+            </div>
+            <div class="summary-card">
+              <div class="label">Hits To Right</div>
+              <div class="value">${formatPct(directionProfile?.h2r_percentage ?? 0, 1)}</div>
+              <div class="sub">${formatDecimal(directionProfile?.weighted_h2r ?? 0, 1)} weighted events</div>
+            </div>
+          </div>
+          <p class="note">Direction data covers ${directionProfile?.players_with_direction_data ?? 0} of ${directionProfile?.matched_roster_players ?? 0} matched roster players. Seasons used: ${escapeHtml(directionSeasonText)}.</p>
+        </section>
+
         <section class="panel">
           <h2>Most Important Absences</h2>
           <p>If one of these players is out, the offense takes the biggest hit.</p>
@@ -654,6 +853,7 @@ function main() {
   const playerImpact = readCsvFile(resolve(processedRoot, "player_impact.csv"));
   const teamRatings = readCsvFile(resolve(processedRoot, "team_ratings.csv"));
   const profileMap = getWeightedProfiles();
+  const directionProfileMap = getWeightedDirectionProfiles();
   const leagueBatScoreRanks = buildLeagueBatScoreRanks(rosterMatches);
 
   const teamRows = rosterMatches.filter(
@@ -677,7 +877,7 @@ function main() {
     }))
     .sort((left, right) => right.win_probability_swing - left.win_probability_swing);
 
-  const lineup = buildLineup(teamRows, profileMap, leagueBatScoreRanks);
+  const lineup = buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRanks);
   const coreLineupPlayers = new Set(
     lineup
       .filter((player) => Number(player.spot) <= 10)
@@ -689,6 +889,7 @@ function main() {
     team: requestedTeam,
     team_rating: teamRating ?? null,
     human_summary: humanSummary,
+    hit_direction_profile: buildHitDirectionProfile(teamRows, directionProfileMap),
     best_full_order_if_everyone_shows: lineup,
     top_5_must_have_players: impactRows
       .filter((row) => coreLineupPlayers.has(canonicalizeName(row.player_name)))

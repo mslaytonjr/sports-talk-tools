@@ -8,38 +8,55 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "12.557333333333334",
+    "projected_runs": "12.3012",
     "offense_index": "0.5656038472709842",
-    "offense_rating": "0.40127978240448015",
+    "offense_rating": "0.3289517296361122",
     "defense_rating": "0",
-    "overall_rating": "0.40127978240448015"
+    "overall_rating": "0.3289517296361122"
   },
   "human_summary": {
-    "team_rank": 4,
+    "team_rank": 5,
     "total_teams": 12,
     "team_tier": "Solid playoff-level group",
-    "expected_runs": 12.557333333333334,
+    "expected_runs": 12.3012,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
     "unmatched_players": 2,
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
-      "player_name": "Jason Crimmins",
-      "run_swing": 2.26,
-      "win_probability_swing": 0.1094
+      "player_name": "Chris Czapla",
+      "run_swing": 2.11,
+      "win_probability_swing": 0.103
     },
     "easiest_absence": {
-      "player_name": "Tony Garrett",
+      "player_name": "Josh Simon",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     "plain_english_notes": [
-      "Black Mambas projects as the 4th-strongest team out of 12.",
-      "The model expects about 12.6 runs per game with the current full roster.",
+      "Black Mambas projects as the 5th-strongest team out of 12.",
+      "The model expects about 12.3 runs per game with the current full roster.",
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
+  },
+  "hit_direction_profile": {
+    "weighted_h2l": 433.2,
+    "weighted_h2c": 855.9,
+    "weighted_h2r": 194,
+    "weighted_total": 1483.1,
+    "h2l_percentage": 0.2920908907019082,
+    "h2c_percentage": 0.5771020160474681,
+    "h2r_percentage": 0.13080709325062373,
+    "players_with_direction_data": 13,
+    "matched_roster_players": 13,
+    "seasons_used": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
   "best_full_order_if_everyone_shows": [
     {
@@ -53,6 +70,12 @@
       "projected_offense_index": 0.7541759457342965,
       "trend_adjustment": "0.0000",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.0547945205479452,
+      "h2c_percentage": 0.6575342465753425,
+      "h2r_percentage": 0.2876712328767123,
+      "direction_seasons_used": [
+        "2023"
+      ],
       "avg": "0.716",
       "obp": "0.738",
       "slg": "1.000",
@@ -70,6 +93,13 @@
       "projected_offense_index": 0.7392591955419631,
       "trend_adjustment": "0.0154",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.14032600992204108,
+      "h2c_percentage": 0.6449326718639262,
+      "h2r_percentage": 0.21474131821403258,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.659",
       "obp": "0.644",
       "slg": "1.060",
@@ -87,6 +117,14 @@
       "projected_offense_index": 0.653629269464028,
       "trend_adjustment": "-0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.24193548387096775,
+      "h2c_percentage": 0.5338709677419355,
+      "h2r_percentage": 0.2241935483870968,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.592",
       "obp": "0.632",
       "slg": "1.045",
@@ -104,6 +142,14 @@
       "projected_offense_index": 0.6362537879282887,
       "trend_adjustment": "-0.0037",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.03896103896103896,
+      "h2c_percentage": 0.6181818181818183,
+      "h2r_percentage": 0.34285714285714286,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.624",
       "obp": "0.633",
       "slg": "0.854",
@@ -121,6 +167,14 @@
       "projected_offense_index": 0.571338936740322,
       "trend_adjustment": "0.0199",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.4867549668874172,
+      "h2c_percentage": 0.495364238410596,
+      "h2r_percentage": 0.017880794701986755,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.526",
       "obp": "0.550",
       "slg": "0.604",
@@ -138,6 +192,14 @@
       "projected_offense_index": 0.5303602125819978,
       "trend_adjustment": "-0.0113",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.23296158612143741,
+      "h2c_percentage": 0.5650557620817844,
+      "h2r_percentage": 0.20198265179677818,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.504",
       "obp": "0.502",
       "slg": "0.629",
@@ -155,6 +217,14 @@
       "projected_offense_index": 0.49259735366783736,
       "trend_adjustment": "-0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.37695852534562213,
+      "h2c_percentage": 0.543778801843318,
+      "h2r_percentage": 0.07926267281105992,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.504",
       "obp": "0.509",
       "slg": "0.560",
@@ -172,6 +242,13 @@
       "projected_offense_index": 0.48973152044855367,
       "trend_adjustment": "0.0211",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.6798561151079136,
+      "h2c_percentage": 0.29406474820143885,
+      "h2r_percentage": 0.02607913669064748,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.436",
       "obp": "0.442",
       "slg": "0.450",
@@ -189,6 +266,14 @@
       "projected_offense_index": 0.4737976206249839,
       "trend_adjustment": "0.0218",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.09818941504178275,
+      "h2c_percentage": 0.8537604456824514,
+      "h2r_percentage": 0.04805013927576602,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.407",
       "obp": "0.421",
       "slg": "0.422",
@@ -206,6 +291,14 @@
       "projected_offense_index": 0.47118025973673316,
       "trend_adjustment": "0.0210",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.1660377358490566,
+      "h2c_percentage": 0.7081761006289309,
+      "h2r_percentage": 0.12578616352201258,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.382",
       "obp": "0.387",
       "slg": "0.416",
@@ -223,6 +316,14 @@
       "projected_offense_index": 0.4283128257699069,
       "trend_adjustment": "-0.0356",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5736946463978849,
+      "h2c_percentage": 0.37343027098479836,
+      "h2r_percentage": 0.052875082617316584,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.425",
       "obp": "0.424",
       "slg": "0.452",
@@ -240,6 +341,13 @@
       "projected_offense_index": 0.4251861281147088,
       "trend_adjustment": "-0.0123",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.18331616889804328,
+      "h2c_percentage": 0.7456230690010299,
+      "h2r_percentage": 0.07106076210092689,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.388",
       "obp": "0.394",
       "slg": "0.399",
@@ -257,6 +365,12 @@
       "projected_offense_index": 0.3967822171878737,
       "trend_adjustment": "-0.0058",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.39999999999999997,
+      "h2c_percentage": 0.5777777777777778,
+      "h2r_percentage": 0.022222222222222223,
+      "direction_seasons_used": [
+        "2024"
+      ],
       "avg": "0.292",
       "obp": "0.307",
       "slg": "0.356",
@@ -274,6 +388,10 @@
       "projected_offense_index": 0,
       "trend_adjustment": "0.0000",
       "profile_confidence": "rookie",
+      "h2l_percentage": null,
+      "h2c_percentage": null,
+      "h2r_percentage": null,
+      "direction_seasons_used": [],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -291,6 +409,10 @@
       "projected_offense_index": 0,
       "trend_adjustment": "0.0000",
       "profile_confidence": "rookie",
+      "h2l_percentage": null,
+      "h2c_percentage": null,
+      "h2r_percentage": null,
+      "direction_seasons_used": [],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -300,56 +422,56 @@
   ],
   "top_5_must_have_players": [
     {
-      "player_name": "Jason Crimmins",
-      "run_swing": 2.26,
-      "win_probability_swing": 0.1094
+      "player_name": "Chris Czapla",
+      "run_swing": 2.11,
+      "win_probability_swing": 0.103
     },
     {
-      "player_name": "Chris Czapla",
-      "run_swing": 2.18,
-      "win_probability_swing": 0.1051
+      "player_name": "Jason Crimmins",
+      "run_swing": 1.71,
+      "win_probability_swing": 0.0821
     },
     {
       "player_name": "David Plishka",
-      "run_swing": 1.59,
-      "win_probability_swing": 0.0749
+      "run_swing": 1.62,
+      "win_probability_swing": 0.0775
     },
     {
       "player_name": "Alex Simon",
-      "run_swing": 1.52,
-      "win_probability_swing": 0.0712
+      "run_swing": 1.49,
+      "win_probability_swing": 0.0707
     },
     {
       "player_name": "Ralph Aiello",
-      "run_swing": 1.24,
-      "win_probability_swing": 0.0576
+      "run_swing": 0.8,
+      "win_probability_swing": 0.0367
     }
   ],
   "lowest_penalty_absences": [
     {
-      "player_name": "Tony Garrett",
+      "player_name": "Josh Simon",
       "run_swing": 0,
       "win_probability_swing": 0
     },
     {
-      "player_name": "Rob Thomas",
-      "run_swing": 0.05,
-      "win_probability_swing": 0.002
+      "player_name": "Jason Rhodes",
+      "run_swing": 0,
+      "win_probability_swing": 0
+    },
+    {
+      "player_name": "Tony Garrett",
+      "run_swing": 0.02,
+      "win_probability_swing": 0.0007
     },
     {
       "player_name": "Mike Lawlor",
-      "run_swing": 0.23,
-      "win_probability_swing": 0.0102
+      "run_swing": 0.03,
+      "win_probability_swing": 0.0014
     },
     {
       "player_name": "Bankim Shah",
-      "run_swing": 0.37,
-      "win_probability_swing": 0.0167
-    },
-    {
-      "player_name": "Josh Simon",
-      "run_swing": 0.44,
-      "win_probability_swing": 0.0197
+      "run_swing": 0.03,
+      "win_probability_swing": 0.0016
     }
   ],
   "rookies_or_unmatched": [

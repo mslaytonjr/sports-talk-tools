@@ -8,17 +8,17 @@
     "active_players": "15",
     "matched_players": "13",
     "unmatched_players": "2",
-    "projected_runs": "12.032",
+    "projected_runs": "12.0221",
     "offense_index": "0.5689755693505943",
-    "offense_rating": "0.3585447253388202",
+    "offense_rating": "0.3060015337067819",
     "defense_rating": "0",
-    "overall_rating": "0.3585447253388202"
+    "overall_rating": "0.3060015337067819"
   },
   "human_summary": {
     "team_rank": 6,
     "total_teams": 12,
     "team_tier": "Solid playoff-level group",
-    "expected_runs": 12.032,
+    "expected_runs": 12.0221,
     "roster_size": 15,
     "active_players": 15,
     "matched_players": 13,
@@ -26,11 +26,11 @@
     "roster_match_rate": 0.8666666666666667,
     "strongest_absence": {
       "player_name": "Jon Weiner",
-      "run_swing": 2.45,
-      "win_probability_swing": 0.1261
+      "run_swing": 2.18,
+      "win_probability_swing": 0.1096
     },
     "easiest_absence": {
-      "player_name": "Jigar Desai",
+      "player_name": "Mike Hettesheimer",
       "run_swing": 0,
       "win_probability_swing": 0
     },
@@ -40,6 +40,23 @@
       "13 of 15 players have a historical match in the dataset.",
       "2 roster spots are still using fallback assumptions because there is no clean historical match."
     ]
+  },
+  "hit_direction_profile": {
+    "weighted_h2l": 424,
+    "weighted_h2c": 690.2,
+    "weighted_h2r": 138.2,
+    "weighted_total": 1252.4,
+    "h2l_percentage": 0.33854998403066106,
+    "h2c_percentage": 0.5511018843819865,
+    "h2r_percentage": 0.11034813158735225,
+    "players_with_direction_data": 12,
+    "matched_roster_players": 13,
+    "seasons_used": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
   "best_full_order_if_everyone_shows": [
     {
@@ -53,6 +70,13 @@
       "projected_offense_index": 0.7118957172843714,
       "trend_adjustment": "0.0143",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.14027149321266968,
+      "h2c_percentage": 0.42443438914027154,
+      "h2r_percentage": 0.43529411764705883,
+      "direction_seasons_used": [
+        "2023",
+        "2024"
+      ],
       "avg": "0.667",
       "obp": "0.685",
       "slg": "0.927",
@@ -70,6 +94,13 @@
       "projected_offense_index": 0.7236084040650648,
       "trend_adjustment": "0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.03435468895078923,
+      "h2c_percentage": 0.754874651810585,
+      "h2r_percentage": 0.21077065923862584,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.663",
       "obp": "0.667",
       "slg": "0.917",
@@ -87,6 +118,14 @@
       "projected_offense_index": 0.6961721583142285,
       "trend_adjustment": "0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.48444444444444446,
+      "h2c_percentage": 0.49,
+      "h2r_percentage": 0.025555555555555554,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.561",
       "obp": "0.536",
       "slg": "1.017",
@@ -104,6 +143,13 @@
       "projected_offense_index": 0.6621930915144822,
       "trend_adjustment": "0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.3917228103946102,
+      "h2c_percentage": 0.5081809432146294,
+      "h2r_percentage": 0.10009624639076034,
+      "direction_seasons_used": [
+        "2023",
+        "2024"
+      ],
       "avg": "0.590",
       "obp": "0.601",
       "slg": "0.812",
@@ -121,6 +167,14 @@
       "projected_offense_index": 0.5569124869962395,
       "trend_adjustment": "-0.0208",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.20465890183028287,
+      "h2c_percentage": 0.5690515806988352,
+      "h2r_percentage": 0.22628951747088183,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.538",
       "obp": "0.543",
       "slg": "0.693",
@@ -138,6 +192,13 @@
       "projected_offense_index": 0.5625487460834635,
       "trend_adjustment": "-0.0019",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5788530465949819,
+      "h2c_percentage": 0.4050179211469534,
+      "h2r_percentage": 0.016129032258064516,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.563",
       "obp": "0.569",
       "slg": "0.651",
@@ -155,6 +216,14 @@
       "projected_offense_index": 0.4941311443925426,
       "trend_adjustment": "-0.0056",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.532994923857868,
+      "h2c_percentage": 0.45177664974619286,
+      "h2r_percentage": 0.015228426395939085,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.436",
       "obp": "0.439",
       "slg": "0.479",
@@ -172,6 +241,10 @@
       "projected_offense_index": 0.5572894860420224,
       "trend_adjustment": "0.0000",
       "profile_confidence": "limited",
+      "h2l_percentage": null,
+      "h2c_percentage": null,
+      "h2r_percentage": null,
+      "direction_seasons_used": [],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -189,6 +262,14 @@
       "projected_offense_index": 0.47002939846013636,
       "trend_adjustment": "0.0230",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.4024144869215292,
+      "h2c_percentage": 0.5788061703554661,
+      "h2r_percentage": 0.018779342723004695,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.390",
       "obp": "0.426",
       "slg": "0.407",
@@ -206,6 +287,14 @@
       "projected_offense_index": 0.4458564324868808,
       "trend_adjustment": "0.0097",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.2853678253839935,
+      "h2c_percentage": 0.6782538399353274,
+      "h2r_percentage": 0.03637833468067906,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "avg": "0.391",
       "obp": "0.383",
       "slg": "0.391",
@@ -223,6 +312,13 @@
       "projected_offense_index": 0.40202651457799893,
       "trend_adjustment": "0.0008",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.611368909512761,
+      "h2c_percentage": 0.37935034802784223,
+      "h2r_percentage": 0.009280742459396751,
+      "direction_seasons_used": [
+        "2023",
+        "2024"
+      ],
       "avg": "0.340",
       "obp": "0.346",
       "slg": "0.340",
@@ -240,6 +336,13 @@
       "projected_offense_index": 0.3767447113004799,
       "trend_adjustment": "-0.0400",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.1216457960644007,
+      "h2c_percentage": 0.8622540250447227,
+      "h2r_percentage": 0.016100178890876563,
+      "direction_seasons_used": [
+        "2024",
+        "2025"
+      ],
       "avg": "0.320",
       "obp": "0.373",
       "slg": "0.320",
@@ -257,6 +360,13 @@
       "projected_offense_index": 0.38278013322047383,
       "trend_adjustment": "-0.0143",
       "profile_confidence": "trusted",
+      "h2l_percentage": 0.5323383084577114,
+      "h2c_percentage": 0.4477611940298507,
+      "h2r_percentage": 0.01990049751243781,
+      "direction_seasons_used": [
+        "2023",
+        "2024"
+      ],
       "avg": "0.269",
       "obp": "0.285",
       "slg": "0.304",
@@ -274,6 +384,10 @@
       "projected_offense_index": 0,
       "trend_adjustment": "0.0000",
       "profile_confidence": "rookie",
+      "h2l_percentage": null,
+      "h2c_percentage": null,
+      "h2r_percentage": null,
+      "direction_seasons_used": [],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -291,6 +405,10 @@
       "projected_offense_index": 0,
       "trend_adjustment": "0.0000",
       "profile_confidence": "rookie",
+      "h2l_percentage": null,
+      "h2c_percentage": null,
+      "h2r_percentage": null,
+      "direction_seasons_used": [],
       "avg": "n/a",
       "obp": "n/a",
       "slg": "n/a",
@@ -301,36 +419,31 @@
   "top_5_must_have_players": [
     {
       "player_name": "Jon Weiner",
-      "run_swing": 2.45,
-      "win_probability_swing": 0.1261
-    },
-    {
-      "player_name": "John Petrozzino",
-      "run_swing": 1.76,
-      "win_probability_swing": 0.0882
-    },
-    {
-      "player_name": "Victor Cardona",
-      "run_swing": 1.73,
-      "win_probability_swing": 0.0867
+      "run_swing": 2.18,
+      "win_probability_swing": 0.1096
     },
     {
       "player_name": "Ryan Boeckel",
-      "run_swing": 1.67,
-      "win_probability_swing": 0.0837
+      "run_swing": 1.92,
+      "win_probability_swing": 0.0956
     },
     {
-      "player_name": "Nico Coppola",
-      "run_swing": 0.89,
-      "win_probability_swing": 0.0432
+      "player_name": "Victor Cardona",
+      "run_swing": 1.55,
+      "win_probability_swing": 0.0761
+    },
+    {
+      "player_name": "John Petrozzino",
+      "run_swing": 1.42,
+      "win_probability_swing": 0.0694
+    },
+    {
+      "player_name": "John Boeckel",
+      "run_swing": 1.14,
+      "win_probability_swing": 0.0549
     }
   ],
   "lowest_penalty_absences": [
-    {
-      "player_name": "Jigar Desai",
-      "run_swing": 0,
-      "win_probability_swing": 0
-    },
     {
       "player_name": "Mike Hettesheimer",
       "run_swing": 0,
@@ -343,13 +456,18 @@
     },
     {
       "player_name": "Dan Ochs",
-      "run_swing": 0.18,
-      "win_probability_swing": 0.0084
+      "run_swing": 0,
+      "win_probability_swing": 0
     },
     {
-      "player_name": "Frank Coppola",
-      "run_swing": 0.52,
-      "win_probability_swing": 0.0248
+      "player_name": "Jigar Desai",
+      "run_swing": 0.07,
+      "win_probability_swing": 0.0032
+    },
+    {
+      "player_name": "Brian Quinn",
+      "run_swing": 0.46,
+      "win_probability_swing": 0.0215
     }
   ],
   "rookies_or_unmatched": [

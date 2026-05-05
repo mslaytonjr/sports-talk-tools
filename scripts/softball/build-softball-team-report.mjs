@@ -592,6 +592,13 @@ function buildHtmlReport(report) {
   const summary = report.human_summary;
   const teamRating = report.team_rating;
   const directionProfile = report.hit_direction_profile;
+  const teamSlug = slugify(report.team);
+  const wristSheetLinks = ["3x5", "4x6", "5x7"]
+    .map(
+      (size) =>
+        `<a class="action-link" href="./wrist_sheets/${teamSlug}_${report.season}_wrist_${size}.html">${size} wrist sheet</a>`
+    )
+    .join("");
 
   const lineupRows = report.best_full_order_if_everyone_shows
     .map(
@@ -746,6 +753,29 @@ function buildHtmlReport(report) {
       margin: 10px 0 0 18px;
       color: var(--muted);
     }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid rgba(29, 91, 121, 0.24);
+      border-radius: 8px;
+      background: rgba(29, 91, 121, 0.08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .action-link:hover,
+    .action-link:focus-visible {
+      text-decoration: underline;
+    }
     .tag {
       display: inline-block;
       padding: 4px 8px;
@@ -780,6 +810,7 @@ function buildHtmlReport(report) {
       <div class="kicker">Softball Team Report</div>
       <h1>${escapeHtml(report.team)}</h1>
       <p>${report.season} season outlook. ${escapeHtml(summary?.team_tier ?? "No summary available.")}</p>
+      <div class="action-row">${wristSheetLinks}</div>
       <div class="summary-grid">
         <div class="summary-card">
           <div class="label">League Rank</div>

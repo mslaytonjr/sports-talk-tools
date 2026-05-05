@@ -110,6 +110,29 @@
       margin: 10px 0 0 18px;
       color: var(--muted);
     }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid rgba(29, 91, 121, 0.24);
+      border-radius: 8px;
+      background: rgba(29, 91, 121, 0.08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .action-link:hover,
+    .action-link:focus-visible {
+      text-decoration: underline;
+    }
     .tag {
       display: inline-block;
       padding: 4px 8px;
@@ -144,6 +167,7 @@
       <div class="kicker">Softball Team Report</div>
       <h1>7th Floor Crew</h1>
       <p>2026 season outlook. Needs help to close the gap</p>
+      <div class="action-row"><a class="action-link" href="./wrist_sheets/7th_floor_crew_2026_wrist_3x5.html">3x5 wrist sheet</a><a class="action-link" href="./wrist_sheets/7th_floor_crew_2026_wrist_4x6.html">4x6 wrist sheet</a><a class="action-link" href="./wrist_sheets/7th_floor_crew_2026_wrist_5x7.html">5x7 wrist sheet</a></div>
       <div class="summary-grid">
         <div class="summary-card">
           <div class="label">League Rank</div>

@@ -235,6 +235,7 @@ function buildHtmlReport(payload) {
           <td>${formatPct(team.h2c_percentage, 1)}</td>
           <td>${formatPct(team.h2r_percentage, 1)}</td>
           <td>${formatDecimal(team.overall_rating, 3)}</td>
+          <td><a class="team-link" href="${escapeHtml(team.team_report_href)}">Open report</a></td>
         </tr>`
     )
     .join("");
@@ -425,6 +426,7 @@ function buildHtmlReport(payload) {
               <th>H2C</th>
               <th>H2R</th>
               <th>Overall Rating</th>
+              <th>Report</th>
             </tr>
           </thead>
           <tbody>${standingsRows}</tbody>

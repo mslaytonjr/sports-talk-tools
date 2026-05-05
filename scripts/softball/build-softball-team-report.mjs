@@ -135,6 +135,9 @@ function getWeightedProfiles() {
     const obp = toRate(row.obp);
     const slg = toRate(row.slg);
     const ops = toRate(row.ops);
+    const lineOuts = toNumber(row.lo);
+    const flyOuts = toNumber(row.fo);
+    const groundOuts = toNumber(row.go);
 
     if (
       !historicalPlayerId ||
@@ -159,6 +162,9 @@ function getWeightedProfiles() {
       weightedObp: 0,
       weightedSlg: 0,
       weightedOps: 0,
+      weightedLineOuts: 0,
+      weightedFlyOuts: 0,
+      weightedGroundOuts: 0,
       displayWeight: 0,
       displaySeasons: 0,
       totalSeasons: 0,
@@ -170,6 +176,9 @@ function getWeightedProfiles() {
     entry.weightedObp += (obp ?? avg ?? ops ?? 0.34) * weight;
     entry.weightedSlg += (slg ?? ops ?? 0.45) * weight;
     entry.weightedOps += (ops ?? ((obp ?? 0.34) + (slg ?? 0.45))) * weight;
+    entry.weightedLineOuts += (lineOuts ?? 0) * recencyWeight;
+    entry.weightedFlyOuts += (flyOuts ?? 0) * recencyWeight;
+    entry.weightedGroundOuts += (groundOuts ?? 0) * recencyWeight;
     if (String(row.stats_display_allowed ?? "no") === "yes") {
       entry.displayWeight += weight;
       entry.displaySeasons += 1;
@@ -188,6 +197,21 @@ function getWeightedProfiles() {
         obp: entry.weightedObp / entry.totalWeight,
         slg: entry.weightedSlg / entry.totalWeight,
         ops: entry.weightedOps / entry.totalWeight,
+        weighted_line_outs: Number(entry.weightedLineOuts.toFixed(2)),
+        weighted_fly_outs: Number(entry.weightedFlyOuts.toFixed(2)),
+        weighted_ground_outs: Number(entry.weightedGroundOuts.toFixed(2)),
+        line_out_percentage:
+          entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts > 0
+            ? entry.weightedLineOuts / (entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts)
+            : null,
+        fly_out_percentage:
+          entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts > 0
+            ? entry.weightedFlyOuts / (entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts)
+            : null,
+        ground_out_percentage:
+          entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts > 0
+            ? entry.weightedGroundOuts / (entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts)
+            : null,
         profile_confidence:
           entry.displayWeight >= 10 || entry.displaySeasons >= 1 || entry.totalSeasons > 1
             ? "trusted"
@@ -379,6 +403,12 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
         obp: profile?.obp ?? null,
         slg: profile?.slg ?? null,
         ops: profile?.ops ?? null,
+        weighted_line_outs: profile?.weighted_line_outs ?? null,
+        weighted_fly_outs: profile?.weighted_fly_outs ?? null,
+        weighted_ground_outs: profile?.weighted_ground_outs ?? null,
+        line_out_percentage: profile?.line_out_percentage ?? null,
+        fly_out_percentage: profile?.fly_out_percentage ?? null,
+        ground_out_percentage: profile?.ground_out_percentage ?? null,
         profile_confidence: profile?.profile_confidence ?? "limited",
         hit_direction_profile: directionProfile ?? null,
       };
@@ -392,6 +422,12 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
       obp: null,
       slg: null,
       ops: null,
+      weighted_line_outs: null,
+      weighted_fly_outs: null,
+      weighted_ground_outs: null,
+      line_out_percentage: null,
+      fly_out_percentage: null,
+      ground_out_percentage: null,
       profile_confidence: "rookie",
       hit_direction_profile: null,
     }));
@@ -466,6 +502,12 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
         ? player.hit_direction_profile.weighted_right / player.hit_direction_profile.weighted_total
         : null,
     direction_seasons_used: player.hit_direction_profile?.seasons_used ?? [],
+    line_out_percentage: player.line_out_percentage,
+    fly_out_percentage: player.fly_out_percentage,
+    ground_out_percentage: player.ground_out_percentage,
+    weighted_line_outs: player.weighted_line_outs,
+    weighted_fly_outs: player.weighted_fly_outs,
+    weighted_ground_outs: player.weighted_ground_outs,
     avg:
       player.profile_confidence === "trusted" && player.avg != null
         ? clamp(player.avg, 0, 1).toFixed(3)

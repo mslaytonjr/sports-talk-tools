@@ -52,6 +52,9 @@ should be reusable data files plus scripts for:
   light fielding-based defense adjustment.
 - The model now applies a capped year-over-year trend adjustment when projecting player offense.
 - `build-model` should own ratings and player impact. `predict` should own `predictions.csv`.
+- League defensive alignment uses 10 fielders. The outfield spots are `LF`, `LCF`, `RCF`, and `RF`,
+  so any future position-aware availability, lineup, or fielding model should account for four
+  outfielders rather than a three-outfielder baseball alignment.
 
 ## Implemented Commands
 

@@ -74,12 +74,23 @@ function formatDateLabel(value) {
   }).format(parsed);
 }
 
+function safeDivide(numerator, denominator) {
+  if (!Number.isFinite(numerator) || !Number.isFinite(denominator) || denominator <= 0) {
+    return null;
+  }
+  return numerator / denominator;
+}
+
 function formatDecimal(value, digits = 2) {
   return Number(value || 0).toFixed(digits);
 }
 
 function formatPct(value, digits = 1) {
   return `${(Number(value || 0) * 100).toFixed(digits)}%`;
+}
+
+function formatNullablePct(value, digits = 1) {
+  return value == null ? "n/a" : formatPct(value, digits);
 }
 
 function formatTinyDecimal(value, digits = 2) {
@@ -209,6 +220,10 @@ function getWeightedProfiles() {
       weightedObp: 0,
       weightedSlg: 0,
       weightedOps: 0,
+      weightedIso: 0,
+      weightedXbhPercentage: 0,
+      weightedProductivePaPercentage: 0,
+      weightedOutAvoidance: 0,
       weightedLineOuts: 0,
       weightedFlyOuts: 0,
       weightedGroundOuts: 0,
@@ -226,6 +241,32 @@ function getWeightedProfiles() {
     entry.weightedObp += (obp ?? avg ?? ops ?? 0.34) * weight;
     entry.weightedSlg += (slg ?? ops ?? 0.45) * weight;
     entry.weightedOps += (ops ?? ((obp ?? 0.34) + (slg ?? 0.45))) * weight;
+
+    const hits = toNumber(row.h);
+    const doubles = toNumber(row["2b"]);
+    const triples = toNumber(row["3b"]);
+    const homeRuns = toNumber(row.hr);
+    const walks = toNumber(row.bb) ?? toNumber(row.tbb) ?? 0;
+    const sacrificeFlies = toNumber(row.sf) ?? 0;
+    const onByError = toNumber(row.obe) ?? 0;
+    const fieldersChoices = toNumber(row.fc) ?? 0;
+    const derivedPa = pa ?? (ab != null ? ab + walks + sacrificeFlies : null);
+    const iso = avg != null && slg != null ? Math.max(slg - avg, 0) : null;
+    const xbhPercentage =
+      hits != null ? safeDivide((doubles ?? 0) + (triples ?? 0) + (homeRuns ?? 0), hits) : null;
+    const productivePaPercentage =
+      hits != null && derivedPa != null
+        ? safeDivide(hits + walks + sacrificeFlies + onByError, derivedPa)
+        : null;
+    const outAvoidance =
+      ab != null && hits != null && derivedPa != null
+        ? 1 - safeDivide(Math.max(ab - hits, 0) + sacrificeFlies + fieldersChoices, derivedPa)
+        : null;
+
+    entry.weightedIso += (iso ?? 0) * weight;
+    entry.weightedXbhPercentage += (xbhPercentage ?? 0) * weight;
+    entry.weightedProductivePaPercentage += (productivePaPercentage ?? 0) * weight;
+    entry.weightedOutAvoidance += (outAvoidance ?? 0) * weight;
     entry.weightedLineOuts += (lineOuts ?? 0) * recencyWeight;
     entry.weightedFlyOuts += (flyOuts ?? 0) * recencyWeight;
     entry.weightedGroundOuts += (groundOuts ?? 0) * recencyWeight;
@@ -256,6 +297,10 @@ function getWeightedProfiles() {
         obp: entry.weightedObp / entry.totalWeight,
         slg: entry.weightedSlg / entry.totalWeight,
         ops: entry.weightedOps / entry.totalWeight,
+        iso: entry.weightedIso / entry.totalWeight,
+        xbh_percentage: entry.weightedXbhPercentage / entry.totalWeight,
+        productive_pa_percentage: entry.weightedProductivePaPercentage / entry.totalWeight,
+        out_avoidance: entry.weightedOutAvoidance / entry.totalWeight,
         weighted_line_outs: Number(entry.weightedLineOuts.toFixed(2)),
         weighted_fly_outs: Number(entry.weightedFlyOuts.toFixed(2)),
         weighted_ground_outs: Number(entry.weightedGroundOuts.toFixed(2)),
@@ -368,6 +413,65 @@ function getSupplemental2025DirectionRows() {
         (toNumber(row.h2l) ?? 0) + (toNumber(row.h2c) ?? 0) + (toNumber(row.h2r) ?? 0);
       return row.player_name && !row.canonical_player_name.startsWith("SUB") && directionTotal > 0;
     });
+}
+
+function getCurrentSeasonConsistencyProfiles() {
+  const gameStatsPath = resolve(rawRoot, targetSeason, "sportstrack-player-game-stats.json");
+  if (!existsSync(gameStatsPath)) {
+    return new Map();
+  }
+
+  const rows = readJsonIfExists(gameStatsPath);
+  if (!Array.isArray(rows)) {
+    return new Map();
+  }
+
+  const grouped = new Map();
+  for (const row of rows) {
+    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    if (!historicalPlayerId || row.canonical_player_name?.startsWith("SUB")) {
+      continue;
+    }
+
+    const plateAppearances = toNumber(row.pa) ?? toNumber(row.ab);
+    if (plateAppearances == null || plateAppearances <= 0) {
+      continue;
+    }
+
+    const entry = grouped.get(historicalPlayerId) ?? {
+      games: 0,
+      hitGames: 0,
+      multiHitGames: 0,
+      xbhGames: 0,
+    };
+    const hits = toNumber(row.h) ?? 0;
+    const extraBaseHits = (toNumber(row["2b"]) ?? 0) + (toNumber(row["3b"]) ?? 0) + (toNumber(row.hr) ?? 0);
+
+    entry.games += 1;
+    if (hits > 0) {
+      entry.hitGames += 1;
+    }
+    if (hits >= 2) {
+      entry.multiHitGames += 1;
+    }
+    if (extraBaseHits > 0) {
+      entry.xbhGames += 1;
+    }
+    grouped.set(historicalPlayerId, entry);
+  }
+
+  return new Map(
+    [...grouped.entries()].map(([key, entry]) => [
+      key,
+      {
+        games: entry.games,
+        hit_game_percentage: safeDivide(entry.hitGames, entry.games),
+        multi_hit_game_percentage: safeDivide(entry.multiHitGames, entry.games),
+        xbh_game_percentage: safeDivide(entry.xbhGames, entry.games),
+        consistency_score: safeDivide(entry.hitGames, entry.games),
+      },
+    ])
+  );
 }
 
 function getWeightedDirectionProfiles() {
@@ -499,18 +603,28 @@ function buildLeagueBatScoreRanks(rosterMatches) {
   };
 }
 
-function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRanks) {
+function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfileMap, leagueBatScoreRanks) {
   const matched = teamRows
     .filter((row) => row.matched === "yes")
     .map((row) => {
       const profile = profileMap.get(row.historical_player_id);
       const directionProfile = directionProfileMap.get(row.historical_player_id);
+      const consistencyProfile = consistencyProfileMap.get(row.historical_player_id);
       return {
         ...row,
         avg: profile?.avg ?? null,
         obp: profile?.obp ?? null,
         slg: profile?.slg ?? null,
         ops: profile?.ops ?? null,
+        iso: profile?.iso ?? null,
+        xbh_percentage: profile?.xbh_percentage ?? null,
+        productive_pa_percentage: profile?.productive_pa_percentage ?? null,
+        out_avoidance: profile?.out_avoidance ?? null,
+        consistency_score: consistencyProfile?.consistency_score ?? null,
+        consistency_games: consistencyProfile?.games ?? 0,
+        hit_game_percentage: consistencyProfile?.hit_game_percentage ?? null,
+        multi_hit_game_percentage: consistencyProfile?.multi_hit_game_percentage ?? null,
+        xbh_game_percentage: consistencyProfile?.xbh_game_percentage ?? null,
         weighted_line_outs: profile?.weighted_line_outs ?? null,
         weighted_fly_outs: profile?.weighted_fly_outs ?? null,
         weighted_ground_outs: profile?.weighted_ground_outs ?? null,
@@ -533,6 +647,15 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
       obp: null,
       slg: null,
       ops: null,
+      iso: null,
+      xbh_percentage: null,
+      productive_pa_percentage: null,
+      out_avoidance: null,
+      consistency_score: null,
+      consistency_games: 0,
+      hit_game_percentage: null,
+      multi_hit_game_percentage: null,
+      xbh_game_percentage: null,
       weighted_line_outs: null,
       weighted_fly_outs: null,
       weighted_ground_outs: null,
@@ -641,6 +764,18 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
       canUseProfileStats(player) && player.ops != null
         ? clamp(player.ops, 0, 3).toFixed(3)
         : "n/a",
+    iso:
+      canUseProfileStats(player) && player.iso != null
+        ? clamp(player.iso, 0, 2).toFixed(3)
+        : null,
+    xbh_percentage: canUseProfileStats(player) ? player.xbh_percentage : null,
+    productive_pa_percentage: canUseProfileStats(player) ? player.productive_pa_percentage : null,
+    out_avoidance: canUseProfileStats(player) ? player.out_avoidance : null,
+    consistency_score: player.consistency_score,
+    consistency_games: player.consistency_games,
+    hit_game_percentage: player.hit_game_percentage,
+    multi_hit_game_percentage: player.multi_hit_game_percentage,
+    xbh_game_percentage: player.xbh_game_percentage,
     notes: describeProfileNote(player),
   }));
 }
@@ -741,6 +876,24 @@ function buildHtmlReport(report) {
         </tr>`
     )
     .join("");
+
+  const derivedStatRows =
+    report.player_derived_stats.length > 0
+      ? report.player_derived_stats
+          .map(
+            (player) => `
+        <tr>
+          <td>${escapeHtml(player.player_name)}</td>
+          <td>${escapeHtml(player.iso ?? "n/a")}</td>
+          <td>${formatNullablePct(player.xbh_percentage, 1)}</td>
+          <td>${formatNullablePct(player.productive_pa_percentage, 1)}</td>
+          <td>${formatNullablePct(player.out_avoidance, 1)}</td>
+          <td>${formatNullablePct(player.consistency_score, 1)}</td>
+          <td>${escapeHtml(player.consistency_games ? `${player.consistency_games} games` : "n/a")}</td>
+        </tr>`
+          )
+          .join("")
+      : `<tr><td colspan="7">No derived batter stats available.</td></tr>`;
 
   const playerDirectionRows =
     report.player_direction_stats.length > 0
@@ -1006,6 +1159,25 @@ function buildHtmlReport(report) {
             <tbody>${lineupRows}</tbody>
           </table>
         </section>
+
+        <section class="panel">
+          <h2>Advanced Batter Signals</h2>
+          <p>Derived from the current stat pool. ISO is extra-base power, XBH% is extra-base hits per hit, Productive PA% counts hits, walks, sacrifice flies, and reached by error, Out Avoidance estimates non-out plate appearances, and Consistency Score is 2026 games with at least one hit.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>ISO</th>
+                <th>XBH%</th>
+                <th>Prod PA%</th>
+                <th>Out Avoid</th>
+                <th>Consist.</th>
+                <th>2026 Log</th>
+              </tr>
+            </thead>
+            <tbody>${derivedStatRows}</tbody>
+          </table>
+        </section>
       </div>
 
       <div class="stack">
@@ -1079,6 +1251,7 @@ function main() {
   const teamRatings = readCsvFile(resolve(processedRoot, "team_ratings.csv"));
   const profileMap = getWeightedProfiles();
   const directionProfileMap = getWeightedDirectionProfiles();
+  const consistencyProfileMap = getCurrentSeasonConsistencyProfiles();
   const leagueBatScoreRanks = buildLeagueBatScoreRanks(rosterMatches);
 
   const teamRows = rosterMatches.filter(
@@ -1102,7 +1275,30 @@ function main() {
     }))
     .sort((left, right) => right.win_probability_swing - left.win_probability_swing);
 
-  const lineup = buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRanks);
+  const lineup = buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfileMap, leagueBatScoreRanks);
+  const playerDerivedStats = lineup
+    .map((player) => ({
+      player_name: player.player_name,
+      spot: player.spot,
+      iso: player.iso,
+      xbh_percentage: player.xbh_percentage,
+      productive_pa_percentage: player.productive_pa_percentage,
+      out_avoidance: player.out_avoidance,
+      consistency_score: player.consistency_score,
+      consistency_games: player.consistency_games,
+      hit_game_percentage: player.hit_game_percentage,
+      multi_hit_game_percentage: player.multi_hit_game_percentage,
+      xbh_game_percentage: player.xbh_game_percentage,
+      profile_confidence: player.profile_confidence,
+    }))
+    .filter(
+      (player) =>
+        player.iso != null ||
+        player.xbh_percentage != null ||
+        player.productive_pa_percentage != null ||
+        player.out_avoidance != null ||
+        player.consistency_score != null
+    );
   const playerDirectionStats = lineup
     .filter((player) => player.h2l_percentage != null && player.h2c_percentage != null && player.h2r_percentage != null)
     .map((player) => ({
@@ -1135,6 +1331,7 @@ function main() {
     human_summary: humanSummary,
     hit_direction_profile: buildHitDirectionProfile(teamRows, directionProfileMap),
     player_direction_stats: playerDirectionStats,
+    player_derived_stats: playerDerivedStats,
     best_full_order_if_everyone_shows: lineup,
     top_5_must_have_players: impactRows
       .filter((row) => coreLineupPlayers.has(canonicalizeName(row.player_name)))

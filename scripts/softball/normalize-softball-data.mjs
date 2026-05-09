@@ -5,6 +5,7 @@ import {
   canonicalizeName,
   makeUniqueHeaders,
   normalizeHeader,
+  parseCsv,
   parseAttributes,
   parseHtmlTables,
   slugify,
@@ -28,6 +29,20 @@ function readText(filePath) {
 
 function readJson(filePath) {
   return JSON.parse(readText(filePath));
+}
+
+function readCsvIfExists(filePath) {
+  if (!existsSync(filePath)) {
+    return [];
+  }
+
+  return parseCsv(readText(filePath));
+}
+
+function existingRowsForOmittedSeasons(fileName, rebuiltSeasons) {
+  return readCsvIfExists(resolve(processedRoot, fileName)).filter(
+    (row) => !rebuiltSeasons.has(String(row.season ?? ""))
+  );
 }
 
 function parseRecordLabel(value) {
@@ -165,6 +180,93 @@ function buildTeamsFromPlayerRecords(season, playerRecords) {
   return uniqueBy(teams, (row) => row.team_id);
 }
 
+function loadSportstrackSeason(seasonDir, season) {
+  const rostersPath = resolve(seasonDir, "sportstrack-rosters.json");
+  const playerSeasonStatsPath = resolve(seasonDir, "sportstrack-player-season-stats.json");
+  const schedulePath = resolve(seasonDir, "sportstrack-schedule.json");
+  const statePath = resolve(seasonDir, "sportstrack-state.json");
+
+  if (!existsSync(rostersPath) || !existsSync(playerSeasonStatsPath)) {
+    return null;
+  }
+
+  const rosterRows = readJson(rostersPath);
+  const statRows = readJson(playerSeasonStatsPath);
+  const scheduleRows = existsSync(schedulePath) ? readJson(schedulePath) : [];
+  const state = existsSync(statePath) ? readJson(statePath) : {};
+
+  const teams = uniqueBy(
+    rosterRows.map((row) => ({
+      season: Number(season),
+      team_id: `${season}_${row.team_slug}`,
+      historical_team_id: row.team_slug,
+      team_name: row.team_name,
+      team_slug: row.team_slug,
+      source_file: "sportstrack-rosters.json",
+      record_label: "",
+      wins: "",
+      losses: "",
+      ties: "",
+    })),
+    (row) => row.team_id
+  );
+
+  const players = uniqueBy(
+    rosterRows.map((row) => {
+      const canonicalPlayerName = canonicalizeName(row.player_name);
+      const canonicalPlayerId = slugify(canonicalPlayerName);
+      return {
+        season: Number(season),
+        team_id: `${season}_${row.team_slug}`,
+        historical_team_id: row.team_slug,
+        team_name: row.team_name,
+        player_id: `${season}_${row.team_slug}_${slugify(row.roster_id)}`,
+        canonical_player_id: canonicalPlayerId,
+        historical_player_id: canonicalPlayerId,
+        player_name: row.player_name,
+        canonical_player_name: canonicalPlayerName,
+        player_url: row.player_url,
+      };
+    }),
+    (row) => row.player_id
+  );
+
+  const games = scheduleRows.map((row) => ({
+    season: Number(season),
+    source_team_id: "",
+    game_key: `${season}_sportstrack_${row.game_id}`,
+    date_label: row.game_date || row.date_label,
+    opponent: `${row.away_team} at ${row.home_team}`,
+    raw_row: row.raw_row,
+    game_id: row.game_id,
+    game_date: row.game_date,
+    away_team: row.away_team,
+    home_team: row.home_team,
+    away_score: row.away_score,
+    home_score: row.home_score,
+    box_score_url: row.box_score_url,
+  }));
+
+  return {
+    teams,
+    players,
+    playerStats: statRows,
+    games,
+    summary: {
+      season: Number(season),
+      teamCount: teams.length,
+      playerCount: players.length,
+      playerHeaderCount: uniqueBy(statRows.flatMap((row) => Object.keys(row)), (key) => key).length,
+      discoveredGameRows: games.length,
+      reviewCount: 0,
+      sourceFile: playerSeasonStatsPath,
+      sourceType: "sportstrack",
+      lastScrapedGameDate: state.lastScrapedGameDate ?? "",
+      gameStatRows: state.gameStatRows ?? "",
+    },
+  };
+}
+
 function discoverTeamRows(seasonDir, season) {
   const manifestPath = resolve(seasonDir, "manifest.json");
   const teamsDir = resolve(seasonDir, "teams");
@@ -267,11 +369,12 @@ function discoverGamesFromTeamPages(seasonDir, season) {
 }
 
 function main() {
-  const allTeams = [];
-  const allPlayers = [];
-  const allPlayerStats = [];
-  const allGames = [];
-  const reviewRows = [];
+  const rebuiltSeasons = new Set(seasons.map(String));
+  const allTeams = existingRowsForOmittedSeasons("teams.csv", rebuiltSeasons);
+  const allPlayers = existingRowsForOmittedSeasons("players.csv", rebuiltSeasons);
+  const allPlayerStats = existingRowsForOmittedSeasons("player_stats.csv", rebuiltSeasons);
+  const allGames = existingRowsForOmittedSeasons("games.csv", rebuiltSeasons);
+  const reviewRows = existingRowsForOmittedSeasons("player_review.csv", rebuiltSeasons);
   const summary = [];
 
   for (const season of seasons) {
@@ -282,6 +385,16 @@ function main() {
     const sourcePath = existsSync(playersTablePath) ? playersTablePath : leadersPath;
 
     if (!existsSync(sourcePath)) {
+      const sportstrackSeason = loadSportstrackSeason(seasonDir, season);
+      if (sportstrackSeason) {
+        allTeams.push(...sportstrackSeason.teams);
+        allPlayers.push(...sportstrackSeason.players);
+        allPlayerStats.push(...sportstrackSeason.playerStats);
+        allGames.push(...sportstrackSeason.games);
+        summary.push(sportstrackSeason.summary);
+        continue;
+      }
+
       summary.push({
         season: Number(season),
         skipped: true,
@@ -337,6 +450,18 @@ function main() {
     allPlayerStats.flatMap((row) => Object.keys(row)),
     (key) => key
   );
+  const normalizedGameHeaders = uniqueBy(
+    [
+      "season",
+      "source_team_id",
+      "game_key",
+      "date_label",
+      "opponent",
+      "raw_row",
+      ...allGames.flatMap((row) => Object.keys(row)),
+    ],
+    (key) => key
+  );
 
   writeCsv(resolve(processedRoot, "teams.csv"), [
     "season",
@@ -363,14 +488,7 @@ function main() {
     "player_url",
   ], players);
   writeCsv(resolve(processedRoot, "player_stats.csv"), normalizedPlayerStatsHeaders, allPlayerStats);
-  writeCsv(resolve(processedRoot, "games.csv"), [
-    "season",
-    "source_team_id",
-    "game_key",
-    "date_label",
-    "opponent",
-    "raw_row",
-  ], games);
+  writeCsv(resolve(processedRoot, "games.csv"), normalizedGameHeaders, games);
   writeCsv(resolve(processedRoot, "player_review.csv"), [
     "season",
     "player_name",

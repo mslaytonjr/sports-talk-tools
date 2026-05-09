@@ -16,6 +16,7 @@ The scripts fall into four groups:
 The normal workflow is:
 
 ```bash
+npm run softball:scrape-sportstrack
 npm run softball:build-dataset -- 2025 2024 2023
 npm run softball:build-model -- 2026
 npm run softball:predict -- 2026
@@ -53,7 +54,24 @@ Use this when local raw HTML files changed and you want to rebuild processed out
 npm run softball:build-dataset -- 2025 2024 2023
 ```
 
-### 2. Debug suspicious player table data
+### 2. Refresh 2026 Sportstrack stats
+
+Use this after new 2026 LVC games have final scores on Sportstrack.
+
+```bash
+npm run softball:scrape-sportstrack
+npm run softball:build-dataset -- 2026
+```
+
+The scraper records state in `data/softball/raw/2026/sportstrack-state.json`. By default it only fetches
+completed games that have not already been scraped, using game ids plus the last scraped game date. Use
+`--force` when you want to rebuild the local 2026 Sportstrack raw pool from all completed games.
+
+```bash
+npm run softball:scrape-sportstrack -- --force
+```
+
+### 3. Debug suspicious player table data
 
 Use this when `player_stats_review.csv` shows bad rows and you want to inspect the raw source table.
 
@@ -68,7 +86,7 @@ Then rebuild:
 npm run softball:build-dataset -- 2025
 ```
 
-### 3. Update current-year team projections
+### 4. Update current-year team projections
 
 Use this when roster, schedule, or availability inputs changed for the prediction season.
 
@@ -77,7 +95,7 @@ npm run softball:build-model -- 2026
 npm run softball:predict -- 2026
 ```
 
-### 4. Publish the opening day odds board
+### 5. Publish the opening day odds board
 
 Use this when `predictions.csv` and `schedule_2026.csv` are ready and you want the JSON board output used by
 the site route.
@@ -266,6 +284,40 @@ Notes:
 - This does not modify the raw source file.
 - It is purely an inspection helper.
 
+### `npm run softball:scrape-sportstrack`
+
+Script:
+
+- `scripts/softball/scrape-sportstrack-2026.mjs`
+
+Why to use it:
+
+- Capture the current 2026 LVC Sportstrack team, roster, schedule, box-score, and player batting game-log
+  data into the local raw pool.
+- Keep incremental scrape state so future runs only pick up newly completed games.
+
+Reads:
+
+- `https://lvc.sportstrack.app/softball/events/145/teams?season_id=302`
+- Sportstrack AJAX and team stats endpoints for season `302`
+- `data/softball/raw/2026/sportstrack-state.json` when present
+
+Writes:
+
+- `data/softball/raw/2026/teams_page.html`
+- `data/softball/raw/2026/schedule.html`
+- `data/softball/raw/2026/sportstrack-schedule.json`
+- `data/softball/raw/2026/sportstrack-rosters.json`
+- `data/softball/raw/2026/sportstrack-player-game-stats.json`
+- `data/softball/raw/2026/sportstrack-player-season-stats.json`
+- `data/softball/raw/2026/sportstrack-state.json`
+- raw team, player, and box-score HTML snapshots under `data/softball/raw/2026/sportstrack/`
+
+Options:
+
+- `--dry-run`: report how many completed games would be scraped without writing a capture.
+- `--force`: rebuild 2026 Sportstrack raw stats from all completed games instead of only new games.
+
 ### `npm run softball:build-model -- <season>`
 
 Script:
@@ -419,6 +471,7 @@ You usually do not run this file directly.
 If your goal is:
 
 - rebuild processed historical data: `softball:build-dataset`
+- scrape current 2026 Sportstrack stats: `softball:scrape-sportstrack`
 - inspect raw player table structure: `softball:format-html`
 - inspect parsed player rows: `softball:debug-table`
 - review bad normalized stat rows: `softball:validate`

@@ -157,6 +157,7 @@ export default function App() {
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
                 <Route path="/PlayImpactModel" element={<PlayImpactModelPage />} />
+                <Route path="/SoftballOdds" element={<SoftballOpeningDayOddsPage />} />
                 <Route path="/SoftballOpeningDayOdds" element={<SoftballOpeningDayOddsPage />} />
                 <Route path="/BracketRootingGuide" element={<BracketRootingGuidePage />} />
                 <Route path="*" element={<HomePage />} />

@@ -12,6 +12,26 @@ function formatTilt(game: OpeningDayOddsGame) {
     return `${(gap * 100).toFixed(1)} pt edge`;
 }
 
+function formatResult(game: OpeningDayOddsGame) {
+    if (game.status !== "final" || game.home_score == null || game.away_score == null) {
+        return null;
+    }
+
+    return `${game.away_team} ${game.away_score}, ${game.home_team} ${game.home_score}`;
+}
+
+function resultTone(game: OpeningDayOddsGame) {
+    if (game.prediction_correct === true) {
+        return "border-emerald-400/40 bg-emerald-400/12 text-emerald-100";
+    }
+
+    if (game.prediction_correct === false) {
+        return "border-red-300/40 bg-red-400/12 text-red-100";
+    }
+
+    return "border-slate-300/20 bg-slate-400/10 text-slate-100";
+}
+
 function edgeTone(confidenceTier: string) {
     if (confidenceTier === "Strong") {
         return "border-emerald-400/40 bg-emerald-400/12 text-emerald-100";
@@ -138,7 +158,7 @@ export default function SoftballOpeningDayOddsPage() {
                     setError(
                         caughtError instanceof Error
                             ? caughtError.message
-                            : "Opening day odds board could not be loaded."
+                            : "Softball odds board could not be loaded."
                     );
                 }
             } finally {
@@ -163,14 +183,14 @@ export default function SoftballOpeningDayOddsPage() {
                 <section className="softball-board-hero overflow-hidden rounded-[2rem] border border-white/10 p-6 sm:p-8">
                     <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
                         <div className="space-y-4">
-                            <div className="softball-board-kicker">Softball Opening Day</div>
+                            <div className="softball-board-kicker">Softball Model Odds</div>
                             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                                Model odds board with sportsbook-style pricing for the full opening slate.
+                                Model odds board with sportsbook-style pricing and result tracking.
                             </h1>
                             <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                                Neutral-site local projections built from the current roster model. This
-                                board is styled like a sportsbook market view, but every line here is
-                                generated from the model, not a live book.
+                                Local projections built from the current roster model. Completed games
+                                compare the final score to the model pick, projected margin, and projected
+                                total.
                             </p>
                         </div>
 
@@ -178,7 +198,7 @@ export default function SoftballOpeningDayOddsPage() {
                             <div className="softball-summary-card">
                                 <div className="softball-summary-label">Board</div>
                                 <div className="softball-summary-value">
-                                    {board?.board_title ?? "Opening Day Model Odds"}
+                                    {board?.board_title ?? "Softball Model Odds"}
                                 </div>
                             </div>
                             <div className="softball-summary-card">
@@ -190,6 +210,20 @@ export default function SoftballOpeningDayOddsPage() {
                             <div className="softball-summary-card">
                                 <div className="softball-summary-label">Strong Edges</div>
                                 <div className="softball-summary-value">{strongEdges.length}</div>
+                            </div>
+                            <div className="softball-summary-card">
+                                <div className="softball-summary-label">Finals Tracked</div>
+                                <div className="softball-summary-value">
+                                    {board?.final_games ?? 0}
+                                </div>
+                            </div>
+                            <div className="softball-summary-card">
+                                <div className="softball-summary-label">Pick Accuracy</div>
+                                <div className="softball-summary-value text-base">
+                                    {board?.pick_accuracy == null
+                                        ? "n/a"
+                                        : formatPercent(board.pick_accuracy)}
+                                </div>
                             </div>
                             <div className="softball-summary-card">
                                 <div className="softball-summary-label">Source</div>
@@ -215,7 +249,7 @@ export default function SoftballOpeningDayOddsPage() {
 
                 {loading ? (
                     <section className="rounded-[1.75rem] border border-white/10 bg-slate-950/70 p-6 text-slate-300">
-                        Loading opening day odds board...
+                        Loading softball odds board...
                     </section>
                 ) : null}
 
@@ -313,7 +347,7 @@ export default function SoftballOpeningDayOddsPage() {
                                         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/8 pb-4">
                                             <div>
                                                 <div className="text-[0.72rem] uppercase tracking-[0.26em] text-slate-500">
-                                                    {game.display_date} • Opening Day
+                                                    {game.display_date} {game.status === "final" ? "Final" : "Scheduled"}
                                                 </div>
                                                 <div className="mt-2 text-xl font-semibold text-white">
                                                     {game.away_team} vs {game.home_team}
@@ -330,6 +364,15 @@ export default function SoftballOpeningDayOddsPage() {
                                                 <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">
                                                     Total {game.total_runs.toFixed(1)}
                                                 </div>
+                                                {game.status === "final" ? (
+                                                    <div
+                                                        className={`rounded-full border px-3 py-1 text-xs font-semibold ${resultTone(
+                                                            game
+                                                        )}`}
+                                                    >
+                                                        {game.prediction_correct ? "Pick Hit" : "Pick Miss"}
+                                                    </div>
+                                                ) : null}
                                             </div>
                                         </div>
 
@@ -362,6 +405,43 @@ export default function SoftballOpeningDayOddsPage() {
                                                 favored={homeFavored}
                                             />
                                         </div>
+
+                                        {game.status === "final" ? (
+                                            <div className="mt-4 grid gap-3 rounded-[1.35rem] border border-white/10 bg-white/5 p-4 text-sm text-slate-300 md:grid-cols-4">
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500">
+                                                        Final
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {formatResult(game)}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500">
+                                                        Winner
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        Model {game.predicted_winner}; Actual {game.actual_winner}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500">
+                                                        Margin Error
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {game.margin_error == null ? "n/a" : game.margin_error.toFixed(1)}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500">
+                                                        Total Error
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {game.total_error == null ? "n/a" : game.total_error.toFixed(1)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : null}
                                     </article>
                                 );
                             })}

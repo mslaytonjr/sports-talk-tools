@@ -9,6 +9,7 @@ export type OpeningDayOddsGame = {
     home_projected_runs: number;
     away_projected_runs: number;
     total_runs: number;
+    projected_margin?: number;
     home_win_probability: number;
     away_win_probability: number;
     home_moneyline: string;
@@ -18,6 +19,17 @@ export type OpeningDayOddsGame = {
     confidence_tier: string;
     home_team_rating: string;
     away_team_rating: string;
+    status?: string;
+    home_score?: number | null;
+    away_score?: number | null;
+    actual_winner?: string;
+    predicted_winner?: string;
+    prediction_correct?: boolean | null;
+    actual_margin?: number | null;
+    margin_error?: number | null;
+    actual_total?: number | null;
+    total_error?: number | null;
+    box_score_url?: string;
 };
 
 export type OpeningDayOddsBoard = {
@@ -30,6 +42,9 @@ export type OpeningDayOddsBoard = {
     board_subtitle: string;
     data_source: string;
     caveat: string;
+    final_games?: number;
+    correct_picks?: number;
+    pick_accuracy?: number | null;
     games: OpeningDayOddsGame[];
 };
 
@@ -39,7 +54,7 @@ export async function loadOpeningDayOddsBoard(season: number): Promise<OpeningDa
     });
 
     if (!response.ok) {
-        throw new Error(`Opening day odds for ${season} were not found.`);
+        throw new Error(`Softball odds for ${season} were not found.`);
     }
 
     return response.json() as Promise<OpeningDayOddsBoard>;

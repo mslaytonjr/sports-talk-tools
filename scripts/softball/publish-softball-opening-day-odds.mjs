@@ -73,6 +73,15 @@ function normalizeDate(value) {
   return `${fullYear}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
+function toNumber(value) {
+  const text = String(value ?? "").trim();
+  if (!text) {
+    return null;
+  }
+  const parsed = Number(text);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
 function main() {
   const predictions = readCsvFile(resolve(processedRoot, "predictions.csv"));
   const scheduleRows = readCsvFile(resolve(inputRoot, `schedule_${targetSeason}.csv`));
@@ -84,10 +93,12 @@ function main() {
     .map((row) => {
       const homeTeam = String(row.home_team ?? "").trim();
       const awayTeam = String(row.away_team ?? "").trim();
+      const gameDate = normalizeDate(row.date);
       const prediction = predictions.find(
         (item) =>
-          String(item.home_team ?? "").trim() === homeTeam &&
-          String(item.away_team ?? "").trim() === awayTeam
+          normalizeDate(item.date) === gameDate &&
+          slugify(item.home_team) === slugify(homeTeam) &&
+          slugify(item.away_team) === slugify(awayTeam)
       );
 
       if (!prediction) {
@@ -99,13 +110,27 @@ function main() {
       const homeProjectedRuns = Number(prediction.home_projected_runs);
       const awayProjectedRuns = Number(prediction.away_projected_runs);
       const total = homeProjectedRuns + awayProjectedRuns;
+      const projectedMargin = homeProjectedRuns - awayProjectedRuns;
       const favorite = homeWinProbability >= awayWinProbability ? homeTeam : awayTeam;
       const favoriteProbability = Math.max(homeWinProbability, awayWinProbability);
+      const homeScore = toNumber(row.home_score);
+      const awayScore = toNumber(row.away_score);
+      const isFinal = homeScore != null && awayScore != null;
+      const actualWinner = isFinal
+        ? homeScore > awayScore
+          ? homeTeam
+          : awayScore > homeScore
+            ? awayTeam
+            : "Tie"
+        : "";
+      const predictedWinner = favorite;
+      const actualMargin = isFinal ? homeScore - awayScore : null;
+      const actualTotal = isFinal ? homeScore + awayScore : null;
 
       return {
-        game_id: `${slugify(homeTeam)}_vs_${slugify(awayTeam)}`,
+        game_id: row.game_id || `${slugify(homeTeam)}_vs_${slugify(awayTeam)}`,
         season: Number(targetSeason),
-        date: normalizeDate(row.date),
+        date: gameDate,
         display_date: String(row.date ?? "").trim(),
         neutral_site: true,
         home_team: homeTeam,
@@ -113,6 +138,7 @@ function main() {
         home_projected_runs: homeProjectedRuns,
         away_projected_runs: awayProjectedRuns,
         total_runs: Number(total.toFixed(1)),
+        projected_margin: Number(projectedMargin.toFixed(2)),
         home_win_probability: homeWinProbability,
         away_win_probability: awayWinProbability,
         home_moneyline: toAmericanOdds(homeWinProbability),
@@ -122,9 +148,23 @@ function main() {
         confidence_tier: confidenceTier(favoriteProbability),
         home_team_rating: ratingMap.get(slugify(homeTeam))?.overall_rating ?? "",
         away_team_rating: ratingMap.get(slugify(awayTeam))?.overall_rating ?? "",
+        status: isFinal ? "final" : "scheduled",
+        home_score: homeScore,
+        away_score: awayScore,
+        actual_winner: actualWinner,
+        predicted_winner: predictedWinner,
+        prediction_correct: isFinal ? actualWinner === predictedWinner : null,
+        actual_margin: actualMargin,
+        margin_error: isFinal ? Number(Math.abs(projectedMargin - actualMargin).toFixed(2)) : null,
+        actual_total: actualTotal,
+        total_error: isFinal ? Number(Math.abs(total - actualTotal).toFixed(2)) : null,
+        box_score_url: row.box_score_url ?? "",
       };
     })
     .filter(Boolean);
+
+  const finalGames = games.filter((game) => game.status === "final");
+  const correctPicks = finalGames.filter((game) => game.prediction_correct).length;
 
   const payload = {
     generated_at: new Date().toISOString(),
@@ -132,10 +172,14 @@ function main() {
     stats_through_date: scrapeState.lastScrapedGameDate ?? "",
     scraped_game_count: scrapeState.scrapedGameIds?.length ?? "",
     season: Number(targetSeason),
-    board_title: "Opening Day Model Odds",
-    board_subtitle: "Neutral-site softball projections styled like a sportsbook board.",
+    board_title: "Softball Model Odds",
+    board_subtitle: "Current-season softball projections with final-score tracking.",
     data_source: "Local softball model",
     caveat: "These are model-derived lines, not live sportsbook odds.",
+    final_games: finalGames.length,
+    correct_picks: correctPicks,
+    pick_accuracy:
+      finalGames.length > 0 ? Number((correctPicks / finalGames.length).toFixed(4)) : null,
     games,
   };
 
@@ -151,7 +195,7 @@ function main() {
     "utf8"
   );
 
-  console.log(`Published ${games.length} opening day softball odds entries for ${targetSeason}.`);
+  console.log(`Published ${games.length} softball odds entries for ${targetSeason}.`);
 }
 
 main();

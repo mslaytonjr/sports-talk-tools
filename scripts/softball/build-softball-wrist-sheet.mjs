@@ -92,58 +92,14 @@ function formatPercent(value) {
   return Number.isFinite(numeric) ? `${Math.round(numeric * 100)}%` : "-";
 }
 
-function getContactMix(player) {
-  const line = Number(player.line_out_percentage);
-  const fly = Number(player.fly_out_percentage);
-  const ground = Number(player.ground_out_percentage);
-
-  if (Number.isFinite(line) && Number.isFinite(fly) && Math.abs(line - fly) < 0.08) {
-    return { code: "Mixed", rate: null };
-  }
-
-  const values = [
-    ["LO", line],
-    ["FO", fly],
-    ["GO", ground],
-  ].filter((entry) => Number.isFinite(entry[1]));
-
-  if (values.length !== 3 || values.every((entry) => entry[1] === 0)) {
-    return { code: "-", rate: null };
-  }
-
-  values.sort((left, right) => right[1] - left[1]);
-  const [leader, leadValue] = values[0];
-  const secondValue = values[1][1];
-
-  if (leadValue - secondValue < 0.08) {
-    return { code: "Mixed", rate: null };
-  }
-
-  return { code: leader, rate: leadValue };
-}
-
-function getContactReadout(player) {
-  const mix = getContactMix(player);
-  if (mix.code === "-" || mix.code === "Mixed" || mix.rate == null) {
-    return mix.code;
-  }
-  return `${mix.code} ${Math.round(mix.rate * 100)}%`;
-}
-
-function getContactSuffix(player) {
-  const mix = getContactMix(player);
-  return mix.code === "-" || mix.code === "Mixed" ? "" : ` ${mix.code}`;
-}
-
 function recommendShade(player) {
   const left = Number(player.h2l_percentage);
   const center = Number(player.h2c_percentage);
   const right = Number(player.h2r_percentage);
-  const contactSuffix = getContactSuffix(player);
   const values = [left, center, right].filter(Number.isFinite);
 
   if (values.length !== 3 || values.every((value) => value === 0)) {
-    return `Balanced${contactSuffix}`;
+    return "Balanced";
   }
 
   const sorted = [
@@ -157,36 +113,36 @@ function recommendShade(player) {
   const gap = leadValue - secondValue;
 
   if (gap < 0.1) {
-    return `Balanced${contactSuffix}`;
+    return "Balanced";
   }
 
   if (leader === "left") {
     if (left >= 0.65) {
-      return `Hard left${contactSuffix}`;
+      return "Hard left";
     }
     if (center >= 0.35) {
-      return `LF/LCF gap${contactSuffix}`;
+      return "LF/LCF gap";
     }
-    return `Shade left${contactSuffix}`;
+    return "Shade left";
   }
 
   if (leader === "right") {
     if (right >= 0.35) {
-      return `Hard right${contactSuffix}`;
+      return "Hard right";
     }
     if (center >= 0.35) {
-      return `RCF/RF gap${contactSuffix}`;
+      return "RCF/RF gap";
     }
-    return `Shade right${contactSuffix}`;
+    return "Shade right";
   }
 
   if (left >= 0.3 && right < 0.12) {
-    return `Shade left${contactSuffix}`;
+    return "Shade left";
   }
   if (right >= 0.18 && left < 0.2) {
-    return `Shade right${contactSuffix}`;
+    return "Shade right";
   }
-  return `Center${contactSuffix}`;
+  return "Center";
 }
 
 function getReportPath(teamSlug) {
@@ -234,7 +190,6 @@ function buildRows(report, threatCurve) {
         threat: getThreatTier(rawScore, threatCurve),
         avg: formatRate(player.avg),
         obp: formatRate(player.obp),
-        contact: getContactReadout(player),
         shade: recommendShade(player),
       };
     });
@@ -263,7 +218,6 @@ function buildHtml(report, threatCurve) {
         <td class="threat">${escapeHtml(row.threat)}</td>
         <td>${escapeHtml(row.avg)}</td>
         <td>${escapeHtml(row.obp)}</td>
-        <td class="contact">${escapeHtml(row.contact)}</td>
         <td class="shade">${escapeHtml(row.shade)}</td>
       </tr>`
     )
@@ -361,8 +315,7 @@ function buildHtml(report, threatCurve) {
     .spot { width: 6%; text-align: center; font-weight: 700; }
     .player { width: 26%; font-weight: 700; }
     .threat { width: 16%; font-weight: 800; text-transform: uppercase; }
-    .contact { width: 12%; text-align: center; font-weight: 800; }
-    .shade { width: 24%; font-weight: 800; text-transform: uppercase; }
+    .shade { width: 36%; font-weight: 800; text-transform: uppercase; }
     .legend {
       margin-top: 0.06in;
       display: grid;
@@ -404,7 +357,6 @@ function buildHtml(report, threatCurve) {
           <th class="threat">Threat</th>
           <th>BA</th>
           <th>OBP</th>
-          <th class="contact">Outs</th>
           <th class="shade">Defense</th>
         </tr>
       </thead>
@@ -412,7 +364,7 @@ function buildHtml(report, threatCurve) {
     </table>
     <div class="legend">
       <div class="box">Threat is curved league-wide from modeled bat strength: Red Alert, Danger, Respect, Normal, Attack, Low Threat.</div>
-      <div class="box">Outs shows the dominant out type when clear: LO line outs, FO fly outs, GO ground outs. Mixed means no clear lean.</div>
+      <div class="box">Defense is the recommended outfield shade from available hit-direction history. 2026 public stats do not include new direction data.</div>
     </div>
   </section>
 </body>

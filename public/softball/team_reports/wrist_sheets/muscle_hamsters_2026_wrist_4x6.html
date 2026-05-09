@@ -90,8 +90,7 @@
     .spot { width: 6%; text-align: center; font-weight: 700; }
     .player { width: 26%; font-weight: 700; }
     .threat { width: 16%; font-weight: 800; text-transform: uppercase; }
-    .contact { width: 12%; text-align: center; font-weight: 800; }
-    .shade { width: 24%; font-weight: 800; text-transform: uppercase; }
+    .shade { width: 36%; font-weight: 800; text-transform: uppercase; }
     .legend {
       margin-top: 0.06in;
       display: grid;
@@ -133,7 +132,6 @@
           <th class="threat">Threat</th>
           <th>BA</th>
           <th>OBP</th>
-          <th class="contact">Outs</th>
           <th class="shade">Defense</th>
         </tr>
       </thead>
@@ -143,63 +141,55 @@
         <td class="threat">Red Alert</td>
         <td>0.667</td>
         <td>0.685</td>
-        <td class="contact">FO 60%</td>
-        <td class="shade">Balanced FO</td>
+        <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">2</td>
         <td class="player">Ryan Boeckel</td>
         <td class="threat">Red Alert</td>
         <td>0.663</td>
         <td>0.667</td>
-        <td class="contact">FO 59%</td>
-        <td class="shade">Shade right FO</td>
+        <td class="shade">Shade right</td>
       </tr><tr>
         <td class="spot">3</td>
         <td class="player">Victor Cardona</td>
         <td class="threat">Danger</td>
         <td>0.561</td>
         <td>0.536</td>
-        <td class="contact">FO 83%</td>
-        <td class="shade">Balanced FO</td>
+        <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">4</td>
         <td class="player">John Petrozzino</td>
         <td class="threat">Danger</td>
         <td>0.590</td>
         <td>0.601</td>
-        <td class="contact">FO 65%</td>
-        <td class="shade">Shade left FO</td>
+        <td class="shade">Shade left</td>
       </tr><tr>
         <td class="spot">5</td>
         <td class="player">John Boeckel</td>
         <td class="threat">Respect</td>
         <td>0.538</td>
         <td>0.543</td>
-        <td class="contact">FO 55%</td>
-        <td class="shade">Center FO</td>
+        <td class="shade">Center</td>
       </tr><tr>
         <td class="spot">6</td>
         <td class="player">Nico Coppola</td>
         <td class="threat">Respect</td>
         <td>0.563</td>
         <td>0.569</td>
-        <td class="contact">FO 74%</td>
-        <td class="shade">LF/LCF gap FO</td>
+        <td class="shade">LF/LCF gap</td>
       </tr><tr>
         <td class="spot">7</td>
         <td class="player">Frank Coppola</td>
         <td class="threat">Respect</td>
         <td>0.436</td>
         <td>0.439</td>
-        <td class="contact">FO 83%</td>
-        <td class="shade">Balanced FO</td>
+        <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">8</td>
         <td class="player">Daniel Weiner</td>
         <td class="threat">Respect</td>
         <td>-</td>
         <td>-</td>
-        <td class="contact">Mixed</td>
         <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">9</td>
@@ -207,7 +197,6 @@
         <td class="threat">Respect</td>
         <td>0.390</td>
         <td>0.426</td>
-        <td class="contact">Mixed</td>
         <td class="shade">Shade left</td>
       </tr><tr>
         <td class="spot">10</td>
@@ -215,39 +204,34 @@
         <td class="threat">Normal</td>
         <td>0.391</td>
         <td>0.383</td>
-        <td class="contact">FO 56%</td>
-        <td class="shade">Center FO</td>
+        <td class="shade">Center</td>
       </tr><tr>
         <td class="spot">11</td>
         <td class="player">Mike Hettesheimer</td>
         <td class="threat">Normal</td>
         <td>0.340</td>
         <td>0.346</td>
-        <td class="contact">FO 57%</td>
-        <td class="shade">LF/LCF gap FO</td>
+        <td class="shade">LF/LCF gap</td>
       </tr><tr>
         <td class="spot">12</td>
         <td class="player">Dan Ochs</td>
         <td class="threat">Normal</td>
         <td>0.320</td>
         <td>0.373</td>
-        <td class="contact">GO 58%</td>
-        <td class="shade">Center GO</td>
+        <td class="shade">Center</td>
       </tr><tr>
         <td class="spot">13</td>
         <td class="player">Ben Alkin</td>
         <td class="threat">Normal</td>
         <td>0.269</td>
         <td>0.285</td>
-        <td class="contact">FO 73%</td>
-        <td class="shade">Balanced FO</td>
+        <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">14</td>
         <td class="player">Gavin Boeckel</td>
         <td class="threat">Low Threat</td>
         <td>-</td>
         <td>-</td>
-        <td class="contact">Mixed</td>
         <td class="shade">Balanced</td>
       </tr><tr>
         <td class="spot">15</td>
@@ -255,13 +239,12 @@
         <td class="threat">Low Threat</td>
         <td>-</td>
         <td>-</td>
-        <td class="contact">Mixed</td>
         <td class="shade">Balanced</td>
       </tr></tbody>
     </table>
     <div class="legend">
       <div class="box">Threat is curved league-wide from modeled bat strength: Red Alert, Danger, Respect, Normal, Attack, Low Threat.</div>
-      <div class="box">Outs shows the dominant out type when clear: LO line outs, FO fly outs, GO ground outs. Mixed means no clear lean.</div>
+      <div class="box">Defense is the recommended outfield shade from available hit-direction history. 2026 public stats do not include new direction data.</div>
     </div>
   </section>
 </body>

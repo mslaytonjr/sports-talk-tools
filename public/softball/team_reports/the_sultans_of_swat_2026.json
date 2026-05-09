@@ -1,4 +1,8 @@
 {
+  "generated_at": "2026-05-09T13:52:27.211Z",
+  "stats_last_scraped_at": "2026-05-09T13:20:43.755Z",
+  "stats_through_date": "2026-05-08",
+  "scraped_game_count": 10,
   "season": 2026,
   "team": "The Sultans of Swat",
   "team_rating": {
@@ -58,6 +62,198 @@
     ],
     "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
+  "player_direction_stats": [
+    {
+      "player_name": "Dave Auerbach",
+      "h2l_percentage": 0.8584382871536524,
+      "h2c_percentage": 0.12795969773299748,
+      "h2r_percentage": 0.013602015113350126,
+      "weighted_left": 170.4,
+      "weighted_center": 25.4,
+      "weighted_right": 2.7,
+      "weighted_total": 198.5,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Jim Halpin",
+      "h2l_percentage": 0.3861277990169306,
+      "h2c_percentage": 0.4784270890223921,
+      "h2r_percentage": 0.1354451119606772,
+      "weighted_left": 70.7,
+      "weighted_center": 87.60000000000001,
+      "weighted_right": 24.8,
+      "weighted_total": 183.10000000000002,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Pete DeFrank",
+      "h2l_percentage": 0.5107319757842599,
+      "h2c_percentage": 0.4645019262520639,
+      "h2r_percentage": 0.02476609796367639,
+      "weighted_left": 92.80000000000001,
+      "weighted_center": 84.4,
+      "weighted_right": 4.5,
+      "weighted_total": 181.7,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Jay Glickson",
+      "h2l_percentage": 0.37012987012987014,
+      "h2c_percentage": 0.47662337662337667,
+      "h2r_percentage": 0.15324675324675324,
+      "weighted_left": 57,
+      "weighted_center": 73.4,
+      "weighted_right": 23.6,
+      "weighted_total": 154,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Adam Steckelman",
+      "h2l_percentage": 0.2562674094707521,
+      "h2c_percentage": 0.6079387186629528,
+      "h2r_percentage": 0.13579387186629527,
+      "weighted_left": 36.8,
+      "weighted_center": 87.30000000000001,
+      "weighted_right": 19.5,
+      "weighted_total": 143.6,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Keith Rothfritz",
+      "h2l_percentage": 0.7070707070707071,
+      "h2c_percentage": 0.2853535353535354,
+      "h2r_percentage": 0.007575757575757576,
+      "weighted_left": 84,
+      "weighted_center": 33.900000000000006,
+      "weighted_right": 0.9,
+      "weighted_total": 118.8,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Dave Richmond",
+      "h2l_percentage": 0.21689895470383272,
+      "h2c_percentage": 0.6820557491289199,
+      "h2r_percentage": 0.10104529616724739,
+      "weighted_left": 24.9,
+      "weighted_center": 78.30000000000001,
+      "weighted_right": 11.600000000000001,
+      "weighted_total": 114.80000000000001,
+      "seasons_used": [
+        "2023",
+        "2024"
+      ]
+    },
+    {
+      "player_name": "John McDonough",
+      "h2l_percentage": 0.5285338015803336,
+      "h2c_percentage": 0.4644424934152766,
+      "h2r_percentage": 0.007023705004389816,
+      "weighted_left": 60.2,
+      "weighted_center": 52.900000000000006,
+      "weighted_right": 0.8,
+      "weighted_total": 113.9,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Dimitri Rassias",
+      "h2l_percentage": 0.5031277926720286,
+      "h2c_percentage": 0.4968722073279714,
+      "h2r_percentage": 0,
+      "weighted_left": 56.3,
+      "weighted_center": 55.6,
+      "weighted_right": 0,
+      "weighted_total": 111.9,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Kyle Doench",
+      "h2l_percentage": 0.28334956183057447,
+      "h2c_percentage": 0.6718597857838364,
+      "h2r_percentage": 0.04479065238558909,
+      "weighted_left": 29.1,
+      "weighted_center": 69,
+      "weighted_right": 4.6,
+      "weighted_total": 102.7,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Seth Friedman",
+      "h2l_percentage": 0.056435643564356444,
+      "h2c_percentage": 0.4326732673267327,
+      "h2r_percentage": 0.5108910891089109,
+      "weighted_left": 5.700000000000001,
+      "weighted_center": 43.7,
+      "weighted_right": 51.6,
+      "weighted_total": 101,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Kevin Marquez",
+      "h2l_percentage": 0.6326530612244898,
+      "h2c_percentage": 0.3673469387755102,
+      "h2r_percentage": 0,
+      "weighted_left": 31,
+      "weighted_center": 18,
+      "weighted_right": 0,
+      "weighted_total": 49,
+      "seasons_used": [
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Will Zaragoza",
+      "h2l_percentage": 0,
+      "h2c_percentage": 0.9145728643216081,
+      "h2r_percentage": 0.08542713567839197,
+      "weighted_left": 0,
+      "weighted_center": 18.2,
+      "weighted_right": 1.7000000000000002,
+      "weighted_total": 19.9,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    }
+  ],
   "best_full_order_if_everyone_shows": [
     {
       "spot": 1,
@@ -65,7 +261,7 @@
       "player_name": "Kevin Marquez",
       "matched": "yes",
       "league_bat_score_rank": 10,
-      "league_bat_score_rank_label": "10th of 168 returning players",
+      "league_bat_score_rank_label": "10th of 168 ranked players",
       "offense_index": 0.7547002270289682,
       "projected_offense_index": 0.7147002270289682,
       "trend_adjustment": "-0.0400",
@@ -76,6 +272,10 @@
       "direction_seasons_used": [
         "2025"
       ],
+      "weighted_h2l": 31,
+      "weighted_h2c": 18,
+      "weighted_h2r": 0,
+      "weighted_direction_total": 49,
       "line_out_percentage": 0,
       "fly_out_percentage": 0.6666666666666666,
       "ground_out_percentage": 0.3333333333333333,
@@ -94,7 +294,7 @@
       "player_name": "Dave Auerbach",
       "matched": "yes",
       "league_bat_score_rank": 6,
-      "league_bat_score_rank_label": "6th of 168 returning players",
+      "league_bat_score_rank_label": "6th of 168 ranked players",
       "offense_index": 0.7625039386443084,
       "projected_offense_index": 0.7239863046073604,
       "trend_adjustment": "-0.0385",
@@ -107,6 +307,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 170.4,
+      "weighted_h2c": 25.4,
+      "weighted_h2r": 2.7,
+      "weighted_direction_total": 198.5,
       "line_out_percentage": 0.07496774643467344,
       "fly_out_percentage": 0.7830816974092542,
       "ground_out_percentage": 0.14195055615607235,
@@ -125,7 +329,7 @@
       "player_name": "Keith Rothfritz",
       "matched": "yes",
       "league_bat_score_rank": 30,
-      "league_bat_score_rank_label": "30th of 168 returning players",
+      "league_bat_score_rank_label": "30th of 168 ranked players",
       "offense_index": 0.6014824580519272,
       "projected_offense_index": 0.6102071403711719,
       "trend_adjustment": "0.0087",
@@ -137,6 +341,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 84,
+      "weighted_h2c": 33.900000000000006,
+      "weighted_h2r": 0.9,
+      "weighted_direction_total": 118.8,
       "line_out_percentage": 0.024456521739130432,
       "fly_out_percentage": 0.6440217391304348,
       "ground_out_percentage": 0.33152173913043476,
@@ -155,7 +363,7 @@
       "player_name": "Jim Halpin",
       "matched": "yes",
       "league_bat_score_rank": 41,
-      "league_bat_score_rank_label": "41st of 168 returning players",
+      "league_bat_score_rank_label": "41st of 168 ranked players",
       "offense_index": 0.5665808534576544,
       "projected_offense_index": 0.578607303842386,
       "trend_adjustment": "0.0120",
@@ -168,6 +376,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 70.7,
+      "weighted_h2c": 87.60000000000001,
+      "weighted_h2r": 24.8,
+      "weighted_direction_total": 183.10000000000002,
       "line_out_percentage": 0.0861746300953272,
       "fly_out_percentage": 0.519328615708521,
       "ground_out_percentage": 0.3944967541961518,
@@ -186,7 +398,7 @@
       "player_name": "Jay Glickson",
       "matched": "yes",
       "league_bat_score_rank": 42,
-      "league_bat_score_rank_label": "42nd of 168 returning players",
+      "league_bat_score_rank_label": "42nd of 168 ranked players",
       "offense_index": 0.5460374598702115,
       "projected_offense_index": 0.5755923964119161,
       "trend_adjustment": "0.0296",
@@ -199,6 +411,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 57,
+      "weighted_h2c": 73.4,
+      "weighted_h2r": 23.6,
+      "weighted_direction_total": 154,
       "line_out_percentage": 0.013027744270205066,
       "fly_out_percentage": 0.752151186168074,
       "ground_out_percentage": 0.23482106956172094,
@@ -217,7 +433,7 @@
       "player_name": "Kyle Doench",
       "matched": "yes",
       "league_bat_score_rank": 63,
-      "league_bat_score_rank_label": "63rd of 168 returning players",
+      "league_bat_score_rank_label": "63rd of 168 ranked players",
       "offense_index": 0.5216110273783299,
       "projected_offense_index": 0.5505393318973272,
       "trend_adjustment": "0.0289",
@@ -229,6 +445,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 29.1,
+      "weighted_h2c": 69,
+      "weighted_h2r": 4.6,
+      "weighted_direction_total": 102.7,
       "line_out_percentage": 0.0860566448801743,
       "fly_out_percentage": 0.4335511982570806,
       "ground_out_percentage": 0.4803921568627451,
@@ -247,7 +467,7 @@
       "player_name": "Adam Steckelman",
       "matched": "yes",
       "league_bat_score_rank": 90,
-      "league_bat_score_rank_label": "90th of 168 returning players",
+      "league_bat_score_rank_label": "90th of 168 ranked players",
       "offense_index": 0.5146863674708283,
       "projected_offense_index": 0.5117751084105139,
       "trend_adjustment": "-0.0029",
@@ -260,6 +480,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 36.8,
+      "weighted_h2c": 87.30000000000001,
+      "weighted_h2r": 19.5,
+      "weighted_direction_total": 143.6,
       "line_out_percentage": 0.0860120787064095,
       "fly_out_percentage": 0.756672511202026,
       "ground_out_percentage": 0.1573154100915644,
@@ -278,7 +502,7 @@
       "player_name": "Dave Richmond",
       "matched": "yes",
       "league_bat_score_rank": 111,
-      "league_bat_score_rank_label": "111th of 168 returning players",
+      "league_bat_score_rank_label": "111th of 168 ranked players",
       "offense_index": 0.5264069054202369,
       "projected_offense_index": 0.48640690542023696,
       "trend_adjustment": "-0.0400",
@@ -290,6 +514,10 @@
         "2023",
         "2024"
       ],
+      "weighted_h2l": 24.9,
+      "weighted_h2c": 78.30000000000001,
+      "weighted_h2r": 11.600000000000001,
+      "weighted_direction_total": 114.80000000000001,
       "line_out_percentage": 0.027262813522355513,
       "fly_out_percentage": 0.5278080697928027,
       "ground_out_percentage": 0.4449291166848419,
@@ -308,7 +536,7 @@
       "player_name": "Pete DeFrank",
       "matched": "yes",
       "league_bat_score_rank": 115,
-      "league_bat_score_rank_label": "115th of 168 returning players",
+      "league_bat_score_rank_label": "115th of 168 ranked players",
       "offense_index": 0.5182645238629365,
       "projected_offense_index": 0.47826452386293655,
       "trend_adjustment": "-0.0400",
@@ -321,6 +549,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 92.80000000000001,
+      "weighted_h2c": 84.4,
+      "weighted_h2r": 4.5,
+      "weighted_direction_total": 181.7,
       "line_out_percentage": 0.08542553499551153,
       "fly_out_percentage": 0.6316566762227435,
       "ground_out_percentage": 0.282917788781745,
@@ -339,7 +571,7 @@
       "player_name": "Dimitri Rassias",
       "matched": "yes",
       "league_bat_score_rank": 140,
-      "league_bat_score_rank_label": "140th of 168 returning players",
+      "league_bat_score_rank_label": "140th of 168 ranked players",
       "offense_index": 0.4482045296796606,
       "projected_offense_index": 0.4542387184597752,
       "trend_adjustment": "0.0060",
@@ -352,6 +584,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 56.3,
+      "weighted_h2c": 55.6,
+      "weighted_h2r": 0,
+      "weighted_direction_total": 111.9,
       "line_out_percentage": 0,
       "fly_out_percentage": 0.43317325117796307,
       "ground_out_percentage": 0.566826748822037,
@@ -370,7 +606,7 @@
       "player_name": "Seth Friedman",
       "matched": "yes",
       "league_bat_score_rank": 138,
-      "league_bat_score_rank_label": "138th of 168 returning players",
+      "league_bat_score_rank_label": "138th of 168 ranked players",
       "offense_index": 0.4553712107869647,
       "projected_offense_index": 0.4562709895249909,
       "trend_adjustment": "0.0009",
@@ -383,6 +619,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 5.700000000000001,
+      "weighted_h2c": 43.7,
+      "weighted_h2r": 51.6,
+      "weighted_direction_total": 101,
       "line_out_percentage": 0.06342810238041936,
       "fly_out_percentage": 0.6245429445563764,
       "ground_out_percentage": 0.3120289530632042,
@@ -401,7 +641,7 @@
       "player_name": "Sal DAmbrosia",
       "matched": "yes",
       "league_bat_score_rank": 133,
-      "league_bat_score_rank_label": "133rd of 168 returning players",
+      "league_bat_score_rank_label": "133rd of 168 ranked players",
       "offense_index": 0.4615545802966021,
       "projected_offense_index": 0.4615545802966021,
       "trend_adjustment": "0.0000",
@@ -410,6 +650,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,
@@ -428,7 +672,7 @@
       "player_name": "John McDonough",
       "matched": "yes",
       "league_bat_score_rank": 161,
-      "league_bat_score_rank_label": "161st of 168 returning players",
+      "league_bat_score_rank_label": "161st of 168 ranked players",
       "offense_index": 0.3703630971944916,
       "projected_offense_index": 0.4103630971944916,
       "trend_adjustment": "0.0400",
@@ -441,6 +685,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 60.2,
+      "weighted_h2c": 52.900000000000006,
+      "weighted_h2r": 0.8,
+      "weighted_direction_total": 113.9,
       "line_out_percentage": 0.09693454846727423,
       "fly_out_percentage": 0.3837839873465391,
       "ground_out_percentage": 0.5192814641861866,
@@ -459,7 +707,7 @@
       "player_name": "Will Zaragoza",
       "matched": "yes",
       "league_bat_score_rank": 159,
-      "league_bat_score_rank_label": "159th of 168 returning players",
+      "league_bat_score_rank_label": "159th of 168 ranked players",
       "offense_index": 0.4185567763533081,
       "projected_offense_index": 0.41660272739290816,
       "trend_adjustment": "-0.0020",
@@ -472,6 +720,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 0,
+      "weighted_h2c": 18.2,
+      "weighted_h2r": 1.7000000000000002,
+      "weighted_direction_total": 19.9,
       "line_out_percentage": 0.05844155844155844,
       "fly_out_percentage": 0.7435064935064936,
       "ground_out_percentage": 0.19805194805194803,
@@ -499,6 +751,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,

@@ -13,6 +13,7 @@ import {
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = resolve(__dirname, "..", "..");
 const processedRoot = resolve(projectRoot, "data", "softball", "processed");
+const rawRoot = resolve(projectRoot, "data", "softball", "raw");
 const reportRoot = resolve(processedRoot, "team_reports");
 
 const targetSeason = process.argv[2] ?? "2026";
@@ -26,6 +27,51 @@ const directionSeasonWeights = new Map([
 
 function readCsvFile(filePath) {
   return parseCsv(readFileSync(filePath, "utf8"));
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+function formatDateTime(value) {
+  if (!value) {
+    return "Not available";
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  }).format(parsed);
+}
+
+function formatDateLabel(value) {
+  if (!value) {
+    return "Not available";
+  }
+
+  const parsed = new Date(`${value}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(parsed);
 }
 
 function formatDecimal(value, digits = 2) {
@@ -481,7 +527,7 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
         ? (() => {
             const rank = leagueBatScoreRanks.rankMap.get(player.historical_player_id);
             return rank != null
-              ? `${ordinal(rank)} of ${leagueBatScoreRanks.totalRankedPlayers} returning players`
+              ? `${ordinal(rank)} of ${leagueBatScoreRanks.totalRankedPlayers} ranked players`
               : "n/a";
           })()
         : "Rookie / unmatched",
@@ -502,6 +548,10 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
         ? player.hit_direction_profile.weighted_right / player.hit_direction_profile.weighted_total
         : null,
     direction_seasons_used: player.hit_direction_profile?.seasons_used ?? [],
+    weighted_h2l: player.hit_direction_profile?.weighted_left ?? null,
+    weighted_h2c: player.hit_direction_profile?.weighted_center ?? null,
+    weighted_h2r: player.hit_direction_profile?.weighted_right ?? null,
+    weighted_direction_total: player.hit_direction_profile?.weighted_total ?? null,
     line_out_percentage: player.line_out_percentage,
     fly_out_percentage: player.fly_out_percentage,
     ground_out_percentage: player.ground_out_percentage,
@@ -629,6 +679,23 @@ function buildHtmlReport(report) {
         </tr>`
     )
     .join("");
+
+  const playerDirectionRows =
+    report.player_direction_stats.length > 0
+      ? report.player_direction_stats
+          .map(
+            (player) => `
+        <tr>
+          <td>${escapeHtml(player.player_name)}</td>
+          <td>${formatPct(player.h2l_percentage, 1)}</td>
+          <td>${formatPct(player.h2c_percentage, 1)}</td>
+          <td>${formatPct(player.h2r_percentage, 1)}</td>
+          <td>${formatDecimal(player.weighted_total, 1)}</td>
+          <td>${escapeHtml(player.seasons_used.join(", "))}</td>
+        </tr>`
+          )
+          .join("")
+      : `<tr><td colspan="6">No player-level direction data available.</td></tr>`;
 
   const unmatchedList =
     report.rookies_or_unmatched.length > 0
@@ -832,6 +899,16 @@ function buildHtmlReport(report) {
           <div class="value">${teamRating ? `${teamRating.active_players}/${teamRating.roster_size}` : "n/a"}</div>
           <div class="sub">Active players in current report</div>
         </div>
+        <div class="summary-card">
+          <div class="label">Report Updated</div>
+          <div class="value">${escapeHtml(formatDateTime(report.generated_at))}</div>
+          <div class="sub">Team report build time</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Stats Through</div>
+          <div class="value">${escapeHtml(formatDateLabel(report.stats_through_date))}</div>
+          <div class="sub">${report.scraped_game_count ? `${report.scraped_game_count} scraped games` : "Sportstrack scrape state"}</div>
+        </div>
       </div>
     </section>
 
@@ -891,6 +968,19 @@ function buildHtmlReport(report) {
             </div>
           </div>
           <p class="note">Direction data covers ${directionProfile?.players_with_direction_data ?? 0} of ${directionProfile?.matched_roster_players ?? 0} matched roster players. Seasons used: ${escapeHtml(directionSeasonText)}.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>H2L</th>
+                <th>H2C</th>
+                <th>H2R</th>
+                <th>Weighted Events</th>
+                <th>Seasons</th>
+              </tr>
+            </thead>
+            <tbody>${playerDirectionRows}</tbody>
+          </table>
         </section>
 
         <section class="panel">
@@ -951,18 +1041,38 @@ function main() {
     .sort((left, right) => right.win_probability_swing - left.win_probability_swing);
 
   const lineup = buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRanks);
+  const playerDirectionStats = lineup
+    .filter((player) => player.h2l_percentage != null && player.h2c_percentage != null && player.h2r_percentage != null)
+    .map((player) => ({
+      player_name: player.player_name,
+      h2l_percentage: player.h2l_percentage,
+      h2c_percentage: player.h2c_percentage,
+      h2r_percentage: player.h2r_percentage,
+      weighted_left: player.weighted_h2l ?? 0,
+      weighted_center: player.weighted_h2c ?? 0,
+      weighted_right: player.weighted_h2r ?? 0,
+      weighted_total: player.weighted_direction_total ?? 0,
+      seasons_used: player.direction_seasons_used ?? [],
+    }))
+    .sort((left, right) => right.weighted_total - left.weighted_total);
   const coreLineupPlayers = new Set(
     lineup
       .filter((player) => Number(player.spot) <= 10)
       .map((player) => canonicalizeName(player.player_name))
   );
   const humanSummary = buildHumanSummary(teamRating, teamRatings, teamRows, impactRows);
+  const scrapeState = readJsonIfExists(resolve(rawRoot, targetSeason, "sportstrack-state.json"));
   const report = {
+    generated_at: new Date().toISOString(),
+    stats_last_scraped_at: scrapeState.generatedAt ?? "",
+    stats_through_date: scrapeState.lastScrapedGameDate ?? "",
+    scraped_game_count: scrapeState.scrapedGameIds?.length ?? "",
     season: Number(targetSeason),
     team: requestedTeam,
     team_rating: teamRating ?? null,
     human_summary: humanSummary,
     hit_direction_profile: buildHitDirectionProfile(teamRows, directionProfileMap),
+    player_direction_stats: playerDirectionStats,
     best_full_order_if_everyone_shows: lineup,
     top_5_must_have_players: impactRows
       .filter((row) => coreLineupPlayers.has(canonicalizeName(row.player_name)))

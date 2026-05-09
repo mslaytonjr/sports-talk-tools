@@ -7,12 +7,21 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = resolve(__dirname, "..", "..");
 const processedRoot = resolve(projectRoot, "data", "softball", "processed");
 const inputRoot = resolve(projectRoot, "data", "softball", "inputs");
+const rawRoot = resolve(projectRoot, "data", "softball", "raw");
 const publicRoot = resolve(projectRoot, "public", "softball");
 
 const targetSeason = process.argv[2] ?? "2026";
 
 function readCsvFile(filePath) {
   return parseCsv(readFileSync(filePath, "utf8"));
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    return {};
+  }
 }
 
 function ensureDir(dirPath) {
@@ -68,6 +77,7 @@ function main() {
   const predictions = readCsvFile(resolve(processedRoot, "predictions.csv"));
   const scheduleRows = readCsvFile(resolve(inputRoot, `schedule_${targetSeason}.csv`));
   const teamRatings = readCsvFile(resolve(processedRoot, "team_ratings.csv"));
+  const scrapeState = readJsonIfExists(resolve(rawRoot, targetSeason, "sportstrack-state.json"));
   const ratingMap = new Map(teamRatings.map((row) => [slugify(row.team), row]));
 
   const games = scheduleRows
@@ -118,6 +128,9 @@ function main() {
 
   const payload = {
     generated_at: new Date().toISOString(),
+    stats_last_scraped_at: scrapeState.generatedAt ?? "",
+    stats_through_date: scrapeState.lastScrapedGameDate ?? "",
+    scraped_game_count: scrapeState.scrapedGameIds?.length ?? "",
     season: Number(targetSeason),
     board_title: "Opening Day Model Odds",
     board_subtitle: "Neutral-site softball projections styled like a sportsbook board.",

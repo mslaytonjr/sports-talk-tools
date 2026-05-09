@@ -22,6 +22,9 @@ export type OpeningDayOddsGame = {
 
 export type OpeningDayOddsBoard = {
     generated_at: string;
+    stats_last_scraped_at?: string;
+    stats_through_date?: string;
+    scraped_game_count?: number | string;
     season: number;
     board_title: string;
     board_subtitle: string;

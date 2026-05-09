@@ -1,4 +1,8 @@
 {
+  "generated_at": "2026-05-09T13:52:27.502Z",
+  "stats_last_scraped_at": "2026-05-09T13:20:43.755Z",
+  "stats_through_date": "2026-05-08",
+  "scraped_game_count": 10,
   "season": 2026,
   "team": "Black Mambas",
   "team_rating": {
@@ -58,6 +62,196 @@
     ],
     "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
+  "player_direction_stats": [
+    {
+      "player_name": "Bob Plishka",
+      "h2l_percentage": 0.23296158612143741,
+      "h2c_percentage": 0.5650557620817844,
+      "h2r_percentage": 0.20198265179677818,
+      "weighted_left": 37.6,
+      "weighted_center": 91.2,
+      "weighted_right": 32.6,
+      "weighted_total": 161.4,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Tony Garrett",
+      "h2l_percentage": 0.5736946463978849,
+      "h2c_percentage": 0.37343027098479836,
+      "h2r_percentage": 0.052875082617316584,
+      "weighted_left": 86.8,
+      "weighted_center": 56.5,
+      "weighted_right": 8,
+      "weighted_total": 151.3,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Ralph Aiello",
+      "h2l_percentage": 0.4867549668874172,
+      "h2c_percentage": 0.495364238410596,
+      "h2r_percentage": 0.017880794701986755,
+      "weighted_left": 73.5,
+      "weighted_center": 74.8,
+      "weighted_right": 2.7,
+      "weighted_total": 151,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Josh Simon",
+      "h2l_percentage": 0.09818941504178275,
+      "h2c_percentage": 0.8537604456824514,
+      "h2r_percentage": 0.04805013927576602,
+      "weighted_left": 14.100000000000001,
+      "weighted_center": 122.60000000000001,
+      "weighted_right": 6.9,
+      "weighted_total": 143.6,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Chris Czapla",
+      "h2l_percentage": 0.14032600992204108,
+      "h2c_percentage": 0.6449326718639262,
+      "h2r_percentage": 0.21474131821403258,
+      "weighted_left": 19.8,
+      "weighted_center": 91,
+      "weighted_right": 30.3,
+      "weighted_total": 141.10000000000002,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Jason Crimmins",
+      "h2l_percentage": 0.24193548387096775,
+      "h2c_percentage": 0.5338709677419355,
+      "h2r_percentage": 0.2241935483870968,
+      "weighted_left": 30,
+      "weighted_center": 66.2,
+      "weighted_right": 27.8,
+      "weighted_total": 124,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Alex Simon",
+      "h2l_percentage": 0.03896103896103896,
+      "h2c_percentage": 0.6181818181818183,
+      "h2r_percentage": 0.34285714285714286,
+      "weighted_left": 4.5,
+      "weighted_center": 71.4,
+      "weighted_right": 39.6,
+      "weighted_total": 115.5,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Alex Boden",
+      "h2l_percentage": 0.6798561151079136,
+      "h2c_percentage": 0.29406474820143885,
+      "h2r_percentage": 0.02607913669064748,
+      "weighted_left": 75.6,
+      "weighted_center": 32.7,
+      "weighted_right": 2.9,
+      "weighted_total": 111.2,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Rob Thomas",
+      "h2l_percentage": 0.37695852534562213,
+      "h2c_percentage": 0.543778801843318,
+      "h2r_percentage": 0.07926267281105992,
+      "weighted_left": 40.9,
+      "weighted_center": 59,
+      "weighted_right": 8.600000000000001,
+      "weighted_total": 108.5,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Mike Lawlor",
+      "h2l_percentage": 0.18331616889804328,
+      "h2c_percentage": 0.7456230690010299,
+      "h2r_percentage": 0.07106076210092689,
+      "weighted_left": 17.8,
+      "weighted_center": 72.4,
+      "weighted_right": 6.9,
+      "weighted_total": 97.1,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Jason Rhodes",
+      "h2l_percentage": 0.1660377358490566,
+      "h2c_percentage": 0.7081761006289309,
+      "h2r_percentage": 0.12578616352201258,
+      "weighted_left": 13.2,
+      "weighted_center": 56.300000000000004,
+      "weighted_right": 10,
+      "weighted_total": 79.5,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "David Plishka",
+      "h2l_percentage": 0.0547945205479452,
+      "h2c_percentage": 0.6575342465753425,
+      "h2r_percentage": 0.2876712328767123,
+      "weighted_left": 3.2,
+      "weighted_center": 38.400000000000006,
+      "weighted_right": 16.8,
+      "weighted_total": 58.400000000000006,
+      "seasons_used": [
+        "2023"
+      ]
+    },
+    {
+      "player_name": "Bankim Shah",
+      "h2l_percentage": 0.39999999999999997,
+      "h2c_percentage": 0.5777777777777778,
+      "h2r_percentage": 0.022222222222222223,
+      "weighted_left": 16.2,
+      "weighted_center": 23.400000000000002,
+      "weighted_right": 0.9,
+      "weighted_total": 40.5,
+      "seasons_used": [
+        "2024"
+      ]
+    }
+  ],
   "best_full_order_if_everyone_shows": [
     {
       "spot": 1,
@@ -65,7 +259,7 @@
       "player_name": "David Plishka",
       "matched": "yes",
       "league_bat_score_rank": 3,
-      "league_bat_score_rank_label": "3rd of 168 returning players",
+      "league_bat_score_rank_label": "3rd of 168 ranked players",
       "offense_index": 0.7540047728551226,
       "projected_offense_index": 0.7540047728551226,
       "trend_adjustment": "0.0000",
@@ -76,6 +270,10 @@
       "direction_seasons_used": [
         "2023"
       ],
+      "weighted_h2l": 3.2,
+      "weighted_h2c": 38.400000000000006,
+      "weighted_h2r": 16.8,
+      "weighted_direction_total": 58.400000000000006,
       "line_out_percentage": 0.11764705882352941,
       "fly_out_percentage": 0.411764705882353,
       "ground_out_percentage": 0.47058823529411764,
@@ -94,7 +292,7 @@
       "player_name": "Chris Czapla",
       "matched": "yes",
       "league_bat_score_rank": 15,
-      "league_bat_score_rank_label": "15th of 168 returning players",
+      "league_bat_score_rank_label": "15th of 168 ranked players",
       "offense_index": 0.7075599012738617,
       "projected_offense_index": 0.672296393851872,
       "trend_adjustment": "-0.0353",
@@ -106,6 +304,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 19.8,
+      "weighted_h2c": 91,
+      "weighted_h2r": 30.3,
+      "weighted_direction_total": 141.10000000000002,
       "line_out_percentage": 0.020930232558139535,
       "fly_out_percentage": 0.6709302325581395,
       "ground_out_percentage": 0.3081395348837209,
@@ -124,7 +326,7 @@
       "player_name": "Jason Crimmins",
       "matched": "yes",
       "league_bat_score_rank": 19,
-      "league_bat_score_rank_label": "19th of 168 returning players",
+      "league_bat_score_rank_label": "19th of 168 ranked players",
       "offense_index": 0.6933991755106045,
       "projected_offense_index": 0.6533991755106044,
       "trend_adjustment": "-0.0400",
@@ -137,6 +339,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 30,
+      "weighted_h2c": 66.2,
+      "weighted_h2r": 27.8,
+      "weighted_direction_total": 124,
       "line_out_percentage": 0.02729423181900892,
       "fly_out_percentage": 0.7530781828106993,
       "ground_out_percentage": 0.21962758537029176,
@@ -155,7 +361,7 @@
       "player_name": "Alex Simon",
       "matched": "yes",
       "league_bat_score_rank": 29,
-      "league_bat_score_rank_label": "29th of 168 returning players",
+      "league_bat_score_rank_label": "29th of 168 ranked players",
       "offense_index": 0.6298804439393165,
       "projected_offense_index": 0.6106339392751912,
       "trend_adjustment": "-0.0192",
@@ -168,6 +374,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 4.5,
+      "weighted_h2c": 71.4,
+      "weighted_h2r": 39.6,
+      "weighted_direction_total": 115.5,
       "line_out_percentage": 0.03738932759033261,
       "fly_out_percentage": 0.656137832017229,
       "ground_out_percentage": 0.30647284039243833,
@@ -186,7 +396,7 @@
       "player_name": "Ralph Aiello",
       "matched": "yes",
       "league_bat_score_rank": 50,
-      "league_bat_score_rank_label": "50th of 168 returning players",
+      "league_bat_score_rank_label": "50th of 168 ranked players",
       "offense_index": 0.5511749402613285,
       "projected_offense_index": 0.5665029097043627,
       "trend_adjustment": "0.0153",
@@ -199,6 +409,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 73.5,
+      "weighted_h2c": 74.8,
+      "weighted_h2r": 2.7,
+      "weighted_direction_total": 151,
       "line_out_percentage": 0.05344998853824406,
       "fly_out_percentage": 0.4864369221364713,
       "ground_out_percentage": 0.4601130893252846,
@@ -217,7 +431,7 @@
       "player_name": "Bob Plishka",
       "matched": "yes",
       "league_bat_score_rank": 75,
-      "league_bat_score_rank_label": "75th of 168 returning players",
+      "league_bat_score_rank_label": "75th of 168 ranked players",
       "offense_index": 0.541829938910219,
       "projected_offense_index": 0.5342265159144816,
       "trend_adjustment": "-0.0076",
@@ -230,6 +444,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 37.6,
+      "weighted_h2c": 91.2,
+      "weighted_h2r": 32.6,
+      "weighted_direction_total": 161.4,
       "line_out_percentage": 0.05623537080382803,
       "fly_out_percentage": 0.6782317560961156,
       "ground_out_percentage": 0.2655328731000563,
@@ -248,7 +466,7 @@
       "player_name": "Rob Thomas",
       "matched": "yes",
       "league_bat_score_rank": 102,
-      "league_bat_score_rank_label": "102nd of 168 returning players",
+      "league_bat_score_rank_label": "102nd of 168 ranked players",
       "offense_index": 0.5323245333388321,
       "projected_offense_index": 0.49232453333883214,
       "trend_adjustment": "-0.0400",
@@ -261,6 +479,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 40.9,
+      "weighted_h2c": 59,
+      "weighted_h2r": 8.600000000000001,
+      "weighted_direction_total": 108.5,
       "line_out_percentage": 0.09918596763252253,
       "fly_out_percentage": 0.6671673611784087,
       "ground_out_percentage": 0.2336466711890687,
@@ -279,7 +501,7 @@
       "player_name": "Chris Chianese",
       "matched": "yes",
       "league_bat_score_rank": 43,
-      "league_bat_score_rank_label": "43rd of 168 returning players",
+      "league_bat_score_rank_label": "43rd of 168 ranked players",
       "offense_index": 0.5727797234308708,
       "projected_offense_index": 0.5727797234308708,
       "trend_adjustment": "0.0000",
@@ -288,6 +510,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,
@@ -306,7 +532,7 @@
       "player_name": "Alex Boden",
       "matched": "yes",
       "league_bat_score_rank": 92,
-      "league_bat_score_rank_label": "92nd of 168 returning players",
+      "league_bat_score_rank_label": "92nd of 168 ranked players",
       "offense_index": 0.4761628114513382,
       "projected_offense_index": 0.5103060655039825,
       "trend_adjustment": "0.0341",
@@ -318,6 +544,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 75.6,
+      "weighted_h2c": 32.7,
+      "weighted_h2r": 2.9,
+      "weighted_direction_total": 111.2,
       "line_out_percentage": 0.1117078410311493,
       "fly_out_percentage": 0.32653061224489793,
       "ground_out_percentage": 0.5617615467239527,
@@ -336,7 +566,7 @@
       "player_name": "Josh Simon",
       "matched": "yes",
       "league_bat_score_rank": 123,
-      "league_bat_score_rank_label": "123rd of 168 returning players",
+      "league_bat_score_rank_label": "123rd of 168 ranked players",
       "offense_index": 0.4540201012547892,
       "projected_offense_index": 0.4731042295603457,
       "trend_adjustment": "0.0191",
@@ -349,6 +579,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 14.100000000000001,
+      "weighted_h2c": 122.60000000000001,
+      "weighted_h2r": 6.9,
+      "weighted_direction_total": 143.6,
       "line_out_percentage": 0.02704243011426781,
       "fly_out_percentage": 0.756561137548799,
       "ground_out_percentage": 0.21639643233693331,
@@ -367,7 +601,7 @@
       "player_name": "Jason Rhodes",
       "matched": "yes",
       "league_bat_score_rank": 125,
-      "league_bat_score_rank_label": "125th of 168 returning players",
+      "league_bat_score_rank_label": "125th of 168 ranked players",
       "offense_index": 0.4498605352720241,
       "projected_offense_index": 0.4708486632436652,
       "trend_adjustment": "0.0210",
@@ -380,6 +614,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 13.2,
+      "weighted_h2c": 56.300000000000004,
+      "weighted_h2r": 10,
+      "weighted_direction_total": 79.5,
       "line_out_percentage": 0.04081632653061224,
       "fly_out_percentage": 0.39408321468122126,
       "ground_out_percentage": 0.5651004587881664,
@@ -398,7 +636,7 @@
       "player_name": "Tony Garrett",
       "matched": "yes",
       "league_bat_score_rank": 147,
-      "league_bat_score_rank_label": "147th of 168 returning players",
+      "league_bat_score_rank_label": "147th of 168 ranked players",
       "offense_index": 0.4652562329275944,
       "projected_offense_index": 0.44116266220699696,
       "trend_adjustment": "-0.0241",
@@ -411,6 +649,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 86.8,
+      "weighted_h2c": 56.5,
+      "weighted_h2r": 8,
+      "weighted_direction_total": 151.3,
       "line_out_percentage": 0.029240486827915576,
       "fly_out_percentage": 0.5942073640425204,
       "ground_out_percentage": 0.376552149129564,
@@ -429,7 +671,7 @@
       "player_name": "Mike Lawlor",
       "matched": "yes",
       "league_bat_score_rank": 150,
-      "league_bat_score_rank_label": "150th of 168 returning players",
+      "league_bat_score_rank_label": "150th of 168 ranked players",
       "offense_index": 0.4388238527418424,
       "projected_offense_index": 0.4362140811010957,
       "trend_adjustment": "-0.0026",
@@ -441,6 +683,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 17.8,
+      "weighted_h2c": 72.4,
+      "weighted_h2r": 6.9,
+      "weighted_direction_total": 97.1,
       "line_out_percentage": 0.020737327188940093,
       "fly_out_percentage": 0.6900921658986174,
       "ground_out_percentage": 0.28917050691244245,
@@ -459,7 +705,7 @@
       "player_name": "Bankim Shah",
       "matched": "yes",
       "league_bat_score_rank": 143,
-      "league_bat_score_rank_label": "143rd of 168 returning players",
+      "league_bat_score_rank_label": "143rd of 168 ranked players",
       "offense_index": 0.4162953339868908,
       "projected_offense_index": 0.4430223742780859,
       "trend_adjustment": "0.0267",
@@ -470,6 +716,10 @@
       "direction_seasons_used": [
         "2024"
       ],
+      "weighted_h2l": 16.2,
+      "weighted_h2c": 23.400000000000002,
+      "weighted_h2r": 0.9,
+      "weighted_direction_total": 40.5,
       "line_out_percentage": 0.024965325936199725,
       "fly_out_percentage": 0.26907073509015256,
       "ground_out_percentage": 0.7059639389736477,
@@ -497,6 +747,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,

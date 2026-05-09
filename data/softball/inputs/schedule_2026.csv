@@ -1,8 +1,103 @@
-date,home_team,away_team
-4/25/26,Lunch Pail Guys, The Big Units
-4/25/26,Black Mambas, Honey Badgers
-4/25/26,Wild Things, The Sultans of Swat
-4/25/26,Muscle Hamsters, The Ryan Express
-4/25/26,The Big Papi's, Nails
-4/25/26,Bash Brothers, 7th Floor Crew
-5/3/26,Lunch Pail Guys, 7th Floor Crew
+date,home_team,away_team,game_id,time,location,home_score,away_score,box_score_url
+2026-04-27,Bash Brothers,The Big Units,11872,6:00 PM,TBD,16,15,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11872
+2026-04-28,The Big Papi's,Honey Badgers,11873,6:00 PM,TBD,9,7,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11873
+2026-04-30,Muscle Hamsters,The Sultans Of Swat,11874,6:00 PM,TBD,7,25,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11874
+2026-05-01,Wild Things,The Ryan Express,11875,6:00 PM,TBD,9,10,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11875
+2026-05-03,Lunch Pail Guys,7th Floor Crew,11877,12:00 PM,TBD,18,3,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11877
+2026-05-03,Black Mambas,Nails,11876,3:00 PM,TBD,10,5,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11876
+2026-05-03,The Ryan Express,The Big Papi's,11879,4:30 PM,TBD,11,7,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11879
+2026-05-03,The Sultans Of Swat,Black Mambas,11880,6:00 PM,TBD,11,9,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11880
+2026-05-04,Muscle Hamsters,Bash Brothers,11878,6:00 PM,TBD,5,11,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11878
+2026-05-05,7th Floor Crew,Wild Things,11881,6:00 PM,TBD,9,4,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11881
+2026-05-07,Nails,Lunch Pail Guys,11882,6:00 PM,TBD,14,22,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11882
+2026-05-08,The Big Units,Honey Badgers,11883,6:00 PM,TBD,12,9,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11883
+2026-05-09,The Big Units,Muscle Hamsters,11884,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11884
+2026-05-09,Honey Badgers,The Ryan Express,11885,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11885
+2026-05-09,Bash Brothers,Black Mambas,11886,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11886
+2026-05-12,The Big Papi's,7th Floor Crew,11887,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11887
+2026-05-14,The Sultans Of Swat,Lunch Pail Guys,11888,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11888
+2026-05-15,Wild Things,Nails,11889,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11889
+2026-05-16,The Ryan Express,The Big Units,11890,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11890
+2026-05-16,Black Mambas,Muscle Hamsters,11891,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11891
+2026-05-16,7th Floor Crew,Honey Badgers,11892,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11892
+2026-05-17,Lunch Pail Guys,Bash Brothers,11893,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11893
+2026-05-17,Nails,The Big Papi's,11894,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11894
+2026-05-19,The Sultans Of Swat,Wild Things,11895,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11895
+2026-05-21,The Big Units,Black Mambas,11896,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11896
+2026-05-22,The Ryan Express,7th Floor Crew,11897,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11897
+2026-05-28,Muscle Hamsters,Lunch Pail Guys,11898,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11898
+2026-05-29,Honey Badgers,Nails,11899,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11899
+2026-05-30,Bash Brothers,Wild Things,11900,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11900
+2026-05-30,The Big Papi's,The Sultans Of Swat,11901,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11901
+2026-05-30,7th Floor Crew,The Big Units,11902,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11902
+2026-05-31,Lunch Pail Guys,Black Mambas,11903,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11903
+2026-05-31,Nails,The Ryan Express,11904,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11904
+2026-06-02,Wild Things,Muscle Hamsters,11905,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11905
+2026-06-04,The Sultans Of Swat,Honey Badgers,11906,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11906
+2026-06-05,Bash Brothers,The Big Papi's,11907,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11907
+2026-06-06,The Big Units,Lunch Pail Guys,11908,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11908
+2026-06-06,7th Floor Crew,Nails,11909,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11909
+2026-06-06,Black Mambas,Wild Things,11910,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11910
+2026-06-07,The Ryan Express,The Sultans Of Swat,11911,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11911
+2026-06-07,Muscle Hamsters,The Big Papi's,11912,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11912
+2026-06-09,Honey Badgers,Bash Brothers,11913,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11913
+2026-06-11,Nails,The Big Units,11914,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11914
+2026-06-12,Wild Things,Lunch Pail Guys,11915,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11915
+2026-06-13,The Sultans Of Swat,7th Floor Crew,11916,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11916
+2026-06-13,The Big Papi's,Black Mambas,11917,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11917
+2026-06-13,The Ryan Express,Bash Brothers,11918,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11918
+2026-06-14,Muscle Hamsters,Honey Badgers,11919,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11919
+2026-06-14,The Big Units,Wild Things,11920,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11920
+2026-06-16,Nails,The Sultans Of Swat,11921,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11921
+2026-06-18,Lunch Pail Guys,The Big Papi's,11922,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11922
+2026-06-19,7th Floor Crew,Bash Brothers,11923,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11923
+2026-06-20,Black Mambas,Honey Badgers,11924,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11924
+2026-06-20,The Ryan Express,Muscle Hamsters,11925,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11925
+2026-06-20,The Sultans Of Swat,The Big Units,11926,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11926
+2026-06-23,The Big Papi's,Wild Things,11927,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11927
+2026-06-25,Nails,Bash Brothers,11928,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11928
+2026-06-26,Lunch Pail Guys,Honey Badgers,11929,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11929
+2026-06-28,7th Floor Crew,Muscle Hamsters,11930,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11930
+2026-06-28,Black Mambas,The Ryan Express,11931,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11931
+2026-06-30,The Big Units,The Big Papi's,11932,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11932
+2026-07-02,The Sultans Of Swat,Bash Brothers,11933,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11933
+2026-07-07,Wild Things,Honey Badgers,11934,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11934
+2026-07-09,Nails,Muscle Hamsters,11935,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11935
+2026-07-10,Lunch Pail Guys,The Ryan Express,11936,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11936
+2026-07-14,7th Floor Crew,Black Mambas,11937,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11937
+2026-07-16,The Big Units,7th Floor Crew,11938,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11938
+2026-07-17,Black Mambas,The Big Papi's,11939,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11939
+2026-07-18,The Sultans Of Swat,The Ryan Express,11940,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11940
+2026-07-18,Wild Things,Muscle Hamsters,11941,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11941
+2026-07-18,Nails,Honey Badgers,11942,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11942
+2026-07-19,Lunch Pail Guys,Bash Brothers,11943,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11943
+2026-07-19,The Sultans Of Swat,The Big Units,11944,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11944
+2026-07-21,Wild Things,The Big Papi's,11945,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11945
+2026-07-23,Nails,7th Floor Crew,11946,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11946
+2026-07-24,Lunch Pail Guys,Black Mambas,11947,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11947
+2026-07-25,The Ryan Express,Honey Badgers,11948,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11948
+2026-07-25,Bash Brothers,Muscle Hamsters,11949,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11949
+2026-07-25,Lunch Pail Guys,The Big Units,11950,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11950
+2026-07-26,The Big Papi's,Nails,11951,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11951
+2026-07-26,7th Floor Crew,The Sultans Of Swat,11952,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11952
+2026-07-28,Wild Things,Bash Brothers,11953,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11953
+2026-07-30,Muscle Hamsters,Black Mambas,11954,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11954
+2026-07-31,Honey Badgers,The Ryan Express,11955,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11955
+2026-08-01,Honey Badgers,The Big Units,11956,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11956
+2026-08-01,The Big Papi's,Muscle Hamsters,11957,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11957
+2026-08-02,Wild Things,Black Mambas,11958,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11958
+2026-08-02,Nails,The Ryan Express,11959,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11959
+2026-08-04,7th Floor Crew,Bash Brothers,11960,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11960
+2026-08-06,The Big Units,Nails,11961,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11961
+2026-08-07,The Big Papi's,Bash Brothers,11962,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11962
+2026-08-08,The Sultans Of Swat,Wild Things,11963,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11963
+2026-08-08,Lunch Pail Guys,Muscle Hamsters,11964,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11964
+2026-08-08,7th Floor Crew,The Ryan Express,11965,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11965
+2026-08-09,Black Mambas,Honey Badgers,11966,4:30 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11966
+2026-08-09,Wild Things,The Big Units,11967,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11967
+2026-08-10,The Sultans Of Swat,Lunch Pail Guys,11968,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11968
+2026-08-13,The Big Papi's,Lunch Pail Guys,11969,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11969
+2026-08-14,Honey Badgers,The Sultans Of Swat,11970,6:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11970
+2026-08-15,Bash Brothers,Nails,11971,9:00 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11971
+2026-08-15,Black Mambas,7th Floor Crew,11972,10:30 AM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11972
+2026-08-15,Muscle Hamsters,The Ryan Express,11973,12:00 PM,TBD,,,https://lvc.sportstrack.app/softball/seasons/302/box-scores/11973

@@ -6,6 +6,7 @@ import { canonicalizeName, parseCsv, slugify, toNumber } from "./shared.mjs";
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = resolve(__dirname, "..", "..");
 const processedRoot = resolve(projectRoot, "data", "softball", "processed");
+const rawRoot = resolve(projectRoot, "data", "softball", "raw");
 const reportRoot = resolve(processedRoot, "league_reports");
 
 const targetSeason = process.argv[2] ?? "2026";
@@ -17,6 +18,51 @@ const directionSeasonWeights = new Map([
 
 function readCsvFile(filePath) {
   return parseCsv(readFileSync(filePath, "utf8"));
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+function formatDateTime(value) {
+  if (!value) {
+    return "Not available";
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  }).format(parsed);
+}
+
+function formatDateLabel(value) {
+  if (!value) {
+    return "Not available";
+  }
+
+  const parsed = new Date(`${value}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(parsed);
 }
 
 function formatDecimal(value, digits = 2) {
@@ -408,6 +454,14 @@ function buildHtmlReport(payload) {
           <div class="label">Highest One-Game Run Loss</div>
           <div class="value">${payload.top_5_most_important_players[0] ? `${formatDecimal(payload.top_5_most_important_players[0].run_swing, 2)} runs` : "n/a"}</div>
         </div>
+        <div class="summary-card">
+          <div class="label">Page Updated</div>
+          <div class="value">${escapeHtml(formatDateTime(payload.generated_at))}</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Stats Through</div>
+          <div class="value">${escapeHtml(formatDateLabel(payload.stats_through_date))}</div>
+        </div>
       </div>
     </section>
 
@@ -510,8 +564,13 @@ function main() {
     })
     .slice(0, 5);
 
+  const generatedAt = new Date().toISOString();
+  const scrapeState = readJsonIfExists(resolve(rawRoot, targetSeason, "sportstrack-state.json"));
   const payload = {
-    generated_at: new Date().toISOString(),
+    generated_at: generatedAt,
+    stats_last_scraped_at: scrapeState.generatedAt ?? "",
+    stats_through_date: scrapeState.lastScrapedGameDate ?? "",
+    scraped_game_count: scrapeState.scrapedGameIds?.length ?? "",
     season: Number(targetSeason),
     team_rankings: teamRankings,
     top_5_most_important_players: topPlayers,

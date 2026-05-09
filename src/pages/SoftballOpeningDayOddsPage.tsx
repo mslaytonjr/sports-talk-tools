@@ -24,6 +24,43 @@ function edgeTone(confidenceTier: string) {
     return "border-slate-300/20 bg-slate-400/10 text-slate-100";
 }
 
+function formatDateTime(value: string | undefined) {
+    if (!value) {
+        return "Not available";
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+        return value;
+    }
+
+    return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short",
+    }).format(parsed);
+}
+
+function formatDate(value: string | undefined) {
+    if (!value) {
+        return "Not available";
+    }
+
+    const parsed = new Date(`${value}T12:00:00`);
+    if (Number.isNaN(parsed.getTime())) {
+        return value;
+    }
+
+    return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+    }).format(parsed);
+}
+
 function TeamPill({
     team,
     moneyline,
@@ -158,6 +195,18 @@ export default function SoftballOpeningDayOddsPage() {
                                 <div className="softball-summary-label">Source</div>
                                 <div className="softball-summary-value text-base">
                                     {board?.data_source ?? "Local softball model"}
+                                </div>
+                            </div>
+                            <div className="softball-summary-card">
+                                <div className="softball-summary-label">Board Updated</div>
+                                <div className="softball-summary-value text-base">
+                                    {formatDateTime(board?.generated_at)}
+                                </div>
+                            </div>
+                            <div className="softball-summary-card">
+                                <div className="softball-summary-label">Stats Through</div>
+                                <div className="softball-summary-value text-base">
+                                    {formatDate(board?.stats_through_date)}
                                 </div>
                             </div>
                         </div>

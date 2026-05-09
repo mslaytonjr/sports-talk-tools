@@ -1,4 +1,8 @@
 {
+  "generated_at": "2026-05-09T13:52:27.960Z",
+  "stats_last_scraped_at": "2026-05-09T13:20:43.755Z",
+  "stats_through_date": "2026-05-08",
+  "scraped_game_count": 10,
   "season": 2026,
   "team": "Bash Brothers",
   "team_rating": {
@@ -58,6 +62,182 @@
     ],
     "weighting_note": "Uses the last three seasons before the report year with weights of 1.0 for the previous year, 0.9 for two years back, and 0.8 for three years back. Seasons with blank H2L/H2C/H2R data are skipped."
   },
+  "player_direction_stats": [
+    {
+      "player_name": "Brian Cass",
+      "h2l_percentage": 0.5058548009367682,
+      "h2c_percentage": 0.42857142857142855,
+      "h2r_percentage": 0.06557377049180328,
+      "weighted_left": 108,
+      "weighted_center": 91.5,
+      "weighted_right": 14,
+      "weighted_total": 213.5,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Malachi Metz",
+      "h2l_percentage": 0.18537735849056605,
+      "h2c_percentage": 0.55,
+      "h2r_percentage": 0.264622641509434,
+      "weighted_left": 39.300000000000004,
+      "weighted_center": 116.60000000000001,
+      "weighted_right": 56.1,
+      "weighted_total": 212,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Max Metz",
+      "h2l_percentage": 0.5270574971815107,
+      "h2c_percentage": 0.43010146561443063,
+      "h2r_percentage": 0.04284103720405862,
+      "weighted_left": 93.5,
+      "weighted_center": 76.3,
+      "weighted_right": 7.6,
+      "weighted_total": 177.4,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Jared Bruno",
+      "h2l_percentage": 0.4358338499690018,
+      "h2c_percentage": 0.47985120892746436,
+      "h2r_percentage": 0.0843149411035338,
+      "weighted_left": 70.3,
+      "weighted_center": 77.4,
+      "weighted_right": 13.600000000000001,
+      "weighted_total": 161.3,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Mike Kideckel",
+      "h2l_percentage": 0.5164835164835165,
+      "h2c_percentage": 0.4530853761622992,
+      "h2r_percentage": 0.030431107354184275,
+      "weighted_left": 61.10000000000001,
+      "weighted_center": 53.6,
+      "weighted_right": 3.6,
+      "weighted_total": 118.30000000000001,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Marty Eagan",
+      "h2l_percentage": 0.36175710594315247,
+      "h2c_percentage": 0.5676141257536607,
+      "h2r_percentage": 0.0706287683031869,
+      "weighted_left": 42,
+      "weighted_center": 65.9,
+      "weighted_right": 8.2,
+      "weighted_total": 116.1,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Mike Metz",
+      "h2l_percentage": 0.3474137931034483,
+      "h2c_percentage": 0.5120689655172413,
+      "h2r_percentage": 0.14051724137931035,
+      "weighted_left": 40.3,
+      "weighted_center": 59.4,
+      "weighted_right": 16.3,
+      "weighted_total": 116,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Brian Godau",
+      "h2l_percentage": 0.4960070984915706,
+      "h2c_percentage": 0.44276841171251113,
+      "h2r_percentage": 0.061224489795918366,
+      "weighted_left": 55.900000000000006,
+      "weighted_center": 49.900000000000006,
+      "weighted_right": 6.9,
+      "weighted_total": 112.7,
+      "seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Craig Ferluge",
+      "h2l_percentage": 0.3041065482796893,
+      "h2c_percentage": 0.5238623751387348,
+      "h2r_percentage": 0.17203107658157604,
+      "weighted_left": 27.400000000000002,
+      "weighted_center": 47.2,
+      "weighted_right": 15.5,
+      "weighted_total": 90.1,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Chris Longano",
+      "h2l_percentage": 0.4688644688644689,
+      "h2c_percentage": 0.5201465201465201,
+      "h2r_percentage": 0.010989010989010988,
+      "weighted_left": 38.400000000000006,
+      "weighted_center": 42.6,
+      "weighted_right": 0.9,
+      "weighted_total": 81.9,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Steve Horowitz",
+      "h2l_percentage": 0.4323809523809524,
+      "h2c_percentage": 0.5142857142857142,
+      "h2r_percentage": 0.05333333333333333,
+      "weighted_left": 22.700000000000003,
+      "weighted_center": 27,
+      "weighted_right": 2.8,
+      "weighted_total": 52.5,
+      "seasons_used": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "player_name": "Logan Horowitz",
+      "h2l_percentage": 0.2,
+      "h2c_percentage": 0.75,
+      "h2r_percentage": 0.05,
+      "weighted_left": 4,
+      "weighted_center": 15,
+      "weighted_right": 1,
+      "weighted_total": 20,
+      "seasons_used": [
+        "2025"
+      ]
+    }
+  ],
   "best_full_order_if_everyone_shows": [
     {
       "spot": 1,
@@ -65,7 +245,7 @@
       "player_name": "Max Metz",
       "matched": "yes",
       "league_bat_score_rank": 4,
-      "league_bat_score_rank_label": "4th of 168 returning players",
+      "league_bat_score_rank_label": "4th of 168 ranked players",
       "offense_index": 0.7139030795057295,
       "projected_offense_index": 0.7402979617730971,
       "trend_adjustment": "0.0264",
@@ -78,6 +258,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 93.5,
+      "weighted_h2c": 76.3,
+      "weighted_h2r": 7.6,
+      "weighted_direction_total": 177.4,
       "line_out_percentage": 0.014128728414442699,
       "fly_out_percentage": 0.8682260596546311,
       "ground_out_percentage": 0.11764521193092622,
@@ -96,7 +280,7 @@
       "player_name": "Malachi Metz",
       "matched": "yes",
       "league_bat_score_rank": 24,
-      "league_bat_score_rank_label": "24th of 168 returning players",
+      "league_bat_score_rank_label": "24th of 168 ranked players",
       "offense_index": 0.6526266964933464,
       "projected_offense_index": 0.6243757924042745,
       "trend_adjustment": "-0.0283",
@@ -109,6 +293,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 39.300000000000004,
+      "weighted_h2c": 116.60000000000001,
+      "weighted_h2r": 56.1,
+      "weighted_direction_total": 212,
       "line_out_percentage": 0.0181787577848847,
       "fly_out_percentage": 0.8137238399820458,
       "ground_out_percentage": 0.16809740223306963,
@@ -127,7 +315,7 @@
       "player_name": "Mike Metz",
       "matched": "yes",
       "league_bat_score_rank": 26,
-      "league_bat_score_rank_label": "26th of 168 returning players",
+      "league_bat_score_rank_label": "26th of 168 ranked players",
       "offense_index": 0.5738731260573938,
       "projected_offense_index": 0.6138731260573939,
       "trend_adjustment": "0.0400",
@@ -139,6 +327,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 40.3,
+      "weighted_h2c": 59.4,
+      "weighted_h2r": 16.3,
+      "weighted_direction_total": 116,
       "line_out_percentage": 0.06830818109610802,
       "fly_out_percentage": 0.7521842732327244,
       "ground_out_percentage": 0.17950754567116758,
@@ -157,7 +349,7 @@
       "player_name": "Brian Cass",
       "matched": "yes",
       "league_bat_score_rank": 58,
-      "league_bat_score_rank_label": "58th of 168 returning players",
+      "league_bat_score_rank_label": "58th of 168 ranked players",
       "offense_index": 0.5480203144608069,
       "projected_offense_index": 0.5553543361074182,
       "trend_adjustment": "0.0073",
@@ -170,6 +362,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 108,
+      "weighted_h2c": 91.5,
+      "weighted_h2r": 14,
+      "weighted_direction_total": 213.5,
       "line_out_percentage": 0.03383224619048908,
       "fly_out_percentage": 0.8200665818605029,
       "ground_out_percentage": 0.146101171949008,
@@ -188,7 +384,7 @@
       "player_name": "Jared Bruno",
       "matched": "yes",
       "league_bat_score_rank": 77,
-      "league_bat_score_rank_label": "77th of 168 returning players",
+      "league_bat_score_rank_label": "77th of 168 ranked players",
       "offense_index": 0.5486132364256292,
       "projected_offense_index": 0.533383283178734,
       "trend_adjustment": "-0.0152",
@@ -201,6 +397,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 70.3,
+      "weighted_h2c": 77.4,
+      "weighted_h2r": 13.600000000000001,
+      "weighted_direction_total": 161.3,
       "line_out_percentage": 0.07286811307467891,
       "fly_out_percentage": 0.7161060997283794,
       "ground_out_percentage": 0.21102578719694173,
@@ -219,7 +419,7 @@
       "player_name": "Mike Kideckel",
       "matched": "yes",
       "league_bat_score_rank": 71,
-      "league_bat_score_rank_label": "71st of 168 returning players",
+      "league_bat_score_rank_label": "71st of 168 ranked players",
       "offense_index": 0.530189740513832,
       "projected_offense_index": 0.5377866599404952,
       "trend_adjustment": "0.0076",
@@ -232,6 +432,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 61.10000000000001,
+      "weighted_h2c": 53.6,
+      "weighted_h2r": 3.6,
+      "weighted_direction_total": 118.30000000000001,
       "line_out_percentage": 0.11136188157035101,
       "fly_out_percentage": 0.5904852408386292,
       "ground_out_percentage": 0.29815287759101977,
@@ -250,7 +454,7 @@
       "player_name": "Craig Ferluge",
       "matched": "yes",
       "league_bat_score_rank": 59,
-      "league_bat_score_rank_label": "59th of 168 returning players",
+      "league_bat_score_rank_label": "59th of 168 ranked players",
       "offense_index": 0.5149284027858688,
       "projected_offense_index": 0.5549284027858689,
       "trend_adjustment": "0.0400",
@@ -262,6 +466,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 27.400000000000002,
+      "weighted_h2c": 47.2,
+      "weighted_h2r": 15.5,
+      "weighted_direction_total": 90.1,
       "line_out_percentage": 0.057203389830508475,
       "fly_out_percentage": 0.8855932203389831,
       "ground_out_percentage": 0.057203389830508475,
@@ -280,7 +488,7 @@
       "player_name": "Chris Longano",
       "matched": "yes",
       "league_bat_score_rank": 80,
-      "league_bat_score_rank_label": "80th of 168 returning players",
+      "league_bat_score_rank_label": "80th of 168 ranked players",
       "offense_index": 0.5232334088134533,
       "projected_offense_index": 0.5326986247988492,
       "trend_adjustment": "0.0095",
@@ -292,6 +500,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 38.400000000000006,
+      "weighted_h2c": 42.6,
+      "weighted_h2r": 0.9,
+      "weighted_direction_total": 81.9,
       "line_out_percentage": 0.03197158081705151,
       "fly_out_percentage": 0.7833037300177621,
       "ground_out_percentage": 0.1847246891651865,
@@ -310,7 +522,7 @@
       "player_name": "Ryan Conlon",
       "matched": "yes",
       "league_bat_score_rank": 57,
-      "league_bat_score_rank_label": "57th of 168 returning players",
+      "league_bat_score_rank_label": "57th of 168 ranked players",
       "offense_index": 0.5556394287814506,
       "projected_offense_index": 0.5556394287814506,
       "trend_adjustment": "0.0000",
@@ -319,6 +531,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,
@@ -337,7 +553,7 @@
       "player_name": "Steve Horowitz",
       "matched": "yes",
       "league_bat_score_rank": 137,
-      "league_bat_score_rank_label": "137th of 168 returning players",
+      "league_bat_score_rank_label": "137th of 168 ranked players",
       "offense_index": 0.4914697122550385,
       "projected_offense_index": 0.45709240302679377,
       "trend_adjustment": "-0.0344",
@@ -349,6 +565,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 22.700000000000003,
+      "weighted_h2c": 27,
+      "weighted_h2r": 2.8,
+      "weighted_direction_total": 52.5,
       "line_out_percentage": 0.052854122621564484,
       "fly_out_percentage": 0.7801268498942917,
       "ground_out_percentage": 0.16701902748414377,
@@ -367,7 +587,7 @@
       "player_name": "Logan Horowitz",
       "matched": "yes",
       "league_bat_score_rank": 84,
-      "league_bat_score_rank_label": "84th of 168 returning players",
+      "league_bat_score_rank_label": "84th of 168 ranked players",
       "offense_index": 0.5259467641258232,
       "projected_offense_index": 0.5259467641258232,
       "trend_adjustment": "0.0000",
@@ -378,6 +598,10 @@
       "direction_seasons_used": [
         "2025"
       ],
+      "weighted_h2l": 4,
+      "weighted_h2c": 15,
+      "weighted_h2r": 1,
+      "weighted_direction_total": 20,
       "line_out_percentage": 0,
       "fly_out_percentage": 0.6666666666666666,
       "ground_out_percentage": 0.3333333333333333,
@@ -396,7 +620,7 @@
       "player_name": "Andrew Mcginniss",
       "matched": "yes",
       "league_bat_score_rank": 87,
-      "league_bat_score_rank_label": "87th of 168 returning players",
+      "league_bat_score_rank_label": "87th of 168 ranked players",
       "offense_index": 0.5155437859308709,
       "projected_offense_index": 0.5155437859308709,
       "trend_adjustment": "0.0000",
@@ -405,6 +629,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,
@@ -423,7 +651,7 @@
       "player_name": "Marty Eagan",
       "matched": "yes",
       "league_bat_score_rank": 130,
-      "league_bat_score_rank_label": "130th of 168 returning players",
+      "league_bat_score_rank_label": "130th of 168 ranked players",
       "offense_index": 0.46202839203942425,
       "projected_offense_index": 0.46417556449528535,
       "trend_adjustment": "0.0021",
@@ -436,6 +664,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 42,
+      "weighted_h2c": 65.9,
+      "weighted_h2r": 8.2,
+      "weighted_direction_total": 116.1,
       "line_out_percentage": 0.07298373432734666,
       "fly_out_percentage": 0.6423669942392409,
       "ground_out_percentage": 0.28464927143341245,
@@ -454,7 +686,7 @@
       "player_name": "Brian Godau",
       "matched": "yes",
       "league_bat_score_rank": 131,
-      "league_bat_score_rank_label": "131st of 168 returning players",
+      "league_bat_score_rank_label": "131st of 168 ranked players",
       "offense_index": 0.4503468765579448,
       "projected_offense_index": 0.46296487981819345,
       "trend_adjustment": "0.0126",
@@ -467,6 +699,10 @@
         "2024",
         "2025"
       ],
+      "weighted_h2l": 55.900000000000006,
+      "weighted_h2c": 49.900000000000006,
+      "weighted_h2r": 6.9,
+      "weighted_direction_total": 112.7,
       "line_out_percentage": 0.05239549532353502,
       "fly_out_percentage": 0.503149456003054,
       "ground_out_percentage": 0.4444550486734109,
@@ -485,7 +721,7 @@
       "player_name": "Gavin Miller",
       "matched": "yes",
       "league_bat_score_rank": 129,
-      "league_bat_score_rank_label": "129th of 168 returning players",
+      "league_bat_score_rank_label": "129th of 168 ranked players",
       "offense_index": 0.46676777902541516,
       "projected_offense_index": 0.46676777902541516,
       "trend_adjustment": "0.0000",
@@ -494,6 +730,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,
@@ -512,7 +752,7 @@
       "player_name": "Kenny Conlon",
       "matched": "yes",
       "league_bat_score_rank": 145,
-      "league_bat_score_rank_label": "145th of 168 returning players",
+      "league_bat_score_rank_label": "145th of 168 ranked players",
       "offense_index": 0.4421094109308709,
       "projected_offense_index": 0.4421094109308709,
       "trend_adjustment": "0.0000",
@@ -521,6 +761,10 @@
       "h2c_percentage": null,
       "h2r_percentage": null,
       "direction_seasons_used": [],
+      "weighted_h2l": null,
+      "weighted_h2c": null,
+      "weighted_h2r": null,
+      "weighted_direction_total": null,
       "line_out_percentage": null,
       "fly_out_percentage": null,
       "ground_out_percentage": null,

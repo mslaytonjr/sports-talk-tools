@@ -169,6 +169,7 @@ function getHistoricalStatsRows() {
 function getWeightedProfiles() {
   const rows = getHistoricalStatsRows();
   const grouped = new Map();
+  const currentSeason = Number(targetSeason);
 
   for (const row of rows) {
     const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
@@ -213,6 +214,9 @@ function getWeightedProfiles() {
       weightedGroundOuts: 0,
       displayWeight: 0,
       displaySeasons: 0,
+      currentSeasonSample: 0,
+      previousSeasonSample: 0,
+      recentSample: 0,
       totalSeasons: 0,
     };
 
@@ -225,6 +229,15 @@ function getWeightedProfiles() {
     entry.weightedLineOuts += (lineOuts ?? 0) * recencyWeight;
     entry.weightedFlyOuts += (flyOuts ?? 0) * recencyWeight;
     entry.weightedGroundOuts += (groundOuts ?? 0) * recencyWeight;
+    if (season === currentSeason) {
+      entry.currentSeasonSample += sample;
+    }
+    if (season === currentSeason - 1) {
+      entry.previousSeasonSample += sample;
+    }
+    if (season === currentSeason || season === currentSeason - 1) {
+      entry.recentSample += sample;
+    }
     if (String(row.stats_display_allowed ?? "no") === "yes") {
       entry.displayWeight += weight;
       entry.displaySeasons += 1;
@@ -258,13 +271,62 @@ function getWeightedProfiles() {
           entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts > 0
             ? entry.weightedGroundOuts / (entry.weightedLineOuts + entry.weightedFlyOuts + entry.weightedGroundOuts)
             : null,
-        profile_confidence:
-          entry.displayWeight >= 10 || entry.displaySeasons >= 1 || entry.totalSeasons > 1
-            ? "trusted"
-            : "limited",
+        current_season_sample: Number(entry.currentSeasonSample.toFixed(2)),
+        previous_season_sample: Number(entry.previousSeasonSample.toFixed(2)),
+        recent_sample: Number(entry.recentSample.toFixed(2)),
+        profile_confidence: getProfileConfidence(entry),
       },
     ])
   );
+}
+
+function getProfileConfidence(entry) {
+  if (entry.displayWeight >= 10 || entry.displaySeasons >= 1 || entry.recentSample >= 40) {
+    return "trusted";
+  }
+  if (entry.previousSeasonSample >= 10 && entry.currentSeasonSample > 0) {
+    return "returning_early";
+  }
+  if (entry.totalSeasons > 1) {
+    return "known_history";
+  }
+  return "limited";
+}
+
+function canUseProfileStats(player) {
+  return ["trusted", "returning_early", "known_history"].includes(player.profile_confidence);
+}
+
+function describeProfileNote(player) {
+  if (player.matched !== "yes") {
+    return "Rookie/no historical match";
+  }
+  if (player.profile_confidence === "returning_early") {
+    return "Known player, early current-season sample";
+  }
+  if (player.profile_confidence === "known_history") {
+    return "Known historical player, small recent sample";
+  }
+  if (player.profile_confidence === "limited") {
+    return "Limited profile sample";
+  }
+  return "";
+}
+
+function displayRateCell(player, key) {
+  if (player[key] !== "n/a") {
+    return escapeHtml(player[key]);
+  }
+  if (player.profile_confidence === "rookie") {
+    return "No match";
+  }
+  if (player.profile_confidence === "returning_early") {
+    return "n/a";
+  }
+  if (player.profile_confidence === "known_history") {
+    return "n/a";
+  }
+  return "Limited data";
 }
 
 function getSupplemental2025DirectionRows() {
@@ -455,6 +517,9 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
         line_out_percentage: profile?.line_out_percentage ?? null,
         fly_out_percentage: profile?.fly_out_percentage ?? null,
         ground_out_percentage: profile?.ground_out_percentage ?? null,
+        current_season_sample: profile?.current_season_sample ?? 0,
+        previous_season_sample: profile?.previous_season_sample ?? 0,
+        recent_sample: profile?.recent_sample ?? 0,
         profile_confidence: profile?.profile_confidence ?? "limited",
         hit_direction_profile: directionProfile ?? null,
       };
@@ -474,6 +539,9 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
       line_out_percentage: null,
       fly_out_percentage: null,
       ground_out_percentage: null,
+      current_season_sample: 0,
+      previous_season_sample: 0,
+      recent_sample: 0,
       profile_confidence: "rookie",
       hit_direction_profile: null,
     }));
@@ -482,14 +550,10 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
   const available = new Map(pool.map((player) => [player.player_name, player]));
   const lineup = [];
   const offenseValue = (player) => Number(player.projected_offense_index || player.offense_index || 0);
-  const safeObp = (player) =>
-    player.profile_confidence === "trusted" ? Number(player.obp ?? 0.32) : 0.32;
-  const safeAvg = (player) =>
-    player.profile_confidence === "trusted" ? Number(player.avg ?? 0.28) : 0.28;
-  const safeSlg = (player) =>
-    player.profile_confidence === "trusted" ? Number(player.slg ?? 0.42) : 0.42;
-  const safeOps = (player) =>
-    player.profile_confidence === "trusted" ? Number(player.ops ?? 0.74) : 0.74;
+  const safeObp = (player) => (canUseProfileStats(player) ? Number(player.obp ?? 0.32) : 0.32);
+  const safeAvg = (player) => (canUseProfileStats(player) ? Number(player.avg ?? 0.28) : 0.28);
+  const safeSlg = (player) => (canUseProfileStats(player) ? Number(player.slg ?? 0.42) : 0.42);
+  const safeOps = (player) => (canUseProfileStats(player) ? Number(player.ops ?? 0.74) : 0.74);
 
   function takeBest(scoreFn) {
     const choices = [...available.values()];
@@ -535,6 +599,9 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
     projected_offense_index: offenseValue(player),
     trend_adjustment: Number(player.trend_adjustment || 0).toFixed(4),
     profile_confidence: player.profile_confidence,
+    current_season_sample: player.current_season_sample,
+    previous_season_sample: player.previous_season_sample,
+    recent_sample: player.recent_sample,
     h2l_percentage:
       player.hit_direction_profile?.weighted_total > 0
         ? player.hit_direction_profile.weighted_left / player.hit_direction_profile.weighted_total
@@ -559,27 +626,22 @@ function buildLineup(teamRows, profileMap, directionProfileMap, leagueBatScoreRa
     weighted_fly_outs: player.weighted_fly_outs,
     weighted_ground_outs: player.weighted_ground_outs,
     avg:
-      player.profile_confidence === "trusted" && player.avg != null
+      canUseProfileStats(player) && player.avg != null
         ? clamp(player.avg, 0, 1).toFixed(3)
         : "n/a",
     obp:
-      player.profile_confidence === "trusted" && player.obp != null
+      canUseProfileStats(player) && player.obp != null
         ? clamp(player.obp, 0, 1).toFixed(3)
         : "n/a",
     slg:
-      player.profile_confidence === "trusted" && player.slg != null
+      canUseProfileStats(player) && player.slg != null
         ? clamp(player.slg, 0, 2).toFixed(3)
         : "n/a",
     ops:
-      player.profile_confidence === "trusted" && player.ops != null
+      canUseProfileStats(player) && player.ops != null
         ? clamp(player.ops, 0, 3).toFixed(3)
         : "n/a",
-    notes:
-      player.matched === "yes"
-        ? player.profile_confidence === "trusted"
-          ? ""
-          : "Profile stats hidden until validation confidence improves"
-        : "Rookie/no historical match",
+    notes: describeProfileNote(player),
   }));
 }
 
@@ -662,8 +724,8 @@ function buildHtmlReport(report) {
           <td>${player.h2l_percentage == null ? "n/a" : formatPct(player.h2l_percentage, 1)}</td>
           <td>${player.h2c_percentage == null ? "n/a" : formatPct(player.h2c_percentage, 1)}</td>
           <td>${player.h2r_percentage == null ? "n/a" : formatPct(player.h2r_percentage, 1)}</td>
-          <td>${player.obp === "n/a" ? "Limited data" : escapeHtml(player.obp)}</td>
-          <td>${player.ops === "n/a" ? "Limited data" : escapeHtml(player.ops)}</td>
+          <td>${displayRateCell(player, "obp")}</td>
+          <td>${displayRateCell(player, "ops")}</td>
           <td>${escapeHtml(player.notes || "")}</td>
         </tr>`
     )

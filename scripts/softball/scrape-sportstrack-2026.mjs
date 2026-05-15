@@ -219,6 +219,10 @@ function parseScheduleRows(html) {
 }
 
 function parsePlayerGameStats(player, statsHtml, scheduleByGameId) {
+  if (/An error occurred\. Please try again later\./i.test(statsHtml)) {
+    return [];
+  }
+
   const table = parseHtmlTables(statsHtml).find((candidate) => {
     const headers = candidate.headers.map(normalizeHeader);
     return headers.includes("opponent") && headers.includes("g") && headers.includes("ab");
@@ -387,14 +391,47 @@ async function main() {
 
   const existingGameStats = force ? [] : readJson(rawGameStatsPath, []);
   const nextGameStats = [];
+  const playerPageIssues = [];
 
   for (const player of players) {
     const playerStatsUrl = `${player.stats_url}/v2?report=batting&player=${encodeURIComponent(player.player_param)}&rosterId=${encodeURIComponent(player.roster_id)}`;
-    const statsHtml = await fetchText(playerStatsUrl);
-    writeText(resolve(playersDir, `${player.team_slug}_${slugify(player.roster_id)}.html`), statsHtml);
-    const playerRows = parsePlayerGameStats(player, statsHtml, scheduleByGameId).filter((row) =>
-      targetGameIds.has(row.game_id)
-    );
+    let statsHtml = "";
+    let playerRows = [];
+    try {
+      statsHtml = await fetchText(playerStatsUrl);
+      writeText(resolve(playersDir, `${player.team_slug}_${slugify(player.roster_id)}.html`), statsHtml);
+      playerRows = parsePlayerGameStats(player, statsHtml, scheduleByGameId).filter((row) =>
+        targetGameIds.has(row.game_id)
+      );
+      if (/An error occurred\. Please try again later\./i.test(statsHtml)) {
+        playerPageIssues.push({
+          type: "player_stats_page_error",
+          team_name: player.team_name,
+          player_name: player.player_name,
+          roster_id: player.roster_id,
+          url: playerStatsUrl,
+          message: "Sportstrack returned a generic error page.",
+        });
+      } else if (playerRows.length === 0) {
+        playerPageIssues.push({
+          type: "no_rows_for_completed_games",
+          team_name: player.team_name,
+          player_name: player.player_name,
+          roster_id: player.roster_id,
+          url: playerStatsUrl,
+          message: "Player page loaded but had no rows for the completed games being scraped.",
+        });
+      }
+    } catch (error) {
+      playerPageIssues.push({
+        type: "player_stats_fetch_failed",
+        team_name: player.team_name,
+        player_name: player.player_name,
+        roster_id: player.roster_id,
+        url: playerStatsUrl,
+        message: error.message,
+      });
+    }
     nextGameStats.push(...playerRows);
     console.log(`${player.team_name} / ${player.player_name}: ${playerRows.length} new game rows`);
   }
@@ -410,6 +447,27 @@ async function main() {
 
   const mergedGameStats = mergeGameStats(existingGameStats, nextGameStats);
   const aggregated = aggregatePlayerStats(mergedGameStats);
+  const statRowsByTeam = new Map();
+  const statRowsByGame = new Map();
+  for (const row of mergedGameStats) {
+    statRowsByTeam.set(row.team_name, (statRowsByTeam.get(row.team_name) ?? 0) + 1);
+    statRowsByGame.set(row.game_id, (statRowsByGame.get(row.game_id) ?? 0) + 1);
+  }
+  const completedTeams = [...new Set(completedGames.flatMap((game) => [game.home_team, game.away_team]))].sort();
+  const missingTeams = completedTeams
+    .filter((teamName) => !statRowsByTeam.has(teamName))
+    .map((teamName) => ({ team_name: teamName, completed_games: completedGames.filter((game) => game.home_team === teamName || game.away_team === teamName).length }));
+  const gamesMissingRows = completedGames
+    .filter((game) => !statRowsByGame.has(game.game_id))
+    .map((game) => ({
+      game_id: game.game_id,
+      game_date: game.game_date,
+      home_team: game.home_team,
+      away_team: game.away_team,
+      home_score: game.home_score,
+      away_score: game.away_score,
+      box_score_url: game.box_score_url,
+    }));
   const maxScrapedDate = mergedGameStats.reduce(
     (maxDate, row) => (row.game_date > maxDate ? row.game_date : maxDate),
     state.lastScrapedGameDate || ""
@@ -418,6 +476,19 @@ async function main() {
   writeJson(rawGameStatsPath, mergedGameStats);
   writeJson(resolve(rawRoot, "sportstrack-player-season-stats.json"), aggregated);
   writeJson(resolve(rawRoot, "sportstrack-rosters.json"), players);
+  writeJson(resolve(rawRoot, "sportstrack-scrape-quality.json"), {
+    generatedAt: new Date().toISOString(),
+    completedGameCount: completedGames.length,
+    scrapedGameStatRows: mergedGameStats.length,
+    playerCount: players.length,
+    playerPageIssueCount: playerPageIssues.length,
+    teamsWithPlayerRows: [...statRowsByTeam.entries()]
+      .map(([team_name, player_game_rows]) => ({ team_name, player_game_rows }))
+      .sort((left, right) => left.team_name.localeCompare(right.team_name)),
+    teamsMissingPlayerRows: missingTeams,
+    gamesMissingPlayerRows: gamesMissingRows,
+    playerPageIssues,
+  });
   writeJson(rawStatePath, {
     season,
     eventId,

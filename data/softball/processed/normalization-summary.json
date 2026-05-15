@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T13:34:35.800Z",
+  "generatedAt": "2026-05-15T16:33:07.010Z",
   "seasons": [
     {
       "season": 2026,
@@ -10,8 +10,8 @@
       "reviewCount": 0,
       "sourceFile": "C:\\GitRepo\\sports-talk-tools\\data\\softball\\raw\\2026\\sportstrack-player-season-stats.json",
       "sourceType": "sportstrack",
-      "lastScrapedGameDate": "2026-05-08",
-      "gameStatRows": 119
+      "lastScrapedGameDate": "2026-05-14",
+      "gameStatRows": 198
     }
   ]
 }

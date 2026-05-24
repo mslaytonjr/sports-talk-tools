@@ -4,7 +4,17 @@ import BracketRootingGuidePage from "./pages/BracketRootingGuidePage";
 import SabresPage from "./pages/SabresMagicNumberPage";
 import PlayImpactModelPage from "./pages/PlayImpactModelPage";
 import SoftballOpeningDayOddsPage from "./pages/SoftballOpeningDayOddsPage";
+import SabresCapRosterPage from "./pages/SabresCapRosterPage";
+import SabresLineOptimizerPage from "./pages/SabresLineOptimizerPage";
 import logo from "./assets/wny-sports-net-logo.png";
+
+const navLinkClass = (active: boolean) =>
+    [
+        "rounded-full border px-4 py-2 text-sm font-medium transition",
+        active
+            ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
+            : "border-white/15 bg-white/5 text-white hover:bg-white/10",
+    ].join(" ");
 
 function HomePage() {
     return (
@@ -23,44 +33,24 @@ function HomePage() {
                         </div>
 
                         <div className="grid gap-4 md:grid-cols-2">
-                            <Link to="/BillsDepthChart" className="landing-card group">
-                                <div className="landing-card-label">Featured Coverage</div>
-                                <div className="landing-card-title">Bills Depth Chart</div>
+                            <Link to="/Bills" className="landing-card group">
+                                <div className="landing-card-label">Football Tools</div>
+                                <div className="landing-card-title">Bills</div>
                                 <p className="landing-card-copy">
-                                    Position groups, roster structure, and field-level alignment for
-                                    quick scan depth chart viewing.
+                                    Depth chart views, roster structure, and football model workspaces
+                                    built around Buffalo.
                                 </p>
-                                <div className="landing-card-action">Enter Bills coverage</div>
+                                <div className="landing-card-action">Enter Bills tools</div>
                             </Link>
 
-                            <Link to="/SabresMagicNumber" className="landing-card group">
-                                <div className="landing-card-label">Featured Coverage</div>
-                                <div className="landing-card-title">Sabres Magic Number</div>
+                            <Link to="/Sabres" className="landing-card group">
+                                <div className="landing-card-label">Hockey Tools</div>
+                                <div className="landing-card-title">Sabres</div>
                                 <p className="landing-card-copy">
-                                    Playoff math, division chase, conference race, and nightly
-                                    rooting guidance built around what helps Buffalo most.
+                                    Playoff math, standings context, and nightly rooting guidance for
+                                    Buffalo hockey.
                                 </p>
-                                <div className="landing-card-action">Enter Sabres coverage</div>
-                            </Link>
-
-                            <Link to="/BracketRootingGuide" className="landing-card group">
-                                <div className="landing-card-label">Featured Coverage</div>
-                                <div className="landing-card-title">Bracket Rooting Guide</div>
-                                <p className="landing-card-copy">
-                                    Custom scoring rules, pool pick tracking, and game-by-game
-                                    rooting advice for the bracket you want to win.
-                                </p>
-                                <div className="landing-card-action">Enter bracket tool</div>
-                            </Link>
-
-                            <Link to="/PlayImpactModel" className="landing-card group">
-                                <div className="landing-card-label">Build In Progress</div>
-                                <div className="landing-card-title">Play Impact Model</div>
-                                <p className="landing-card-copy">
-                                    Start with one season of play-by-play, preserve win probability
-                                    context, and build the impact model from clean data.
-                                </p>
-                                <div className="landing-card-action">Enter model workspace</div>
+                                <div className="landing-card-action">Enter Sabres tools</div>
                             </Link>
 
                         </div>
@@ -82,8 +72,124 @@ function HomePage() {
     );
 }
 
+function ToolHubPage({
+    title,
+    kicker,
+    copy,
+    tools,
+}: {
+    title: string;
+    kicker: string;
+    copy: string;
+    tools: Array<{
+        to: string;
+        label: string;
+        title: string;
+        copy: string;
+        action: string;
+    }>;
+}) {
+    return (
+        <main className="landing-shell px-4 py-10 sm:px-6 lg:px-8">
+            <section className="mx-auto min-h-[calc(100vh-7rem)] max-w-5xl py-10">
+                <div className="space-y-4">
+                    <div className="landing-kicker">{kicker}</div>
+                    <h1 className="landing-title">{title}</h1>
+                    <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+                        {copy}
+                    </p>
+                </div>
+
+                <div className="mt-10 grid gap-4 md:grid-cols-2">
+                    {tools.map((tool) => (
+                        <Link key={tool.to} to={tool.to} className="landing-card group">
+                            <div className="landing-card-label">{tool.label}</div>
+                            <div className="landing-card-title">{tool.title}</div>
+                            <p className="landing-card-copy">{tool.copy}</p>
+                            <div className="landing-card-action">{tool.action}</div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+        </main>
+    );
+}
+
+function BillsPage() {
+    return (
+        <ToolHubPage
+            title="Bills"
+            kicker="Buffalo Football"
+            copy="Bills tools for roster context, depth chart scanning, and football model work."
+            tools={[
+                {
+                    to: "/BillsDepthChart",
+                    label: "Roster Tool",
+                    title: "Bills Depth Chart",
+                    copy:
+                        "Position groups, roster structure, and field-level alignment for quick scan depth chart viewing.",
+                    action: "Open depth chart",
+                },
+                {
+                    to: "/PlayImpactModel",
+                    label: "Model Workspace",
+                    title: "Play Impact Model",
+                    copy:
+                        "Start with one season of play-by-play, preserve win probability context, and build the impact model from clean data.",
+                    action: "Open model workspace",
+                },
+            ]}
+        />
+    );
+}
+
+function SabresHubPage() {
+    return (
+        <ToolHubPage
+            title="Sabres"
+            kicker="Buffalo Hockey"
+            copy="Sabres tools for standings context, playoff math, and the nightly chase."
+            tools={[
+                {
+                    to: "/SabresMagicNumber",
+                    label: "Standings Tool",
+                    title: "Sabres Magic Number",
+                    copy:
+                        "Playoff math, division chase, conference race, and nightly rooting guidance built around what helps Buffalo most.",
+                    action: "Open magic number",
+                },
+                {
+                    to: "/SabresCapRoster",
+                    label: "Cap Tool",
+                    title: "Roster and Cap",
+                    copy:
+                        "Current roster cap hits, projected cap allocation, and July 1 free agent status.",
+                    action: "Open cap table",
+                },
+                {
+                    to: "/SabresLineOptimizer",
+                    label: "Line Tool",
+                    title: "Best Potential Lines",
+                    copy:
+                        "Suggested forward lines and defense pairs using production, shot volume, two-way stats, and advanced traits.",
+                    action: "Open line builder",
+                },
+            ]}
+        />
+    );
+}
+
 export default function App() {
     const location = useLocation();
+    const isBillsActive =
+        location.pathname === "/Bills" ||
+        location.pathname === "/BillsDepthChart" ||
+        location.pathname === "/PlayImpactModel";
+    const isSabresActive =
+        location.pathname === "/Sabres" ||
+        location.pathname === "/SabresMagicNumber" ||
+        location.pathname === "/SabresCapRoster" ||
+        location.pathname === "/SabresLineOptimizer";
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
@@ -104,49 +210,11 @@ export default function App() {
                     </Link>
 
                     <div className="flex flex-wrap items-center gap-3">
-                        <Link
-                            to="/BillsDepthChart"
-                            className={[
-                                "rounded-full border px-4 py-2 text-sm font-medium transition",
-                                location.pathname === "/BillsDepthChart"
-                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
-                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
-                            ].join(" ")}
-                        >
-                            Bills Depth Chart
+                        <Link to="/Bills" className={navLinkClass(isBillsActive)}>
+                            Bills
                         </Link>
-                        <Link
-                            to="/SabresMagicNumber"
-                            className={[
-                                "rounded-full border px-4 py-2 text-sm font-medium transition",
-                                location.pathname === "/SabresMagicNumber"
-                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
-                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
-                            ].join(" ")}
-                        >
-                            Sabres Magic Number
-                        </Link>
-                        <Link
-                            to="/PlayImpactModel"
-                            className={[
-                                "rounded-full border px-4 py-2 text-sm font-medium transition",
-                                location.pathname === "/PlayImpactModel"
-                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
-                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
-                            ].join(" ")}
-                        >
-                            Play Impact Model
-                        </Link>
-                        <Link
-                            to="/BracketRootingGuide"
-                            className={[
-                                "rounded-full border px-4 py-2 text-sm font-medium transition",
-                                location.pathname === "/BracketRootingGuide"
-                                    ? "border-emerald-500/60 bg-emerald-500/15 text-emerald-200"
-                                    : "border-white/15 bg-white/5 text-white hover:bg-white/10",
-                            ].join(" ")}
-                        >
-                            Bracket Rooting Guide
+                        <Link to="/Sabres" className={navLinkClass(isSabresActive)}>
+                            Sabres
                         </Link>
                     </div>
                 </nav>
@@ -154,8 +222,12 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/Bills" element={<BillsPage />} />
+                <Route path="/Sabres" element={<SabresHubPage />} />
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
+                <Route path="/SabresCapRoster" element={<SabresCapRosterPage />} />
+                <Route path="/SabresLineOptimizer" element={<SabresLineOptimizerPage />} />
                 <Route path="/PlayImpactModel" element={<PlayImpactModelPage />} />
                 <Route path="/SoftballOdds" element={<SoftballOpeningDayOddsPage />} />
                 <Route path="/SoftballOpeningDayOdds" element={<SoftballOpeningDayOddsPage />} />

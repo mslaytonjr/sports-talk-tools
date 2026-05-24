@@ -12,6 +12,10 @@ export type OpeningDayOddsGame = {
     projected_margin?: number;
     home_win_probability: number;
     away_win_probability: number;
+    ml_home_win_probability?: number | null;
+    ml_away_win_probability?: number | null;
+    ml_favorite?: string;
+    ml_prediction_delta?: number | null;
     home_moneyline: string;
     away_moneyline: string;
     favorite: string;

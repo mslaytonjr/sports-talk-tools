@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-05-15T16:48:11.012Z",
+  "season": 2026,
+  "trainingRows": 12,
+  "baseline": {
+    "brierScore": 0.191646685,
+    "accuracy": 0.8333333333333334
+  },
+  "mlInSample": {
+    "brierScore": 0.15603784246117758,
+    "accuracy": 0.6666666666666666
+  },
+  "mlLeaveOneOut": {
+    "brierScore": 0.30216781069370147,
+    "accuracy": 0.6666666666666666
+  },
+  "note": "Small sample. Treat ML probabilities as a learning/calibration aid, not a replacement for the base model."
+}

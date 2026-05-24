@@ -12,6 +12,15 @@ function formatTilt(game: OpeningDayOddsGame) {
     return `${(gap * 100).toFixed(1)} pt edge`;
 }
 
+function formatDelta(value: number | null | undefined) {
+    if (value == null) {
+        return "n/a";
+    }
+
+    const points = value * 100;
+    return `${points >= 0 ? "+" : ""}${points.toFixed(1)} pts`;
+}
+
 function formatResult(game: OpeningDayOddsGame) {
     if (game.status !== "final" || game.home_score == null || game.away_score == null) {
         return null;
@@ -438,6 +447,44 @@ export default function SoftballOpeningDayOddsPage() {
                                                     </div>
                                                     <div className="mt-1 font-semibold text-white">
                                                         {game.total_error == null ? "n/a" : game.total_error.toFixed(1)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : null}
+
+                                        {game.ml_home_win_probability != null &&
+                                        game.ml_away_win_probability != null ? (
+                                            <div className="mt-4 grid gap-3 rounded-[1.35rem] border border-cyan-300/20 bg-cyan-300/8 p-4 text-sm text-slate-300 md:grid-cols-4">
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-cyan-200/70">
+                                                        Base Home Win
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {formatPercent(game.home_win_probability)}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-cyan-200/70">
+                                                        ML Home Win
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {formatPercent(game.ml_home_win_probability)}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-cyan-200/70">
+                                                        ML Favorite
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {game.ml_favorite || "n/a"}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[0.65rem] uppercase tracking-[0.22em] text-cyan-200/70">
+                                                        ML Shift
+                                                    </div>
+                                                    <div className="mt-1 font-semibold text-white">
+                                                        {formatDelta(game.ml_prediction_delta)}
                                                     </div>
                                                 </div>
                                             </div>

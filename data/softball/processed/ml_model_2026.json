@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-05-15T16:48:11.011Z",
+  "season": 2026,
+  "type": "logistic_regression",
+  "target": "home_win",
+  "features": [
+    "projected_run_diff",
+    "rating_diff",
+    "baseline_logit",
+    "matched_player_diff",
+    "match_rate_diff"
+  ],
+  "scaler": {
+    "means": {
+      "projected_run_diff": 0.34833333333333333,
+      "rating_diff": 0.03159657964104402,
+      "baseline_logit": 0.11508065862765315,
+      "matched_player_diff": -0.3333333333333333,
+      "match_rate_diff": -0.022222222222222216
+    },
+    "scales": {
+      "projected_run_diff": 2.316113243249465,
+      "rating_diff": 0.21018249907072126,
+      "baseline_logit": 0.764602391613265,
+      "matched_player_diff": 1.9293061504650377,
+      "match_rate_diff": 0.12544288823953528
+    }
+  },
+  "weights": [
+    0.8808237112157543,
+    0.31917611327858275,
+    0.4103190425912528,
+    0.3044785679977766,
+    0.8932716632476622,
+    -0.8619140754045954
+  ],
+  "trainingRows": 12
+}

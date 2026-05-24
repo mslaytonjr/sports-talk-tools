@@ -450,6 +450,113 @@ Notes:
 - This is a publishing/export step, not a modeling step.
 - It formats probabilities into moneyline-style and spread-like display fields for the site board.
 
+### `npm run softball:ml-dataset -- <season>`
+
+Script:
+
+- `scripts/softball/build-softball-ml-dataset.mjs`
+
+Why to use it:
+
+- Build a local machine-learning training table from completed games, current predictions, and team
+  ratings.
+
+When to use it:
+
+- After `softball:build-model` and `softball:predict`
+- After new game scores are present in `schedule_<season>.csv`
+
+Reads:
+
+- `data/softball/processed/team_ratings.csv`
+- `data/softball/processed/predictions.csv`
+- `data/softball/processed/player_impact.csv`
+- `data/softball/processed/roster_matches.csv`
+- `data/softball/processed/model_summary.json`
+- `data/softball/inputs/schedule_<season>.csv`
+
+Writes:
+
+- `data/softball/processed/ml_training_dataset_<season>.csv`
+- `data/softball/processed/ml_training_summary_<season>.json`
+
+Notes:
+
+- Only completed non-tie games with matching predictions and team ratings become training rows.
+- The label is `home_win`.
+- Features include projected run difference, rating difference, roster match quality, and baseline
+  prediction probability.
+
+### `npm run softball:ml-train -- <season>`
+
+Script:
+
+- `scripts/softball/train-softball-ml-model.mjs`
+
+Why to use it:
+
+- Train a lightweight local logistic regression calibrator that learns from completed results and compares
+  itself against the existing baseline probabilities.
+
+When to use it:
+
+- After `softball:ml-dataset`
+
+Reads:
+
+- `data/softball/processed/ml_training_dataset_<season>.csv`
+- `data/softball/processed/predictions.csv`
+- `data/softball/processed/team_ratings.csv`
+- `data/softball/inputs/schedule_<season>.csv`
+
+Writes:
+
+- `data/softball/processed/ml_model_<season>.json`
+- `data/softball/processed/ml_evaluation_<season>.json`
+- `data/softball/processed/ml_training_predictions_<season>.csv`
+- `data/softball/processed/ml_predictions_<season>.csv`
+
+Notes:
+
+- This is intentionally dependency-free JavaScript so it runs locally with the rest of the repo.
+- With a small number of completed games, treat this as a learning and calibration tool rather than a
+  replacement for the base model.
+
+### `npm run softball:ml-matchup -- <season> "<home team>" "<away team>"`
+
+Script:
+
+- `scripts/softball/predict-softball-ml-matchup.mjs`
+
+Why to use it:
+
+- Ask the trained local model for an ad hoc matchup between two teams without editing the schedule.
+
+When to use it:
+
+- After `softball:build-model`
+- After `softball:ml-train`
+
+Reads:
+
+- `data/softball/processed/team_ratings.csv`
+- `data/softball/processed/ml_model_<season>.json`
+
+Writes:
+
+- Nothing. It prints a JSON prediction to the terminal.
+
+Example:
+
+```bash
+npm run softball:ml-matchup -- 2026 "Bash Brothers" "Black Mambas"
+```
+
+Notes:
+
+- The first team is treated as the home team for the feature row.
+- The output includes both the base model probability and the ML-adjusted probability.
+
 ## Files That Support The Scripts
 
 ### `scripts/softball/shared.mjs`
@@ -479,6 +586,9 @@ If your goal is:
 - generate game predictions: `softball:predict`
 - inspect one team in detail: `softball:team-report`
 - export the odds board JSON: `softball:publish-opening-day`
+- build completed-game ML rows: `softball:ml-dataset`
+- train/evaluate the local ML calibrator: `softball:ml-train`
+- ask for an ad hoc two-team prediction: `softball:ml-matchup`
 
 ## Practical Advice
 

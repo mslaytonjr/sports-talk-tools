@@ -84,6 +84,9 @@ function toNumber(value) {
 
 function main() {
   const predictions = readCsvFile(resolve(processedRoot, "predictions.csv"));
+  const mlPredictions = readJsonIfExists(resolve(processedRoot, `ml_model_${targetSeason}.json`))
+    ? readCsvFile(resolve(processedRoot, `ml_predictions_${targetSeason}.csv`))
+    : [];
   const scheduleRows = readCsvFile(resolve(inputRoot, `schedule_${targetSeason}.csv`));
   const teamRatings = readCsvFile(resolve(processedRoot, "team_ratings.csv"));
   const scrapeState = readJsonIfExists(resolve(rawRoot, targetSeason, "sportstrack-state.json"));
@@ -105,6 +108,13 @@ function main() {
         return null;
       }
 
+      const mlPrediction = mlPredictions.find(
+        (item) =>
+          normalizeDate(item.date) === gameDate &&
+          slugify(item.home_team) === slugify(homeTeam) &&
+          slugify(item.away_team) === slugify(awayTeam)
+      );
+
       const homeWinProbability = Number(prediction.home_win_probability);
       const awayWinProbability = Number(prediction.away_win_probability);
       const homeProjectedRuns = Number(prediction.home_projected_runs);
@@ -113,6 +123,14 @@ function main() {
       const projectedMargin = homeProjectedRuns - awayProjectedRuns;
       const favorite = homeWinProbability >= awayWinProbability ? homeTeam : awayTeam;
       const favoriteProbability = Math.max(homeWinProbability, awayWinProbability);
+      const mlHomeWinProbability = toNumber(mlPrediction?.ml_home_win_probability);
+      const mlAwayWinProbability = toNumber(mlPrediction?.ml_away_win_probability);
+      const mlFavorite =
+        mlHomeWinProbability != null && mlAwayWinProbability != null
+          ? mlHomeWinProbability >= mlAwayWinProbability
+            ? homeTeam
+            : awayTeam
+          : "";
       const homeScore = toNumber(row.home_score);
       const awayScore = toNumber(row.away_score);
       const isFinal = homeScore != null && awayScore != null;
@@ -141,6 +159,13 @@ function main() {
         projected_margin: Number(projectedMargin.toFixed(2)),
         home_win_probability: homeWinProbability,
         away_win_probability: awayWinProbability,
+        ml_home_win_probability: mlHomeWinProbability,
+        ml_away_win_probability: mlAwayWinProbability,
+        ml_favorite: mlFavorite,
+        ml_prediction_delta:
+          mlHomeWinProbability != null
+            ? Number((mlHomeWinProbability - homeWinProbability).toFixed(4))
+            : null,
         home_moneyline: toAmericanOdds(homeWinProbability),
         away_moneyline: toAmericanOdds(awayWinProbability),
         favorite,

@@ -23,7 +23,10 @@
     "softball:wrist-sheet": "node ./scripts/softball/build-softball-wrist-sheet.mjs",
     "softball:league-overview": "node ./scripts/softball/build-softball-league-overview.mjs",
     "softball:publish-reports": "node ./scripts/softball/publish-softball-reports.mjs",
-    "softball:publish-opening-day": "node ./scripts/softball/publish-softball-opening-day-odds.mjs"
+    "softball:publish-opening-day": "node ./scripts/softball/publish-softball-opening-day-odds.mjs",
+    "softball:ml-dataset": "node ./scripts/softball/build-softball-ml-dataset.mjs",
+    "softball:ml-train": "node ./scripts/softball/train-softball-ml-model.mjs",
+    "softball:ml-matchup": "node ./scripts/softball/predict-softball-ml-matchup.mjs"
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.8",

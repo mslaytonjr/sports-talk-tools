@@ -24,6 +24,9 @@ npm run softball:normalize -- 2025 2024 2023
 npm run softball:build-dataset -- 2025 2024 2023
 npm run softball:build-model -- 2026
 npm run softball:predict -- 2026
+npm run softball:ml-dataset -- 2026
+npm run softball:ml-train -- 2026
+npm run softball:ml-matchup -- 2026 "Bash Brothers" "Black Mambas"
 ```
 
 This workflow currently:
@@ -35,6 +38,8 @@ This workflow currently:
 - provides a current-roster input template at `data/softball/inputs/rosters_2026.csv`
 - provides optional `availability_2026.csv` and `schedule_2026.csv` templates
 - builds `team_ratings.csv`, `player_impact.csv`, `predictions.csv`, and `model_summary.json`
+- can build a local ML training dataset from completed scores and train a lightweight logistic
+  regression calibrator
 
 Important note:
 

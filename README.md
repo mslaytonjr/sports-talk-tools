@@ -130,6 +130,37 @@ Example output files:
 
 The rest of this repo remains a Vite + React app.
 
+## Sabres Line Optimizer Lambda
+
+The Sabres line optimizer can run as a daily EventBridge-triggered Lambda:
+
+```bash
+npm run deploy:sabres-line-optimizer-lambda -- `
+  -FunctionName <lambda-name> `
+  -ScheduleName sabres-line-optimizer-daily `
+  -Region us-east-1
+```
+
+The default schedule is `cron(15 10 * * ? *)`, which runs once per day at 10:15 UTC.
+
+Optional Lambda environment variables:
+
+- `OUTPUT_BUCKET`: S3 bucket where the latest optimizer output is written
+- `OUTPUT_KEY`: S3 key for the latest output, defaults to `sabres/line-optimizer/latest.json`
+- `HISTORY_PREFIX`: S3 prefix for changed-lineup snapshots, defaults to `sabres/line-optimizer/history`
+- `PLAYER_POOL_URL`: optional JSON source for `{ forwards, defensemen }`; when omitted, the Lambda uses its bundled player pool
+
+If `OUTPUT_BUCKET` is set, the Lambda role needs `s3:GetObject` and `s3:PutObject` permissions for the configured output key and history prefix.
+
+The Lambda:
+
+- excludes unrestricted free agents from the eligible pool
+- ignores IR status for end-of-season planning
+- generates every eligible three-forward combo with at least one center
+- scores each combo against Line 1-4 role weights
+- selects the best non-overlapping four-line set
+- compares the new lineup signature against the previous S3 output and writes a history snapshot when it changes
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

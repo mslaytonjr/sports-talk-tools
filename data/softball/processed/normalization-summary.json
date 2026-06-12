@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T15:31:59.590Z",
+  "generatedAt": "2026-06-12T15:59:57.890Z",
   "seasons": [
     {
       "season": 2026,
@@ -12,6 +12,21 @@
       "sourceType": "sportstrack",
       "lastScrapedGameDate": "2026-06-09",
       "gameStatRows": 345
+    },
+    {
+      "season": 2025,
+      "skipped": true,
+      "reason": "Missing raw player table file: C:\\GitRepo\\sports-talk-tools\\data\\softball\\raw\\2025\\leaders_xhr.html"
+    },
+    {
+      "season": 2024,
+      "skipped": true,
+      "reason": "Missing raw player table file: C:\\GitRepo\\sports-talk-tools\\data\\softball\\raw\\2024\\leaders_xhr.html"
+    },
+    {
+      "season": 2023,
+      "skipped": true,
+      "reason": "Missing raw player table file: C:\\GitRepo\\sports-talk-tools\\data\\softball\\raw\\2023\\leaders_xhr.html"
     }
   ]
 }

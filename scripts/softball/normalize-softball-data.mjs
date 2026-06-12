@@ -369,12 +369,12 @@ function discoverGamesFromTeamPages(seasonDir, season) {
 }
 
 function main() {
-  const rebuiltSeasons = new Set(seasons.map(String));
-  const allTeams = existingRowsForOmittedSeasons("teams.csv", rebuiltSeasons);
-  const allPlayers = existingRowsForOmittedSeasons("players.csv", rebuiltSeasons);
-  const allPlayerStats = existingRowsForOmittedSeasons("player_stats.csv", rebuiltSeasons);
-  const allGames = existingRowsForOmittedSeasons("games.csv", rebuiltSeasons);
-  const reviewRows = existingRowsForOmittedSeasons("player_review.csv", rebuiltSeasons);
+  const rebuiltSeasons = new Set();
+  const allTeams = [];
+  const allPlayers = [];
+  const allPlayerStats = [];
+  const allGames = [];
+  const reviewRows = [];
   const summary = [];
 
   for (const season of seasons) {
@@ -387,6 +387,7 @@ function main() {
     if (!existsSync(sourcePath)) {
       const sportstrackSeason = loadSportstrackSeason(seasonDir, season);
       if (sportstrackSeason) {
+        rebuiltSeasons.add(String(season));
         allTeams.push(...sportstrackSeason.teams);
         allPlayers.push(...sportstrackSeason.players);
         allPlayerStats.push(...sportstrackSeason.playerStats);
@@ -409,6 +410,7 @@ function main() {
     const derivedTeams = teams.length > 0 ? teams : buildTeamsFromPlayerRecords(season, playerRecords);
     const games = discoverGamesFromTeamPages(seasonDir, season);
 
+    rebuiltSeasons.add(String(season));
     allTeams.push(...derivedTeams);
     allGames.push(...games);
 
@@ -442,6 +444,12 @@ function main() {
       sourceFile: sourcePath,
     });
   }
+
+  allTeams.unshift(...existingRowsForOmittedSeasons("teams.csv", rebuiltSeasons));
+  allPlayers.unshift(...existingRowsForOmittedSeasons("players.csv", rebuiltSeasons));
+  allPlayerStats.unshift(...existingRowsForOmittedSeasons("player_stats.csv", rebuiltSeasons));
+  allGames.unshift(...existingRowsForOmittedSeasons("games.csv", rebuiltSeasons));
+  reviewRows.unshift(...existingRowsForOmittedSeasons("player_review.csv", rebuiltSeasons));
 
   const players = uniqueBy(allPlayers, (row) => `${row.season}_${row.player_id}`);
   const teams = uniqueBy(allTeams, (row) => row.team_id);

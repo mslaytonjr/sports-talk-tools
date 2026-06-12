@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-06-12T15:32:33.957Z",
+  "generatedAt": "2026-06-12T16:00:05.319Z",
   "season": 2026,
   "leagueContext": {
-    "leagueOffenseIndex": 0.48266272703025487,
-    "leagueRunsPerGame": 7.2865,
-    "leagueFielding": 0.95,
+    "leagueOffenseIndex": 0.524622569878343,
+    "leagueRunsPerGame": 8.7739,
+    "leagueFielding": 1,
     "leagueProfile": {
-      "walk_probability": 0.03503184713375796,
-      "single_probability": 0.3375796178343949,
-      "double_probability": 0.05573248407643312,
-      "triple_probability": 0.018312101910828025,
-      "home_run_probability": 0.01910828025477707,
-      "out_probability": 0.5342356687898089
+      "walk_probability": 0.04575441583315599,
+      "single_probability": 0.3678796907143364,
+      "double_probability": 0.057671845073419874,
+      "triple_probability": 0.01592537419309073,
+      "home_run_probability": 0.012981485422430303,
+      "out_probability": 0.49978718876356676
     }
   },
   "simulatedInnings": 7,
   "simulationCount": 10000,
   "teamCount": 12,
-  "matchedRosterPlayers": 84,
-  "unmatchedRosterPlayers": 98
+  "matchedRosterPlayers": 170,
+  "unmatchedRosterPlayers": 12
 }

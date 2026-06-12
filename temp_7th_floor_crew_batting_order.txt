@@ -1,0 +1,41 @@
+7th Floor Crew Batting Order
+Assumption: Brad Hartung, Kevin DeJong, and Alexander Sweetwood are out. Everyone else bats.
+
+1. Ryan Goodrich
+   Best table-setter profile: .537 OBP, .567 productive PA, hit in 100% of 2026 games.
+
+2. Pat McNamara
+   High OBP/contact profile, low power, ideal to keep traffic moving before the thump.
+
+3. Matt Johnson
+   Best overall bat: .624 OBP, 1.031 SLG, .429 ISO, 80% XBH games. Get him max PA with runners on.
+
+4. Dave Jones
+   Strong RBI bat: .674 SLG, .211 ISO, 83% multi-hit games.
+
+5. Matt Rozell
+   Extra-base threat: .215 ISO, 37% XBH rate, 67% XBH games.
+
+6. Dean Sottile
+   Good middle-order stabilizer: .518 OBP, 1.136 OPS, productive contact.
+
+7. Todd Alden
+   Reliable bridge bat: .472 OBP, .502 productive PA, good current consistency.
+
+8. Nick Adams
+   Keeps inning alive: .472 OBP, decent out avoidance, less power.
+
+9. Fred Heismeyer
+   Lower power but better OBP than the bottom group.
+
+10. Steve Sroka
+    Some contact, but lower out avoidance and no XBH signal.
+
+11. Mark Slayton
+    Struggling advanced profile, but ahead of Levine due to slightly better OBP/productive PA.
+
+12. Mike Levine
+    Lowest current advanced profile; let him turn it over to Ryan.
+
+Summary:
+Keep Ryan -> Pat -> Johnson at the top. Johnson is good enough to lead off, but the advanced signals say he is the best run producer by a lot, so it is better to have Ryan and Pat in front of him.

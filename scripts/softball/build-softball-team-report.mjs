@@ -143,18 +143,24 @@ function describeRating(teamRank, totalTeams) {
 
 function describeLineupRole(spot) {
   if (spot === 1) {
-    return "Table setter";
+    return "Leadoff";
   }
   if (spot === 2) {
-    return "Contact bat";
+    return "2-hole";
   }
-  if (spot === 3 || spot === 4 || spot === 5) {
-    return "Run producer";
+  if (spot === 3) {
+    return "3-hole";
+  }
+  if (spot === 4) {
+    return "Cleanup";
+  }
+  if (spot === 5) {
+    return "5-hole";
   }
   if (spot <= 10) {
-    return "Core lineup";
+    return "Middle order";
   }
-  return "Depth bat";
+  return "Bottom order";
 }
 
 function escapeHtml(value) {
@@ -696,12 +702,17 @@ function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfi
 
   const pool = [...matched, ...unmatched];
   const available = new Map(pool.map((player) => [player.player_name, player]));
-  const lineup = [];
   const offenseValue = (player) => Number(player.projected_offense_index || player.offense_index || 0);
   const safeObp = (player) => (canUseProfileStats(player) ? Number(player.obp ?? 0.32) : 0.32);
   const safeAvg = (player) => (canUseProfileStats(player) ? Number(player.avg ?? 0.28) : 0.28);
   const safeSlg = (player) => (canUseProfileStats(player) ? Number(player.slg ?? 0.42) : 0.42);
   const safeOps = (player) => (canUseProfileStats(player) ? Number(player.ops ?? 0.74) : 0.74);
+  const safeIso = (player) => (canUseProfileStats(player) ? Number(player.iso ?? 0) : 0);
+  const safeProductivePa = (player) => (canUseProfileStats(player) ? Number(player.productive_pa_percentage ?? 0.32) : 0.32);
+  const safeOutAvoidance = (player) => (canUseProfileStats(player) ? Number(player.out_avoidance ?? 0.28) : 0.28);
+  const safeHitGame = (player) => Number(player.hit_game_percentage ?? 0);
+  const safeXbh = (player) => Number(player.xbh_percentage ?? 0);
+  const safeXbhGame = (player) => Number(player.xbh_game_percentage ?? 0);
 
   function takeBest(scoreFn) {
     const choices = [...available.values()];
@@ -711,18 +722,39 @@ function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfi
     choices.sort((left, right) => scoreFn(right) - scoreFn(left));
     const selected = choices[0];
     available.delete(selected.player_name);
-    lineup.push(selected);
     return selected;
   }
 
-  takeBest((player) => (safeObp(player) * 0.65) + (offenseValue(player) * 0.35));
-  takeBest((player) => (safeObp(player) * 0.45) + (safeAvg(player) * 0.2) + (offenseValue(player) * 0.35));
-  takeBest((player) => (offenseValue(player) * 0.6) + (safeSlg(player) * 0.4));
-  takeBest((player) => (safeSlg(player) * 0.6) + (safeOps(player) * 0.4));
-  takeBest((player) => (offenseValue(player) * 0.55) + (safeOps(player) * 0.45));
+  const scoreLeadoff = (player) =>
+    (safeObp(player) * 0.42) +
+    (safeProductivePa(player) * 0.25) +
+    (safeOutAvoidance(player) * 0.2) +
+    (safeHitGame(player) * 0.08) +
+    (offenseValue(player) * 0.05);
+  const scoreRunProducer = (player) =>
+    (offenseValue(player) * 0.34) +
+    (safeSlg(player) * 0.24) +
+    (safeIso(player) * 0.18) +
+    (safeXbh(player) * 0.14) +
+    (safeXbhGame(player) * 0.1);
+  const scoreContactBridge = (player) =>
+    (safeObp(player) * 0.28) +
+    (safeAvg(player) * 0.24) +
+    (safeProductivePa(player) * 0.22) +
+    (safeOutAvoidance(player) * 0.16) +
+    (offenseValue(player) * 0.1);
+
+  const third = takeBest(scoreRunProducer);
+  const first = takeBest(scoreLeadoff);
+  const second = takeBest((player) => scoreContactBridge(player) - (safeIso(player) * 0.08));
+  const fourth = takeBest((player) => scoreRunProducer(player) + (safeSlg(player) * 0.08));
+  const fifth = takeBest(scoreRunProducer);
+  const sixth = takeBest(scoreContactBridge);
+
+  const lineup = [first, second, third, fourth, fifth, sixth].filter(Boolean);
 
   while (available.size > 0) {
-    takeBest((player) => (offenseValue(player) * 0.7) + (safeOps(player) * 0.3));
+    lineup.push(takeBest(scoreContactBridge));
   }
 
   return lineup.map((player, index) => ({

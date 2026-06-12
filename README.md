@@ -161,6 +161,82 @@ The Lambda:
 - selects the best non-overlapping four-line set
 - compares the new lineup signature against the previous S3 output and writes a history snapshot when it changes
 
+## Softball Daily Report Update
+
+The softball reports can be refreshed by one command:
+
+```bash
+npm run softball:daily-update -- --force
+```
+
+This command:
+
+- scrapes current Sportstrack data, including box-score fallback rows
+- preserves restored historical seasons when raw historical snapshots are missing
+- rebuilds normalized stats, model output, team reports, and league overview
+- publishes updated static files under `public/softball`
+- optionally syncs `public/softball` to S3 when `SOFTBALL_REPORTS_BUCKET` is set
+
+Useful environment variables:
+
+- `SOFTBALL_SEASON`: target season, defaults to `2026`
+- `SOFTBALL_FORCE_SCRAPE`: set to `true` to re-scrape all completed games
+- `SOFTBALL_REPORTS_BUCKET`: optional S3 bucket for published static reports
+- `SOFTBALL_REPORTS_PREFIX`: optional S3 prefix, defaults to `softball`
+
+For AWS scheduling, use CodeBuild with `buildspec-softball-daily.yml`, then attach an EventBridge rule to the CodeBuild project:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ./scripts/deploy-softball-daily-codebuild-schedule.ps1 `
+  -ProjectName <codebuild-project-name> `
+  -ScheduleName softball-daily-update `
+  -EventRoleArn <eventbridge-codebuild-role-arn> `
+  -Region us-east-1
+```
+
+The default schedule is `cron(30 10 * * ? *)`, which runs once per day at 10:30 UTC. The CodeBuild service role needs normal source checkout permissions and `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` for the configured reports bucket if S3 publishing is enabled.
+
+## Softball Lineup Endpoint
+
+The softball lineup endpoint is a Lambda Function URL backed by the latest team report JSON in S3.
+
+Deploy or update it with:
+
+```powershell
+npm run deploy:softball-lineup-lambda -- `
+  -FunctionName <lambda-name> `
+  -RoleArn <lambda-execution-role-arn> `
+  -ReportsBucket <reports-bucket> `
+  -ReportsPrefix softball `
+  -Region us-east-1
+```
+
+`-RoleArn` is only required the first time, when the Lambda does not already exist. The Lambda execution role needs `s3:GetObject` for:
+
+```text
+s3://<reports-bucket>/softball/team_reports/*
+```
+
+Example request:
+
+```bash
+curl -X POST "<function-url>" \
+  -H "content-type: application/json" \
+  -d '{"team":"7th Floor Crew","unavailable":["Brad Hartung","Kevin DeJong","Alexander Sweetwood"]}'
+```
+
+The response includes structured lineup rows and a copyable `text` field:
+
+```json
+{
+  "team": "7th Floor Crew",
+  "season": "2026",
+  "unavailable": ["Brad Hartung", "Kevin DeJong", "Alexander Sweetwood"],
+  "lineup": [{ "spot": 1, "player_name": "Ryan Goodrich" }],
+  "text": "7th Floor Crew Batting Order\n..."
+}
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

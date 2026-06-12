@@ -1,0 +1,24 @@
+version: 0.2
+
+env:
+  variables:
+    SOFTBALL_SEASON: "2026"
+    SOFTBALL_FORCE_SCRAPE: "true"
+    SOFTBALL_REPORTS_PREFIX: "softball"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - npm ci
+  build:
+    commands:
+      - npm run softball:daily-update
+
+artifacts:
+  files:
+    - public/softball/**/*
+    - data/softball/processed/**/*
+    - data/softball/raw/2026/sportstrack-scrape-quality.json
+    - data/softball/raw/2026/sportstrack-state.json

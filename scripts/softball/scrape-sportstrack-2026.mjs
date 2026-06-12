@@ -271,6 +271,85 @@ function parsePlayerGameStats(player, statsHtml, scheduleByGameId) {
   return output;
 }
 
+function parseBoxScoreBattingStats(game, boxScoreHtml, playersByRosterId) {
+  const output = [];
+
+  for (const tableMatch of boxScoreHtml.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)) {
+    const tableHtml = tableMatch[1];
+    const headers = [...tableHtml.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) =>
+      normalizeHeader(match[1])
+    );
+
+    if (
+      !headers.includes("player") ||
+      !headers.includes("pa") ||
+      !headers.includes("ab") ||
+      !headers.includes("h")
+    ) {
+      continue;
+    }
+
+    for (const rowMatch of tableHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const rowHtml = rowMatch[1];
+      const cellMatches = [...rowHtml.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)];
+      if (cellMatches.length === 0) {
+        continue;
+      }
+
+      const firstCellHtml = cellMatches[0]?.[1] ?? "";
+      const statsHref = firstCellHtml.match(/href="([^"]+\/stats\?[^"]+)"/i)?.[1] ?? "";
+      if (!statsHref) {
+        continue;
+      }
+
+      const statsUrl = normalizeUrl(statsHref);
+      const rosterId = new URL(statsUrl).searchParams.get("rosterId") ?? "";
+      const player = playersByRosterId.get(rosterId);
+      if (!player) {
+        continue;
+      }
+
+      const record = {};
+      headers.forEach((header, index) => {
+        record[header || `col_${index + 1}`] = stripTags(cellMatches[index]?.[1] ?? "");
+      });
+      record.type = record.type || "Season";
+      record.g = game.game_id;
+      record.gp = record.gp || "1";
+
+      const opponent =
+        player.team_name === game.home_team
+          ? game.away_team
+          : player.team_name === game.away_team
+            ? game.home_team
+            : "";
+
+      output.push({
+        season,
+        game_id: game.game_id,
+        game_date: game.game_date,
+        team_id: `${season}_${player.team_slug}`,
+        historical_team_id: player.team_slug,
+        team_name: player.team_name,
+        sportstrack_team_id: player.sportstrack_team_id,
+        player_id: `${season}_${player.team_slug}_${slugify(player.roster_id)}`,
+        canonical_player_id: slugify(player.canonical_player_name),
+        historical_player_id: slugify(player.canonical_player_name),
+        player_name: player.player_name,
+        canonical_player_name: player.canonical_player_name,
+        roster_id: player.roster_id,
+        player_url: player.player_url,
+        opponent,
+        game_type: record.type,
+        source_detail: "box_score",
+        ...record,
+      });
+    }
+  }
+
+  return output;
+}
+
 function aggregatePlayerStats(gameStats) {
   const grouped = new Map();
 
@@ -392,6 +471,7 @@ async function main() {
   const existingGameStats = force ? [] : readJson(rawGameStatsPath, []);
   const nextGameStats = [];
   const playerPageIssues = [];
+  const playersByRosterId = new Map(players.map((player) => [player.roster_id, player]));
 
   for (const player of players) {
     const playerStatsUrl = `${player.stats_url}/v2?report=batting&player=${encodeURIComponent(player.player_param)}&rosterId=${encodeURIComponent(player.roster_id)}`;
@@ -436,14 +516,17 @@ async function main() {
     console.log(`${player.team_name} / ${player.player_name}: ${playerRows.length} new game rows`);
   }
 
+  const boxScoreRows = [];
   for (const game of gamesToScrape) {
     try {
       const boxScoreHtml = await fetchText(game.box_score_url);
       writeText(resolve(boxScoresDir, `${game.game_id}.html`), boxScoreHtml);
+      boxScoreRows.push(...parseBoxScoreBattingStats(game, boxScoreHtml, playersByRosterId));
     } catch (error) {
       console.warn(`Could not save box score ${game.game_id}: ${error.message}`);
     }
   }
+  nextGameStats.push(...boxScoreRows);
 
   const mergedGameStats = mergeGameStats(existingGameStats, nextGameStats);
   const aggregated = aggregatePlayerStats(mergedGameStats);
@@ -482,6 +565,7 @@ async function main() {
     scrapedGameStatRows: mergedGameStats.length,
     playerCount: players.length,
     playerPageIssueCount: playerPageIssues.length,
+    boxScoreFallbackRows: boxScoreRows.length,
     teamsWithPlayerRows: [...statRowsByTeam.entries()]
       .map(([team_name, player_game_rows]) => ({ team_name, player_game_rows }))
       .sort((left, right) => left.team_name.localeCompare(right.team_name)),

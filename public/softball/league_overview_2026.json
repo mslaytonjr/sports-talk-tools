@@ -1,41 +1,17 @@
 {
-  "generated_at": "2026-06-12T16:00:11.897Z",
-  "stats_last_scraped_at": "2026-06-12T15:28:15.630Z",
-  "stats_through_date": "2026-06-09",
+  "generated_at": "2026-06-12T16:15:56.585Z",
+  "stats_last_scraped_at": "2026-06-12T16:15:34.740Z",
+  "stats_through_date": "2026-06-11",
   "scraped_game_count": 40,
   "season": 2026,
   "team_rankings": [
     {
-      "team": "Black Mambas",
-      "team_id": "black_mambas",
-      "projected_runs": 13.7358,
-      "matched_players": 15,
-      "roster_size": 15,
-      "overall_rating": 0.44822415784077757,
-      "team_report_href": "./team_reports/black_mambas_2026.html",
-      "weighted_h2l": 433.2,
-      "weighted_h2c": 855.9,
-      "weighted_h2r": 194,
-      "weighted_direction_total": 1483.1,
-      "h2l_percentage": 0.2920908907019082,
-      "h2c_percentage": 0.5771020160474681,
-      "h2r_percentage": 0.13080709325062373,
-      "direction_players_with_data": 13,
-      "direction_seasons_used": [
-        "2023",
-        "2024",
-        "2025"
-      ],
-      "rank": 1,
-      "rank_label": "1st"
-    },
-    {
       "team": "The Sultans of Swat",
       "team_id": "the_sultans_of_swat",
-      "projected_runs": 13.4793,
+      "projected_runs": 16.0051,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.42937376998359467,
+      "overall_rating": 0.5986103487572778,
       "team_report_href": "./team_reports/the_sultans_of_swat_2026.html",
       "weighted_h2l": 718.9,
       "weighted_h2c": 727.7,
@@ -50,25 +26,49 @@
         "2024",
         "2025"
       ],
+      "rank": 1,
+      "rank_label": "1st"
+    },
+    {
+      "team": "Muscle Hamsters",
+      "team_id": "muscle_hamsters",
+      "projected_runs": 13.8918,
+      "matched_players": 15,
+      "roster_size": 15,
+      "overall_rating": 0.45700166531055597,
+      "team_report_href": "./team_reports/muscle_hamsters_2026.html",
+      "weighted_h2l": 424,
+      "weighted_h2c": 690.2,
+      "weighted_h2r": 138.2,
+      "weighted_direction_total": 1252.4,
+      "h2l_percentage": 0.33854998403066106,
+      "h2c_percentage": 0.5511018843819865,
+      "h2r_percentage": 0.11034813158735225,
+      "direction_players_with_data": 12,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "rank": 2,
       "rank_label": "2nd"
     },
     {
-      "team": "Wild Things",
-      "team_id": "wild_things",
-      "projected_runs": 13.2972,
+      "team": "Black Mambas",
+      "team_id": "black_mambas",
+      "projected_runs": 13.2218,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.4157720813793055,
-      "team_report_href": "./team_reports/wild_things_2026.html",
-      "weighted_h2l": 496.1,
-      "weighted_h2c": 828.6,
-      "weighted_h2r": 191.1,
-      "weighted_direction_total": 1515.8,
-      "h2l_percentage": 0.3272859216255443,
-      "h2c_percentage": 0.5466420372080749,
-      "h2r_percentage": 0.12607204116638082,
-      "direction_players_with_data": 14,
+      "overall_rating": 0.4075699097998242,
+      "team_report_href": "./team_reports/black_mambas_2026.html",
+      "weighted_h2l": 433.2,
+      "weighted_h2c": 855.9,
+      "weighted_h2r": 194,
+      "weighted_direction_total": 1483.1,
+      "h2l_percentage": 0.2920908907019082,
+      "h2c_percentage": 0.5771020160474681,
+      "h2r_percentage": 0.13080709325062373,
+      "direction_players_with_data": 13,
       "direction_seasons_used": [
         "2023",
         "2024",
@@ -80,10 +80,10 @@
     {
       "team": "The Ryan Express",
       "team_id": "the_ryan_express",
-      "projected_runs": 13.0216,
-      "matched_players": 13,
+      "projected_runs": 13.1205,
+      "matched_players": 15,
       "roster_size": 16,
-      "overall_rating": 0.3948281117263138,
+      "overall_rating": 0.3998788198533676,
       "team_report_href": "./team_reports/the_ryan_express_2026.html",
       "weighted_h2l": 371.4,
       "weighted_h2c": 758.4,
@@ -102,12 +102,36 @@
       "rank_label": "4th"
     },
     {
+      "team": "Wild Things",
+      "team_id": "wild_things",
+      "projected_runs": 13.0403,
+      "matched_players": 15,
+      "roster_size": 15,
+      "overall_rating": 0.39374748967632445,
+      "team_report_href": "./team_reports/wild_things_2026.html",
+      "weighted_h2l": 496.1,
+      "weighted_h2c": 828.6,
+      "weighted_h2r": 191.1,
+      "weighted_direction_total": 1515.8,
+      "h2l_percentage": 0.3272859216255443,
+      "h2c_percentage": 0.5466420372080749,
+      "h2r_percentage": 0.12607204116638082,
+      "direction_players_with_data": 14,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "rank": 5,
+      "rank_label": "5th"
+    },
+    {
       "team": "Lunch Pail Guys",
       "team_id": "lunch_pail_guys",
-      "projected_runs": 12.5809,
-      "matched_players": 12,
+      "projected_runs": 12.986,
+      "matched_players": 14,
       "roster_size": 15,
-      "overall_rating": 0.3603983854748064,
+      "overall_rating": 0.3895747813937804,
       "team_report_href": "./team_reports/lunch_pail_guys_2026.html",
       "weighted_h2l": 296.2,
       "weighted_h2c": 542.1,
@@ -122,16 +146,16 @@
         "2024",
         "2025"
       ],
-      "rank": 5,
-      "rank_label": "5th"
+      "rank": 6,
+      "rank_label": "6th"
     },
     {
       "team": "Bash Brothers",
       "team_id": "bash_brothers",
-      "projected_runs": 12.4853,
+      "projected_runs": 12.4891,
       "matched_players": 16,
       "roster_size": 16,
-      "overall_rating": 0.35277054690881277,
+      "overall_rating": 0.3505591912025779,
       "team_report_href": "./team_reports/bash_brothers_2026.html",
       "weighted_h2l": 602.9,
       "weighted_h2c": 722.4,
@@ -146,64 +170,16 @@
         "2024",
         "2025"
       ],
-      "rank": 6,
-      "rank_label": "6th"
-    },
-    {
-      "team": "Muscle Hamsters",
-      "team_id": "muscle_hamsters",
-      "projected_runs": 11.9878,
-      "matched_players": 13,
-      "roster_size": 15,
-      "overall_rating": 0.31210806059639395,
-      "team_report_href": "./team_reports/muscle_hamsters_2026.html",
-      "weighted_h2l": 424,
-      "weighted_h2c": 690.2,
-      "weighted_h2r": 138.2,
-      "weighted_direction_total": 1252.4,
-      "h2l_percentage": 0.33854998403066106,
-      "h2c_percentage": 0.5511018843819865,
-      "h2r_percentage": 0.11034813158735225,
-      "direction_players_with_data": 12,
-      "direction_seasons_used": [
-        "2023",
-        "2024",
-        "2025"
-      ],
       "rank": 7,
       "rank_label": "7th"
     },
     {
-      "team": "The Big Papi's",
-      "team_id": "the_big_papi_s",
-      "projected_runs": 10.4713,
-      "matched_players": 15,
-      "roster_size": 15,
-      "overall_rating": 0.17685677608475397,
-      "team_report_href": "./team_reports/the_big_papi_s_2026.html",
-      "weighted_h2l": 698.3,
-      "weighted_h2c": 878.7,
-      "weighted_h2r": 95.5,
-      "weighted_direction_total": 1672.5,
-      "h2l_percentage": 0.41751868460388636,
-      "h2c_percentage": 0.5253811659192825,
-      "h2r_percentage": 0.05710014947683109,
-      "direction_players_with_data": 15,
-      "direction_seasons_used": [
-        "2023",
-        "2024",
-        "2025"
-      ],
-      "rank": 8,
-      "rank_label": "8th"
-    },
-    {
       "team": "The Big Units",
       "team_id": "the_big_units",
-      "projected_runs": 10.3546,
-      "matched_players": 13,
+      "projected_runs": 10.6938,
+      "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.165649460050807,
+      "overall_rating": 0.1953670615832086,
       "team_report_href": "./team_reports/the_big_units_2026.html",
       "weighted_h2l": 478.2,
       "weighted_h2c": 695.4,
@@ -218,16 +194,40 @@
         "2024",
         "2025"
       ],
+      "rank": 8,
+      "rank_label": "8th"
+    },
+    {
+      "team": "The Big Papi's",
+      "team_id": "the_big_papi_s",
+      "projected_runs": 10.4203,
+      "matched_players": 15,
+      "roster_size": 15,
+      "overall_rating": 0.16945875400520752,
+      "team_report_href": "./team_reports/the_big_papi_s_2026.html",
+      "weighted_h2l": 698.3,
+      "weighted_h2c": 878.7,
+      "weighted_h2r": 95.5,
+      "weighted_direction_total": 1672.5,
+      "h2l_percentage": 0.41751868460388636,
+      "h2c_percentage": 0.5253811659192825,
+      "h2r_percentage": 0.05710014947683109,
+      "direction_players_with_data": 15,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "rank": 9,
       "rank_label": "9th"
     },
     {
       "team": "Honey Badgers",
       "team_id": "honey_badgers",
-      "projected_runs": 9.9181,
+      "projected_runs": 10.1622,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.12257996532523407,
+      "overall_rating": 0.1443778814504788,
       "team_report_href": "./team_reports/honey_badgers_2026.html",
       "weighted_h2l": 585,
       "weighted_h2c": 908.3,
@@ -246,36 +246,12 @@
       "rank_label": "10th"
     },
     {
-      "team": "7th Floor Crew",
-      "team_id": "7th_floor_crew",
-      "projected_runs": 9.371,
-      "matched_players": 15,
-      "roster_size": 15,
-      "overall_rating": 0.06583840877284898,
-      "team_report_href": "./team_reports/7th_floor_crew_2026.html",
-      "weighted_h2l": 610.9,
-      "weighted_h2c": 814.5,
-      "weighted_h2r": 76.6,
-      "weighted_direction_total": 1502,
-      "h2l_percentage": 0.40672436750998675,
-      "h2c_percentage": 0.5422769640479361,
-      "h2r_percentage": 0.050998668442077226,
-      "direction_players_with_data": 15,
-      "direction_seasons_used": [
-        "2023",
-        "2024",
-        "2025"
-      ],
-      "rank": 11,
-      "rank_label": "11th"
-    },
-    {
       "team": "Nails",
       "team_id": "nails",
-      "projected_runs": 9.3066,
-      "matched_players": 13,
+      "projected_runs": 10.1098,
+      "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.05894242050778549,
+      "overall_rating": 0.13920817775052155,
       "team_report_href": "./team_reports/nails_2026.html",
       "weighted_h2l": 465.1,
       "weighted_h2c": 729,
@@ -290,6 +266,30 @@
         "2024",
         "2025"
       ],
+      "rank": 11,
+      "rank_label": "11th"
+    },
+    {
+      "team": "7th Floor Crew",
+      "team_id": "7th_floor_crew",
+      "projected_runs": 9.9405,
+      "matched_players": 15,
+      "roster_size": 15,
+      "overall_rating": 0.12232024852173962,
+      "team_report_href": "./team_reports/7th_floor_crew_2026.html",
+      "weighted_h2l": 597.7,
+      "weighted_h2c": 834.1,
+      "weighted_h2r": 74.8,
+      "weighted_direction_total": 1506.6,
+      "h2l_percentage": 0.39672109385371035,
+      "h2c_percentage": 0.5536306916235231,
+      "h2r_percentage": 0.0496482145227665,
+      "direction_players_with_data": 15,
+      "direction_seasons_used": [
+        "2023",
+        "2024",
+        "2025"
+      ],
       "rank": 12,
       "rank_label": "12th"
     }
@@ -297,33 +297,33 @@
   "top_5_most_important_players": [
     {
       "team": "The Sultans of Swat",
-      "player_name": "Dave Auerbach",
-      "run_swing": 2.76,
-      "win_probability_swing": 0.1249
-    },
-    {
-      "team": "Muscle Hamsters",
-      "player_name": "Jon Weiner",
-      "run_swing": 2.19,
-      "win_probability_swing": 0.1104
+      "player_name": "Kevin Marquez",
+      "run_swing": 3.17,
+      "win_probability_swing": 0.1164
     },
     {
       "team": "The Sultans of Swat",
-      "player_name": "Kevin Marquez",
-      "run_swing": 2.46,
-      "win_probability_swing": 0.1094
+      "player_name": "Dave Auerbach",
+      "run_swing": 3.15,
+      "win_probability_swing": 0.1158
     },
     {
       "team": "Bash Brothers",
       "player_name": "Max Metz",
       "run_swing": 2.23,
-      "win_probability_swing": 0.1076
+      "win_probability_swing": 0.1072
     },
     {
-      "team": "The Ryan Express",
-      "player_name": "Mark Spoto",
-      "run_swing": 2.2,
-      "win_probability_swing": 0.1018
+      "team": "Black Mambas",
+      "player_name": "Chris Czapla",
+      "run_swing": 2.12,
+      "win_probability_swing": 0.0952
+    },
+    {
+      "team": "Black Mambas",
+      "player_name": "Alex Simon",
+      "run_swing": 1.96,
+      "win_probability_swing": 0.0878
     }
   ]
 }

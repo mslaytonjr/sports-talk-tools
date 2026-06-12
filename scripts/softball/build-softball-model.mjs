@@ -273,6 +273,23 @@ function getPlayerOverrideMap() {
   );
 }
 
+function getPlayerOverrideAliases() {
+  const overrideMap = getPlayerOverrideMap();
+  const aliases = new Map();
+
+  for (const [key, override] of overrideMap.entries()) {
+    const currentPlayerName = key.split("__")[1] ?? "";
+    const historicalPlayerName = canonicalizeName(override.historical_player_name);
+    if (!currentPlayerName || !historicalPlayerName) {
+      continue;
+    }
+
+    aliases.set(slugify(currentPlayerName), slugify(historicalPlayerName));
+  }
+
+  return aliases;
+}
+
 function getHistoricalRows() {
   const playerStats = getHistoricalStatsRows();
 
@@ -442,9 +459,11 @@ function computeTrendAdjustment(seasonRows) {
 
 function buildPlayerHistory(historicalRows, leagueContext) {
   const grouped = new Map();
+  const playerAliases = getPlayerOverrideAliases();
 
   for (const row of historicalRows) {
-    const key = row.historical_player_id || row.canonical_player_id;
+    const rawKey = row.historical_player_id || row.canonical_player_id;
+    const key = playerAliases.get(rawKey) ?? rawKey;
     if (!key) {
       continue;
     }

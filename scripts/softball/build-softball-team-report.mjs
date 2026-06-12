@@ -13,6 +13,7 @@ import {
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = resolve(__dirname, "..", "..");
 const processedRoot = resolve(projectRoot, "data", "softball", "processed");
+const inputRoot = resolve(projectRoot, "data", "softball", "inputs");
 const rawRoot = resolve(projectRoot, "data", "softball", "raw");
 const reportRoot = resolve(processedRoot, "team_reports");
 
@@ -177,13 +178,33 @@ function getHistoricalStatsRows() {
   return readCsvFile(resolve(processedRoot, "player_stats.csv"));
 }
 
+function getPlayerOverrideAliases() {
+  const overridePath = resolve(inputRoot, `player_name_overrides_${targetSeason}.csv`);
+  if (!existsSync(overridePath)) {
+    return new Map();
+  }
+
+  const aliases = new Map();
+  for (const row of readCsvFile(overridePath)) {
+    const currentPlayerId = slugify(canonicalizeName(row.player_name));
+    const historicalPlayerId = slugify(canonicalizeName(row.historical_player_name));
+    if (currentPlayerId && historicalPlayerId) {
+      aliases.set(currentPlayerId, historicalPlayerId);
+    }
+  }
+
+  return aliases;
+}
+
 function getWeightedProfiles() {
   const rows = getHistoricalStatsRows();
   const grouped = new Map();
   const currentSeason = Number(targetSeason);
+  const playerAliases = getPlayerOverrideAliases();
 
   for (const row of rows) {
-    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const rawHistoricalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const historicalPlayerId = playerAliases.get(rawHistoricalPlayerId) ?? rawHistoricalPlayerId;
     const season = toNumber(row.season);
     const games = toNumber(row.g);
     const pa = toNumber(row.pa);
@@ -427,8 +448,10 @@ function getCurrentSeasonConsistencyProfiles() {
   }
 
   const grouped = new Map();
+  const playerAliases = getPlayerOverrideAliases();
   for (const row of rows) {
-    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const rawHistoricalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const historicalPlayerId = playerAliases.get(rawHistoricalPlayerId) ?? rawHistoricalPlayerId;
     if (!historicalPlayerId || row.canonical_player_name?.startsWith("SUB")) {
       continue;
     }
@@ -478,9 +501,11 @@ function getWeightedDirectionProfiles() {
   const rows = [...getHistoricalStatsRows(), ...getSupplemental2025DirectionRows()];
   const grouped = new Map();
   const targetSeasonNumber = Number(targetSeason);
+  const playerAliases = getPlayerOverrideAliases();
 
   for (const row of rows) {
-    const historicalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const rawHistoricalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const historicalPlayerId = playerAliases.get(rawHistoricalPlayerId) ?? rawHistoricalPlayerId;
     const season = toNumber(row.season);
     const left = toNumber(row.h2l);
     const center = toNumber(row.h2c);

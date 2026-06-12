@@ -1,171 +1,181 @@
 season,team,player_name,canonical_player_name,historical_player_id,baseline_projected_runs,projected_runs_without_player,run_swing,baseline_win_probability_vs_average,win_probability_without_player,win_probability_swing
-2026,The Sultans of Swat,Dave Auerbach,DAVE AUERBACH,dave_auerbach,13.52,10.75,2.76,0.5854,0.4605,0.1249
-2026,Muscle Hamsters,Jon Weiner,JON WEINER,jon_weiner,11.92,9.74,2.19,0.5173,0.4069,0.1104
-2026,The Sultans of Swat,Kevin Marquez,KEVIN MARQUEZ,kevin_marquez,13.52,11.06,2.46,0.5854,0.4759,0.1094
-2026,Bash Brothers,Max Metz,MAX METZ,max_metz,12.52,10.29,2.23,0.5441,0.4366,0.1076
-2026,The Ryan Express,Mark Spoto,MARK SPOTO,mark_spoto,12.99,10.79,2.20,0.5642,0.4624,0.1018
-2026,The Ryan Express,Ryan Smith,RYAN SMITH,ryan_smith,12.99,10.83,2.16,0.5642,0.4645,0.0997
-2026,Muscle Hamsters,Ryan Boeckel,RYAN BOECKEL,ryan_boeckel,11.92,10.00,1.92,0.5173,0.4214,0.0958
-2026,Black Mambas,Chris Czapla,CHRIS CZAPLA,chris_czapla,13.75,11.60,2.15,0.5946,0.5022,0.0924
-2026,Lunch Pail Guys,Joey Beyer,JOEY BEYER,joey_beyer,12.58,10.65,1.93,0.5468,0.4552,0.0916
-2026,7th Floor Crew,Matt Johnson,MATT JOHNSON,matt_johnson,9.39,7.86,1.53,0.3877,0.3000,0.0877
-2026,Black Mambas,Alex Simon,ALEX SIMON,alex_simon,13.75,11.76,2.00,0.5946,0.5095,0.0851
-2026,Wild Things,Kurt Heim,KURT HEIM,kurt_heim,13.28,11.42,1.86,0.5760,0.4936,0.0823
-2026,Black Mambas,David Plishka,DAVID PLISHKA,dave_plishka,13.75,11.85,1.91,0.5946,0.5137,0.0809
-2026,Lunch Pail Guys,Ricky Beyer,RICKY BEYER,ricky_beyer,12.58,10.91,1.67,0.5468,0.4688,0.0780
-2026,Muscle Hamsters,Victor Cardona,VICTOR CARDONA,victor_cardona,11.92,10.37,1.55,0.5173,0.4410,0.0763
-2026,Black Mambas,Jason Crimmins,JASON CRIMMINS,jason_crimmins,13.75,11.95,1.80,0.5946,0.5184,0.0762
-2026,Honey Badgers,Clay Petry,CLAY PETRY,clay_petry,10.00,8.69,1.31,0.4213,0.3483,0.0730
-2026,Wild Things,Rick Bernstein,RICK BERNSTEIN,aric_bernstein,13.28,11.66,1.62,0.5760,0.5050,0.0709
-2026,Muscle Hamsters,John Petrozzino,JOHN PETROZZINO,john_petrozzino,11.92,10.50,1.42,0.5173,0.4475,0.0698
-2026,Wild Things,Derek Lynn,DEREK LYNN,derek_lynn,13.28,11.71,1.57,0.5760,0.5075,0.0685
-2026,The Ryan Express,Ken O'Brien,KEN O BRIEN,ken_o_brien,12.99,11.57,1.42,0.5642,0.5007,0.0635
-2026,The Ryan Express,Michael Fedele,MICHAEL FEDELE,michael_fedele,12.99,11.59,1.40,0.5642,0.5017,0.0625
-2026,Honey Badgers,Brian Guatta,BRIAN GUATTA,brian_guatta,10.00,8.88,1.12,0.4213,0.3592,0.0621
-2026,The Ryan Express,Mark Davis,MARK DAVIS,mark_davis,12.99,11.60,1.39,0.5642,0.5022,0.0620
-2026,The Sultans of Swat,Keith Rothfritz,KEITH ROTHFRITZ,keith_rothfritz,13.52,12.07,1.45,0.5854,0.5240,0.0614
-2026,The Sultans of Swat,Jim Halpin,JIM HALPIN,jim_halpin,13.52,12.11,1.40,0.5854,0.5261,0.0593
-2026,Nails,Jason Vogt,JASON VOGT,jason_vogt,9.32,8.33,0.99,0.3840,0.3276,0.0564
-2026,7th Floor Crew,Brad Hartung,BRAD HARTUNG,brad_hartung,9.39,8.41,0.98,0.3877,0.3318,0.0559
-2026,Muscle Hamsters,John Boeckel,JOHN BOECKEL,john_boeckel,11.92,10.79,1.14,0.5173,0.4623,0.0550
-2026,Nails,Chris Stappas,CHRIS STAPPAS,chris_stappas,9.32,8.39,0.93,0.3840,0.3307,0.0533
-2026,Bash Brothers,Malachi Metz,MALACHI METZ,malachi_metz,12.52,11.37,1.15,0.5441,0.4913,0.0528
-2026,Nails,Justin Vogt,JUSTIN VOGT,justin_vogt,9.32,8.45,0.87,0.3840,0.3343,0.0497
-2026,Black Mambas,Ralph Aiello,RALPH AIELLO,ralph_aiello,13.75,12.55,1.21,0.5946,0.5452,0.0495
-2026,Muscle Hamsters,Nico Coppola,NICO COPPOLA,nico_coppola,11.92,10.91,1.01,0.5173,0.4684,0.0488
-2026,The Sultans of Swat,Jay Glickson,JAY GLICKSON,jay_glickson,13.52,12.36,1.15,0.5854,0.5371,0.0483
-2026,The Ryan Express,Danny Fariello,DANNY FARIELLO,danny_fariello,12.99,11.90,1.09,0.5642,0.5163,0.0479
-2026,Wild Things,Kay Klele,KAY KLELE,kay_klele,13.28,12.20,1.08,0.5760,0.5298,0.0462
-2026,Muscle Hamsters,Daniel Weiner,DANIEL WEINER,daniel_weiner,11.92,11.04,0.88,0.5173,0.4749,0.0424
-2026,Bash Brothers,Mike Metz,MIKE METZ,mike_metz,12.52,11.60,0.93,0.5441,0.5020,0.0422
-2026,The Sultans of Swat,Adam Steckelman,ADAM STECKELMAN,adam_steckelman,13.52,12.53,0.99,0.5854,0.5443,0.0411
-2026,7th Floor Crew,Ryan Goodrich,RYAN GOODRICH,ryan_goodrich,9.39,8.67,0.72,0.3877,0.3472,0.0405
-2026,Nails,Jacob Lieberman,JACOB LIEBERMAN,jacob_lieberman,9.32,8.61,0.71,0.3840,0.3437,0.0403
-2026,Wild Things,Shaun Spielberger,SHAUN SPIELBERGER,shaun_spielberger,13.28,12.38,0.90,0.5760,0.5377,0.0382
-2026,Wild Things,Andrew Benson,ANDREW BENSON,andrew_benson,13.28,12.38,0.90,0.5760,0.5380,0.0380
-2026,7th Floor Crew,Dean Sottile,DEAN SOTTILE,dean_sottile,9.39,8.71,0.67,0.3877,0.3497,0.0380
-2026,Black Mambas,Rob Thomas,ROB THOMAS,rob_thomas,13.75,12.83,0.93,0.5946,0.5572,0.0374
-2026,The Big Papi's,Ralph Avallone,RALPH AVALLONE,ralph_avallone,10.41,9.72,0.69,0.4427,0.4060,0.0367
-2026,Nails,Chuck Puleo,CHUCK PULEO,chuck_puleo,9.32,8.69,0.63,0.3840,0.3483,0.0357
-2026,Lunch Pail Guys,Rick Beyer,RICK BEYER,rick_beyer,12.58,11.79,0.79,0.5468,0.5111,0.0357
-2026,Bash Brothers,Ryan Conlon,RYAN CONLON,ryan_conlon,12.52,11.74,0.79,0.5441,0.5086,0.0355
-2026,Black Mambas,Tom O'Connor,TOM O CONNOR,tom_o_connor,13.75,12.91,0.85,0.5946,0.5606,0.0341
-2026,The Sultans of Swat,Kyle Doench,KYLE DOENCH,kyle_doench,13.52,12.69,0.82,0.5854,0.5514,0.0340
-2026,Honey Badgers,Jared Kuropatkin,JARED KUROPATKIN,jared_kuropatkin,10.00,9.38,0.62,0.4213,0.3873,0.0340
-2026,7th Floor Crew,Pat McNamara,PAT MCNAMARA,patrick_mcnamara,9.39,8.79,0.60,0.3877,0.3541,0.0336
-2026,Lunch Pail Guys,Alex Fass,ALEX FASS,alex_fass,12.58,11.83,0.75,0.5468,0.5132,0.0336
-2026,The Sultans of Swat,Pete DeFrank,PETE DEFRANK,pete_defrank,13.52,12.71,0.80,0.5854,0.5523,0.0331
-2026,The Ryan Express,Ralph Fariello,RALPH FARIELLO,ralph_fariello,12.99,12.25,0.75,0.5642,0.5319,0.0323
-2026,The Sultans of Swat,Dave Richmond,DAVE RICHMOND,dave_richmond,13.52,12.78,0.74,0.5854,0.5552,0.0302
-2026,Lunch Pail Guys,John Sanzone,JOHN SANZONE,john_sanzone,12.58,11.91,0.67,0.5468,0.5168,0.0299
-2026,Lunch Pail Guys,Bob Fass,BOB FASS,bob_fass,12.58,11.93,0.66,0.5468,0.5174,0.0293
-2026,Wild Things,Nick Catanese,NICK CATANESE,nick_catanese,13.28,12.60,0.68,0.5760,0.5477,0.0283
-2026,The Ryan Express,Mark Fedele,MARK FEDELE,mark_fedele,12.99,12.33,0.66,0.5642,0.5359,0.0283
-2026,Honey Badgers,Jason Wertheimer,JASON WERTHEIMER,jason_wertheimer,10.00,9.48,0.52,0.4213,0.3930,0.0283
-2026,The Ryan Express,Ken Horan,KEN HORAN,ken_horan,12.99,12.38,0.61,0.5642,0.5379,0.0263
-2026,The Big Units,Greg Espersen,GREG ESPERSEN,greg_espersen,10.32,9.83,0.49,0.4381,0.4122,0.0259
-2026,Black Mambas,Bob Plishka,BOB PLISHKA,bob_plishka,13.75,13.11,0.64,0.5946,0.5692,0.0255
-2026,7th Floor Crew,Todd Alden,TODD ALDEN,todd_alden,9.39,8.94,0.45,0.3877,0.3626,0.0251
-2026,Black Mambas,Chris Chianese,CHRIS CHIANESE,chris_chianese,13.75,13.14,0.61,0.5946,0.5705,0.0241
-2026,The Big Units,Rob Guilbert,ROB GUILBERT,rob_guilbert,10.32,9.87,0.45,0.4381,0.4140,0.0241
-2026,Lunch Pail Guys,Jim Morris,JIM MORRIS,jim_morris,12.58,12.04,0.54,0.5468,0.5228,0.0240
-2026,The Ryan Express,Ken Eagle,KEN EAGLE,ken_eagle,12.99,12.43,0.56,0.5642,0.5402,0.0239
-2026,Bash Brothers,Brian Cass,BRIAN CASS,brian_cass,12.52,11.99,0.53,0.5441,0.5203,0.0239
-2026,Muscle Hamsters,Frank Coppola,FRANK COPPOLA,frank_coppola,11.92,11.43,0.49,0.5173,0.4942,0.0231
-2026,7th Floor Crew,Dave Jones,DAVE JONES,dave_jones,9.39,8.99,0.40,0.3877,0.3652,0.0225
-2026,The Big Units,Chris Mazur,CHRIS MAZUR,chris_mazur,10.32,9.90,0.42,0.4381,0.4159,0.0222
-2026,Muscle Hamsters,Brian Quinn,BRIAN QUINN,brian_quinn,11.92,11.45,0.47,0.5173,0.4950,0.0222
-2026,Nails,Craig Engelhardt,CRAIG ENGELHARDT,craig_engelhardt,9.32,8.96,0.36,0.3840,0.3636,0.0204
-2026,Honey Badgers,Ryan Coletti,RYAN COLETTI,ryan_coletti,10.00,9.63,0.38,0.4213,0.4009,0.0204
-2026,Bash Brothers,Craig Ferluge,CRAIG FERLUGE,craig_ferluge,12.52,12.07,0.45,0.5441,0.5240,0.0201
-2026,Black Mambas,Alex Boden,ALEX BODEN,alex_boden,13.75,13.25,0.50,0.5946,0.5748,0.0199
-2026,The Big Units,Tom Clougher,TOM CLOUGHER,tom_clougher,10.32,9.95,0.37,0.4381,0.4183,0.0198
-2026,Bash Brothers,Jared Bruno,JARED BRUNO,jared_bruno,12.52,12.08,0.44,0.5441,0.5244,0.0198
-2026,Bash Brothers,Chris Longano,CHRIS LONGANO,chris_longano,12.52,12.09,0.43,0.5441,0.5251,0.0191
-2026,7th Floor Crew,Nick Adams,NICK ADAMS,nick_adams,9.39,9.06,0.33,0.3877,0.3692,0.0185
-2026,Nails,Alex Lieberman,ALEX LIEBERMAN,alex_lieberman,9.32,9.01,0.31,0.3840,0.3667,0.0173
-2026,The Big Units,Dave Schachman,DAVE SCHACHMAN,dave_schachman,10.32,10.02,0.30,0.4381,0.4222,0.0159
-2026,Honey Badgers,Steve Kampschmidt,STEVE KAMPSCHMIDT,steve_kampschmidt,10.00,9.73,0.27,0.4213,0.4065,0.0148
-2026,Bash Brothers,Mike Kideckel,MIKE KIDECKEL,mike_kideckel,12.52,12.23,0.29,0.5441,0.5313,0.0128
-2026,Honey Badgers,Jason Hamberger,JASON HAMBERGER,jason_hamberger,10.00,9.77,0.23,0.4213,0.4091,0.0123
-2026,Nails,Bret Hartman,BRET HARTMAN,bret_hartman,9.32,9.11,0.21,0.3840,0.3723,0.0117
-2026,Bash Brothers,Logan Horowitz,LOGAN HOROWITZ,logan_horowitz,12.52,12.26,0.26,0.5441,0.5328,0.0113
-2026,Lunch Pail Guys,Dave Istvan,DAVE ISTVAN,dave_istvan,12.58,12.33,0.25,0.5468,0.5357,0.0111
-2026,7th Floor Crew,Alexander Sweetwood,ALEXANDER SWEETWOOD,alexander_sweetwood,9.39,9.19,0.20,0.3877,0.3768,0.0109
-2026,Nails,Bob Vogt,BOB VOGT,bob_vogt,9.32,9.16,0.16,0.3840,0.3749,0.0091
-2026,Wild Things,Ryan Stefanic,RYAN STEFANIC,ryan_stefanic,13.28,13.06,0.22,0.5760,0.5671,0.0088
-2026,Wild Things,Rich Heim,RICH HEIM,rich_heim,13.28,13.08,0.20,0.5760,0.5676,0.0083
-2026,The Sultans of Swat,John Hogan,JOHN HOGAN,john_hogan,13.52,13.31,0.21,0.5854,0.5772,0.0082
-2026,Wild Things,Matt Martino,MATT MARTINO,matt_martino,13.28,13.09,0.19,0.5760,0.5681,0.0078
-2026,The Big Units,Greg Auerbach,GREG AUERBACH,greg_auerbach,10.32,10.19,0.13,0.4381,0.4312,0.0069
-2026,The Big Papi's,Rick DelGizzi,RICK DELGIZZI,rick_delgizzi,10.41,10.29,0.12,0.4427,0.4364,0.0064
-2026,The Big Papi's,Jason Lew,JASON LEW,jason_lew,10.41,10.29,0.11,0.4427,0.4367,0.0060
-2026,Honey Badgers,Kevin Rosin,KEVIN ROSIN,kevin_rosin,10.00,9.91,0.09,0.4213,0.4163,0.0050
-2026,The Sultans of Swat,Dimitri Rassias,DIMITRI RASSIAS,dimitri_rassias,13.52,13.40,0.12,0.5854,0.5808,0.0046
-2026,7th Floor Crew,Kevin DeJong,KEVIN DEJONG,kevin_dejong,9.39,9.31,0.08,0.3877,0.3832,0.0045
-2026,The Big Units,Eric Stivers,ERIC STIVERS,eric_stivers,10.32,10.23,0.08,0.4381,0.4337,0.0044
-2026,Honey Badgers,Eze Abosi,EZE ABOSI,eze_abosi,10.00,9.92,0.08,0.4213,0.4169,0.0044
-2026,Black Mambas,Jason Rhodes,JASON RHODES,jason_rhodes,13.75,13.65,0.10,0.5946,0.5906,0.0040
-2026,The Sultans of Swat,Sal DAmbrosia,SAL DAMBROSIA,sal_dambrosia,13.52,13.43,0.09,0.5854,0.5820,0.0034
-2026,Muscle Hamsters,Jigar Desai,JIGAR DESAI,jigar_desai,11.92,11.85,0.07,0.5173,0.5139,0.0033
-2026,Honey Badgers,Matt Eisenberg,MATT EISENBERG,matt_eisenberg,10.00,9.94,0.06,0.4213,0.4181,0.0032
-2026,The Sultans of Swat,John McDonough,JOHN MCDONOUGH,john_mcdonough,13.52,13.44,0.08,0.5854,0.5823,0.0031
-2026,Bash Brothers,Steve Horowitz,STEVE HOROWITZ,steve_horowitz,12.52,12.46,0.06,0.5441,0.5415,0.0027
-2026,Honey Badgers,Steve Deblasio,STEVE DEBLASIO,steve_deblasio,10.00,9.95,0.05,0.4213,0.4186,0.0027
-2026,The Ryan Express,Matt Siekierka,MATT SIEKIERKA,matt_siekierka,12.99,12.93,0.06,0.5642,0.5616,0.0026
-2026,Honey Badgers,Chris Capobianco,CHRIS CAPOBIANCO,chris_coppabianco,10.00,9.96,0.05,0.4213,0.4188,0.0025
-2026,Lunch Pail Guys,Rich Fardo,RICH FARDO,rich_fardo,12.58,12.52,0.06,0.5468,0.5443,0.0025
-2026,The Ryan Express,Adam Handler,ADAM HANDLER,adam_handler,12.99,12.94,0.05,0.5642,0.5620,0.0022
-2026,Black Mambas,Josh Simon,JOSH SIMON,josh_simon,13.75,13.70,0.05,0.5946,0.5925,0.0021
-2026,The Big Units,Tom Schur,TOM SCHUR,tom_schur,10.32,10.28,0.04,0.4381,0.4360,0.0021
-2026,Honey Badgers,Brandon Snook,BRANDON SNOOK,brandon_snook,10.00,9.96,0.04,0.4213,0.4192,0.0021
-2026,The Big Papi's,RJ Leonard,RJ LEONARD,rj_leonard,10.41,10.37,0.04,0.4427,0.4409,0.0019
-2026,Black Mambas,Bankim Shah,BANKIM SHAH,bankim_shah,13.75,13.70,0.05,0.5946,0.5928,0.0018
-2026,7th Floor Crew,Mark Slayton,MARK SLAYTON,mark_slayton,9.39,9.36,0.03,0.3877,0.3860,0.0017
-2026,Bash Brothers,Gavin Miller,GAVIN MILLER,gavin_miller,12.52,12.49,0.04,0.5441,0.5426,0.0016
-2026,Bash Brothers,Kenny Conlon,KENNY CONLON,kenny_conlon,12.52,12.49,0.03,0.5441,0.5427,0.0015
-2026,Black Mambas,Mike Lawlor,MIKE LAWLOR,mike_lawlor,13.75,13.72,0.04,0.5946,0.5933,0.0014
-2026,Lunch Pail Guys,Brian Scaglione,BRIAN SCAGLIONE,brian_scaglione,12.58,12.55,0.03,0.5468,0.5454,0.0014
-2026,The Big Units,Evan Schachman,EVAN SCHACHMAN,evan_schachman,10.32,10.30,0.02,0.4381,0.4371,0.0010
-2026,The Big Units,Keith Olsen,KEITH OLSEN,keith_olsen,10.32,10.30,0.02,0.4381,0.4371,0.0010
-2026,The Sultans of Swat,Will Zaragoza,WILL ZARAGOZA,will_zaragoza,13.52,13.49,0.02,0.5854,0.5845,0.0009
-2026,The Big Units,Neil Ascione,NEIL ASCIONE,neil_ascione,10.32,10.30,0.02,0.4381,0.4372,0.0008
-2026,7th Floor Crew,Fred Heismeyer,FRED HEISMEYER,fred_heismeyer,9.39,9.37,0.01,0.3877,0.3869,0.0008
-2026,Nails,Mike Cafaro,MIKE CAFARO,mike_cafaro,9.32,9.31,0.01,0.3840,0.3834,0.0005
-2026,Bash Brothers,Brian Godau,BRIAN GODAU,brian_godau,12.52,12.51,0.01,0.5441,0.5437,0.0004
-2026,Wild Things,Paul Martino,PAUL MARTINO,paul_martino,13.28,13.27,0.01,0.5760,0.5756,0.0003
-2026,Lunch Pail Guys,Greg George,GREG GEORGE,greg_george,12.58,12.57,0.01,0.5468,0.5464,0.0003
-2026,Bash Brothers,Andrew Mcginniss,ANDREW MCGINNISS,andrew_mcginniss,12.52,12.52,0.00,0.5441,0.5440,0.0001
-2026,7th Floor Crew,Mike Levine,MIKE LEVINE,mike_levine,9.39,9.38,0.00,0.3877,0.3876,0.0001
-2026,The Sultans of Swat,Seth Friedman,SETH FRIEDMAN,seth_friedman,13.52,13.57,0.00,0.5854,0.5876,0.0000
-2026,Black Mambas,Tony Garrett,TONY GARRETT,tony_garrett,13.75,13.78,0.00,0.5946,0.5956,0.0000
-2026,Wild Things,Jason Naggiar,JASON NAGGIAR,jason_naggiar,13.28,13.29,0.00,0.5760,0.5766,0.0000
-2026,Wild Things,John Stefanic,JOHN STEFANIC,john_stefanic,13.28,13.30,0.00,0.5760,0.5767,0.0000
-2026,Wild Things,Jason Benson,JASON BENSON,jason_benson,13.28,13.35,0.00,0.5760,0.5787,0.0000
-2026,Wild Things,David Vespole,DAVID VESPOLE,david_vespole,13.28,13.34,0.00,0.5760,0.5786,0.0000
-2026,The Big Units,Dave Reiss,DAVE REISS,dave_reiss,10.32,10.33,0.00,0.4381,0.4390,0.0000
-2026,The Big Units,Lance Zacker,LANCE ZACKER,lance_zacker,10.32,10.50,0.00,0.4381,0.4476,0.0000
-2026,The Ryan Express,Michael Rothenberg,MICHAEL ROTHENBERG,michael_rothenberg,12.99,13.02,0.00,0.5642,0.5655,0.0000
-2026,Muscle Hamsters,Mike Hettesheimer,MIKE HETTESHEIMER,mike_heisheimer,11.92,12.00,0.00,0.5173,0.5210,0.0000
-2026,Muscle Hamsters,Ben Alkin,BEN ALKIN,ben_alkin,11.92,11.95,0.00,0.5173,0.5184,0.0000
-2026,Muscle Hamsters,Dan Ochs,DAN OCHS,dan_ochs,11.92,11.93,0.00,0.5173,0.5176,0.0000
-2026,Bash Brothers,Marty Eagan,MARTY EAGAN,marty_eagan,12.52,12.55,0.00,0.5441,0.5453,0.0000
-2026,7th Floor Crew,Matt Rozell,MATT ROZELL,matt_rozelle,9.39,9.44,0.00,0.3877,0.3909,0.0000
-2026,7th Floor Crew,Steve Sroka,STEVE SROKA,steve_sroka,9.39,9.41,0.00,0.3877,0.3889,0.0000
-2026,Nails,Dave Jensen,DAVE JENSEN,dave_jensen,9.32,9.38,0.00,0.3840,0.3873,0.0000
-2026,Nails,Sameer Sawe,SAMEER SAWE,sameer_sawe,9.32,9.43,0.00,0.3840,0.3899,0.0000
-2026,Nails,James Walker,JAMES WALKER,james_walker,9.32,9.35,0.00,0.3840,0.3859,0.0000
-2026,The Big Papi's,John Lew,JOHN LEW,john_lew,10.41,10.62,0.00,0.4427,0.4537,0.0000
-2026,The Big Papi's,Levi Henninger,LEVI HENNINGER,levi_henninger,10.41,10.43,0.00,0.4427,0.4441,0.0000
-2026,The Big Papi's,Temple Houston,TEMPLE HOUSTON,temple_houston,10.41,10.44,0.00,0.4427,0.4443,0.0000
-2026,The Big Papi's,Mark Armelino,MARK ARMELINO,mark_armelino,10.41,10.61,0.00,0.4427,0.4531,0.0000
-2026,The Big Papi's,Andrew Conroy,ANDREW CONROY,andrew_conroy,10.41,11.24,0.00,0.4427,0.4851,0.0000
-2026,The Big Papi's,Greg Restino,GREG RESTINO,greg_restino,10.41,10.59,0.00,0.4427,0.4523,0.0000
-2026,The Big Papi's,Mike Bedell,MIKE BEDELL,michael_bedell,10.41,10.79,0.00,0.4427,0.4624,0.0000
-2026,The Big Papi's,Dave Kaiser,DAVE KAISER,dave_kaiser,10.41,10.47,0.00,0.4427,0.4463,0.0000
-2026,The Big Papi's,Deron Green,DERON GREEN,deron_green,10.41,10.43,0.00,0.4427,0.4438,0.0000
-2026,The Big Papi's,Chris Armelino,CHRIS ARMELINO,chris_armelino,10.41,10.44,0.00,0.4427,0.4447,0.0000
-2026,The Big Papi's,Victor Segarra,VICTOR SEGARRA,victor_segarra,10.41,10.44,0.00,0.4427,0.4444,0.0000
-2026,Honey Badgers,Rich Kirkpatrick,RICH KIRKPATRICK,rich_kirkpatrick,10.00,10.04,0.00,0.4213,0.4233,0.0000
-2026,Honey Badgers,Casey Nix,CASEY NIX,casey_nix,10.00,10.26,0.00,0.4213,0.4350,0.0000
-2026,Lunch Pail Guys,Tim Fonseca,TIM FONSECA,tim_fronseca,12.58,12.65,0.00,0.5468,0.5499,0.0000
+2026,The Sultans of Swat,Kevin Marquez,KEVIN MARQUEZ,kevin_marquez,16.00,12.83,3.17,0.6517,0.5352,0.1164
+2026,The Sultans of Swat,Dave Auerbach,DAVE AUERBACH,dave_auerbach,16.00,12.85,3.15,0.6517,0.5359,0.1158
+2026,Bash Brothers,Max Metz,MAX METZ,max_metz,12.52,10.29,2.23,0.5219,0.4147,0.1072
+2026,Black Mambas,Chris Czapla,CHRIS CZAPLA,chris_czapla,13.28,11.16,2.12,0.5538,0.4586,0.0952
+2026,Black Mambas,Alex Simon,ALEX SIMON,alex_simon,13.28,11.31,1.96,0.5538,0.4659,0.0878
+2026,The Ryan Express,Mark Spoto,MARK SPOTO,mark_spoto,13.12,11.20,1.92,0.5473,0.4606,0.0867
+2026,The Ryan Express,Ryan Smith,RYAN SMITH,ryan_smith,13.12,11.26,1.86,0.5473,0.4635,0.0838
+2026,Wild Things,Kurt Heim,KURT HEIM,kurt_heim,13.04,11.21,1.83,0.5439,0.4611,0.0828
+2026,Lunch Pail Guys,Joey Beyer,JOEY BEYER,joey_beyer,12.99,11.17,1.82,0.5419,0.4591,0.0828
+2026,Honey Badgers,Clay Petry,CLAY PETRY,clay_petry,10.23,8.74,1.50,0.4118,0.3307,0.0810
+2026,Lunch Pail Guys,Ricky Beyer,RICKY BEYER,ricky_beyer,12.99,11.22,1.77,0.5419,0.4614,0.0805
+2026,The Big Papi's,Ralph Avallone,RALPH AVALLONE,ralph_avallone,10.34,8.85,1.49,0.4172,0.3371,0.0801
+2026,Black Mambas,Jason Crimmins,JASON CRIMMINS,jason_crimmins,13.28,11.50,1.78,0.5538,0.4748,0.0790
+2026,Wild Things,Rick Bernstein,RICK BERNSTEIN,aric_bernstein,13.04,11.34,1.70,0.5439,0.4674,0.0765
+2026,Muscle Hamsters,Jon Weiner,JON WEINER,jon_weiner,13.84,12.03,1.81,0.5762,0.4999,0.0763
+2026,Nails,Jason Vogt,JASON VOGT,jason_vogt,10.14,8.79,1.34,0.4067,0.3339,0.0728
+2026,Honey Badgers,Brian Guatta,BRIAN GUATTA,brian_guatta,10.23,8.92,1.32,0.4118,0.3409,0.0709
+2026,7th Floor Crew,Matt Johnson,MATT JOHNSON,matt_johnson,9.93,8.71,1.22,0.3957,0.3291,0.0666
+2026,Muscle Hamsters,Ryan Boeckel,RYAN BOECKEL,ryan_boeckel,13.84,12.26,1.58,0.5762,0.5101,0.0661
+2026,The Sultans of Swat,John Hogan,JOHN HOGAN,john_hogan,16.00,14.10,1.90,0.6517,0.5863,0.0654
+2026,The Sultans of Swat,Keith Rothfritz,KEITH ROTHFRITZ,keith_rothfritz,16.00,14.11,1.89,0.6517,0.5865,0.0652
+2026,Black Mambas,David Plishka,DAVID PLISHKA,dave_plishka,13.28,11.85,1.42,0.5538,0.4915,0.0622
+2026,Wild Things,Derek Lynn,DEREK LYNN,derek_lynn,13.04,11.69,1.35,0.5439,0.4841,0.0598
+2026,Muscle Hamsters,John Petrozzino,JOHN PETROZZINO,john_petrozzino,13.84,12.42,1.42,0.5762,0.5173,0.0589
+2026,The Sultans of Swat,Jim Halpin,JIM HALPIN,jim_halpin,16.00,14.43,1.57,0.6517,0.5987,0.0530
+2026,Bash Brothers,Malachi Metz,MALACHI METZ,malachi_metz,12.52,11.37,1.15,0.5219,0.4690,0.0529
+2026,Black Mambas,Ralph Aiello,RALPH AIELLO,ralph_aiello,13.28,12.07,1.20,0.5538,0.5017,0.0520
+2026,The Ryan Express,Michael Fedele,MICHAEL FEDELE,michael_fedele,13.12,11.95,1.17,0.5473,0.4960,0.0513
+2026,Muscle Hamsters,Victor Cardona,VICTOR CARDONA,victor_cardona,13.84,12.62,1.22,0.5762,0.5261,0.0501
+2026,The Ryan Express,Ken O'Brien,KEN O BRIEN,ken_o_brien,13.12,12.01,1.11,0.5473,0.4988,0.0485
+2026,The Ryan Express,Mark Davis,MARK DAVIS,mark_davis,13.12,12.04,1.08,0.5473,0.5000,0.0473
+2026,The Ryan Express,Danny Fariello,DANNY FARIELLO,danny_fariello,13.12,12.05,1.07,0.5473,0.5007,0.0467
+2026,The Sultans of Swat,Adam Steckelman,ADAM STECKELMAN,adam_steckelman,16.00,14.62,1.38,0.6517,0.6054,0.0462
+2026,Muscle Hamsters,Daniel Weiner,DANIEL WEINER,daniel_weiner,13.84,12.77,1.07,0.5762,0.5326,0.0436
+2026,Nails,Justin Vogt,JUSTIN VOGT,justin_vogt,10.14,9.33,0.80,0.4067,0.3637,0.0430
+2026,Honey Badgers,Jared Kuropatkin,JARED KUROPATKIN,jared_kuropatkin,10.23,9.43,0.81,0.4118,0.3688,0.0430
+2026,The Big Papi's,Rick DelGizzi,RICK DELGIZZI,rick_delgizzi,10.34,9.53,0.81,0.4172,0.3745,0.0427
+2026,The Big Papi's,Levi Henninger,LEVI HENNINGER,levi_henninger,10.34,9.54,0.80,0.4172,0.3748,0.0424
+2026,Wild Things,Kay Klele,KAY KLELE,kay_klele,13.04,12.07,0.96,0.5439,0.5017,0.0422
+2026,Bash Brothers,Mike Metz,MIKE METZ,mike_metz,12.52,11.60,0.93,0.5219,0.4797,0.0422
+2026,The Big Papi's,RJ Leonard,RJ LEONARD,rj_leonard,10.34,9.58,0.76,0.4172,0.3768,0.0404
+2026,The Sultans of Swat,Jay Glickson,JAY GLICKSON,jay_glickson,16.00,14.79,1.21,0.6517,0.6115,0.0402
+2026,Honey Badgers,Jason Wertheimer,JASON WERTHEIMER,jason_wertheimer,10.23,9.49,0.74,0.4118,0.3723,0.0395
+2026,Black Mambas,Rob Thomas,ROB THOMAS,rob_thomas,13.28,12.36,0.91,0.5538,0.5148,0.0389
+2026,The Big Papi's,Jason Lew,JASON LEW,jason_lew,10.34,9.61,0.73,0.4172,0.3787,0.0385
+2026,Muscle Hamsters,John Boeckel,JOHN BOECKEL,john_boeckel,13.84,12.94,0.90,0.5762,0.5398,0.0364
+2026,7th Floor Crew,Brad Hartung,BRAD HARTUNG,brad_hartung,9.93,9.26,0.67,0.3957,0.3597,0.0359
+2026,Black Mambas,Tom O'Connor,TOM O CONNOR,tom_o_connor,13.28,12.44,0.84,0.5538,0.5182,0.0356
+2026,Bash Brothers,Ryan Conlon,RYAN CONLON,ryan_conlon,12.52,11.74,0.78,0.5219,0.4863,0.0356
+2026,Nails,Chuck Puleo,CHUCK PULEO,chuck_puleo,10.14,9.48,0.66,0.4067,0.3714,0.0353
+2026,Wild Things,Shaun Spielberger,SHAUN SPIELBERGER,shaun_spielberger,13.04,12.23,0.81,0.5439,0.5088,0.0351
+2026,Honey Badgers,Steve Deblasio,STEVE DEBLASIO,steve_deblasio,10.23,9.60,0.64,0.4118,0.3780,0.0338
+2026,Nails,Chris Stappas,CHRIS STAPPAS,chris_stappas,10.14,9.51,0.63,0.4067,0.3731,0.0336
+2026,The Big Papi's,Dave Kaiser,DAVE KAISER,dave_kaiser,10.34,9.72,0.62,0.4172,0.3846,0.0326
+2026,Lunch Pail Guys,Rick Beyer,RICK BEYER,rick_beyer,12.99,12.26,0.73,0.5419,0.5102,0.0318
+2026,Nails,Jacob Lieberman,JACOB LIEBERMAN,jacob_lieberman,10.14,9.55,0.59,0.4067,0.3754,0.0313
+2026,Honey Badgers,Ryan Coletti,RYAN COLETTI,ryan_coletti,10.23,9.64,0.59,0.4118,0.3805,0.0312
+2026,The Big Papi's,John Lew,JOHN LEW,john_lew,10.34,9.77,0.57,0.4172,0.3872,0.0300
+2026,The Big Units,Greg Espersen,GREG ESPERSEN,greg_espersen,10.60,10.03,0.57,0.4306,0.4009,0.0298
+2026,The Sultans of Swat,Pete DeFrank,PETE DEFRANK,pete_defrank,16.00,15.09,0.91,0.6517,0.6220,0.0297
+2026,The Ryan Express,Ralph Fariello,RALPH FARIELLO,ralph_fariello,13.12,12.45,0.67,0.5473,0.5186,0.0287
+2026,Muscle Hamsters,Nico Coppola,NICO COPPOLA,nico_coppola,13.84,13.13,0.71,0.5762,0.5476,0.0286
+2026,Muscle Hamsters,Gavin Boeckel,GAVIN BOECKEL,gavin_boeckel,13.84,13.13,0.71,0.5762,0.5477,0.0285
+2026,Lunch Pail Guys,Alex Fass,ALEX FASS,alex_fass,12.99,12.34,0.65,0.5419,0.5136,0.0283
+2026,The Sultans of Swat,Dave Richmond,DAVE RICHMOND,dave_richmond,16.00,15.16,0.84,0.6517,0.6242,0.0275
+2026,Wild Things,Nick Catanese,NICK CATANESE,nick_catanese,13.04,12.40,0.64,0.5439,0.5165,0.0274
+2026,Black Mambas,Bob Plishka,BOB PLISHKA,bob_plishka,13.28,12.64,0.63,0.5538,0.5271,0.0267
+2026,Black Mambas,Chris Chianese,CHRIS CHIANESE,chris_chianese,13.28,12.67,0.61,0.5538,0.5281,0.0256
+2026,The Big Units,Dave Schachman,DAVE SCHACHMAN,dave_schachman,10.60,10.11,0.50,0.4306,0.4050,0.0256
+2026,7th Floor Crew,Matt Rozell,MATT ROZELL,matt_rozell,9.93,9.47,0.45,0.3957,0.3713,0.0243
+2026,Bash Brothers,Brian Cass,BRIAN CASS,brian_cass,12.52,11.99,0.53,0.5219,0.4981,0.0238
+2026,Lunch Pail Guys,John Sanzone,JOHN SANZONE,john_sanzone,12.99,12.45,0.54,0.5419,0.5186,0.0234
+2026,The Ryan Express,Brian Lusk,BRIAN LUSK,brian_lusk,13.12,12.58,0.54,0.5473,0.5244,0.0230
+2026,The Big Papi's,Mike Bedell,MIKE BEDELL,michael_bedell,10.34,9.90,0.44,0.4172,0.3942,0.0230
+2026,Black Mambas,Alex Boden,ALEX BODEN,alex_boden,13.28,12.75,0.52,0.5538,0.5318,0.0220
+2026,Honey Badgers,Jason Hamberger,JASON HAMBERGER,jason_hamberger,10.23,9.82,0.41,0.4118,0.3902,0.0216
+2026,The Sultans of Swat,Kyle Doench,KYLE DOENCH,kyle_doench,16.00,15.36,0.64,0.6517,0.6312,0.0205
+2026,Bash Brothers,Craig Ferluge,CRAIG FERLUGE,craig_ferluge,12.52,12.07,0.45,0.5219,0.5018,0.0201
+2026,Wild Things,Andrew Benson,ANDREW BENSON,andrew_benson,13.04,12.57,0.47,0.5439,0.5239,0.0200
+2026,Bash Brothers,Jared Bruno,JARED BRUNO,jared_bruno,12.52,12.08,0.44,0.5219,0.5021,0.0198
+2026,Lunch Pail Guys,Bob Fass,BOB FASS,bob_fass,12.99,12.53,0.46,0.5419,0.5222,0.0197
+2026,Bash Brothers,Chris Longano,CHRIS LONGANO,chris_longano,12.52,12.10,0.43,0.5219,0.5028,0.0191
+2026,7th Floor Crew,Ryan Goodrich,RYAN GOODRICH,ryan_goodrich,9.93,9.57,0.35,0.3957,0.3767,0.0189
+2026,7th Floor Crew,Dean Sottile,DEAN SOTTILE,dean_sottile,9.93,9.58,0.35,0.3957,0.3768,0.0188
+2026,The Big Units,Chris Mazur,CHRIS MAZUR,chris_mazur,10.60,10.24,0.36,0.4306,0.4120,0.0186
+2026,The Big Units,Rob Guilbert,ROB GUILBERT,rob_guilbert,10.60,10.26,0.34,0.4306,0.4132,0.0174
+2026,Lunch Pail Guys,Jim Morris,JIM MORRIS,jim_morris,12.99,12.59,0.40,0.5419,0.5247,0.0173
+2026,The Big Units,Tom Clougher,TOM CLOUGHER,tom_clougher,10.60,10.27,0.33,0.4306,0.4135,0.0171
+2026,Wild Things,Ryan Stefanic,RYAN STEFANIC,ryan_stefanic,13.04,12.66,0.37,0.5439,0.5280,0.0159
+2026,7th Floor Crew,Pat McNamara,PAT MCNAMARA,patrick_mcnamara,9.93,9.65,0.27,0.3957,0.3811,0.0146
+2026,The Big Units,Keith Olsen,KEITH OLSEN,keith_olsen,10.60,10.32,0.28,0.4306,0.4163,0.0144
+2026,The Ryan Express,Eric Davis,ERIC DAVIS,eric_davis,13.12,12.78,0.34,0.5473,0.5329,0.0144
+2026,Honey Badgers,Matt Eisenberg,MATT EISENBERG,matt_eisenberg,10.23,9.96,0.27,0.4118,0.3974,0.0144
+2026,The Big Papi's,Greg Restino,GREG RESTINO,greg_restino,10.34,10.07,0.27,0.4172,0.4029,0.0143
+2026,The Ryan Express,Mark Fedele,MARK FEDELE,mark_fedele,13.12,12.79,0.33,0.5473,0.5333,0.0141
+2026,The Big Units,Evan Schachman,EVAN SCHACHMAN,evan_schachman,10.60,10.34,0.26,0.4306,0.4173,0.0133
+2026,The Big Units,Dave Reiss,DAVE REISS,dave_reiss,10.60,10.35,0.25,0.4306,0.4176,0.0131
+2026,Bash Brothers,Mike Kideckel,MIKE KIDECKEL,mike_kideckel,12.52,12.24,0.29,0.5219,0.5092,0.0127
+2026,Lunch Pail Guys,Dave Istvan,DAVE ISTVAN,dave_istvan,12.99,12.70,0.29,0.5419,0.5294,0.0125
+2026,Nails,Craig Engelhardt,CRAIG ENGELHARDT,craig_engelhardt,10.14,9.91,0.23,0.4067,0.3946,0.0121
+2026,Muscle Hamsters,Frank Coppola,FRANK COPPOLA,frank_coppola,13.84,13.55,0.29,0.5762,0.5648,0.0114
+2026,Bash Brothers,Logan Horowitz,LOGAN HOROWITZ,logan_horowitz,12.52,12.27,0.25,0.5219,0.5106,0.0113
+2026,Lunch Pail Guys,Greg George,GREG GEORGE,greg_george,12.99,12.76,0.23,0.5419,0.5321,0.0099
+2026,Nails,Alex Lieberman,ALEX LIEBERMAN,alex_lieberman,10.14,9.95,0.19,0.4067,0.3970,0.0097
+2026,Lunch Pail Guys,Robert George,ROBERT GEORGE,robert_george,12.99,12.78,0.21,0.5419,0.5331,0.0088
+2026,Wild Things,Matt Martino,MATT MARTINO,matt_martino,13.04,12.83,0.21,0.5439,0.5352,0.0087
+2026,Honey Badgers,Rich Kirkpatrick,RICH KIRKPATRICK,rich_kirkpatrick,10.23,10.08,0.15,0.4118,0.4037,0.0081
+2026,The Big Units,Greg Auerbach,GREG AUERBACH,greg_auerbach,10.60,10.45,0.15,0.4306,0.4228,0.0078
+2026,7th Floor Crew,Dave Jones,DAVE JONES,dave_jones,9.93,9.83,0.10,0.3957,0.3905,0.0052
+2026,Wild Things,Rich Heim,RICH HEIM,rich_heim,13.04,12.92,0.12,0.5439,0.5388,0.0051
+2026,Black Mambas,Jason Rhodes,JASON RHODES,jason_rhodes,13.28,13.16,0.12,0.5538,0.5488,0.0049
+2026,Nails,Jacob Vogt,JACOB VOGT,jacob_vogt,10.14,10.04,0.09,0.4067,0.4018,0.0049
+2026,Honey Badgers,Kevin Rosin,KEVIN ROSIN,kevin_rosin,10.23,10.14,0.09,0.4118,0.4069,0.0049
+2026,7th Floor Crew,Todd Alden,TODD ALDEN,todd_alden,9.93,9.84,0.09,0.3957,0.3910,0.0047
+2026,Honey Badgers,Steve Kampschmidt,STEVE KAMPSCHMIDT,steve_kampschmidt,10.23,10.15,0.09,0.4118,0.4073,0.0045
+2026,Honey Badgers,Eze Abosi,EZE ABOSI,eze_abosi,10.23,10.16,0.08,0.4118,0.4079,0.0039
+2026,The Big Units,Kevin Reiss,KEVIN REISS,kevin_reiss,10.60,10.53,0.07,0.4306,0.4269,0.0037
+2026,Black Mambas,Josh Simon,JOSH SIMON,josh_simon,13.28,13.19,0.09,0.5538,0.5501,0.0036
+2026,The Ryan Express,Matt Siekierka,MATT SIEKIERKA,matt_siekierka,13.12,13.04,0.08,0.5473,0.5438,0.0035
+2026,Black Mambas,Mike Lawlor,MIKE LAWLOR,mike_lawlor,13.28,13.20,0.07,0.5538,0.5508,0.0030
+2026,Honey Badgers,Chris Capobianco,CHRIS CAPOBIANCO,chris_coppabianco,10.23,10.18,0.06,0.4118,0.4089,0.0029
+2026,Bash Brothers,Steve Horowitz,STEVE HOROWITZ,steve_horowitz,12.52,12.46,0.06,0.5219,0.5192,0.0027
+2026,Black Mambas,Bankim Shah,BANKIM SHAH,bankim_shah,13.28,13.21,0.06,0.5538,0.5511,0.0026
+2026,7th Floor Crew,Mark Slayton,MARK SLAYTON,mark_slayton,9.93,9.88,0.05,0.3957,0.3930,0.0026
+2026,Nails,Sameer Sawe,SAMEER SAWE,sameer_sawe,10.14,10.09,0.05,0.4067,0.4041,0.0026
+2026,Honey Badgers,Brandon Snook,BRANDON SNOOK,brandon_snook,10.23,10.19,0.05,0.4118,0.4093,0.0025
+2026,The Ryan Express,Adam Handler,ADAM HANDLER,adam_handler,13.12,13.06,0.06,0.5473,0.5450,0.0023
+2026,Nails,Mike Cafaro,MIKE CAFARO,mike_cafaro,10.14,10.10,0.04,0.4067,0.4046,0.0021
+2026,The Ryan Express,Ken Horan,KEN HORAN,ken_horan,13.12,13.07,0.05,0.5473,0.5453,0.0020
+2026,The Sultans of Swat,Sal DAmbrosia,SAL DAMBROSIA,sal_dambrosia,16.00,15.94,0.06,0.6517,0.6499,0.0018
+2026,The Sultans of Swat,Dimitri Rassias,DIMITRI RASSIAS,dimitri_rassias,16.00,15.94,0.06,0.6517,0.6499,0.0017
+2026,Muscle Hamsters,Brian Quinn,BRIAN QUINN,brian_quinn,13.84,13.79,0.04,0.5762,0.5745,0.0017
+2026,The Ryan Express,Ken Eagle,KEN EAGLE,ken_eagle,13.12,13.08,0.04,0.5473,0.5458,0.0015
+2026,Bash Brothers,Gavin Miller,GAVIN MILLER,gavin_miller,12.52,12.49,0.03,0.5219,0.5204,0.0015
+2026,Bash Brothers,Kenny Conlon,KENNY CONLON,kenny_conlon,12.52,12.50,0.03,0.5219,0.5206,0.0013
+2026,Lunch Pail Guys,Brian Scaglione,BRIAN SCAGLIONE,brian_scaglione,12.99,12.97,0.02,0.5419,0.5412,0.0007
+2026,The Sultans of Swat,John McDonough,JOHN MCDONOUGH,john_mcdonough,16.00,15.98,0.02,0.6517,0.6511,0.0006
+2026,Nails,Bret Hartman,BRET HARTMAN,bret_hartman,10.14,10.13,0.01,0.4067,0.4061,0.0006
+2026,Bash Brothers,Brian Godau,BRIAN GODAU,brian_godau,12.52,12.51,0.01,0.5219,0.5214,0.0005
+2026,The Big Units,Neil Ascione,NEIL ASCIONE,neil_ascione,10.60,10.59,0.01,0.4306,0.4302,0.0004
+2026,Nails,James Walker,JAMES WALKER,james_walker,10.14,10.13,0.01,0.4067,0.4064,0.0003
+2026,Wild Things,Paul Martino,PAUL MARTINO,paul_martino,13.04,13.04,0.00,0.5439,0.5439,0.0001
+2026,Bash Brothers,Andrew Mcginniss,ANDREW MCGINNISS,andrew_mcginniss,12.52,12.52,0.00,0.5219,0.5218,0.0001
+2026,The Sultans of Swat,Seth Friedman,SETH FRIEDMAN,seth_friedman,16.00,16.01,0.00,0.6517,0.6519,0.0000
+2026,The Sultans of Swat,Will Zaragoza,WILL ZARAGOZA,will_zaragoza,16.00,16.01,0.00,0.6517,0.6521,0.0000
+2026,Black Mambas,Tony Garrett,TONY GARRETT,tony_garrett,13.28,13.29,0.00,0.5538,0.5542,0.0000
+2026,Wild Things,Jason Naggiar,JASON NAGGIAR,jason_naggiar,13.04,13.05,0.00,0.5439,0.5445,0.0000
+2026,Wild Things,John Stefanic,JOHN STEFANIC,john_stefanic,13.04,13.05,0.00,0.5439,0.5445,0.0000
+2026,Wild Things,Jason Benson,JASON BENSON,jason_benson,13.04,13.10,0.00,0.5439,0.5465,0.0000
+2026,Wild Things,David Vespole,DAVID VESPOLE,david_vespole,13.04,13.07,0.00,0.5439,0.5453,0.0000
+2026,The Big Units,Lance Zacker,LANCE ZACKER,lance_zacker,10.60,10.62,0.00,0.4306,0.4317,0.0000
+2026,The Big Units,Eric Stivers,ERIC STIVERS,eric_stivers,10.60,10.67,0.00,0.4306,0.4339,0.0000
+2026,The Big Units,Tom Schur,TOM SCHUR,tom_schur,10.60,10.60,0.00,0.4306,0.4306,0.0000
+2026,The Big Units,Luke Guilbert,LUKE GUILBERT,luke_guilbert,10.60,10.63,0.00,0.4306,0.4324,0.0000
+2026,The Ryan Express,Michael Rothenberg,MICHAEL ROTHENBERG,michael_rothenberg,13.12,13.15,0.00,0.5473,0.5485,0.0000
+2026,Muscle Hamsters,Jigar Desai,JIGAR DESAI,jigar_desai,13.84,13.89,0.00,0.5762,0.5782,0.0000
+2026,Muscle Hamsters,Mike Hettesheimer,MIKE HETTESHEIMER,mike_heisheimer,13.84,13.98,0.00,0.5762,0.5816,0.0000
+2026,Muscle Hamsters,Skender Daerti,SKENDER DAERTI,skender_daerti,13.84,13.88,0.00,0.5762,0.5780,0.0000
+2026,Muscle Hamsters,Ben Alkin,BEN ALKIN,ben_alkin,13.84,13.88,0.00,0.5762,0.5777,0.0000
+2026,Muscle Hamsters,Dan Ochs,DAN OCHS,dan_ochs,13.84,13.88,0.00,0.5762,0.5778,0.0000
+2026,Bash Brothers,Marty Eagan,MARTY EAGAN,marty_eagan,12.52,12.55,0.00,0.5219,0.5229,0.0000
+2026,7th Floor Crew,Alexander Sweetwood,ALEXANDER SWEETWOOD,alexander_sweetwood,9.93,10.05,0.00,0.3957,0.4019,0.0000
+2026,7th Floor Crew,Fred Heismeyer,FRED HEISMEYER,fred_heismeyer,9.93,9.94,0.00,0.3957,0.3964,0.0000
+2026,7th Floor Crew,Steve Sroka,STEVE SROKA,steve_sroka,9.93,9.95,0.00,0.3957,0.3969,0.0000
+2026,7th Floor Crew,Kevin DeJong,KEVIN DEJONG,kevin_dejong,9.93,10.22,0.00,0.3957,0.4110,0.0000
+2026,7th Floor Crew,Mike Levine,MIKE LEVINE,mike_levine,9.93,9.93,0.00,0.3957,0.3958,0.0000
+2026,7th Floor Crew,Nick Adams,NICK ADAMS,nick_adams,9.93,9.93,0.00,0.3957,0.3957,0.0000
+2026,Nails,Bob Vogt,BOB VOGT,bob_vogt,10.14,10.23,0.00,0.4067,0.4118,0.0000
+2026,Nails,Tyler Lieberman,TYLER LIEBERMAN,tyler_lieberman,10.14,10.19,0.00,0.4067,0.4092,0.0000
+2026,Nails,Dave Jensen,DAVE JENSEN,dave_jensen,10.14,10.18,0.00,0.4067,0.4089,0.0000
+2026,The Big Papi's,Temple Houston,TEMPLE HOUSTON,temple_houston,10.34,10.35,0.00,0.4172,0.4178,0.0000
+2026,The Big Papi's,Mark Armelino,MARK ARMELINO,mark_armelino,10.34,10.43,0.00,0.4172,0.4217,0.0000
+2026,The Big Papi's,Andrew Conroy,ANDREW CONROY,andrew_conroy,10.34,10.43,0.00,0.4172,0.4221,0.0000
+2026,The Big Papi's,Deron Green,DERON GREEN,deron_green,10.34,10.35,0.00,0.4172,0.4180,0.0000
+2026,The Big Papi's,Chris Armelino,CHRIS ARMELINO,chris_armelino,10.34,10.37,0.00,0.4172,0.4188,0.0000
+2026,The Big Papi's,Victor Segarra,VICTOR SEGARRA,victor_segarra,10.34,10.38,0.00,0.4172,0.4196,0.0000
+2026,Honey Badgers,Casey Nix,CASEY NIX,casey_nix,10.23,10.29,0.00,0.4118,0.4146,0.0000
+2026,Lunch Pail Guys,Rich Fardo,RICH FARDO,rich_fardo,12.99,13.01,0.00,0.5419,0.5428,0.0000
+2026,Lunch Pail Guys,RJ Fardo,RJ FARDO,rj_fardo,12.99,13.02,0.00,0.5419,0.5431,0.0000
+2026,Lunch Pail Guys,Tim Fonseca,TIM FONSECA,tim_fronseca,12.99,13.06,0.00,0.5419,0.5448,0.0000

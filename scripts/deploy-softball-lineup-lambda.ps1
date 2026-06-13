@@ -163,4 +163,18 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "Permission may already exist; continuing."
 }
 
+$previousErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+& aws lambda add-permission `
+    --function-name $FunctionName `
+    --statement-id "softball-lineup-invoke-via-function-url" `
+    --action lambda:InvokeFunction `
+    --principal "*" `
+    --invoked-via-function-url `
+    --region $Region | Out-Null
+$ErrorActionPreference = $previousErrorActionPreference
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "InvokeFunction permission may already exist; continuing."
+}
+
 Write-Host "Function URL: $functionUrl"

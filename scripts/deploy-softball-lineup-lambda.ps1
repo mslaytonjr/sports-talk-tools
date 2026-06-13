@@ -31,6 +31,19 @@ function Invoke-Aws {
     }
 }
 
+function Write-Utf8NoBom {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Value
+    )
+
+    $encoding = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($Path, $Value, $encoding)
+}
+
 if (-not (Get-Command aws -ErrorAction SilentlyContinue)) {
     throw "AWS CLI is not installed or not on PATH."
 }
@@ -63,7 +76,7 @@ $envPayload = @{
         ALLOWED_ORIGIN = $AllowedOrigin
     }
 } | ConvertTo-Json -Compress
-Set-Content -Path $envPath -Value $envPayload -Encoding utf8
+Write-Utf8NoBom -Path $envPath -Value $envPayload
 
 if ($functionExists) {
     Invoke-Aws lambda update-function-code `
@@ -112,7 +125,7 @@ $corsPayload = @{
     AllowHeaders = @("content-type")
     MaxAge = 3600
 } | ConvertTo-Json -Compress
-Set-Content -Path $corsPath -Value $corsPayload -Encoding utf8
+Write-Utf8NoBom -Path $corsPath -Value $corsPayload
 
 if (-not $functionUrl -or $functionUrl -eq "None") {
     $functionUrl = Invoke-Aws lambda create-function-url-config `

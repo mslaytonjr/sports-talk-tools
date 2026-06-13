@@ -61,9 +61,12 @@ if (Test-Path $zipPath) {
 Compress-Archive -Path $sourceFile -DestinationPath $zipPath -Force
 
 $functionExists = $true
+$previousErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 & aws lambda get-function `
     --function-name $FunctionName `
-    --region $Region | Out-Null
+    --region $Region 2>$null | Out-Null
+$ErrorActionPreference = $previousErrorActionPreference
 if ($LASTEXITCODE -ne 0) {
     $functionExists = $false
 }
@@ -108,15 +111,18 @@ if ($functionExists) {
 Write-Host "Deployed $FunctionName from $sourceFile"
 
 $functionUrl = ""
-& aws lambda get-function-url-config `
+$previousErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+$functionUrlOutput = & aws lambda get-function-url-config `
     --function-name $FunctionName `
     --region $Region `
     --query "FunctionUrl" `
-    --output text 2>$null | Tee-Object -Variable functionUrlOutput | Out-Null
+    --output text 2>$null
+$ErrorActionPreference = $previousErrorActionPreference
 if ($LASTEXITCODE -ne 0) {
     $functionUrl = ""
 } else {
-    $functionUrl = $functionUrlOutput
+    $functionUrl = ($functionUrlOutput | Select-Object -First 1)
 }
 
 $corsPayload = @{
@@ -143,6 +149,8 @@ if (-not $functionUrl -or $functionUrl -eq "None") {
         --region $Region | Out-Null
 }
 
+$previousErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 & aws lambda add-permission `
     --function-name $FunctionName `
     --statement-id "softball-lineup-function-url" `
@@ -150,6 +158,7 @@ if (-not $functionUrl -or $functionUrl -eq "None") {
     --principal "*" `
     --function-url-auth-type NONE `
     --region $Region | Out-Null
+$ErrorActionPreference = $previousErrorActionPreference
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Permission may already exist; continuing."
 }

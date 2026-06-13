@@ -1,0 +1,1 @@
+{"AllowMethods":["POST"],"MaxAge":3600,"AllowHeaders":["content-type"],"AllowOrigins":["*"]}

@@ -135,7 +135,13 @@ export default function SoftballLineupBuilderPage() {
             setPlayerInput("");
             setResult(payload);
         } catch (requestError) {
-            setError(requestError instanceof Error ? requestError.message : "Lineup request failed.");
+            const message =
+                requestError instanceof Error ? requestError.message : "Lineup request failed.";
+            setError(
+                message === "Failed to fetch"
+                    ? "The browser could not read the lineup response. This is usually a CORS setting on the Lambda Function URL."
+                    : message
+            );
         } finally {
             setLoading(false);
         }

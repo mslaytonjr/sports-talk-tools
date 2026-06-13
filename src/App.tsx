@@ -53,16 +53,6 @@ function HomePage() {
                                 </p>
                                 <div className="landing-card-action">Enter Sabres tools</div>
                             </Link>
-
-                            <Link to="/Softball" className="landing-card group">
-                                <div className="landing-card-label">LVC Tools</div>
-                                <div className="landing-card-title">Softball</div>
-                                <p className="landing-card-copy">
-                                    Daily team reports, odds context, and lineup building from the latest
-                                    scraped stats.
-                                </p>
-                                <div className="landing-card-action">Enter softball tools</div>
-                            </Link>
                         </div>
                     </div>
 
@@ -189,34 +179,6 @@ function SabresHubPage() {
     );
 }
 
-function SoftballHubPage() {
-    return (
-        <ToolHubPage
-            title="Softball"
-            kicker="Lake Valhalla Club"
-            copy="Softball tools for lineup construction, current stats, and team report context."
-            tools={[
-                {
-                    to: "/SoftballLineupBuilder",
-                    label: "Lineup Tool",
-                    title: "Lineup Builder",
-                    copy:
-                        "Pick a team, mark players out, and generate a full everyone-bats order from the latest report data.",
-                    action: "Build a lineup",
-                },
-                {
-                    to: "/SoftballOpeningDayOdds",
-                    label: "Report Tool",
-                    title: "Opening Day Odds",
-                    copy:
-                        "View the softball odds report and preseason context in the existing report format.",
-                    action: "Open odds report",
-                },
-            ]}
-        />
-    );
-}
-
 export default function App() {
     const location = useLocation();
     const isBillsActive =
@@ -228,11 +190,6 @@ export default function App() {
         location.pathname === "/SabresMagicNumber" ||
         location.pathname === "/SabresCapRoster" ||
         location.pathname === "/SabresLineOptimizer";
-    const isSoftballActive =
-        location.pathname === "/Softball" ||
-        location.pathname === "/SoftballLineupBuilder" ||
-        location.pathname === "/SoftballOdds" ||
-        location.pathname === "/SoftballOpeningDayOdds";
 
     return (
         <div className="min-h-screen bg-slate-950 text-white">
@@ -259,9 +216,6 @@ export default function App() {
                         <Link to="/Sabres" className={navLinkClass(isSabresActive)}>
                             Sabres
                         </Link>
-                        <Link to="/Softball" className={navLinkClass(isSoftballActive)}>
-                            Softball
-                        </Link>
                     </div>
                 </nav>
             </header>
@@ -270,7 +224,6 @@ export default function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/Bills" element={<BillsPage />} />
                 <Route path="/Sabres" element={<SabresHubPage />} />
-                <Route path="/Softball" element={<SoftballHubPage />} />
                 <Route path="/BillsDepthChart" element={<DepthChartPage />} />
                 <Route path="/SabresMagicNumber" element={<SabresPage />} />
                 <Route path="/SabresCapRoster" element={<SabresCapRosterPage />} />

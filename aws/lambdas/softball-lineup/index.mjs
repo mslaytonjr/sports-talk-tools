@@ -48,19 +48,16 @@ function pickVariant(seed, variants) {
   return variants[hashString(seed) % variants.length];
 }
 
-function corsHeaders() {
+function jsonHeaders() {
   return {
     "content-type": "application/json",
-    "access-control-allow-origin": process.env.ALLOWED_ORIGIN ?? "*",
-    "access-control-allow-methods": "OPTIONS,POST",
-    "access-control-allow-headers": "content-type",
   };
 }
 
 function response(statusCode, payload) {
   return {
     statusCode,
-    headers: corsHeaders(),
+    headers: jsonHeaders(),
     body: JSON.stringify(payload, null, 2),
   };
 }
@@ -370,7 +367,7 @@ function parseBody(event) {
 
 export async function handler(event = {}) {
   if (event.requestContext?.http?.method === "OPTIONS") {
-    return { statusCode: 204, headers: corsHeaders(), body: "" };
+    return { statusCode: 204, headers: jsonHeaders(), body: "" };
   }
 
   try {

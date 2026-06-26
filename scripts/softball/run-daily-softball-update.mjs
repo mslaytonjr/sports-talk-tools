@@ -10,6 +10,7 @@ const targetSeason = process.argv.find((arg) => /^\d{4}$/.test(arg)) ?? process.
 const forceScrape = process.argv.includes("--force") || process.env.SOFTBALL_FORCE_SCRAPE === "true";
 const publishBucket = process.env.SOFTBALL_REPORTS_BUCKET ?? "";
 const publishPrefix = process.env.SOFTBALL_REPORTS_PREFIX ?? "softball";
+const cloudFrontDistributionId = process.env.SOFTBALL_CLOUDFRONT_DISTRIBUTION_ID ?? "";
 const awsRegion = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "us-east-1";
 
 function run(command, args, options = {}) {
@@ -54,9 +55,22 @@ if (publishBucket) {
     resolve(projectRoot, "public", "softball"),
     `s3://${publishBucket}/${publishPrefix}`.replace(/\/$/, ""),
     "--delete",
+    "--cache-control",
+    "no-cache, no-store, must-revalidate",
     "--region",
     awsRegion,
   ]);
+
+  if (cloudFrontDistributionId) {
+    run("aws", [
+      "cloudfront",
+      "create-invalidation",
+      "--distribution-id",
+      cloudFrontDistributionId,
+      "--paths",
+      `/${publishPrefix.replace(/^\/+|\/+$/g, "")}/*`,
+    ]);
+  }
 }
 
 console.log("\nDaily softball update complete.");

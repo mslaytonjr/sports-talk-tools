@@ -183,6 +183,7 @@ Useful environment variables:
 - `SOFTBALL_FORCE_SCRAPE`: set to `true` to re-scrape all completed games
 - `SOFTBALL_REPORTS_BUCKET`: optional S3 bucket for published static reports
 - `SOFTBALL_REPORTS_PREFIX`: optional S3 prefix, defaults to `softball`
+- `SOFTBALL_CLOUDFRONT_DISTRIBUTION_ID`: optional CloudFront distribution to invalidate after S3 publish
 
 For AWS scheduling, use CodeBuild with `buildspec-softball-daily.yml`, then attach an EventBridge rule to the CodeBuild project:
 
@@ -194,7 +195,7 @@ npm run deploy:softball-daily-codebuild-schedule -- `
   -Region us-east-1
 ```
 
-The default schedule is `cron(30 10 * * ? *)`, which runs once per day at 10:30 UTC. The CodeBuild service role needs normal source checkout permissions and `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` for the configured reports bucket if S3 publishing is enabled.
+The default schedule is `cron(30 10 * * ? *)`, which runs once per day at 10:30 UTC. The CodeBuild service role needs normal source checkout permissions and `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` for the configured reports bucket if S3 publishing is enabled. If `SOFTBALL_CLOUDFRONT_DISTRIBUTION_ID` is set, it also needs `cloudfront:CreateInvalidation` for that distribution.
 
 ## Softball Lineup Endpoint
 

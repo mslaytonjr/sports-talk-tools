@@ -8,6 +8,8 @@ const processedRoot = resolve(projectRoot, "data", "softball", "processed");
 const publicSoftballRoot = resolve(projectRoot, "public", "softball");
 
 const targetSeason = process.argv[2] ?? "2026";
+const publicReportsPrefix = `/${(process.env.SOFTBALL_REPORTS_PREFIX ?? "softball")
+  .replace(/^\/+|\/+$/g, "")}/`;
 
 function ensureExists(path, label) {
   if (!existsSync(path)) {
@@ -16,14 +18,17 @@ function ensureExists(path, label) {
 }
 
 function rewriteLeagueOverviewForPublic(html) {
-  return html.replaceAll("../team_reports/", "./team_reports/");
+  return html.replaceAll("../team_reports/", `${publicReportsPrefix}team_reports/`);
 }
 
 function rewriteLeagueOverviewJsonForPublic(jsonText) {
   const payload = JSON.parse(jsonText);
   payload.team_rankings = (payload.team_rankings ?? []).map((team) => ({
     ...team,
-    team_report_href: String(team.team_report_href ?? "").replace("../team_reports/", "./team_reports/"),
+    team_report_href: String(team.team_report_href ?? "").replace(
+      "../team_reports/",
+      `${publicReportsPrefix}team_reports/`
+    ),
   }));
   return `${JSON.stringify(payload, null, 2)}\n`;
 }

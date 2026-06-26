@@ -11,6 +11,7 @@
     "build:play-impact-season": "node ./scripts/build-play-impact-season.mjs",
     "deploy:sabres-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-sabres-lambda.ps1",
     "deploy:sabres-line-optimizer-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-sabres-line-optimizer-lambda.ps1",
+    "deploy:softball-daily-codebuild-schedule": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-softball-daily-codebuild-schedule.ps1",
     "deploy:softball-lineup-lambda": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-softball-lineup-lambda.ps1",
     "softball:normalize": "node ./scripts/softball/normalize-softball-data.mjs",
     "softball:validate": "node ./scripts/softball/validate-softball-stats.mjs",

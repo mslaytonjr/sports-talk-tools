@@ -94,6 +94,14 @@ function formatNullablePct(value, digits = 1) {
   return value == null ? "n/a" : formatPct(value, digits);
 }
 
+function formatBattingAverage(value) {
+  if (value == null) {
+    return "n/a";
+  }
+
+  return Number(value || 0).toFixed(3).replace(/^0/, "");
+}
+
 function formatTinyDecimal(value, digits = 2) {
   const numeric = Number(value || 0);
   const threshold = 1 / 10 ** digits;
@@ -503,6 +511,86 @@ function getCurrentSeasonConsistencyProfiles() {
   );
 }
 
+function getRecentGameAverageProfiles() {
+  const gameStatsPath = resolve(rawRoot, targetSeason, "sportstrack-player-game-stats.json");
+  if (!existsSync(gameStatsPath)) {
+    return new Map();
+  }
+
+  const rows = readJsonIfExists(gameStatsPath);
+  if (!Array.isArray(rows)) {
+    return new Map();
+  }
+
+  const grouped = new Map();
+  const playerAliases = getPlayerOverrideAliases();
+  for (const row of rows) {
+    const rawHistoricalPlayerId = row.historical_player_id || row.canonical_player_id;
+    const historicalPlayerId = playerAliases.get(rawHistoricalPlayerId) ?? rawHistoricalPlayerId;
+    if (!historicalPlayerId || row.canonical_player_name?.startsWith("SUB")) {
+      continue;
+    }
+
+    const plateAppearances = toNumber(row.pa) ?? toNumber(row.ab);
+    if (plateAppearances == null || plateAppearances <= 0) {
+      continue;
+    }
+
+    const playerRows = grouped.get(historicalPlayerId) ?? [];
+    playerRows.push(row);
+    grouped.set(historicalPlayerId, playerRows);
+  }
+
+  return new Map(
+    [...grouped.entries()].map(([key, playerRows]) => {
+      const recentRows = playerRows
+        .sort((left, right) =>
+          `${right.game_date ?? ""}__${right.game_id ?? ""}`.localeCompare(
+            `${left.game_date ?? ""}__${left.game_id ?? ""}`
+          )
+        )
+        .slice(0, 3);
+
+      const totals = recentRows.reduce(
+        (sum, row) => ({
+          games: sum.games + 1,
+          pa: sum.pa + (toNumber(row.pa) ?? 0),
+          ab: sum.ab + (toNumber(row.ab) ?? 0),
+          h: sum.h + (toNumber(row.h) ?? 0),
+          doubles: sum.doubles + (toNumber(row["2b"]) ?? 0),
+          triples: sum.triples + (toNumber(row["3b"]) ?? 0),
+          hr: sum.hr + (toNumber(row.hr) ?? 0),
+          bb: sum.bb + (toNumber(row.bb) ?? 0) + (toNumber(row.ibb) ?? 0),
+          obe: sum.obe + (toNumber(row.obe) ?? 0),
+          sf: sum.sf + (toNumber(row.sf) ?? 0),
+        }),
+        { games: 0, pa: 0, ab: 0, h: 0, doubles: 0, triples: 0, hr: 0, bb: 0, obe: 0, sf: 0 }
+      );
+
+      const singles = Math.max(totals.h - totals.doubles - totals.triples - totals.hr, 0);
+      const totalBases = singles + totals.doubles * 2 + totals.triples * 3 + totals.hr * 4;
+      const obpDenominator = totals.ab + totals.bb + totals.obe + totals.sf;
+      const avg = safeDivide(totals.h, totals.ab);
+      const obp = safeDivide(totals.h + totals.bb + totals.obe, obpDenominator);
+      const slg = safeDivide(totalBases, totals.ab);
+
+      return [
+        key,
+        {
+          recent_3_game_games: totals.games,
+          recent_3_game_pa: totals.pa,
+          recent_3_game_ab: totals.ab,
+          recent_3_game_hits: totals.h,
+          recent_3_game_avg: avg,
+          recent_3_game_obp: obp,
+          recent_3_game_slg: slg,
+          recent_3_game_ops: obp != null && slg != null ? obp + slg : null,
+        },
+      ];
+    })
+  );
+}
+
 function getWeightedDirectionProfiles() {
   const rows = [...getHistoricalStatsRows(), ...getSupplemental2025DirectionRows()];
   const grouped = new Map();
@@ -634,13 +722,21 @@ function buildLeagueBatScoreRanks(rosterMatches) {
   };
 }
 
-function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfileMap, leagueBatScoreRanks) {
+function buildLineup(
+  teamRows,
+  profileMap,
+  directionProfileMap,
+  consistencyProfileMap,
+  recentAverageProfileMap,
+  leagueBatScoreRanks
+) {
   const matched = teamRows
     .filter((row) => row.matched === "yes")
     .map((row) => {
       const profile = profileMap.get(row.historical_player_id);
       const directionProfile = directionProfileMap.get(row.historical_player_id);
       const consistencyProfile = consistencyProfileMap.get(row.historical_player_id);
+      const recentAverageProfile = recentAverageProfileMap.get(row.historical_player_id);
       return {
         ...row,
         avg: profile?.avg ?? null,
@@ -656,6 +752,14 @@ function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfi
         hit_game_percentage: consistencyProfile?.hit_game_percentage ?? null,
         multi_hit_game_percentage: consistencyProfile?.multi_hit_game_percentage ?? null,
         xbh_game_percentage: consistencyProfile?.xbh_game_percentage ?? null,
+        recent_3_game_games: recentAverageProfile?.recent_3_game_games ?? 0,
+        recent_3_game_pa: recentAverageProfile?.recent_3_game_pa ?? 0,
+        recent_3_game_ab: recentAverageProfile?.recent_3_game_ab ?? 0,
+        recent_3_game_hits: recentAverageProfile?.recent_3_game_hits ?? 0,
+        recent_3_game_avg: recentAverageProfile?.recent_3_game_avg ?? null,
+        recent_3_game_obp: recentAverageProfile?.recent_3_game_obp ?? null,
+        recent_3_game_slg: recentAverageProfile?.recent_3_game_slg ?? null,
+        recent_3_game_ops: recentAverageProfile?.recent_3_game_ops ?? null,
         weighted_line_outs: profile?.weighted_line_outs ?? null,
         weighted_fly_outs: profile?.weighted_fly_outs ?? null,
         weighted_ground_outs: profile?.weighted_ground_outs ?? null,
@@ -687,6 +791,14 @@ function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfi
       hit_game_percentage: null,
       multi_hit_game_percentage: null,
       xbh_game_percentage: null,
+      recent_3_game_games: 0,
+      recent_3_game_pa: 0,
+      recent_3_game_ab: 0,
+      recent_3_game_hits: 0,
+      recent_3_game_avg: null,
+      recent_3_game_obp: null,
+      recent_3_game_slg: null,
+      recent_3_game_ops: null,
       weighted_line_outs: null,
       weighted_fly_outs: null,
       weighted_ground_outs: null,
@@ -833,6 +945,14 @@ function buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfi
     hit_game_percentage: player.hit_game_percentage,
     multi_hit_game_percentage: player.multi_hit_game_percentage,
     xbh_game_percentage: player.xbh_game_percentage,
+    recent_3_game_games: player.recent_3_game_games,
+    recent_3_game_pa: player.recent_3_game_pa,
+    recent_3_game_ab: player.recent_3_game_ab,
+    recent_3_game_hits: player.recent_3_game_hits,
+    recent_3_game_avg: player.recent_3_game_avg,
+    recent_3_game_obp: player.recent_3_game_obp,
+    recent_3_game_slg: player.recent_3_game_slg,
+    recent_3_game_ops: player.recent_3_game_ops,
     notes: describeProfileNote(player),
   }));
 }
@@ -945,12 +1065,13 @@ function buildHtmlReport(report) {
           <td>${formatNullablePct(player.xbh_percentage, 1)}</td>
           <td>${formatNullablePct(player.productive_pa_percentage, 1)}</td>
           <td>${formatNullablePct(player.out_avoidance, 1)}</td>
+          <td>${formatBattingAverage(player.recent_3_game_avg)}</td>
           <td>${formatNullablePct(player.consistency_score, 1)}</td>
           <td>${escapeHtml(player.consistency_games ? `${player.consistency_games} games` : "n/a")}</td>
         </tr>`
           )
           .join("")
-      : `<tr><td colspan="7">No derived batter stats available.</td></tr>`;
+      : `<tr><td colspan="8">No derived batter stats available.</td></tr>`;
 
   const playerDirectionRows =
     report.player_direction_stats.length > 0
@@ -1219,7 +1340,7 @@ function buildHtmlReport(report) {
 
         <section class="panel">
           <h2>Advanced Batter Signals</h2>
-          <p>Derived from the current stat pool. ISO is extra-base power, XBH% is extra-base hits per hit, Productive PA% counts hits, walks, sacrifice flies, and reached by error, Out Avoidance estimates non-out plate appearances, and Consistency Score is 2026 games with at least one hit.</p>
+          <p>Derived from the current stat pool. ISO is extra-base power, XBH% is extra-base hits per hit, Productive PA% counts hits, walks, sacrifice flies, and reached by error, Out Avoidance estimates non-out plate appearances, 3G AVG is batting average over the player's three most recent ${report.season} games, and Consistency Score is ${report.season} games with at least one hit.</p>
           <table>
             <thead>
               <tr>
@@ -1228,6 +1349,7 @@ function buildHtmlReport(report) {
                 <th>XBH%</th>
                 <th>Prod PA%</th>
                 <th>Out Avoid</th>
+                <th>3G AVG</th>
                 <th>Consist.</th>
                 <th>2026 Log</th>
               </tr>
@@ -1309,6 +1431,7 @@ function main() {
   const profileMap = getWeightedProfiles();
   const directionProfileMap = getWeightedDirectionProfiles();
   const consistencyProfileMap = getCurrentSeasonConsistencyProfiles();
+  const recentAverageProfileMap = getRecentGameAverageProfiles();
   const leagueBatScoreRanks = buildLeagueBatScoreRanks(rosterMatches);
 
   const teamRows = rosterMatches.filter(
@@ -1332,7 +1455,14 @@ function main() {
     }))
     .sort((left, right) => right.win_probability_swing - left.win_probability_swing);
 
-  const lineup = buildLineup(teamRows, profileMap, directionProfileMap, consistencyProfileMap, leagueBatScoreRanks);
+  const lineup = buildLineup(
+    teamRows,
+    profileMap,
+    directionProfileMap,
+    consistencyProfileMap,
+    recentAverageProfileMap,
+    leagueBatScoreRanks
+  );
   const playerDerivedStats = lineup
     .map((player) => ({
       player_name: player.player_name,
@@ -1346,6 +1476,14 @@ function main() {
       hit_game_percentage: player.hit_game_percentage,
       multi_hit_game_percentage: player.multi_hit_game_percentage,
       xbh_game_percentage: player.xbh_game_percentage,
+      recent_3_game_games: player.recent_3_game_games,
+      recent_3_game_pa: player.recent_3_game_pa,
+      recent_3_game_ab: player.recent_3_game_ab,
+      recent_3_game_hits: player.recent_3_game_hits,
+      recent_3_game_avg: player.recent_3_game_avg,
+      recent_3_game_obp: player.recent_3_game_obp,
+      recent_3_game_slg: player.recent_3_game_slg,
+      recent_3_game_ops: player.recent_3_game_ops,
       profile_confidence: player.profile_confidence,
     }))
     .filter(
@@ -1354,6 +1492,7 @@ function main() {
         player.xbh_percentage != null ||
         player.productive_pa_percentage != null ||
         player.out_avoidance != null ||
+        player.recent_3_game_avg != null ||
         player.consistency_score != null
     );
   const playerDirectionStats = lineup

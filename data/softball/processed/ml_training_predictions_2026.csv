@@ -1,13 +1,13 @@
 season,date,game_id,home_team,away_team,home_score,away_score,home_win,baseline_home_win_probability,ml_home_win_probability
-2026,2026-04-27,11872,Bash Brothers,The Big Units,16,15,1,0.6757,0.8970
-2026,2026-04-28,11873,The Big Papi's,Honey Badgers,9,7,1,0.5458,0.7276
-2026,2026-04-30,11874,Muscle Hamsters,The Sultans Of Swat,7,25,0,0.3877,0.5287
-2026,2026-05-01,11875,Wild Things,The Ryan Express,9,10,0,0.5315,0.6244
-2026,2026-05-03,11877,Lunch Pail Guys,7th Floor Crew,18,3,1,0.7471,0.9002
-2026,2026-05-03,11876,Black Mambas,Nails,10,5,1,0.7757,0.9180
-2026,2026-05-03,11879,The Ryan Express,The Big Papi's,11,7,1,0.6927,0.8983
-2026,2026-05-03,11880,The Sultans Of Swat,Black Mambas,11,9,1,0.5292,0.7070
-2026,2026-05-04,11878,Muscle Hamsters,Bash Brothers,5,11,0,0.4605,0.5114
-2026,2026-05-05,11881,7th Floor Crew,Wild Things,9,4,1,0.2083,0.2548
-2026,2026-05-07,11882,Nails,Lunch Pail Guys,14,22,0,0.2533,0.3230
-2026,2026-05-08,11883,The Big Units,Honey Badgers,12,9,1,0.5287,0.7098
+2026,2026-04-27,11872,Bash Brothers,The Big Units,16,15,1,0.8142,0.9969
+2026,2026-04-28,11873,The Big Papi's,Honey Badgers,9,7,1,0.3045,0.6552
+2026,2026-04-30,11874,Muscle Hamsters,The Sultans Of Swat,7,25,0,0.1948,0.2921
+2026,2026-05-01,11875,Wild Things,The Ryan Express,9,10,0,0.5459,0.2451
+2026,2026-05-03,11877,Lunch Pail Guys,7th Floor Crew,18,3,1,0.3649,0.9905
+2026,2026-05-03,11876,Black Mambas,Nails,10,5,1,0.7807,0.9930
+2026,2026-05-03,11879,The Ryan Express,The Big Papi's,11,7,1,0.5669,0.9985
+2026,2026-05-03,11880,The Sultans Of Swat,Black Mambas,11,9,1,0.5408,0.9446
+2026,2026-05-04,11878,Muscle Hamsters,Bash Brothers,5,11,0,0.1878,0.2694
+2026,2026-05-05,11881,7th Floor Crew,Wild Things,9,4,1,0.5236,0.7804
+2026,2026-05-07,11882,Nails,Lunch Pail Guys,14,22,0,0.4984,0.1651
+2026,2026-05-08,11883,The Big Units,Honey Badgers,12,9,1,0.302,0.6693

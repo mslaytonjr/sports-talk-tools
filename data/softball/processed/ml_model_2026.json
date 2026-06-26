@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-15T16:48:11.011Z",
+  "generatedAt": "2026-06-13T11:30:37.149Z",
   "season": 2026,
   "type": "logistic_regression",
   "target": "home_win",
@@ -12,27 +12,27 @@
   ],
   "scaler": {
     "means": {
-      "projected_run_diff": 0.34833333333333333,
-      "rating_diff": 0.03159657964104402,
-      "baseline_logit": 0.11508065862765315,
-      "matched_player_diff": -0.3333333333333333,
-      "match_rate_diff": -0.022222222222222216
+      "projected_run_diff": -0.41500000000000004,
+      "rating_diff": 0.052103963976679525,
+      "baseline_logit": -0.13742878986543805,
+      "matched_player_diff": 0,
+      "match_rate_diff": 0
     },
     "scales": {
-      "projected_run_diff": 2.316113243249465,
-      "rating_diff": 0.21018249907072126,
-      "baseline_logit": 0.764602391613265,
-      "matched_player_diff": 1.9293061504650377,
-      "match_rate_diff": 0.12544288823953528
+      "projected_run_diff": 2.7023801237674414,
+      "rating_diff": 0.18155470338012106,
+      "baseline_logit": 0.8925758109353766,
+      "matched_player_diff": 0.5773502691896257,
+      "match_rate_diff": 0.03730660005156469
     }
   },
   "weights": [
-    0.8808237112157543,
-    0.31917611327858275,
-    0.4103190425912528,
-    0.3044785679977766,
-    0.8932716632476622,
-    -0.8619140754045954
+    1.8908410284120614,
+    0.7573434128355735,
+    0.5699922493329664,
+    0.7516626174098591,
+    0.47124934150434655,
+    -2.0141373080101275
   ],
   "trainingRows": 12
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T21:58:27.933Z",
+  "generated_at": "2026-06-26T17:51:53.798Z",
   "stats_last_scraped_at": "2026-06-12T16:15:34.740Z",
   "stats_through_date": "2026-06-11",
   "scraped_game_count": 40,
@@ -295,6 +295,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.6666666666666666,
       "xbh_game_percentage": 0.16666666666666666,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 14,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5,
+      "recent_3_game_slg": 0.5,
+      "recent_3_game_ops": 1,
       "profile_confidence": "trusted"
     },
     {
@@ -309,6 +317,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0.3333333333333333,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.45454545454545453,
+      "recent_3_game_obp": 0.38461538461538464,
+      "recent_3_game_slg": 0.5454545454545454,
+      "recent_3_game_ops": 0.93006993006993,
       "profile_confidence": "trusted"
     },
     {
@@ -323,6 +339,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 1,
       "xbh_game_percentage": 0.5,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 9,
+      "recent_3_game_avg": 0.75,
+      "recent_3_game_obp": 0.7857142857142857,
+      "recent_3_game_slg": 0.8333333333333334,
+      "recent_3_game_ops": 1.619047619047619,
       "profile_confidence": "trusted"
     },
     {
@@ -337,6 +361,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.6666666666666666,
       "xbh_game_percentage": 0.6666666666666666,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5384615384615384,
+      "recent_3_game_slg": 0.75,
+      "recent_3_game_ops": 1.2884615384615383,
       "profile_confidence": "trusted"
     },
     {
@@ -351,6 +383,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0.5,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 7,
+      "recent_3_game_avg": 0.5833333333333334,
+      "recent_3_game_obp": 0.6428571428571429,
+      "recent_3_game_slg": 1.75,
+      "recent_3_game_ops": 2.392857142857143,
       "profile_confidence": "trusted"
     },
     {
@@ -365,6 +405,14 @@
       "hit_game_percentage": 0.6,
       "multi_hit_game_percentage": 0.4,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.6,
+      "recent_3_game_obp": 0.6666666666666666,
+      "recent_3_game_slg": 0.6,
+      "recent_3_game_ops": 1.2666666666666666,
       "profile_confidence": "trusted"
     },
     {
@@ -379,6 +427,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.3333333333333333,
       "xbh_game_percentage": 0.3333333333333333,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5454545454545454,
+      "recent_3_game_obp": 0.5454545454545454,
+      "recent_3_game_slg": 0.6363636363636364,
+      "recent_3_game_ops": 1.1818181818181817,
       "profile_confidence": "trusted"
     },
     {
@@ -393,6 +449,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5714285714285714,
       "xbh_game_percentage": 0.2857142857142857,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5833333333333334,
+      "recent_3_game_slg": 1,
+      "recent_3_game_ops": 1.5833333333333335,
       "profile_confidence": "trusted"
     },
     {
@@ -407,6 +471,14 @@
       "hit_game_percentage": 0.6666666666666666,
       "multi_hit_game_percentage": 0,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 2,
+      "recent_3_game_avg": 0.2,
+      "recent_3_game_obp": 0.18181818181818182,
+      "recent_3_game_slg": 0.2,
+      "recent_3_game_ops": 0.38181818181818183,
       "profile_confidence": "trusted"
     },
     {
@@ -421,6 +493,14 @@
       "hit_game_percentage": 0.6666666666666666,
       "multi_hit_game_percentage": 0.16666666666666666,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 3,
+      "recent_3_game_avg": 0.2727272727272727,
+      "recent_3_game_obp": 0.3333333333333333,
+      "recent_3_game_slg": 0.2727272727272727,
+      "recent_3_game_ops": 0.606060606060606,
       "profile_confidence": "trusted"
     },
     {
@@ -435,6 +515,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5454545454545454,
+      "recent_3_game_obp": 0.6153846153846154,
+      "recent_3_game_slg": 0.5454545454545454,
+      "recent_3_game_ops": 1.1608391608391608,
       "profile_confidence": "trusted"
     },
     {
@@ -449,6 +537,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 13,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.46153846153846156,
+      "recent_3_game_obp": 0.46153846153846156,
+      "recent_3_game_slg": 0.46153846153846156,
+      "recent_3_game_ops": 0.9230769230769231,
       "profile_confidence": "trusted"
     },
     {
@@ -463,6 +559,14 @@
       "hit_game_percentage": 0.6,
       "multi_hit_game_percentage": 0.4,
       "xbh_game_percentage": 0.2,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 13,
+      "recent_3_game_hits": 7,
+      "recent_3_game_avg": 0.5384615384615384,
+      "recent_3_game_obp": 0.6,
+      "recent_3_game_slg": 0.6153846153846154,
+      "recent_3_game_ops": 1.2153846153846155,
       "profile_confidence": "trusted"
     },
     {
@@ -477,6 +581,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 1,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 1,
+      "recent_3_game_pa": 3,
+      "recent_3_game_ab": 3,
+      "recent_3_game_hits": 2,
+      "recent_3_game_avg": 0.6666666666666666,
+      "recent_3_game_obp": 0.6666666666666666,
+      "recent_3_game_slg": 0.6666666666666666,
+      "recent_3_game_ops": 1.3333333333333333,
       "profile_confidence": "trusted"
     },
     {
@@ -491,6 +603,14 @@
       "hit_game_percentage": 0.5,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.45454545454545453,
+      "recent_3_game_obp": 0.5384615384615384,
+      "recent_3_game_slg": 0.45454545454545453,
+      "recent_3_game_ops": 0.9930069930069929,
       "profile_confidence": "trusted"
     }
   ],
@@ -540,6 +660,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.6666666666666666,
       "xbh_game_percentage": 0.16666666666666666,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 14,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5,
+      "recent_3_game_slg": 0.5,
+      "recent_3_game_ops": 1,
       "notes": ""
     },
     {
@@ -587,6 +715,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0.3333333333333333,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.45454545454545453,
+      "recent_3_game_obp": 0.38461538461538464,
+      "recent_3_game_slg": 0.5454545454545454,
+      "recent_3_game_ops": 0.93006993006993,
       "notes": ""
     },
     {
@@ -634,6 +770,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 1,
       "xbh_game_percentage": 0.5,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 9,
+      "recent_3_game_avg": 0.75,
+      "recent_3_game_obp": 0.7857142857142857,
+      "recent_3_game_slg": 0.8333333333333334,
+      "recent_3_game_ops": 1.619047619047619,
       "notes": ""
     },
     {
@@ -681,6 +825,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.6666666666666666,
       "xbh_game_percentage": 0.6666666666666666,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5384615384615384,
+      "recent_3_game_slg": 0.75,
+      "recent_3_game_ops": 1.2884615384615383,
       "notes": ""
     },
     {
@@ -728,6 +880,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0.5,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 12,
+      "recent_3_game_hits": 7,
+      "recent_3_game_avg": 0.5833333333333334,
+      "recent_3_game_obp": 0.6428571428571429,
+      "recent_3_game_slg": 1.75,
+      "recent_3_game_ops": 2.392857142857143,
       "notes": ""
     },
     {
@@ -774,6 +934,14 @@
       "hit_game_percentage": 0.6,
       "multi_hit_game_percentage": 0.4,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.6,
+      "recent_3_game_obp": 0.6666666666666666,
+      "recent_3_game_slg": 0.6,
+      "recent_3_game_ops": 1.2666666666666666,
       "notes": ""
     },
     {
@@ -819,6 +987,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.3333333333333333,
       "xbh_game_percentage": 0.3333333333333333,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5454545454545454,
+      "recent_3_game_obp": 0.5454545454545454,
+      "recent_3_game_slg": 0.6363636363636364,
+      "recent_3_game_ops": 1.1818181818181817,
       "notes": ""
     },
     {
@@ -865,6 +1041,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5714285714285714,
       "xbh_game_percentage": 0.2857142857142857,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.5,
+      "recent_3_game_obp": 0.5833333333333334,
+      "recent_3_game_slg": 1,
+      "recent_3_game_ops": 1.5833333333333335,
       "notes": ""
     },
     {
@@ -910,6 +1094,14 @@
       "hit_game_percentage": 0.6666666666666666,
       "multi_hit_game_percentage": 0,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 10,
+      "recent_3_game_hits": 2,
+      "recent_3_game_avg": 0.2,
+      "recent_3_game_obp": 0.18181818181818182,
+      "recent_3_game_slg": 0.2,
+      "recent_3_game_ops": 0.38181818181818183,
       "notes": ""
     },
     {
@@ -957,6 +1149,14 @@
       "hit_game_percentage": 0.6666666666666666,
       "multi_hit_game_percentage": 0.16666666666666666,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 3,
+      "recent_3_game_avg": 0.2727272727272727,
+      "recent_3_game_obp": 0.3333333333333333,
+      "recent_3_game_slg": 0.2727272727272727,
+      "recent_3_game_ops": 0.606060606060606,
       "notes": ""
     },
     {
@@ -1004,6 +1204,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 11,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.5454545454545454,
+      "recent_3_game_obp": 0.6153846153846154,
+      "recent_3_game_slg": 0.5454545454545454,
+      "recent_3_game_ops": 1.1608391608391608,
       "notes": ""
     },
     {
@@ -1051,6 +1259,14 @@
       "hit_game_percentage": 0.8333333333333334,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 13,
+      "recent_3_game_hits": 6,
+      "recent_3_game_avg": 0.46153846153846156,
+      "recent_3_game_obp": 0.46153846153846156,
+      "recent_3_game_slg": 0.46153846153846156,
+      "recent_3_game_ops": 0.9230769230769231,
       "notes": ""
     },
     {
@@ -1098,6 +1314,14 @@
       "hit_game_percentage": 0.6,
       "multi_hit_game_percentage": 0.4,
       "xbh_game_percentage": 0.2,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 13,
+      "recent_3_game_ab": 13,
+      "recent_3_game_hits": 7,
+      "recent_3_game_avg": 0.5384615384615384,
+      "recent_3_game_obp": 0.6,
+      "recent_3_game_slg": 0.6153846153846154,
+      "recent_3_game_ops": 1.2153846153846155,
       "notes": ""
     },
     {
@@ -1144,6 +1368,14 @@
       "hit_game_percentage": 1,
       "multi_hit_game_percentage": 1,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 1,
+      "recent_3_game_pa": 3,
+      "recent_3_game_ab": 3,
+      "recent_3_game_hits": 2,
+      "recent_3_game_avg": 0.6666666666666666,
+      "recent_3_game_obp": 0.6666666666666666,
+      "recent_3_game_slg": 0.6666666666666666,
+      "recent_3_game_ops": 1.3333333333333333,
       "notes": ""
     },
     {
@@ -1191,6 +1423,14 @@
       "hit_game_percentage": 0.5,
       "multi_hit_game_percentage": 0.5,
       "xbh_game_percentage": 0,
+      "recent_3_game_games": 3,
+      "recent_3_game_pa": 12,
+      "recent_3_game_ab": 11,
+      "recent_3_game_hits": 5,
+      "recent_3_game_avg": 0.45454545454545453,
+      "recent_3_game_obp": 0.5384615384615384,
+      "recent_3_game_slg": 0.45454545454545453,
+      "recent_3_game_ops": 0.9930069930069929,
       "notes": ""
     }
   ],

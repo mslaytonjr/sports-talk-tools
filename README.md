@@ -187,7 +187,7 @@ Useful environment variables:
 For AWS scheduling, use CodeBuild with `buildspec-softball-daily.yml`, then attach an EventBridge rule to the CodeBuild project:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File ./scripts/deploy-softball-daily-codebuild-schedule.ps1 `
+npm run deploy:softball-daily-codebuild-schedule -- `
   -ProjectName <codebuild-project-name> `
   -ScheduleName softball-daily-update `
   -EventRoleArn <eventbridge-codebuild-role-arn> `

@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-26T18:13:57.915Z",
-  "stats_last_scraped_at": "2026-06-26T18:13:51.391Z",
-  "stats_through_date": "2026-06-25",
-  "scraped_game_count": 52,
+  "generated_at": "2026-06-29T11:13:02.977Z",
+  "stats_last_scraped_at": "2026-06-29T11:12:56.337Z",
+  "stats_through_date": "2026-06-28",
+  "scraped_game_count": 55,
   "season": 2026,
   "team_rankings": [
     {
       "team": "The Sultans of Swat",
       "team_id": "the_sultans_of_swat",
-      "projected_runs": 16.8112,
+      "projected_runs": 16.8161,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.6406001516304357,
+      "overall_rating": 0.6381861656520602,
       "team_report_href": "/softball/team_reports/the_sultans_of_swat_2026.html",
       "weighted_h2l": 718.9,
       "weighted_h2c": 727.7,
@@ -32,10 +32,10 @@
     {
       "team": "Black Mambas",
       "team_id": "black_mambas",
-      "projected_runs": 14.2586,
+      "projected_runs": 14.2081,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.4759150541264698,
+      "overall_rating": 0.46966162933106864,
       "team_report_href": "/softball/team_reports/black_mambas_2026.html",
       "weighted_h2l": 433.2,
       "weighted_h2c": 855.9,
@@ -56,10 +56,10 @@
     {
       "team": "Muscle Hamsters",
       "team_id": "muscle_hamsters",
-      "projected_runs": 13.2439,
+      "projected_runs": 13.692,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.40209188974561005,
+      "overall_rating": 0.43266112548567365,
       "team_report_href": "/softball/team_reports/muscle_hamsters_2026.html",
       "weighted_h2l": 424,
       "weighted_h2c": 690.2,
@@ -80,10 +80,10 @@
     {
       "team": "Lunch Pail Guys",
       "team_id": "lunch_pail_guys",
-      "projected_runs": 13.0951,
+      "projected_runs": 13.2253,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.3907929351110612,
+      "overall_rating": 0.39798106661483174,
       "team_report_href": "/softball/team_reports/lunch_pail_guys_2026.html",
       "weighted_h2l": 296.2,
       "weighted_h2c": 542.1,
@@ -104,10 +104,10 @@
     {
       "team": "Wild Things",
       "team_id": "wild_things",
-      "projected_runs": 13.0604,
+      "projected_runs": 13.0668,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.3881395719286863,
+      "overall_rating": 0.3859240669756133,
       "team_report_href": "/softball/team_reports/wild_things_2026.html",
       "weighted_h2l": 496.1,
       "weighted_h2c": 828.6,
@@ -128,10 +128,10 @@
     {
       "team": "The Ryan Express",
       "team_id": "the_ryan_express",
-      "projected_runs": 12.8185,
+      "projected_runs": 12.9607,
       "matched_players": 15,
       "roster_size": 16,
-      "overall_rating": 0.3694442606448173,
+      "overall_rating": 0.37777110662892815,
       "team_report_href": "/softball/team_reports/the_ryan_express_2026.html",
       "weighted_h2l": 371.4,
       "weighted_h2c": 758.4,
@@ -152,10 +152,10 @@
     {
       "team": "Bash Brothers",
       "team_id": "bash_brothers",
-      "projected_runs": 12.7218,
+      "projected_runs": 12.7284,
       "matched_players": 16,
       "roster_size": 16,
-      "overall_rating": 0.36187187801248494,
+      "overall_rating": 0.3596851221350225,
       "team_report_href": "/softball/team_reports/bash_brothers_2026.html",
       "weighted_h2l": 602.9,
       "weighted_h2c": 722.4,
@@ -176,10 +176,10 @@
     {
       "team": "7th Floor Crew",
       "team_id": "7th_floor_crew",
-      "projected_runs": 10.6575,
+      "projected_runs": 10.8607,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.18481869033529036,
+      "overall_rating": 0.20100017396819406,
       "team_report_href": "/softball/team_reports/7th_floor_crew_2026.html",
       "weighted_h2l": 597.7,
       "weighted_h2c": 834.1,
@@ -200,10 +200,10 @@
     {
       "team": "The Big Units",
       "team_id": "the_big_units",
-      "projected_runs": 10.4989,
+      "projected_runs": 10.5049,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.16982531044886626,
+      "overall_rating": 0.1676912197928549,
       "team_report_href": "/softball/team_reports/the_big_units_2026.html",
       "weighted_h2l": 478.2,
       "weighted_h2c": 695.4,
@@ -224,10 +224,10 @@
     {
       "team": "The Big Papi's",
       "team_id": "the_big_papi_s",
-      "projected_runs": 9.5389,
+      "projected_runs": 9.5426,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.07393299550701338,
+      "overall_rating": 0.07161538983418425,
       "team_report_href": "/softball/team_reports/the_big_papi_s_2026.html",
       "weighted_h2l": 698.3,
       "weighted_h2c": 878.7,
@@ -248,10 +248,10 @@
     {
       "team": "Nails",
       "team_id": "nails",
-      "projected_runs": 9.5016,
+      "projected_runs": 9.5081,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.07001502615595548,
+      "overall_rating": 0.06799347171935614,
       "team_report_href": "/softball/team_reports/nails_2026.html",
       "weighted_h2l": 465.1,
       "weighted_h2c": 729,
@@ -272,10 +272,10 @@
     {
       "team": "Honey Badgers",
       "team_id": "honey_badgers",
-      "projected_runs": 9.347,
+      "projected_runs": 9.1631,
       "matched_players": 15,
       "roster_size": 15,
-      "overall_rating": 0.05361025687850836,
+      "overall_rating": 0.031033954197551165,
       "team_report_href": "/softball/team_reports/honey_badgers_2026.html",
       "weighted_h2l": 585,
       "weighted_h2c": 908.3,
@@ -299,31 +299,31 @@
       "team": "The Sultans of Swat",
       "player_name": "Kevin Marquez",
       "run_swing": 3.22,
-      "win_probability_swing": 0.1079
+      "win_probability_swing": 0.1082
     },
     {
       "team": "Bash Brothers",
       "player_name": "Max Metz",
       "run_swing": 2.2,
-      "win_probability_swing": 0.1038
+      "win_probability_swing": 0.1036
+    },
+    {
+      "team": "Black Mambas",
+      "player_name": "Alex Simon",
+      "run_swing": 2.3,
+      "win_probability_swing": 0.0958
     },
     {
       "team": "The Sultans of Swat",
       "player_name": "Dave Auerbach",
       "run_swing": 2.88,
-      "win_probability_swing": 0.095
+      "win_probability_swing": 0.0951
     },
     {
-      "team": "Black Mambas",
-      "player_name": "Chris Czapla",
-      "run_swing": 2.19,
-      "win_probability_swing": 0.0903
-    },
-    {
-      "team": "Black Mambas",
-      "player_name": "Alex Simon",
-      "run_swing": 2.18,
-      "win_probability_swing": 0.0899
+      "team": "Muscle Hamsters",
+      "player_name": "Jon Weiner",
+      "run_swing": 2.12,
+      "win_probability_swing": 0.0923
     }
   ]
 }

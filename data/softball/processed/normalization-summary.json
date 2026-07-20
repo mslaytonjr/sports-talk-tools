@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-16T16:44:27.164Z",
+  "generatedAt": "2026-07-20T12:26:27.050Z",
   "seasons": [
     {
       "season": 2026,
       "teamCount": 12,
-      "playerCount": 201,
+      "playerCount": 206,
       "playerHeaderCount": 33,
       "discoveredGameRows": 111,
       "reviewCount": 0,
       "sourceFile": "C:\\GitRepo\\sports-talk-tools\\data\\softball\\raw\\2026\\sportstrack-player-season-stats.json",
       "sourceType": "sportstrack",
-      "lastScrapedGameDate": "2026-07-14",
-      "gameStatRows": 1290
+      "lastScrapedGameDate": "2026-07-19",
+      "gameStatRows": 1396
     },
     {
       "season": 2025,
